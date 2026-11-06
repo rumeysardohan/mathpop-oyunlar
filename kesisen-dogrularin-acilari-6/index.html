@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kesişen Doğruların Oluşturduğu Açılar 6. Sınıf</title>
+<meta name="description" content="6. sınıf matematik çalışma kâğıdı: Kesişen doğruların oluşturduğu açılar. Yazdırılabilir A4.">
+<link rel="icon" href="../assets/simge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800;900&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&amp;family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{--indigo:#2B17B0;--lav:#EEE8FF;--turq:#1CC8D8;--coral:#F47A5E;--ink:#1E1B3A;--s:1;
+  --display:"Baloo 2","Nunito",system-ui,sans-serif;--body:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--lav);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+.mp-bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:10px max(16px,env(safe-area-inset-left,0px));background:var(--indigo);color:#fff;box-shadow:0 2px 12px rgba(43,23,176,.25)}
+.mp-bar img{width:48px;height:48px;border-radius:50%;background:#fff;flex:none;object-fit:cover}
+.mp-bar h1{flex:1 1 200px;min-width:0;margin:0;font-family:var(--display);font-weight:800;font-size:clamp(18px,3.4vw,26px);line-height:1.15}
+.mp-back,.mp-print{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border-radius:999px;
+  font-family:var(--body);font-weight:800;font-size:16px;text-decoration:none;cursor:pointer;border:2px solid #fff}
+.mp-back{color:#fff;background:transparent}
+.mp-back:hover,.mp-back:focus-visible{background:rgba(255,255,255,.15)}
+.mp-print{color:var(--indigo);background:#fff}
+.mp-print:hover,.mp-print:focus-visible{background:var(--lav)}
+@media (max-width:600px){.mp-bar{gap:8px 10px}.mp-bar img{order:-1;width:44px;height:44px}.mp-print{margin-left:auto}.mp-bar h1{order:5;flex-basis:100%}}
+.mp-main{padding:24px 16px 8px;display:flex;flex-direction:column;align-items:center;gap:24px}
+.mp-sheet{width:calc(794px * var(--s));height:calc(1123px * var(--s));flex:none;background:#fff;
+  box-shadow:0 10px 30px rgba(43,23,176,.18),0 2px 6px rgba(43,23,176,.12);border-radius:4px;overflow:hidden;position:relative}
+.mp-page{width:794px;height:1123px;transform:scale(var(--s));transform-origin:0 0;position:absolute;left:0;top:0}
+.mp-answers{display:flex;flex-direction:column;align-items:center;gap:24px;padding:8px 16px 40px}
+.mp-toggle{min-height:56px;padding:12px 28px;border:0;border-radius:999px;background:var(--coral);color:var(--ink);
+  font-family:var(--display);font-weight:800;font-size:clamp(18px,4vw,22px);cursor:pointer;box-shadow:0 6px 18px rgba(244,122,94,.35)}
+.mp-toggle[aria-expanded="true"]{background:var(--turq)}
+.mp-toggle:focus-visible,.mp-back:focus-visible,.mp-print:focus-visible{outline:3px solid var(--turq);outline-offset:3px}
+.mp-answer-pages{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%}
+.mp-answer-pages[hidden]{display:none}
+.mp-note{max-width:794px;text-align:center;color:#4A4470;font-weight:700;margin:0}
+.mp-foot{text-align:center;padding:0 16px 32px;color:#4A4470;font-weight:700;font-size:14px}
+.mp-foot a{color:var(--indigo)}
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:#fff!important}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mp-bar,.mp-toggle,.mp-note,.mp-foot,.mp-noprint{display:none!important}
+  .mp-main,.mp-answers,.mp-answer-pages{display:block;padding:0;margin:0;gap:0}
+  .mp-answers:not(.mp-open){display:none!important}
+  .mp-sheet{--s:1;width:210mm;height:296.5mm;box-shadow:none;border-radius:0;margin:0;break-inside:avoid;break-after:page;page-break-after:always}
+  .mp-sheet.mp-last{break-after:auto;page-break-after:auto}
+  .mp-page{transform:none}
+}
+
+/* çalışma kâğıdı stilleri */
+
+</style>
+<style>@media print{.mp-answers.mp-open ~ * {display:none}.mp-main .mp-sheet.mp-last{break-after:auto}.mp-answers.mp-open .mp-sheet:first-child{break-before:page}}</style>
+</head>
+<body>
+<header class="mp-bar">
+<a class="mp-back" href="../">← Tüm oyunlar</a>
+<h1>Kesişen Doğruların Oluşturduğu Açılar 6. Sınıf</h1>
+<button class="mp-print" type="button" onclick="window.print()">Yazdır</button>
+<img src="../assets/simge.png" alt="MathPop simgesi" width="48" height="48">
+</header>
+<main class="mp-main" id="mp-sheets">
+<div class="mp-sheet" data-board="Main.dc.html" aria-label="A4 · Sayfa 1"><div class="mp-page">
+<div style="width: 794px; height: 1123px; box-sizing: border-box; padding: 40px 52px 32px; background: #FFFFFF; font-family: 'Nunito', sans-serif; color: #1E1B3A; display: flex; flex-direction: column; gap: 16px; position: relative; overflow: hidden">
+
+<div aria-hidden="true" style="position: absolute; top: -70px; right: -70px; width: 220px; height: 220px; border-radius: 50%; background: #EEE8FF"></div>
+<div aria-hidden="true" style="position: absolute; top: 34px; right: 60px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 34px; color: #B9A6F0">△</div>
+<div aria-hidden="true" style="position: absolute; top: 92px; right: 128px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 26px; color: #1CC8D8">+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; position: relative">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-weight: 800; font-size: 13px; letter-spacing: 1.5px; color: #C2492D">6. SINIF · GEOMETRİ VE ÖLÇME</span>
+<h1 style="margin: 0; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 40px; line-height: 1.05; color: #2B17B0">Kesişen Doğruların<br>Oluşturduğu Açılar</h1>
+</div>
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 15px; color: #FFFFFF; background: #2B17B0; padding: 6px 16px; border-radius: 999px; white-space: nowrap; margin-right: 150px">Çalışma Kağıdı 1</span>
+</div>
+
+<div style="display: grid; grid-template-columns: 2.2fr 1.2fr 0.8fr; gap: 18px; font-weight: 700; font-size: 14px; color: #4A4470">
+<div style="border-bottom: 1.5px solid #8C84B5; padding-bottom: 4px">Ad Soyad:</div>
+<div style="border-bottom: 1.5px solid #8C84B5; padding-bottom: 4px">Tarih:</div>
+<div style="border-bottom: 1.5px solid #8C84B5; padding-bottom: 4px">Puan:</div>
+</div>
+
+<div style="background: #EEE8FF; border: 2px solid #1CC8D8; border-radius: 18px; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 8px">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2B17B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 21h4"></path><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"></path></svg>
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 20px; color: #2B17B0">Hatırla</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+<div style="grid-row: span 2; background: #FFFFFF; border-radius: 12px; padding: 8px 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px">
+<svg role="img" aria-label="Kesişen iki doğru ve oluşturdukları a, b, c, d açıları" width="150" height="110" viewBox="0 0 150 110">
+<path d="M120 29 L30 81" stroke="#2B17B0" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+<path d="M30 29 L120 81" stroke="#2B17B0" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+<path d="M86.3 48.5 A13 13 0 0 0 63.7 48.5" stroke="#F47A5E" stroke-width="2.5" fill="none"></path>
+<path d="M63.7 61.5 A13 13 0 0 0 86.3 61.5" stroke="#F47A5E" stroke-width="2.5" fill="none"></path>
+<path d="M63.7 48.5 A13 13 0 0 0 63.7 61.5" stroke="#1CC8D8" stroke-width="2.5" fill="none"></path>
+<path d="M86.3 61.5 A13 13 0 0 0 86.3 48.5" stroke="#1CC8D8" stroke-width="2.5" fill="none"></path>
+<circle cx="75" cy="55" r="3" fill="#1E1B3A"></circle>
+<text x="75" y="27" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="17" fill="#C2492D">a</text>
+<text x="45" y="55" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="17" fill="#2B17B0">b</text>
+<text x="75" y="84" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="17" fill="#C2492D">c</text>
+<text x="105" y="55" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="17" fill="#2B17B0">d</text>
+</svg>
+<span style="font-size: 12px; font-weight: 700; color: #4A4470">O noktasında kesişen iki doğru</span>
+</div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">Ters açılar</span><span style="font-size: 12.5px; line-height: 1.35">Karşılıklı açılar eşittir. <b>a = c</b>, <b>b = d</b></span></div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">Komşu açılar</span><span style="font-size: 12.5px; line-height: 1.35">Yan yana iki açının toplamı <b>a + b = 180°</b></span></div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">Tam açı</span><span style="font-size: 12.5px; line-height: 1.35">Dört açının toplamı <b>a + b + c + d = 360°</b></span></div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">Tümler</span><span style="font-size: 12.5px; line-height: 1.35">Toplamı <b>90°</b> olan iki açı. 30° ile 60° gibi.</span></div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">Bütünler</span><span style="font-size: 12.5px; line-height: 1.35">Toplamı <b>180°</b> olan iki açı. Komşu açılar bütünlerdir.</span></div>
+<div style="background: #2B17B0; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 15px; line-height: 1.1; color: #8FF0F8">İpucu</span><span style="font-size: 12.5px; line-height: 1.35; color: #FFFFFF">Tek bir açıyı bilirsen dördünü de bulursun!</span></div>
+</div>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">1</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45"><b>d₁</b> ve <b>d₂</b> doğruları O noktasında kesişiyor. Şekle göre <b>x</b>, <b>y</b> ve <b>z</b> açılarının ölçülerini bul.</p>
+<div style="display: flex; gap: 12px; align-items: stretch">
+<div style="flex: none; background: #F7F4FF; border-radius: 12px; padding: 4px 6px">
+<svg role="img" aria-label="Kesişen iki doğru: bir açı 130 derece, diğerleri x, y, z" width="180" height="130" viewBox="0 0 180 130">
+<path d="M163.3 38.3 L16.7 91.7" stroke="#2B17B0" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+<path d="M22.5 26 L157.5 104" stroke="#2B17B0" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+<path d="M104.1 59.9 A15 15 0 0 0 77 57.5" stroke="#F47A5E" stroke-width="2.5" fill="none"></path>
+<circle cx="90" cy="65" r="3" fill="#1E1B3A"></circle>
+<text x="90" y="78" text-anchor="middle" dominant-baseline="middle" font-family="Nunito, sans-serif" font-weight="700" font-size="11" fill="#4A4470">O</text>
+<text x="92.8" y="33" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="16" fill="#2B17B0">130°</text>
+<text x="58" y="62" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="17" fill="#C2492D">x</text>
+<text x="87" y="97" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="17" fill="#C2492D">y</text>
+<text x="122" y="68" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="17" fill="#C2492D">z</text>
+<text x="170" y="34" text-anchor="middle" dominant-baseline="middle" font-family="Nunito, sans-serif" font-weight="800" font-size="12" fill="#2B17B0">d₁</text>
+<text x="14" y="20" text-anchor="middle" dominant-baseline="middle" font-family="Nunito, sans-serif" font-weight="800" font-size="12" fill="#2B17B0">d₂</text>
+</svg>
+</div>
+<div style="flex: 1; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; justify-content: space-around; font-weight: 700; font-size: 15px; color: #4A4470">
+<span>x = ............</span>
+<span>y = ............</span>
+<span>z = ............</span>
+</div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: kolay">★☆☆</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">2</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">Kesişen iki doğrunun oluşturduğu açılardan biri <b>72°</b>'dir.</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="height: 52px; border: 1.5px dashed #B9A6F0; border-radius: 12px; box-sizing: border-box; padding: 8px 14px; font-weight: 700; font-size: 14px; color: #4A4470">a) Ters açısı kaç derecedir?</div>
+<div style="height: 52px; border: 1.5px dashed #B9A6F0; border-radius: 12px; box-sizing: border-box; padding: 8px 14px; font-weight: 700; font-size: 14px; color: #4A4470">b) Komşu açısı kaç derecedir?</div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: kolay">★☆☆</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">3</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45"><b>d₁</b> ve <b>d₂</b> doğruları O noktasında kesişiyor. Şekle göre <b>a − b</b> farkı kaç derecedir?</p>
+<div style="display: flex; gap: 12px; align-items: stretch">
+<div style="flex: none; background: #F7F4FF; border-radius: 12px; padding: 4px 6px">
+<svg role="img" aria-label="Kesişen iki doğru: bir açı 38 derece, a ve b açıları işaretli" width="180" height="130" viewBox="0 0 180 130">
+<path d="M166.8 51.5 L13.2 78.5" stroke="#2B17B0" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+<path d="M142.2 7 L37.8 123" stroke="#2B17B0" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+<path d="M107.7 61.9 A18 18 0 0 0 102 51.6" stroke="#F47A5E" stroke-width="2.5" fill="none"></path>
+<circle cx="90" cy="65" r="3" fill="#1E1B3A"></circle>
+<text x="96" y="78" text-anchor="middle" dominant-baseline="middle" font-family="Nunito, sans-serif" font-weight="700" font-size="11" fill="#4A4470">O</text>
+<text x="132" y="47" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="15" fill="#2B17B0">38°</text>
+<text x="75" y="37" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="17" fill="#C2492D">a</text>
+<text x="52" y="86" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="17" fill="#C2492D">b</text>
+<text x="172" y="58" text-anchor="middle" dominant-baseline="middle" font-family="Nunito, sans-serif" font-weight="800" font-size="12" fill="#2B17B0">d₁</text>
+<text x="156" y="10" text-anchor="middle" dominant-baseline="middle" font-family="Nunito, sans-serif" font-weight="800" font-size="12" fill="#2B17B0">d₂</text>
+</svg>
+</div>
+<div style="flex: 1; border: 1.5px dashed #B9A6F0; border-radius: 12px"></div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: orta">★★☆</span>
+</div>
+
+<div style="margin-top: auto; border-top: 2px dashed #C9BDF5; padding-top: 12px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px">
+<span style="font-weight: 700; font-size: 13px; color: #4A4470">Sayfa 1 / 2</span>
+<img src="logo.png" alt="MathPopWithRu logosu" style="height: 62px; display: block">
+<span style="font-weight: 800; font-size: 13px; color: #2B17B0; text-align: right">@mathpopwithru</span>
+</div>
+
+</div>
+</div></div>
+<div class="mp-sheet mp-last" data-board="Sayfa2.dc.html" aria-label="A4 · Sayfa 2"><div class="mp-page">
+<div style="width: 794px; height: 1123px; box-sizing: border-box; padding: 40px 52px 32px; background: #FFFFFF; font-family: 'Nunito', sans-serif; color: #1E1B3A; display: flex; flex-direction: column; gap: 16px; position: relative; overflow: hidden">
+
+<div aria-hidden="true" style="position: absolute; bottom: 120px; left: -60px; width: 160px; height: 160px; border-radius: 50%; background: #EEE8FF"></div>
+<div aria-hidden="true" style="position: absolute; top: 36px; right: 56px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 28px; color: #F47A5E">×</div>
+
+<div style="display: flex; align-items: baseline; gap: 12px; border-bottom: 3px solid #2B17B0; padding-bottom: 8px; position: relative">
+<h2 style="margin: 0; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 28px; color: #2B17B0">Kesişen Doğruların Oluşturduğu Açılar</h2>
+<span style="font-weight: 700; font-size: 14px; color: #4A4470">devam</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">4</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">Kesişen iki doğrunun oluşturduğu komşu açılardan biri, diğerinden <b>40° büyüktür</b>. Büyük açının ölçüsü kaç derecedir?</p>
+<div style="height: 64px; border: 1.5px dashed #B9A6F0; border-radius: 12px"></div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: orta">★★☆</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">5</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45"><b>Üç doğru</b> O noktasında kesişiyor. Şekildeki verilere göre <b>x</b> kaç derecedir?</p>
+<div style="display: flex; gap: 12px; align-items: stretch">
+<div style="flex: none; background: #F7F4FF; border-radius: 12px; padding: 4px 6px">
+<svg role="img" aria-label="Bir noktada kesişen üç doğru: 50 derece, 60 derece ve x açısı" width="180" height="140" viewBox="0 0 180 140">
+<path d="M160 70 L20 70" stroke="#2B17B0" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+<path d="M135 16.4 L45 123.6" stroke="#2B17B0" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+<path d="M66.1 4.2 L113.9 135.8" stroke="#2B17B0" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+<path d="M106 70 A16 16 0 0 0 100.3 57.7" stroke="#F47A5E" stroke-width="2.5" fill="none"></path>
+<path d="M79.7 82.3 A16 16 0 0 0 95.5 85" stroke="#F47A5E" stroke-width="2.5" fill="none"></path>
+<path d="M84.5 55 A16 16 0 0 0 74 70" stroke="#1CC8D8" stroke-width="2.5" fill="none"></path>
+<circle cx="90" cy="70" r="3" fill="#1E1B3A"></circle>
+<text x="102" y="80" text-anchor="middle" dominant-baseline="middle" font-family="Nunito, sans-serif" font-weight="700" font-size="11" fill="#4A4470">O</text>
+<text x="128" y="55" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="15" fill="#2B17B0">50°</text>
+<text x="83" y="110" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="15" fill="#2B17B0">60°</text>
+<text x="60" y="50" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="17" fill="#C2492D">x</text>
+</svg>
+</div>
+<div style="flex: 1; border: 1.5px dashed #B9A6F0; border-radius: 12px"></div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: orta">★★☆</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">6</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">Kesişen iki doğrunun oluşturduğu açılardan birinin <b>tümleri 25°</b>'dir. Bu açının <b>komşu açısı</b> kaç derecedir?</p>
+<div style="height: 64px; border: 1.5px dashed #B9A6F0; border-radius: 12px"></div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: orta">★★☆</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">7</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45"><b>d₁</b> ve <b>d₂</b> doğruları O noktasında kesişiyor. <b>[OK</b> ışını d₁ doğrusuna <b>diktir</b>. Şekle göre <b>x</b> kaç derecedir?</p>
+<div style="display: flex; gap: 12px; align-items: stretch">
+<div style="flex: none; background: #F7F4FF; border-radius: 12px; padding: 4px 6px">
+<svg role="img" aria-label="Kesişen iki doğru ve doğrulardan birine dik OK ışını: bir açı 130 derece, x açısı ışın ile d2 arasında" width="180" height="145" viewBox="0 0 180 145">
+<path d="M164 80 L16 80" stroke="#2B17B0" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+<path d="M137.6 23.3 L42.4 136.7" stroke="#2B17B0" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+<path d="M90 80 L90 14" stroke="#1E1B3A" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+<path d="M80 80 L80 70 L90 70" stroke="#1E1B3A" stroke-width="1.8" fill="none"></path>
+<path d="M105.4 61.6 A24 24 0 0 0 90 56" stroke="#1CC8D8" stroke-width="2.5" fill="none"></path>
+<path d="M80.4 91.5 A15 15 0 0 0 105 80" stroke="#F47A5E" stroke-width="2.5" fill="none"></path>
+<circle cx="90" cy="80" r="3" fill="#1E1B3A"></circle>
+<circle cx="90" cy="14" r="3" fill="#1E1B3A"></circle>
+<text x="100" y="13" text-anchor="middle" dominant-baseline="middle" font-family="Nunito, sans-serif" font-weight="800" font-size="12" fill="#1E1B3A">K</text>
+<text x="76" y="90" text-anchor="middle" dominant-baseline="middle" font-family="Nunito, sans-serif" font-weight="700" font-size="11" fill="#4A4470">O</text>
+<text x="104" y="41" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="17" fill="#C2492D">x</text>
+<text x="108" y="112" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="15" fill="#2B17B0">130°</text>
+<text x="170" y="72" text-anchor="middle" dominant-baseline="middle" font-family="Nunito, sans-serif" font-weight="800" font-size="12" fill="#2B17B0">d₁</text>
+<text x="150" y="22" text-anchor="middle" dominant-baseline="middle" font-family="Nunito, sans-serif" font-weight="800" font-size="12" fill="#2B17B0">d₂</text>
+</svg>
+</div>
+<div style="flex: 1; border: 1.5px dashed #B9A6F0; border-radius: 12px"></div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: zor">★★★</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">8</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<div style="background: #EEE8FF; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 1px; color: #2B17B0">YENİ NESİL</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.5">İki düz cadde bir kavşakta kesişiyor ve kavşağın dört köşesinde dört açı oluşuyor. Yan yana iki köşedeki açılardan biri, diğerinin <b>2 katından 30° fazladır</b>. Belediye, <b>geniş açılı</b> köşelere çiçek bahçesi yapacak.</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; font-weight: 700">Çiçek bahçesi yapılacak köşelerdeki açıların ölçüleri toplamı kaç derecedir?</p>
+</div>
+<div style="height: 84px; border: 1.5px dashed #B9A6F0; border-radius: 12px"></div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: zor">★★★</span>
+</div>
+
+<div style="display: flex; align-items: center; gap: 14px; background: #F7F4FF; border-radius: 14px; padding: 10px 16px">
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 15px; color: #2B17B0">Kendini değerlendir:</span>
+<span style="font-size: 14px; display: flex; gap: 18px; color: #1E1B3A">
+<span>☐ Çok kolaydı</span><span>☐ Biraz zorlandım</span><span>☐ Tekrar etmeliyim</span>
+</span>
+</div>
+
+<div style="margin-top: auto; border-top: 2px dashed #C9BDF5; padding-top: 12px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; position: relative">
+<span style="font-weight: 700; font-size: 13px; color: #4A4470">Sayfa 2 / 2</span>
+<img src="logo.png" alt="MathPopWithRu logosu" style="height: 62px; display: block">
+<span style="font-weight: 800; font-size: 13px; color: #2B17B0; text-align: right">@mathpopwithru</span>
+</div>
+
+</div>
+</div></div>
+</main>
+<section class="mp-answers" id="mp-answers" aria-label="Cevap anahtarı">
+<button class="mp-toggle" id="mp-toggle" type="button" aria-expanded="false" aria-controls="mp-answer-pages">Cevap anahtarını göster</button>
+<div class="mp-answer-pages" id="mp-answer-pages" hidden>
+<div class="mp-sheet mp-last" data-board="CevapAnahtari.dc.html" aria-label="A4 · Cevap Anahtarı"><div class="mp-page">
+<div style="width: 794px; height: 1123px; box-sizing: border-box; padding: 40px 52px 32px; background: #FFFFFF; font-family: 'Nunito', sans-serif; color: #1E1B3A; display: flex; flex-direction: column; gap: 16px; position: relative; overflow: hidden">
+
+<div aria-hidden="true" style="position: absolute; top: -70px; right: -70px; width: 220px; height: 220px; border-radius: 50%; background: #EEE8FF"></div>
+<div aria-hidden="true" style="position: absolute; top: 40px; right: 64px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 30px; color: #1CC8D8">△</div>
+
+<div style="display: flex; flex-direction: column; gap: 2px; position: relative">
+<span style="font-weight: 800; font-size: 13px; letter-spacing: 1.5px; color: #C2492D">ÖĞRETMENE / KONTROL İÇİN</span>
+<h1 style="margin: 0; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 40px; line-height: 1.05; color: #2B17B0">Cevap Anahtarı</h1>
+<span style="font-weight: 700; font-size: 14px; color: #4A4470">Kesişen Doğruların Oluşturduğu Açılar · Çalışma Kağıdı 1</span>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">1. soru → x = 50°, y = 130°, z = 50°</span><span style="font-size: 14px; line-height: 1.45">y, 130°'nin ters açısıdır: y = 130°. x ve z, 130°'nin komşusudur: 180° − 130° = 50°.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">2. soru → a) 72°  b) 108°</span><span style="font-size: 14px; line-height: 1.45">Ters açılar eşittir, yani 72°. Komşu açı: 180° − 72° = 108°.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">3. soru → a − b = 104°</span><span style="font-size: 14px; line-height: 1.45">a, 38°'nin komşusu: 180° − 38° = 142°. b, 38°'nin ters açısı: 38°. 142° − 38° = 104°.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">4. soru → 110°</span><span style="font-size: 14px; line-height: 1.45">Toplam 180°. 180° − 40° = 140°, ikiye böl: küçük açı 70°, büyük açı 70° + 40° = 110°.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">5. soru → x = 70°</span><span style="font-size: 14px; line-height: 1.45">60°'nin ters açısı, 50° ile x'in arasındadır. Yatay doğrunun üstünde: 50° + 60° + x = 180°, x = 70°.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">6. soru → 115°</span><span style="font-size: 14px; line-height: 1.45">Açı: 90° − 25° = 65°. Komşu açısı: 180° − 65° = 115°.</span></div>
+<div style="grid-column: span 2; border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">7. soru → x = 40°</span><span style="font-size: 14px; line-height: 1.45">130°'nin komşusu 180° − 130° = 50°'dir; bu açı d₁ ile d₂ arasında, x'in hemen yanındadır. [OK dik olduğu için 50° + x = 90°, x = 40°.</span></div>
+</div>
+
+<div style="background: #EEE8FF; border-radius: 14px; padding: 12px 16px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">8. soru → 260°</span>
+<span style="font-size: 14px; line-height: 1.5">Yan yana iki köşenin toplamı 180°. Küçük açıya 1 parça dersek büyük açı 2 parça + 30°. 3 parça + 30° = 180°, 3 parça = 150°, 1 parça = 50°. Küçük açı 50°, büyük açı 2 × 50° + 30° = 130°. Geniş açılı iki köşe ters açılardır: 130° + 130° = 260°.</span>
+</div>
+
+<div style="margin-top: auto; border-top: 2px dashed #C9BDF5; padding-top: 12px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px">
+<span style="font-weight: 700; font-size: 13px; color: #4A4470">Cevap anahtarı</span>
+<img src="logo.png" alt="MathPopWithRu logosu" style="height: 62px; display: block">
+<span style="font-weight: 800; font-size: 13px; color: #2B17B0; text-align: right">@mathpopwithru</span>
+</div>
+
+</div>
+</div></div>
+</div>
+</section>
+<script>
+(function(){
+  function fit(){var w=document.documentElement.clientWidth-32;var s=Math.min(1,w/794);
+    document.documentElement.style.setProperty('--s',s.toFixed(4));}
+  fit();window.addEventListener('resize',fit);window.addEventListener('orientationchange',fit);
+})();
+
+(function(){
+  var b=document.getElementById('mp-toggle'),box=document.getElementById('mp-answer-pages'),sec=document.getElementById('mp-answers');
+  if(!b)return;
+  b.addEventListener('click',function(){var open=box.hasAttribute('hidden');
+    if(open){box.removeAttribute('hidden');sec.classList.add('mp-open');b.textContent='Cevap anahtarını gizle';b.setAttribute('aria-expanded','true');}
+    else{box.setAttribute('hidden','');sec.classList.remove('mp-open');b.textContent='Cevap anahtarını göster';b.setAttribute('aria-expanded','false');}
+  });
+})();
+</script>
+</body>
+</html>

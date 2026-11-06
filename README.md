@@ -1,6 +1,6 @@
 # MathPop Oyunları 🐠
 
-Kesir, ondalık gösterim ve yüzde dönüşümleri için deniz altı temalı matematik oyunları.
+5–8. sınıf matematik oyunları, etkinlikleri ve yazdırılabilir çalışma kağıtları.
 Telefonda, bilgisayarda ve akıllı tahtada çalışır. Kurulum gerekmez.
 
 ### 5. sınıf
@@ -23,6 +23,18 @@ Telefonda, bilgisayarda ve akıllı tahtada çalışır. Kurulum gerekmez.
 | Daireden Altıgene | `daireden-altigene/` | Geometrik şekiller, kâğıt katlama |
 | Üçgen Fabrikası | `ucgen-fabrikasi/` | Pergelle üçgen çizme |
 
+**Çalışma kağıtları**
+
+| Kağıt | Klasör | Konu |
+|---|---|---|
+| Kesirlerin Farklı Gösterimleri 5. Sınıf | `kesirlerin-farkli-gosterimleri/` | Kesir, ondalık gösterim ve yüzde |
+| 5. Sınıf 1. Yazılıya Hazırlık | `5-sinif-1-yaziliya-hazirlik/` | Doğru, açılar, çokgenler, üçgen (1. yazılı) |
+| Kesişen Doğruların Oluşturduğu Açılar 5. Sınıf | `kesisen-dogrularin-acilari-5/` | Kesişen doğruların oluşturduğu açılar |
+| Nokta, Doğru, Doğru Parçası, Işın 5. Sınıf | `nokta-dogru-isin-5/` | Nokta, doğru, doğru parçası, ışın |
+| 5. Sınıf Geometrik Şekiller – Sınava Hazırlık Çalışma Kağıdı | `5-sinif-geometrik-sekiller/` | Temel geometrik çizimler, açılar, çokgenler (MAT.5.3.1–5.3.5) |
+| Kesişen Çemberlerle Üçgen İnşa Ediyorum (MAT.5.3.7) | `kesisen-cemberlerle-ucgen/` | Kesişen çemberlerle üçgen inşası (MAT.5.3.7) |
+| Çokgen Kasabası Çalışma Kağıdı | `cokgen-kasabasi-calisma-kagidi/` | Çokgenler (MAT.5.3.5) |
+
 ### 6. sınıf
 
 | Oyun | Klasör | Konu |
@@ -40,6 +52,16 @@ Telefonda, bilgisayarda ve akıllı tahtada çalışır. Kurulum gerekmez.
 | Deneysel Olasılık Atölyesi | `deneysel-olasilik-atolyesi/` | Olasılık |
 | Olasılık Keşif Adası | `olasilik-kesif-adasi/` | Olasılık |
 | Tümler ve Bütünler Şovu | `tumler-ve-butunler-sovu/` | Tümler ve bütünler açılar |
+
+**Çalışma kağıtları**
+
+| Kağıt | Klasör | Konu |
+|---|---|---|
+| 6. Sınıf Ortak Sınav Hazırlık | `6-sinif-ortak-sinav-hazirlik/` | Çarpan-kat, bölünebilme, asal çarpanlar, ondalık çözümleme, deneysel olasılık |
+| 6. Sınıf 1. Yazılıya Hazırlık | `6-sinif-1-yaziliya-hazirlik/` | Çarpan-kat, bölünebilme, asal sayılar, EBOB-EKOK (1. yazılı) |
+| Kesişen Doğruların Oluşturduğu Açılar 6. Sınıf | `kesisen-dogrularin-acilari-6/` | Kesişen doğruların oluşturduğu açılar |
+| Bölünebilme Kuralları 6. Sınıf | `bolunebilme-kurallari-6/` | Bölünebilme kuralları |
+| 6. Sınıf Matematik Ortak Sınav Hazırlık Kağıdı | `6-sinif-ortak-sinav-kagidi/` | Çarpan-kat, bölünebilme, asal sayılar, ortak kat-bölen, deneysel olasılık, ondalık gösterim |
 
 ### 7. sınıf
 
@@ -65,6 +87,17 @@ Telefonda, bilgisayarda ve akıllı tahtada çalışır. Kurulum gerekmez.
 | Virgül Kaydırma Atölyesi | `virgul-kaydirma-atolyesi/` | 10'un kuvvetleri |
 | Onun Kuvvetleri Atölyesi | `onun-kuvvetleri-atolyesi/` | Çözümleme, 10'un kuvvetleri |
 
+**Çalışma kağıtları**
+
+| Kağıt | Klasör | Konu |
+|---|---|---|
+| 7. Sınıf 1. Yazılıya Hazırlık | `7-sinif-1-yaziliya-hazirlik/` | Rasyonel sayılar (1. yazılı) |
+| Tam Sayılarla İşlemler | `tam-sayilarla-islemler/` | Tam sayılarla dört işlem |
+| Rasyonel Sayılarda İşlemler | `rasyonel-sayilarda-islemler/` | Rasyonel sayılarla dört işlem |
+| Üslü İfadeler 7. Sınıf | `uslu-ifadeler-7/` | Üslü ifadeler |
+| Kesir Kaşifleri Çalışma Kâğıdı | `kesir-kasifleri-calisma-kagidi/` | Rasyonel sayılarla dört işlem |
+| 7. Sınıf Matematik – 1. Dönem 1. Ortak Yazılı Çalışma Kağıdı | `7-sinif-1-yazili-calisma-kagidi/` | Rasyonel sayılar, dikdörtgenler prizması, istatistik; senaryo deneme sınavları |
+
 ### 8. sınıf
 
 | Oyun | Klasör | Konu |
@@ -74,6 +107,14 @@ Telefonda, bilgisayarda ve akıllı tahtada çalışır. Kurulum gerekmez.
 | Karekök Zindanı | `karekok-zindani/` | Karekök tahmini |
 | Kök Fabrikası | `kok-fabrikasi/` | a√b biçiminde yazma |
 | Kökünü Bul, Galaksiyi Kurtar | `kokunu-bul-galaksiyi-kurtar/` | Kareköklü ifadeler |
+
+**Çalışma kağıtları**
+
+| Kağıt | Klasör | Konu |
+|---|---|---|
+| 8. Sınıf 1. Yazılıya Hazırlık | `8-sinif-1-yaziliya-hazirlik/` | Çarpanlar, üslü ifadeler, kareköklü ifadeler (1. yazılı) |
+| Karekök Ustası 8. Sınıf | `karekok-ustasi-calisma-kagidi/` | Kareköklü ifadeler |
+| 8. Sınıf Matematik Çalışma Kağıdı – Senaryo 6 | `8-sinif-senaryo-6/` | Çarpanlar, EBOB-EKOK, üslü ifadeler, bilimsel gösterim |
 
 ## Klasör yapısı
 
@@ -132,6 +173,8 @@ Bir oyunu değiştirdiğinde, depoda ilgili klasöre gir → **Add file → Uplo
    Önizleme görselini `assets/onizleme/` klasörüne koy.
 
 ## Notlar
+
+- Çalışma kağıtlarında **Yazdır** butonu A4 çıktı verir. Cevap anahtarı yalnızca "Cevap anahtarını göster" ile açıldığında yazdırılır.
 
 - Sesler tarayıcıda üretilir, ayrı ses dosyası yoktur. İlk dokunuştan sonra çalar.
 - Seviye ve ses tercihi her cihazda ayrı hatırlanır.

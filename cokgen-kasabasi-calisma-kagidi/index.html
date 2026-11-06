@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Çokgen Kasabası Çalışma Kağıdı</title>
+<meta name="description" content="5. sınıf matematik çalışma kâğıdı: Çokgenler (MAT.5.3.5).">
+<link rel="icon" href="../assets/simge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800;900&display=swap">
+<style>
+:root{--indigo:#2B17B0;--lav:#EEE8FF;--turq:#1CC8D8;--coral:#F47A5E;--ink:#1E1B3A;--s:1;
+  --display:"Baloo 2","Nunito",system-ui,sans-serif;--body:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--lav);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+.mp-bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:10px max(16px,env(safe-area-inset-left,0px));background:var(--indigo);color:#fff;box-shadow:0 2px 12px rgba(43,23,176,.25)}
+.mp-bar img{width:48px;height:48px;border-radius:50%;background:#fff;flex:none;object-fit:cover}
+.mp-bar h1{flex:1 1 200px;min-width:0;margin:0;font-family:var(--display);font-weight:800;font-size:clamp(18px,3.4vw,26px);line-height:1.15}
+.mp-back,.mp-print{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border-radius:999px;
+  font-family:var(--body);font-weight:800;font-size:16px;text-decoration:none;cursor:pointer;border:2px solid #fff}
+.mp-back{color:#fff;background:transparent}
+.mp-back:hover,.mp-back:focus-visible{background:rgba(255,255,255,.15)}
+.mp-print{color:var(--indigo);background:#fff}
+.mp-print:hover,.mp-print:focus-visible{background:var(--lav)}
+@media (max-width:600px){.mp-bar{gap:8px 10px}.mp-bar img{order:-1;width:44px;height:44px}.mp-print{margin-left:auto}.mp-bar h1{order:5;flex-basis:100%}}
+.mp-main{padding:24px 16px 8px;display:flex;flex-direction:column;align-items:center;gap:24px}
+.mp-sheet{width:calc(794px * var(--s));height:calc(1123px * var(--s));flex:none;background:#fff;
+  box-shadow:0 10px 30px rgba(43,23,176,.18),0 2px 6px rgba(43,23,176,.12);border-radius:4px;overflow:hidden;position:relative}
+.mp-page{width:794px;height:1123px;transform:scale(var(--s));transform-origin:0 0;position:absolute;left:0;top:0}
+.mp-answers{display:flex;flex-direction:column;align-items:center;gap:24px;padding:8px 16px 40px}
+.mp-toggle{min-height:56px;padding:12px 28px;border:0;border-radius:999px;background:var(--coral);color:var(--ink);
+  font-family:var(--display);font-weight:800;font-size:clamp(18px,4vw,22px);cursor:pointer;box-shadow:0 6px 18px rgba(244,122,94,.35)}
+.mp-toggle[aria-expanded="true"]{background:var(--turq)}
+.mp-toggle:focus-visible,.mp-back:focus-visible,.mp-print:focus-visible{outline:3px solid var(--turq);outline-offset:3px}
+.mp-answer-pages{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%}
+.mp-answer-pages[hidden]{display:none}
+.mp-note{max-width:794px;text-align:center;color:#4A4470;font-weight:700;margin:0}
+.mp-foot{text-align:center;padding:0 16px 32px;color:#4A4470;font-weight:700;font-size:14px}
+.mp-foot a{color:var(--indigo)}
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:#fff!important}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mp-bar,.mp-toggle,.mp-note,.mp-foot,.mp-noprint{display:none!important}
+  .mp-main,.mp-answers,.mp-answer-pages{display:block;padding:0;margin:0;gap:0}
+  .mp-answers:not(.mp-open){display:none!important}
+  .mp-sheet{--s:1;width:210mm;height:296.5mm;box-shadow:none;border-radius:0;margin:0;break-inside:avoid;break-after:page;page-break-after:always}
+  .mp-sheet.mp-last{break-after:auto;page-break-after:auto}
+  .mp-page{transform:none}
+}
+
+.mp-doc{width:100%;max-width:794px;background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(43,23,176,.18);
+  padding:clamp(20px,5vw,52px);font-size:16px;line-height:1.6;overflow-wrap:anywhere;word-break:normal}
+.mp-doc h1,.mp-doc h2,.mp-doc h3,.mp-doc h4{font-family:var(--display);color:var(--indigo);line-height:1.2;overflow-wrap:break-word}
+.mp-doc h1{font-size:clamp(26px,5vw,36px);font-weight:800;margin:0 0 14px;padding-bottom:10px;border-bottom:3px solid var(--indigo)}
+.mp-doc h2{font-size:clamp(21px,4vw,26px);font-weight:800;margin:30px 0 10px;padding:6px 14px;background:var(--lav);border-left:6px solid var(--turq);border-radius:10px}
+.mp-doc h3{font-size:clamp(18px,3.4vw,21px);font-weight:700;margin:22px 0 8px;color:#3a24c4}
+.mp-doc p{margin:8px 0}
+.mp-doc strong{color:#21136E}
+.mp-doc ul,.mp-doc ol{padding-left:1.4em;margin:8px 0}
+.mp-doc li{margin:4px 0}
+.mp-doc li p{margin:2px 0}
+.mp-doc blockquote,.mp-doc .mp-quote{margin:12px 0;padding:10px 16px;background:#F7F4FF;border-left:5px solid var(--coral);border-radius:10px}
+.mp-doc img{max-width:100%;height:auto;display:block;margin:12px auto;border-radius:10px}
+.mp-doc code{font-family:ui-monospace,Menlo,Consolas,monospace;background:#F7F4FF;padding:1px 5px;border-radius:5px}
+.mp-tablewrap{width:100%;overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+.mp-doc table{border-collapse:collapse;min-width:60%;font-size:15px;overflow-wrap:normal;word-break:normal}
+.mp-doc th{background:var(--indigo);color:#fff;font-family:var(--display);font-weight:700;text-align:left}
+.mp-doc th,.mp-doc td{border:1.5px solid #B9A6F0;padding:6px 10px;vertical-align:top;min-width:3.2em;height:2.4em}
+.mp-doc tbody tr:nth-child(even) td{background:#F7F4FF}
+.mp-doc th p,.mp-doc td p{margin:0}
+.mp-tabname{display:inline-block;margin:0 0 10px;padding:4px 14px;border-radius:999px;background:var(--turq);color:var(--ink);font-weight:800;font-size:14px}
+@media print{
+  @page mpdoc{size:A4;margin:14mm 14mm 16mm}
+  .mp-doc{page:mpdoc;max-width:none;box-shadow:none;border-radius:0;padding:0;margin:0;break-before:page;font-size:12pt}
+  .mp-main .mp-doc:first-child{break-before:auto}
+  .mp-doc h2,.mp-doc h3{break-after:avoid}
+  .mp-doc table,.mp-doc img{break-inside:avoid}
+  .mp-tablewrap{overflow:visible}
+}
+</style>
+</head>
+<body>
+<header class="mp-bar">
+<a class="mp-back" href="../">← Tüm oyunlar</a>
+<h1>Çokgen Kasabası Çalışma Kağıdı</h1>
+<button class="mp-print" type="button" onclick="window.print()">Yazdır</button>
+<img src="../assets/simge.png" alt="MathPop simgesi" width="48" height="48">
+</header>
+<main class="mp-main">
+<article class="mp-doc">
+<h1>Çokgen Kasabası Çalışma Kağıdı</h1><p>Adı Soyadı: ............................................   Sınıfı / No: ..............   Puan: ........ / 100</p><p><strong>Kazanım (MAT.5.3.5):</strong> Çokgenleri düzlemde ardışık olarak kesişen doğruların oluşturduğu kapalı şekiller olarak yorumlayabilme.</p><p>Çokgen Kasabası'na hoş geldin! Kasabanın sakinleri Üçgen Ümit, Dörtgen Defne, Beşgen Bora, Altıgen Arya, Yedigen Yakup ve Sekizgen Selin. Hepsi düzlemde sırayla kesişen doğrulardan doğdu. Etkinlikleri tamamlayarak onlara yardım et.</p><blockquote><strong>Hatırla:</strong> Çokgen; en az üç doğru parçasından oluşan, kapalı bir şekildir. Doğrular sırayla kesişir ve <strong>son doğru ilk doğruyu keser.</strong> Doğruların kesiştiği noktalar çokgenin <strong>köşeleridir</strong>.</blockquote><h2>Etkinlik 1: Karakterleri tanı (20 puan)</h2><p>Aşağıdaki karakterlerin kenarlarını ve köşelerini say. Tabloyu doldur.</p><p><img alt="Etkinlik 1 · altı çokgen karakter" src="gorsel-1.png"/></p><p>Etkinlik 1 · altı çokgen karakter</p><div class="mp-tablewrap"><table><thead><tr><th><p>Karakter</p></th><th><p>Kenar sayısı</p></th><th><p>Köşe sayısı</p></th><th><p>Çokgenin adı</p></th><th><p>Kaç doğrudan oluştu?</p></th></tr></thead><tbody><tr><td><p>1. karakter</p></td><td></td><td></td><td></td><td></td></tr><tr><td><p>2. karakter</p></td><td></td><td></td><td></td><td></td></tr><tr><td><p>3. karakter</p></td><td></td><td></td><td></td><td></td></tr><tr><td><p>4. karakter</p></td><td></td><td></td><td></td><td></td></tr><tr><td><p>5. karakter</p></td><td></td><td></td><td></td><td></td></tr><tr><td><p>6. karakter</p></td><td></td><td></td><td></td><td></td></tr></tbody></table></div><p>Tabloya bak: Bir çokgenin kenar sayısı, köşe sayısı ve onu oluşturan doğru sayısı arasında nasıl bir ilişki var?</p><p>..................................................................................................................................</p><h2>Etkinlik 2: Kapı görevlisi (24 puan)</h2><p>Kasabaya yalnızca çokgenler girebilir. Her şekil için çokgen olup olmadığını yaz ve nedenini açıkla.</p><p><img alt="Etkinlik 2 · sekiz şekil" src="gorsel-2.png"/></p><p>Etkinlik 2 · sekiz şekil</p><div class="mp-tablewrap"><table><thead><tr><th><p>Şekil</p></th><th><p>Çokgen mi? (Evet / Hayır)</p></th><th><p>Neden?</p></th></tr></thead><tbody><tr><td><p>A</p></td><td></td><td></td></tr><tr><td><p>B</p></td><td></td><td></td></tr><tr><td><p>C</p></td><td></td><td></td></tr><tr><td><p>D</p></td><td></td><td></td></tr><tr><td><p>E</p></td><td></td><td></td></tr><tr><td><p>F</p></td><td></td><td></td></tr><tr><td><p>G</p></td><td></td><td></td></tr><tr><td><p>H</p></td><td></td><td></td></tr></tbody></table></div><h2>Etkinlik 3: Doğrulardan çokgene (24 puan)</h2><p>Kasabaya yeni bir arkadaş geliyor. Onu doğrularla sen oluşturacaksın.</p><p><img alt="Etkinlik 3 · doğrulardan çokgene" src="gorsel-3.png"/></p><p>Etkinlik 3 · doğrulardan çokgene</p><p><strong>a) panelinde:</strong></p><ol><li>d1 ile d2'nin kesiştiği noktayı boya ve <strong>A</strong> yaz. Sonra d2 ile d3'ün kesişimine <strong>B</strong>, d3 ile d4'ün kesişimine <strong>C</strong> yaz.</li><li>Son doğru d4, hangi doğruyu kesti? Bu noktaya <strong>D</strong> yaz. Cevap: ................</li><li>A, B, C ve D noktaları arasındaki kapalı bölgeyi boya. Oluşan çokgenin adı: ................</li></ol><p><strong>b) panelinde:</strong></p><ol><li>d1 ve d2 doğruları kesişiyor. Cetvel kullanarak bir <strong>d3</strong> doğrusu çiz: d3 hem d2'yi hem de d1'i kessin.</li><li>Oluşan kapalı şekli boya, ona bir yüz ve bir isim ver. Adı: ................</li><li>d3, d1'i kesmeseydi ne olurdu? ......................................................................................</li></ol><h2>Etkinlik 4: Sekizgen Selin'in bilmeceleri (20 puan)</h2><p><strong>Boşlukları doldur.</strong> Kelime kutusu: <em>kapalı · köşe · üç · ilk · doğru parçası</em></p><ol><li>Bir çokgen oluşturmak için en az .................. doğru gerekir.</li><li>Çokgenin kenarları birer .......................... olmalıdır.</li><li>Doğruların ardışık kesiştiği noktalara çokgenin .................. denir.</li><li>Çokgenin kapanması için son doğru .................. doğruyu kesmelidir.</li><li>Çokgen, düzlemde .................. bir şekildir.</li></ol><p><strong>Doğru ise D, yanlış ise Y yaz.</strong></p><div class="mp-tablewrap"><table><thead><tr><th></th><th><p>İfade</p></th><th><p>D / Y</p></th></tr></thead><tbody><tr><td><p>1</p></td><td><p>Çember bir çokgendir.</p></td><td></td></tr><tr><td><p>2</p></td><td><p>Altıgen Arya'nın 6 kenarı ve 6 köşesi vardır.</p></td><td></td></tr><tr><td><p>3</p></td><td><p>İki doğru ardışık kesişerek bir çokgen oluşturabilir.</p></td><td></td></tr><tr><td><p>4</p></td><td><p>Beş doğru ardışık kesişir ve son doğru ilkini keserse beşgen oluşur.</p></td><td></td></tr><tr><td><p>5</p></td><td><p>Kenarlarından biri eğri olan kapalı bir şekil de çokgendir.</p></td><td></td></tr></tbody></table></div><h2>Etkinlik 5: Kasabanın yeni sakini (12 puan)</h2><p>Defterine cetvelle <strong>beş ya da daha fazla doğru</strong> çiz. Her doğru bir öncekini kessin, son doğru da ilk doğruyu kessin. Oluşan çokgeni boya, ona yüz, kollar ve ayaklar çiz.</p><ul><li>Karakterimin adı: ..................................................</li><li>Kaç doğru kullandım? ........   Kaç köşesi var? ........</li><li>Karakterim kendini nasıl tanıtır? "Merhaba, ben .............................................................................................................................."</li></ul><p><strong>Kendimi değerlendiriyorum:</strong></p><ul><li>☐ Çokgenin kapalı bir şekil olduğunu biliyorum.</li><li>☐ Doğruların ardışık kesişerek çokgen oluşturduğunu açıklayabiliyorum.</li><li>☐ Doğrular çizerek istediğim çokgeni oluşturabiliyorum.</li></ul>
+</article>
+</main>
+<section class="mp-answers" id="mp-answers" aria-label="Cevap anahtarı">
+<button class="mp-toggle" id="mp-toggle" type="button" aria-expanded="false" aria-controls="mp-answer-pages">Cevap anahtarını göster</button>
+<div class="mp-answer-pages" id="mp-answer-pages" hidden>
+<article class="mp-doc">
+<p class="mp-tabname">Çokgen Kasabası Çalışma Kağıdı</p>
+<h2>Cevap anahtarı (öğretmen için)</h2><p>Çoğaltmadan önce bu bölümü silebilir ya da ayrı yazdırabilirsiniz.</p><p><strong>Etkinlik 1:</strong> Kenar sayısı = köşe sayısı = doğru sayısı.</p><div class="mp-tablewrap"><table><thead><tr><th><p>Karakter</p></th><th><p>Kenar / köşe</p></th><th><p>Çokgenin adı</p></th></tr></thead><tbody><tr><td><p>1</p></td><td><p>6</p></td><td><p>Altıgen (Altıgen Arya)</p></td></tr><tr><td><p>2</p></td><td><p>3</p></td><td><p>Üçgen (Üçgen Ümit)</p></td></tr><tr><td><p>3</p></td><td><p>8</p></td><td><p>Sekizgen (Sekizgen Selin)</p></td></tr><tr><td><p>4</p></td><td><p>4</p></td><td><p>Dörtgen (Dörtgen Defne)</p></td></tr><tr><td><p>5</p></td><td><p>7</p></td><td><p>Yedigen (Yedigen Yakup)</p></td></tr><tr><td><p>6</p></td><td><p>5</p></td><td><p>Beşgen (Beşgen Bora)</p></td></tr></tbody></table></div><p><strong>Etkinlik 2:</strong> A, D ve G çokgendir (D içe göçük ama kapalı ve kenarları doğru parçası). B ve H kapalı değil. C'nin kenarı eğri. E'nin bir kenarı eğri. F yalnızca iki doğru parçasından oluşur ve kapalı değildir.</p><p><strong>Etkinlik 3:</strong> 2) d4, d1'i keser. 3) Dörtgen. 4–5) d3 iki doğruyu da keserse üçgen oluşur. 6) Şekil kapanmaz, çokgen oluşmaz.</p><p><strong>Etkinlik 4:</strong> Boşluklar: üç, doğru parçası, köşe, ilk, kapalı. D/Y: 1-Y, 2-D, 3-Y, 4-D, 5-Y.</p><p><strong>Etkinlik 5:</strong> Doğru sayısı ile köşe sayısı eşit olmalı; son doğrunun ilk doğruyu kestiğini kontrol edin.</p><p><strong>Puanlama:</strong> E1 20 (satır başına yaklaşık 3, ilişki sorusu 2) · E2 24 (şekil başına 3) · E3 24 (soru başına 4) · E4 20 (madde başına 2) · E5 12.</p>
+</article>
+</div>
+</section>
+<script>
+(function(){
+  var b=document.getElementById('mp-toggle'),box=document.getElementById('mp-answer-pages'),sec=document.getElementById('mp-answers');
+  if(!b)return;
+  b.addEventListener('click',function(){var open=box.hasAttribute('hidden');
+    if(open){box.removeAttribute('hidden');sec.classList.add('mp-open');b.textContent='Cevap anahtarını gizle';b.setAttribute('aria-expanded','true');}
+    else{box.setAttribute('hidden','');sec.classList.remove('mp-open');b.textContent='Cevap anahtarını göster';b.setAttribute('aria-expanded','false');}
+  });
+})();
+</script>
+</body>
+</html>

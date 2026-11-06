@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>8. Sınıf Matematik Çalışma Kağıdı – Senaryo 6</title>
+<meta name="description" content="8. sınıf matematik çalışma kâğıdı: Çarpanlar, EBOB-EKOK, üslü ifadeler, bilimsel gösterim.">
+<link rel="icon" href="../assets/simge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800;900&display=swap">
+<style>
+:root{--indigo:#2B17B0;--lav:#EEE8FF;--turq:#1CC8D8;--coral:#F47A5E;--ink:#1E1B3A;--s:1;
+  --display:"Baloo 2","Nunito",system-ui,sans-serif;--body:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--lav);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+.mp-bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:10px max(16px,env(safe-area-inset-left,0px));background:var(--indigo);color:#fff;box-shadow:0 2px 12px rgba(43,23,176,.25)}
+.mp-bar img{width:48px;height:48px;border-radius:50%;background:#fff;flex:none;object-fit:cover}
+.mp-bar h1{flex:1 1 200px;min-width:0;margin:0;font-family:var(--display);font-weight:800;font-size:clamp(18px,3.4vw,26px);line-height:1.15}
+.mp-back,.mp-print{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border-radius:999px;
+  font-family:var(--body);font-weight:800;font-size:16px;text-decoration:none;cursor:pointer;border:2px solid #fff}
+.mp-back{color:#fff;background:transparent}
+.mp-back:hover,.mp-back:focus-visible{background:rgba(255,255,255,.15)}
+.mp-print{color:var(--indigo);background:#fff}
+.mp-print:hover,.mp-print:focus-visible{background:var(--lav)}
+@media (max-width:600px){.mp-bar{gap:8px 10px}.mp-bar img{order:-1;width:44px;height:44px}.mp-print{margin-left:auto}.mp-bar h1{order:5;flex-basis:100%}}
+.mp-main{padding:24px 16px 8px;display:flex;flex-direction:column;align-items:center;gap:24px}
+.mp-sheet{width:calc(794px * var(--s));height:calc(1123px * var(--s));flex:none;background:#fff;
+  box-shadow:0 10px 30px rgba(43,23,176,.18),0 2px 6px rgba(43,23,176,.12);border-radius:4px;overflow:hidden;position:relative}
+.mp-page{width:794px;height:1123px;transform:scale(var(--s));transform-origin:0 0;position:absolute;left:0;top:0}
+.mp-answers{display:flex;flex-direction:column;align-items:center;gap:24px;padding:8px 16px 40px}
+.mp-toggle{min-height:56px;padding:12px 28px;border:0;border-radius:999px;background:var(--coral);color:var(--ink);
+  font-family:var(--display);font-weight:800;font-size:clamp(18px,4vw,22px);cursor:pointer;box-shadow:0 6px 18px rgba(244,122,94,.35)}
+.mp-toggle[aria-expanded="true"]{background:var(--turq)}
+.mp-toggle:focus-visible,.mp-back:focus-visible,.mp-print:focus-visible{outline:3px solid var(--turq);outline-offset:3px}
+.mp-answer-pages{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%}
+.mp-answer-pages[hidden]{display:none}
+.mp-note{max-width:794px;text-align:center;color:#4A4470;font-weight:700;margin:0}
+.mp-foot{text-align:center;padding:0 16px 32px;color:#4A4470;font-weight:700;font-size:14px}
+.mp-foot a{color:var(--indigo)}
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:#fff!important}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mp-bar,.mp-toggle,.mp-note,.mp-foot,.mp-noprint{display:none!important}
+  .mp-main,.mp-answers,.mp-answer-pages{display:block;padding:0;margin:0;gap:0}
+  .mp-answers:not(.mp-open){display:none!important}
+  .mp-sheet{--s:1;width:210mm;height:296.5mm;box-shadow:none;border-radius:0;margin:0;break-inside:avoid;break-after:page;page-break-after:always}
+  .mp-sheet.mp-last{break-after:auto;page-break-after:auto}
+  .mp-page{transform:none}
+}
+
+.mp-doc{width:100%;max-width:794px;background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(43,23,176,.18);
+  padding:clamp(20px,5vw,52px);font-size:16px;line-height:1.6;overflow-wrap:anywhere;word-break:normal}
+.mp-doc h1,.mp-doc h2,.mp-doc h3,.mp-doc h4{font-family:var(--display);color:var(--indigo);line-height:1.2;overflow-wrap:break-word}
+.mp-doc h1{font-size:clamp(26px,5vw,36px);font-weight:800;margin:0 0 14px;padding-bottom:10px;border-bottom:3px solid var(--indigo)}
+.mp-doc h2{font-size:clamp(21px,4vw,26px);font-weight:800;margin:30px 0 10px;padding:6px 14px;background:var(--lav);border-left:6px solid var(--turq);border-radius:10px}
+.mp-doc h3{font-size:clamp(18px,3.4vw,21px);font-weight:700;margin:22px 0 8px;color:#3a24c4}
+.mp-doc p{margin:8px 0}
+.mp-doc strong{color:#21136E}
+.mp-doc ul,.mp-doc ol{padding-left:1.4em;margin:8px 0}
+.mp-doc li{margin:4px 0}
+.mp-doc li p{margin:2px 0}
+.mp-doc blockquote,.mp-doc .mp-quote{margin:12px 0;padding:10px 16px;background:#F7F4FF;border-left:5px solid var(--coral);border-radius:10px}
+.mp-doc img{max-width:100%;height:auto;display:block;margin:12px auto;border-radius:10px}
+.mp-doc code{font-family:ui-monospace,Menlo,Consolas,monospace;background:#F7F4FF;padding:1px 5px;border-radius:5px}
+.mp-tablewrap{width:100%;overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+.mp-doc table{border-collapse:collapse;min-width:60%;font-size:15px;overflow-wrap:normal;word-break:normal}
+.mp-doc th{background:var(--indigo);color:#fff;font-family:var(--display);font-weight:700;text-align:left}
+.mp-doc th,.mp-doc td{border:1.5px solid #B9A6F0;padding:6px 10px;vertical-align:top;min-width:3.2em;height:2.4em}
+.mp-doc tbody tr:nth-child(even) td{background:#F7F4FF}
+.mp-doc th p,.mp-doc td p{margin:0}
+.mp-tabname{display:inline-block;margin:0 0 10px;padding:4px 14px;border-radius:999px;background:var(--turq);color:var(--ink);font-weight:800;font-size:14px}
+@media print{
+  @page mpdoc{size:A4;margin:14mm 14mm 16mm}
+  .mp-doc{page:mpdoc;max-width:none;box-shadow:none;border-radius:0;padding:0;margin:0;break-before:page;font-size:12pt}
+  .mp-main .mp-doc:first-child{break-before:auto}
+  .mp-doc h2,.mp-doc h3{break-after:avoid}
+  .mp-doc table,.mp-doc img{break-inside:avoid}
+  .mp-tablewrap{overflow:visible}
+}
+</style>
+</head>
+<body>
+<header class="mp-bar">
+<a class="mp-back" href="../">← Tüm oyunlar</a>
+<h1>8. Sınıf Matematik Çalışma Kağıdı – Senaryo 6</h1>
+<button class="mp-print" type="button" onclick="window.print()">Yazdır</button>
+<img src="../assets/simge.png" alt="MathPop simgesi" width="48" height="48">
+</header>
+<main class="mp-main">
+<article class="mp-doc">
+<h1>8. Sınıf Matematik Çalışma Kağıdı – Senaryo 6</h1><p>Bu çalışma kağıdı, 1. Dönem 1. Ortak Yazılı Sınav Senaryo 6'daki 8 kazanımı kapsar: her kazanımdan 2 kolay, 2 orta, 2 zor olmak üzere toplam 48 soru.</p><p><strong>Adı Soyadı:</strong> ............................................   <strong>Sınıfı / No:</strong> ..........   <strong>Tarih:</strong> ..........</p><p><strong>Yönerge:</strong> Soruları sırayla çözünüz. İşlemlerinizi sorunun altındaki boşluğa yazınız. Cevap anahtarı kağıdın sonundadır.</p><h2>1. Çarpanlar ve Üslü Gösterim (M.8.1.1.1)</h2><p><em>Verilen pozitif tam sayıların pozitif tam sayı çarpanlarını bulur, asal çarpanlarını üslü ifadelerin çarpımı şeklinde yazar.</em></p><p><strong>Kolay</strong></p><ol><li>24 sayısının tüm pozitif tam sayı çarpanlarını yazınız.</li><li>60 sayısını asal çarpanlarının üslü ifadelerin çarpımı şeklinde yazınız.</li></ol><p><strong>Orta</strong></p><ol><li>72 sayısının kaç tane pozitif tam sayı çarpanı vardır?</li><li>A = 2³ · 3 · 5 olduğuna göre, A sayısının iki basamaklı en büyük pozitif çarpanı kaçtır?</li></ol><p><strong>Zor</strong></p><ol><li>180 sayısının asal olmayan kaç tane pozitif tam sayı çarpanı vardır?</li><li>Alanı 48 m² olan dikdörtgen biçimindeki bir bahçenin kenar uzunlukları metre cinsinden birer tam sayıdır. Bu koşula uyan kaç farklı bahçe çizilebilir? Bunlardan çevresi en kısa olanın çevresi kaç metredir?</li></ol><h2>2. EBOB ve EKOK (M.8.1.1.2)</h2><p><em>İki doğal sayının EBOB ve EKOK'unu hesaplar, ilgili problemleri çözer.</em></p><p><strong>Kolay</strong></p><ol><li>18 ile 24 sayılarının EBOB'unu bulunuz.</li><li>12 ile 15 sayılarının EKOK'unu bulunuz.</li></ol><p><strong>Orta</strong></p><ol><li>Kenar uzunlukları 84 cm ve 60 cm olan dikdörtgen biçimindeki bir karton, hiç artmayacak şekilde eş ve en büyük karelere ayrılacaktır. Karelerin bir kenarı kaç cm olur ve kaç kare elde edilir?</li><li>Bir okulda iki zilden biri 6 dakikada, diğeri 8 dakikada bir çalmaktadır. İki zil saat 09.00'da birlikte çaldığına göre, bir sonraki sefer saat kaçta birlikte çalar?</li></ol><p><strong>Zor</strong></p><ol><li>Bir sınıftaki öğrenciler 4'erli, 6'şarlı ve 9'arlı gruplara ayrıldığında her seferinde 3 öğrenci artmaktadır. Sınıf mevcudu 50'den fazla ve 100'den az olduğuna göre, sınıfta kaç öğrenci vardır?</li><li>Kenar uzunlukları 72 m ve 96 m olan dikdörtgen biçimindeki bir bahçenin çevresine, köşelere de birer fidan gelecek şekilde, eşit aralıklarla fidan dikilecektir. En az kaç fidan gerekir?</li></ol><h2>3. Aralarında Asal Sayılar (M.8.1.1.3)</h2><p><em>Verilen iki doğal sayının aralarında asal olup olmadığını belirler.</em></p><p><strong>Kolay</strong></p><ol><li>Aşağıdaki sayı çiftlerinden hangileri aralarında asaldır?  a) 8 ve 15   b) 12 ve 18   c) 9 ve 14   d) 21 ve 35</li><li>14 ve 25 sayılarının aralarında asal olup olmadığını EBOB'larını bularak gösteriniz.</li></ol><p><strong>Orta</strong></p><ol><li>10 &lt; a &lt; 20 olmak üzere, a ile 12 aralarında asal sayılardır. a'nın alabileceği değerleri yazınız.</li><li>2⁴ · 3 ve 5² · 7 sayıları aralarında asal mıdır? Sayıları hesaplamadan nedenini açıklayınız.</li></ol><p><strong>Zor</strong></p><ol><li>a ve b aralarında asal iki doğal sayıdır ve EKOK(a, b) = 42'dir. a + b toplamının alabileceği en küçük değer kaçtır?</li><li>x/18 kesri sadeleştirilemeyen ve 1'den küçük bir kesirdir. x doğal sayısı kaç farklı değer alabilir?</li></ol><h2>4. Tam Sayıların Tam Sayı Kuvvetleri (M.8.1.2.1)</h2><p><em>Tam sayıların tam sayı kuvvetlerini hesaplar.</em></p><p><strong>Kolay</strong></p><ol><li>(−3)⁴ ve −3⁴ ifadelerinin değerlerini ayrı ayrı hesaplayınız.</li><li>2⁻³ ve 5⁰ ifadelerinin değerlerini bulunuz.</li></ol><p><strong>Orta</strong></p><ol><li>(−2)⁵ + (−1)¹⁰⁰ − 3² işleminin sonucu kaçtır?</li><li>(−4)⁻² ve (−2)⁻³ ifadelerinin değerlerini kesir olarak yazınız.</li></ol><p><strong>Zor</strong></p><ol><li>(−1)¹ + (−1)² + (−1)³ + … + (−1)⁵⁰ toplamının sonucu kaçtır? Açıklayınız.</li><li>a = −2 ve b = 3 olduğuna göre, aᵇ − bᵃ ifadesinin değeri kaçtır?</li></ol><h2>5. Üslü İfadelerin Kuralları (M.8.1.2.2)</h2><p><em>Üslü ifadelerle ilgili temel kuralları anlar, birbirine denk ifadeler oluşturur.</em></p><p><strong>Kolay</strong></p><ol><li>3⁴ · 3⁵ işleminin sonucunu üslü ifade olarak yazınız.</li><li>(2³)² ifadesini tek bir üslü ifade olarak yazınız.</li></ol><p><strong>Orta</strong></p><ol><li>5⁷ : 5⁴ · 5⁻¹ işleminin sonucu kaçtır?</li><li>4³ · 2⁵ ifadesini 2'nin bir kuvveti olarak yazınız.</li></ol><p><strong>Zor</strong></p><ol><li>2ˣ = 32 olduğuna göre, 4ˣ⁻¹ ifadesinin değeri kaçtır?</li><li>3²⁰ + 3²⁰ + 3²⁰ toplamını 3'ün bir kuvveti olarak yazınız.</li></ol><h2>6. Ondalık Gösterimlerin Çözümlenmesi (M.8.1.2.3)</h2><p><em>Sayıların ondalık gösterimlerini 10'un tam sayı kuvvetlerini kullanarak çözümler.</em></p><p><strong>Kolay</strong></p><ol><li>452,3 sayısını 10'un kuvvetlerini kullanarak çözümleyiniz.</li><li>7 · 10¹ + 6 · 10⁰ + 8 · 10⁻² şeklinde çözümlenen sayıyı yazınız.</li></ol><p><strong>Orta</strong></p><ol><li>30,405 sayısını 10'un kuvvetlerini kullanarak çözümleyiniz.</li><li>2 · 10⁻¹ + 5 · 10² + 4 · 10⁻³ + 1 · 10⁰ şeklinde çözümlenen sayı kaçtır?</li></ol><p><strong>Zor</strong></p><ol><li>a · 10² + 3 · 10¹ + b · 10⁻¹ + 2 · 10⁻² = 730,62 olduğuna göre, a + b kaçtır?</li><li>6025,08 sayısının çözümlemesinde 10³ ün katsayısı ile 10⁻² nin katsayısının çarpımı kaçtır? Bu sayının çözümlemesinde katsayısı 0 olan basamaklar 10'un hangi kuvvetlerine karşılık gelir?</li></ol><h2>7. 10'un Farklı Kuvvetleriyle İfade (M.8.1.2.4)</h2><p><em>Verilen bir sayıyı 10'un farklı tam sayı kuvvetlerini kullanarak ifade eder.</em></p><p><strong>Kolay</strong></p><ol><li>0,0045 = 45 · 10ⁿ eşitliğinde n kaçtır?</li><li>3500 sayısını 35 · 10ⁿ şeklinde yazınız.</li></ol><p><strong>Orta</strong></p><ol><li>7,2 · 10³ sayısını a) 72 · 10ⁿ  b) 720 · 10ᵐ şeklinde yazınız. n ve m kaçtır?</li><li>0,36 · 10⁵ sayısını a) 36 · 10ⁿ  b) 3600 · 10ᵐ şeklinde yazınız.</li></ol><p><strong>Zor</strong></p><ol><li>0,0024 · 10⁻² = 24 · 10ⁿ olduğuna göre, n kaçtır?</li><li>125 · 10⁻⁴ + 0,25 · 10⁻¹ toplamının sonucunu 375 · 10ⁿ şeklinde yazınız. n kaçtır?</li></ol><h2>8. Bilimsel Gösterim (M.8.1.2.5)</h2><p><em>Çok büyük ve çok küçük sayıları bilimsel gösterimle ifade eder ve karşılaştırır.</em></p><p><strong>Kolay</strong></p><ol><li>45 000 000 sayısını bilimsel gösterimle yazınız.</li><li>0,00062 sayısını bilimsel gösterimle yazınız.</li></ol><p><strong>Orta</strong></p><ol><li>Aşağıdakilerden hangileri bilimsel gösterimdir?  a) 12 · 10³   b) 0,8 · 10⁻²   c) 9,99 · 10⁵   d) 1 · 10⁻⁸   e) 10 · 10²</li><li>340 · 10⁻⁵ sayısını bilimsel gösterimle yazınız.</li></ol><p><strong>Zor</strong></p><ol><li>a = 3,2 · 10⁻⁵, b = 0,4 · 10⁻³ ve c = 28 · 10⁻⁶ sayılarını küçükten büyüğe sıralayınız.</li><li>Işığın hızı yaklaşık 3 · 10⁸ m/s'dir. Güneş'ten çıkan ışık Dünya'ya yaklaşık 500 saniyede ulaştığına göre, Güneş ile Dünya arasındaki uzaklık kaç metredir? Sonucu bilimsel gösterimle yazınız.</li></ol>
+</article>
+</main>
+<section class="mp-answers" id="mp-answers" aria-label="Cevap anahtarı">
+<button class="mp-toggle" id="mp-toggle" type="button" aria-expanded="false" aria-controls="mp-answer-pages">Cevap anahtarını göster</button>
+<div class="mp-answer-pages" id="mp-answer-pages" hidden>
+<article class="mp-doc">
+<p class="mp-tabname">8. Sınıf Matematik Çalışma Kağıdı – Senaryo 6</p>
+<h2>Cevap Anahtarı</h2><div class="mp-tablewrap"><table><thead><tr><th><p>No</p></th><th><p>Cevap</p></th><th><p>No</p></th><th><p>Cevap</p></th></tr></thead><tbody><tr><td><p>1</p></td><td><p>1, 2, 3, 4, 6, 8, 12, 24</p></td><td><p>25</p></td><td><p>3⁹</p></td></tr><tr><td><p>2</p></td><td><p>2² · 3 · 5</p></td><td><p>26</p></td><td><p>2⁶</p></td></tr><tr><td><p>3</p></td><td><p>12 (72 = 2³ · 3²)</p></td><td><p>27</p></td><td><p>5² = 25</p></td></tr><tr><td><p>4</p></td><td><p>60 (A = 120)</p></td><td><p>28</p></td><td><p>2⁶ · 2⁵ = 2¹¹</p></td></tr><tr><td><p>5</p></td><td><p>15 (18 çarpan − 3 asal çarpan)</p></td><td><p>29</p></td><td><p>x = 5, 4⁴ = 256</p></td></tr><tr><td><p>6</p></td><td><p>5 farklı bahçe; en kısa çevre 6 × 8 → 28 m</p></td><td><p>30</p></td><td><p>3 · 3²⁰ = 3²¹</p></td></tr><tr><td><p>7</p></td><td><p>6</p></td><td><p>31</p></td><td><p>4·10² + 5·10¹ + 2·10⁰ + 3·10⁻¹</p></td></tr><tr><td><p>8</p></td><td><p>60</p></td><td><p>32</p></td><td><p>76,08</p></td></tr><tr><td><p>9</p></td><td><p>12 cm; 7 × 5 = 35 kare</p></td><td><p>33</p></td><td><p>3·10¹ + 4·10⁻¹ + 5·10⁻³</p></td></tr><tr><td><p>10</p></td><td><p>EKOK = 24 → 09.24</p></td><td><p>34</p></td><td><p>501,204</p></td></tr><tr><td><p>11</p></td><td><p>36k + 3 → 75</p></td><td><p>35</p></td><td><p>a = 7, b = 6 → 13</p></td></tr><tr><td><p>12</p></td><td><p>EBOB = 24; 336 : 24 = 14 fidan</p></td><td><p>36</p></td><td><p>6 · 8 = 48; 10² ve 10⁻¹</p></td></tr><tr><td><p>13</p></td><td><p>a ve c</p></td><td><p>37</p></td><td><p>n = −4</p></td></tr><tr><td><p>14</p></td><td><p>EBOB = 1 → aralarında asal</p></td><td><p>38</p></td><td><p>35 · 10²</p></td></tr><tr><td><p>15</p></td><td><p>11, 13, 17, 19</p></td><td><p>39</p></td><td><p>n = 2, m = 1</p></td></tr><tr><td><p>16</p></td><td><p>Evet; ortak asal çarpanları yok</p></td><td><p>40</p></td><td><p>36 · 10³ ve 3600 · 10¹</p></td></tr><tr><td><p>17</p></td><td><p>13 (6 ve 7)</p></td><td><p>41</p></td><td><p>n = −6</p></td></tr><tr><td><p>18</p></td><td><p>6 (1, 5, 7, 11, 13, 17)</p></td><td><p>42</p></td><td><p>0,0375 = 375 · 10⁻⁴ → n = −4</p></td></tr><tr><td><p>19</p></td><td><p>81 ve −81</p></td><td><p>43</p></td><td><p>4,5 · 10⁷</p></td></tr><tr><td><p>20</p></td><td><p>1/8 ve 1</p></td><td><p>44</p></td><td><p>6,2 · 10⁻⁴</p></td></tr><tr><td><p>21</p></td><td><p>−32 + 1 − 9 = −40</p></td><td><p>45</p></td><td><p>c ve d</p></td></tr><tr><td><p>22</p></td><td><p>1/16 ve −1/8</p></td><td><p>46</p></td><td><p>3,4 · 10⁻³</p></td></tr><tr><td><p>23</p></td><td><p>0 (25 tane −1, 25 tane +1)</p></td><td><p>47</p></td><td><p>c &lt; a &lt; b</p></td></tr><tr><td><p>24</p></td><td><p>−8 − 1/9 = −73/9</p></td><td><p>48</p></td><td><p>1,5 · 10¹¹ m</p></td></tr></tbody></table></div>
+</article>
+</div>
+</section>
+<script>
+(function(){
+  var b=document.getElementById('mp-toggle'),box=document.getElementById('mp-answer-pages'),sec=document.getElementById('mp-answers');
+  if(!b)return;
+  b.addEventListener('click',function(){var open=box.hasAttribute('hidden');
+    if(open){box.removeAttribute('hidden');sec.classList.add('mp-open');b.textContent='Cevap anahtarını gizle';b.setAttribute('aria-expanded','true');}
+    else{box.setAttribute('hidden','');sec.classList.remove('mp-open');b.textContent='Cevap anahtarını göster';b.setAttribute('aria-expanded','false');}
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>8. Sınıf 1. Yazılıya Hazırlık</title>
+<meta name="description" content="8. sınıf matematik çalışma kâğıdı: Çarpanlar, üslü ifadeler, kareköklü ifadeler (1. yazılı). Yazdırılabilir A4.">
+<link rel="icon" href="../assets/simge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800;900&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&amp;family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{--indigo:#2B17B0;--lav:#EEE8FF;--turq:#1CC8D8;--coral:#F47A5E;--ink:#1E1B3A;--s:1;
+  --display:"Baloo 2","Nunito",system-ui,sans-serif;--body:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--lav);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+.mp-bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:10px max(16px,env(safe-area-inset-left,0px));background:var(--indigo);color:#fff;box-shadow:0 2px 12px rgba(43,23,176,.25)}
+.mp-bar img{width:48px;height:48px;border-radius:50%;background:#fff;flex:none;object-fit:cover}
+.mp-bar h1{flex:1 1 200px;min-width:0;margin:0;font-family:var(--display);font-weight:800;font-size:clamp(18px,3.4vw,26px);line-height:1.15}
+.mp-back,.mp-print{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border-radius:999px;
+  font-family:var(--body);font-weight:800;font-size:16px;text-decoration:none;cursor:pointer;border:2px solid #fff}
+.mp-back{color:#fff;background:transparent}
+.mp-back:hover,.mp-back:focus-visible{background:rgba(255,255,255,.15)}
+.mp-print{color:var(--indigo);background:#fff}
+.mp-print:hover,.mp-print:focus-visible{background:var(--lav)}
+@media (max-width:600px){.mp-bar{gap:8px 10px}.mp-bar img{order:-1;width:44px;height:44px}.mp-print{margin-left:auto}.mp-bar h1{order:5;flex-basis:100%}}
+.mp-main{padding:24px 16px 8px;display:flex;flex-direction:column;align-items:center;gap:24px}
+.mp-sheet{width:calc(794px * var(--s));height:calc(1123px * var(--s));flex:none;background:#fff;
+  box-shadow:0 10px 30px rgba(43,23,176,.18),0 2px 6px rgba(43,23,176,.12);border-radius:4px;overflow:hidden;position:relative}
+.mp-page{width:794px;height:1123px;transform:scale(var(--s));transform-origin:0 0;position:absolute;left:0;top:0}
+.mp-answers{display:flex;flex-direction:column;align-items:center;gap:24px;padding:8px 16px 40px}
+.mp-toggle{min-height:56px;padding:12px 28px;border:0;border-radius:999px;background:var(--coral);color:var(--ink);
+  font-family:var(--display);font-weight:800;font-size:clamp(18px,4vw,22px);cursor:pointer;box-shadow:0 6px 18px rgba(244,122,94,.35)}
+.mp-toggle[aria-expanded="true"]{background:var(--turq)}
+.mp-toggle:focus-visible,.mp-back:focus-visible,.mp-print:focus-visible{outline:3px solid var(--turq);outline-offset:3px}
+.mp-answer-pages{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%}
+.mp-answer-pages[hidden]{display:none}
+.mp-note{max-width:794px;text-align:center;color:#4A4470;font-weight:700;margin:0}
+.mp-foot{text-align:center;padding:0 16px 32px;color:#4A4470;font-weight:700;font-size:14px}
+.mp-foot a{color:var(--indigo)}
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:#fff!important}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mp-bar,.mp-toggle,.mp-note,.mp-foot,.mp-noprint{display:none!important}
+  .mp-main,.mp-answers,.mp-answer-pages{display:block;padding:0;margin:0;gap:0}
+  .mp-answers:not(.mp-open){display:none!important}
+  .mp-sheet{--s:1;width:210mm;height:296.5mm;box-shadow:none;border-radius:0;margin:0;break-inside:avoid;break-after:page;page-break-after:always}
+  .mp-sheet.mp-last{break-after:auto;page-break-after:auto}
+  .mp-page{transform:none}
+}
+
+/* çalışma kâğıdı stilleri */
+
+</style>
+<style>@media print{.mp-answers.mp-open ~ * {display:none}.mp-main .mp-sheet.mp-last{break-after:auto}.mp-answers.mp-open .mp-sheet:first-child{break-before:page}}</style>
+</head>
+<body>
+<header class="mp-bar">
+<a class="mp-back" href="../">← Tüm oyunlar</a>
+<h1>8. Sınıf 1. Yazılıya Hazırlık</h1>
+<button class="mp-print" type="button" onclick="window.print()">Yazdır</button>
+<img src="../assets/simge.png" alt="MathPop simgesi" width="48" height="48">
+</header>
+<main class="mp-main" id="mp-sheets">
+<div class="mp-sheet" data-board="Main.dc.html" aria-label="A4 · Sayfa 1"><div class="mp-page">
+<div style="width: 794px; height: 1123px; box-sizing: border-box; padding: 40px 52px 32px; background: #FFFFFF; font-family: 'Nunito', sans-serif; color: #1E1B3A; display: flex; flex-direction: column; gap: 16px; position: relative; overflow: hidden">
+
+<div aria-hidden="true" style="position: absolute; top: -70px; right: -70px; width: 220px; height: 220px; border-radius: 50%; background: #EEE8FF"></div>
+<div aria-hidden="true" style="position: absolute; top: 34px; right: 60px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 34px; color: #B9A6F0">π</div>
+<div aria-hidden="true" style="position: absolute; top: 92px; right: 128px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 26px; color: #1CC8D8">×</div>
+
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; position: relative">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-weight: 800; font-size: 13px; letter-spacing: 1.5px; color: #C2492D">8. SINIF · ÇARPANLAR, ÜSLÜ VE KAREKÖKLÜ İFADELER</span>
+<h1 style="margin: 0; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 46px; line-height: 1.05; color: #2B17B0">1. Yazılıya Hazırlık</h1>
+</div>
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 15px; color: #FFFFFF; background: #2B17B0; padding: 6px 16px; border-radius: 999px; white-space: nowrap; margin-right: 150px">Çalışma Kağıdı 1</span>
+</div>
+
+<div style="display: grid; grid-template-columns: 2.2fr 1.2fr 0.8fr; gap: 18px; font-weight: 700; font-size: 14px; color: #4A4470">
+<div style="border-bottom: 1.5px solid #8C84B5; padding-bottom: 4px">Ad Soyad:</div>
+<div style="border-bottom: 1.5px solid #8C84B5; padding-bottom: 4px">Tarih:</div>
+<div style="border-bottom: 1.5px solid #8C84B5; padding-bottom: 4px">Puan:</div>
+</div>
+
+<div style="background: #EEE8FF; border: 2px solid #1CC8D8; border-radius: 18px; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 8px">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2B17B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 21h4"></path><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"></path></svg>
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 20px; color: #2B17B0">Hatırla</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px">
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">EBOB · EKOK</span><span style="font-size: 12.5px; line-height: 1.35">EBOB = 1 ise sayılar aralarında asaldır</span></div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">Üs kuralları</span><span style="font-size: 12.5px; line-height: 1.35">a<sup>m</sup>·a<sup>n</sup> = a<sup>m+n</sup> · a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m−n</sup> · a<sup>0</sup> = 1</span></div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">Negatif üs</span><span style="font-size: 12.5px; line-height: 1.35">a<sup>−n</sup> = 1 / a<sup>n</sup></span></div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">Bilimsel gösterim</span><span style="font-size: 12.5px; line-height: 1.35">a × 10<sup>n</sup>, 1 ≤ a &lt; 10</span></div>
+<div style="background: #2B17B0; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 15px; line-height: 1.1; color: #8FF0F8">İpucu</span><span style="font-size: 12.5px; line-height: 1.35; color: #FFFFFF">√ dışına çıkarırken en büyük tam kare çarpanı bul</span></div>
+</div>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">1</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">a) <b>72</b>'nin pozitif tam sayı çarpanlarını yaz.<br>b) 72'yi asal çarpanlarının üslü ifadelerle çarpımı şeklinde yaz.</p>
+<div style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 10px">
+<div style="height: 70px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 12px; box-sizing: border-box; font-weight: 800; color: #C2492D">a)</div>
+<div style="height: 70px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 12px; box-sizing: border-box; font-weight: 800; color: #C2492D">b)</div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: kolay">★☆☆</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">2</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">İşlemlerin sonucunu bul.</p>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px">
+<div style="height: 62px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 12px; box-sizing: border-box; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 20px; color: #2B17B0">(−2)<sup>4</sup> =</div>
+<div style="height: 62px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 12px; box-sizing: border-box; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 20px; color: #2B17B0">−2<sup>4</sup> =</div>
+<div style="height: 62px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 12px; box-sizing: border-box; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 20px; color: #2B17B0">5<sup>−2</sup> =</div>
+<div style="height: 62px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 12px; box-sizing: border-box; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 20px; color: #2B17B0">(−3)<sup>0</sup> =</div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: kolay">★☆☆</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">3</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">a) <b>36</b> ve <b>60</b> sayılarının EBOB'unu ve EKOK'unu bul.<br>b) <b>15</b> ve <b>28</b> aralarında asal mıdır? Nedenini açıkla.</p>
+<div style="height: 90px; border: 1.5px dashed #B9A6F0; border-radius: 12px"></div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: orta">★★☆</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">4</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">Aşağıdaki ifadeleri <b>2'nin kuvveti</b> olarak yaz.</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="height: 76px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 8px 12px; box-sizing: border-box; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 20px; color: #2B17B0">a) (2<sup>5</sup> · 2<sup>−3</sup>) ÷ 2<sup>−1</sup> =</div>
+<div style="height: 76px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 8px 12px; box-sizing: border-box; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 20px; color: #2B17B0">b) 4<sup>3</sup> · 8<sup>2</sup> =</div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: orta">★★☆</span>
+</div>
+
+<div style="margin-top: auto; border-top: 2px dashed #C9BDF5; padding-top: 12px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px">
+<span style="font-weight: 700; font-size: 13px; color: #4A4470">Sayfa 1 / 2</span>
+<img src="logo.png" alt="MathPopWithRu logosu" style="height: 62px; display: block">
+<span style="font-weight: 800; font-size: 13px; color: #2B17B0; text-align: right">@mathpopwithru</span>
+</div>
+
+</div>
+</div></div>
+<div class="mp-sheet mp-last" data-board="Sayfa2.dc.html" aria-label="A4 · Sayfa 2"><div class="mp-page">
+<div style="width: 794px; height: 1123px; box-sizing: border-box; padding: 40px 52px 32px; background: #FFFFFF; font-family: 'Nunito', sans-serif; color: #1E1B3A; display: flex; flex-direction: column; gap: 18px; position: relative; overflow: hidden">
+
+<div aria-hidden="true" style="position: absolute; bottom: 120px; left: -60px; width: 160px; height: 160px; border-radius: 50%; background: #EEE8FF"></div>
+<div aria-hidden="true" style="position: absolute; top: 36px; right: 56px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 28px; color: #F47A5E">÷</div>
+
+<div style="display: flex; align-items: baseline; gap: 12px; border-bottom: 3px solid #2B17B0; padding-bottom: 8px; position: relative">
+<h2 style="margin: 0; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 28px; color: #2B17B0">1. Yazılıya Hazırlık</h2>
+<span style="font-weight: 700; font-size: 14px; color: #4A4470">devam</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">5</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">Sayıları <b>bilimsel gösterimle</b> yaz.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<div style="height: 70px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 12px; box-sizing: border-box; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 19px; color: #2B17B0">4 500 000 =</div>
+<div style="height: 70px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 12px; box-sizing: border-box; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 19px; color: #2B17B0">0,00072 =</div>
+<div style="height: 70px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 12px; box-sizing: border-box; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 19px; color: #2B17B0">32 × 10<sup>5</sup> =</div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: orta">★★☆</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">6</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">a) <b>√144</b> kaçtır? &nbsp; b) <b>√50</b> hangi iki ardışık doğal sayı arasındadır? Sayı doğrusunda yaklaşık yerini göster.</p>
+<div style="height: 90px; border: 1.5px dashed #B9A6F0; border-radius: 12px"></div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: orta">★★☆</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">7</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">a) <b>√72</b> ve <b>√48</b> sayılarını a√b biçiminde yaz.<br>b) <b>2√7</b>, <b>3√3</b> ve <b>5</b> sayılarını katsayıları kök içine alarak küçükten büyüğe sırala.</p>
+<div style="height: 120px; border: 1.5px dashed #B9A6F0; border-radius: 12px"></div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: zor">★★★</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">8</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<div style="background: #EEE8FF; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 1px; color: #2B17B0">YENİ NESİL</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.5">Kenarları <b>180 cm</b> ve <b>240 cm</b> olan dikdörtgen şeklindeki bir mutfak zemini, birbirinin aynısı <b>kare</b> fayanslarla hiç boşluk kalmadan ve fayans kesilmeden kaplanacak.</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; font-weight: 700">a) Kullanılabilecek en büyük fayansın bir kenarı kaç cm'dir? b) Bu fayanslardan kaç tane gerekir?</p>
+</div>
+<div style="height: 120px; border: 1.5px dashed #B9A6F0; border-radius: 12px"></div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: zor">★★★</span>
+</div>
+
+<div style="display: flex; align-items: center; gap: 14px; background: #F7F4FF; border-radius: 14px; padding: 10px 16px">
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 15px; color: #2B17B0">Kendini değerlendir:</span>
+<span style="font-size: 14px; display: flex; gap: 18px; color: #1E1B3A">
+<span>☐ Çok kolaydı</span><span>☐ Biraz zorlandım</span><span>☐ Tekrar etmeliyim</span>
+</span>
+</div>
+
+<div style="margin-top: auto; border-top: 2px dashed #C9BDF5; padding-top: 12px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; position: relative">
+<span style="font-weight: 700; font-size: 13px; color: #4A4470">Sayfa 2 / 2</span>
+<img src="logo.png" alt="MathPopWithRu logosu" style="height: 62px; display: block">
+<span style="font-weight: 800; font-size: 13px; color: #2B17B0; text-align: right">@mathpopwithru</span>
+</div>
+
+</div>
+</div></div>
+</main>
+<section class="mp-answers" id="mp-answers" aria-label="Cevap anahtarı">
+<button class="mp-toggle" id="mp-toggle" type="button" aria-expanded="false" aria-controls="mp-answer-pages">Cevap anahtarını göster</button>
+<div class="mp-answer-pages" id="mp-answer-pages" hidden>
+<div class="mp-sheet mp-last" data-board="CevapAnahtari.dc.html" aria-label="A4 · Cevap Anahtarı"><div class="mp-page">
+<div style="width: 794px; height: 1123px; box-sizing: border-box; padding: 40px 52px 32px; background: #FFFFFF; font-family: 'Nunito', sans-serif; color: #1E1B3A; display: flex; flex-direction: column; gap: 16px; position: relative; overflow: hidden">
+
+<div aria-hidden="true" style="position: absolute; top: -70px; right: -70px; width: 220px; height: 220px; border-radius: 50%; background: #EEE8FF"></div>
+<div aria-hidden="true" style="position: absolute; top: 40px; right: 64px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 30px; color: #1CC8D8">✦</div>
+
+<div style="display: flex; flex-direction: column; gap: 2px; position: relative">
+<span style="font-weight: 800; font-size: 13px; letter-spacing: 1.5px; color: #C2492D">ÖĞRETMENE / KONTROL İÇİN</span>
+<h1 style="margin: 0; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 40px; line-height: 1.05; color: #2B17B0">Cevap Anahtarı</h1>
+<span style="font-weight: 700; font-size: 14px; color: #4A4470">8. Sınıf 1. Yazılıya Hazırlık · Çalışma Kağıdı 1</span>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">1. soru → 72 = 2<sup>3</sup> · 3<sup>2</sup></span><span style="font-size: 14px; line-height: 1.5">a) 1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72 (12 çarpan). b) 72 = 2 · 2 · 2 · 3 · 3.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">2. soru → 16 · −16 · 1/25 · 1</span><span style="font-size: 14px; line-height: 1.5">(−2)<sup>4</sup>'te işaret de üsse dahil. −2<sup>4</sup>'te yalnız 2'nin kuvveti alınır. 5<sup>−2</sup> = 1/5<sup>2</sup>. Sıfırdan farklı sayının 0. kuvveti 1.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">3. soru → EBOB 12, EKOK 180 · Evet</span><span style="font-size: 14px; line-height: 1.5">36 = 2<sup>2</sup>·3<sup>2</sup>, 60 = 2<sup>2</sup>·3·5. 15 = 3·5 ve 28 = 2<sup>2</sup>·7; ortak asal çarpan yok, EBOB = 1.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">4. soru → a) 2<sup>3</sup> · b) 2<sup>12</sup></span><span style="font-size: 14px; line-height: 1.5">a) 2<sup>5+(−3)</sup> = 2<sup>2</sup>; 2<sup>2</sup> ÷ 2<sup>−1</sup> = 2<sup>3</sup>. b) 4<sup>3</sup> = 2<sup>6</sup>, 8<sup>2</sup> = 2<sup>6</sup>; 2<sup>6</sup> · 2<sup>6</sup> = 2<sup>12</sup>.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">5. soru</span><span style="font-size: 14px; line-height: 1.5">4,5 × 10<sup>6</sup> · 7,2 × 10<sup>−4</sup> · 3,2 × 10<sup>6</sup>. 32 × 10<sup>5</sup>'te katsayı 10'dan küçük olmalı: 3,2 × 10 × 10<sup>5</sup>.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">6. soru → a) 12 · b) 7 ile 8</span><span style="font-size: 14px; line-height: 1.5">12 · 12 = 144. 49 &lt; 50 &lt; 64, yani 7 &lt; √50 &lt; 8; 50, 49'a çok yakın olduğu için √50 7'ye yakındır.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">7. soru → 6√2, 4√3 · 5 &lt; 3√3 &lt; 2√7</span><span style="font-size: 14px; line-height: 1.5">√72 = √(36·2) = 6√2, √48 = √(16·3) = 4√3. 2√7 = √28, 3√3 = √27, 5 = √25.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">Öğretmene not</span><span style="font-size: 14px; line-height: 1.5">Sorular 2026-2027 1. yazılı kazanımlarını (M.8.1.1.1–M.8.1.3.3) kapsar. Okulunuzun seçtiği senaryoya göre kontrol edin.</span></div>
+</div>
+
+<div style="background: #EEE8FF; border-radius: 14px; padding: 12px 16px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">8. soru → a) 60 cm · b) 12 fayans</span>
+<span style="font-size: 14px; line-height: 1.5">Fayans kenarı iki kenarı da tam bölmeli: ortak bölen. En büyüğü EBOB(180, 240) = 60 cm. Bir kenara 180 ÷ 60 = 3, diğerine 240 ÷ 60 = 4 fayans; toplam 3 × 4 = 12.</span>
+</div>
+
+<div style="margin-top: auto; border-top: 2px dashed #C9BDF5; padding-top: 12px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px">
+<span style="font-weight: 700; font-size: 13px; color: #4A4470">Cevap anahtarı</span>
+<img src="logo.png" alt="MathPopWithRu logosu" style="height: 62px; display: block">
+<span style="font-weight: 800; font-size: 13px; color: #2B17B0; text-align: right">@mathpopwithru</span>
+</div>
+
+</div>
+</div></div>
+</div>
+</section>
+<script>
+(function(){
+  function fit(){var w=document.documentElement.clientWidth-32;var s=Math.min(1,w/794);
+    document.documentElement.style.setProperty('--s',s.toFixed(4));}
+  fit();window.addEventListener('resize',fit);window.addEventListener('orientationchange',fit);
+})();
+
+(function(){
+  var b=document.getElementById('mp-toggle'),box=document.getElementById('mp-answer-pages'),sec=document.getElementById('mp-answers');
+  if(!b)return;
+  b.addEventListener('click',function(){var open=box.hasAttribute('hidden');
+    if(open){box.removeAttribute('hidden');sec.classList.add('mp-open');b.textContent='Cevap anahtarını gizle';b.setAttribute('aria-expanded','true');}
+    else{box.setAttribute('hidden','');sec.classList.remove('mp-open');b.textContent='Cevap anahtarını göster';b.setAttribute('aria-expanded','false');}
+  });
+})();
+</script>
+</body>
+</html>

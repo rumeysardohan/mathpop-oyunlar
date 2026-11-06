@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rasyonel Sayılarda İşlemler</title>
+<meta name="description" content="7. sınıf matematik çalışma kâğıdı: Rasyonel sayılarla dört işlem. Yazdırılabilir A4.">
+<link rel="icon" href="../assets/simge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+:root{--indigo:#2B17B0;--lav:#EEE8FF;--turq:#1CC8D8;--coral:#F47A5E;--ink:#1E1B3A;--s:1;
+  --display:"Baloo 2","Nunito",system-ui,sans-serif;--body:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--lav);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+.mp-bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:10px max(16px,env(safe-area-inset-left,0px));background:var(--indigo);color:#fff;box-shadow:0 2px 12px rgba(43,23,176,.25)}
+.mp-bar img{width:48px;height:48px;border-radius:50%;background:#fff;flex:none;object-fit:cover}
+.mp-bar h1{flex:1 1 200px;min-width:0;margin:0;font-family:var(--display);font-weight:800;font-size:clamp(18px,3.4vw,26px);line-height:1.15}
+.mp-back,.mp-print{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border-radius:999px;
+  font-family:var(--body);font-weight:800;font-size:16px;text-decoration:none;cursor:pointer;border:2px solid #fff}
+.mp-back{color:#fff;background:transparent}
+.mp-back:hover,.mp-back:focus-visible{background:rgba(255,255,255,.15)}
+.mp-print{color:var(--indigo);background:#fff}
+.mp-print:hover,.mp-print:focus-visible{background:var(--lav)}
+@media (max-width:600px){.mp-bar{gap:8px 10px}.mp-bar img{order:-1;width:44px;height:44px}.mp-print{margin-left:auto}.mp-bar h1{order:5;flex-basis:100%}}
+.mp-main{padding:24px 16px 8px;display:flex;flex-direction:column;align-items:center;gap:24px}
+.mp-sheet{width:calc(794px * var(--s));height:calc(1123px * var(--s));flex:none;background:#fff;
+  box-shadow:0 10px 30px rgba(43,23,176,.18),0 2px 6px rgba(43,23,176,.12);border-radius:4px;overflow:hidden;position:relative}
+.mp-page{width:794px;height:1123px;transform:scale(var(--s));transform-origin:0 0;position:absolute;left:0;top:0}
+.mp-answers{display:flex;flex-direction:column;align-items:center;gap:24px;padding:8px 16px 40px}
+.mp-toggle{min-height:56px;padding:12px 28px;border:0;border-radius:999px;background:var(--coral);color:var(--ink);
+  font-family:var(--display);font-weight:800;font-size:clamp(18px,4vw,22px);cursor:pointer;box-shadow:0 6px 18px rgba(244,122,94,.35)}
+.mp-toggle[aria-expanded="true"]{background:var(--turq)}
+.mp-toggle:focus-visible,.mp-back:focus-visible,.mp-print:focus-visible{outline:3px solid var(--turq);outline-offset:3px}
+.mp-answer-pages{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%}
+.mp-answer-pages[hidden]{display:none}
+.mp-note{max-width:794px;text-align:center;color:#4A4470;font-weight:700;margin:0}
+.mp-foot{text-align:center;padding:0 16px 32px;color:#4A4470;font-weight:700;font-size:14px}
+.mp-foot a{color:var(--indigo)}
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:#fff!important}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mp-bar,.mp-toggle,.mp-note,.mp-foot,.mp-noprint{display:none!important}
+  .mp-main,.mp-answers,.mp-answer-pages{display:block;padding:0;margin:0;gap:0}
+  .mp-answers:not(.mp-open){display:none!important}
+  .mp-sheet{--s:1;width:210mm;height:296.5mm;box-shadow:none;border-radius:0;margin:0;break-inside:avoid;break-after:page;page-break-after:always}
+  .mp-sheet.mp-last{break-after:auto;page-break-after:auto}
+  .mp-page{transform:none}
+}
+
+/* çalışma kâğıdı stilleri */
+.q{border:1.5px solid #64748b;border-radius:10px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px;min-height:0;box-sizing:border-box}
+.n{flex:none;width:26px;height:26px;border-radius:50%;color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+.e{font-size:20px;font-weight:700;line-height:1.2;color:#111;padding-top:1px}
+.t{font-size:14.5px;line-height:1.45;color:#1f2937;margin:2px 0 0}
+.f{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:17px;line-height:1.15;margin:0 2px}
+.f span{padding:0 3px}
+.f span:first-child{border-bottom:1.6px solid currentColor}
+.t .f{font-size:13px}
+.p{font-size:30px;font-weight:400;vertical-align:middle;line-height:1}
+.bx{display:inline-block;width:22px;height:22px;border:1.6px solid #111;border-radius:3px;vertical-align:middle}
+.ln{border-bottom:1.2px solid #6b7280;height:16px}
+</style>
+<style>@media print{.mp-answers.mp-open ~ * {display:none}.mp-main .mp-sheet.mp-last{break-after:auto}.mp-answers.mp-open .mp-sheet:first-child{break-before:page}}</style>
+</head>
+<body>
+<header class="mp-bar">
+<a class="mp-back" href="../">← Tüm oyunlar</a>
+<h1>Rasyonel Sayılarda İşlemler</h1>
+<button class="mp-print" type="button" onclick="window.print()">Yazdır</button>
+<img src="../assets/simge.png" alt="MathPop simgesi" width="48" height="48">
+</header>
+<main class="mp-main" id="mp-sheets">
+<div class="mp-sheet" data-board="Main.dc.html" aria-label="1 · Toplama"><div class="mp-page">
+<div style="width: 794px; height: 1123px; box-sizing: border-box; padding: 40px 40px 32px; display: flex; flex-direction: column; gap: 12px; background: #fff; font-family: 'Nunito', system-ui, sans-serif; color: #111">
+<header style="display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; padding-bottom: 12px; border-bottom: 3px solid #1d4ed8">
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="width: 56px; height: 56px; border-radius: 14px; background: #1d4ed8; color: #fff; font-size: 40px; font-weight: 800; display: flex; align-items: center; justify-content: center; line-height: 1">+</div>
+<div>
+<p style="margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #4b5563">7. Sınıf Matematik · Rasyonel Sayılar</p>
+<h1 style="margin: 2px 0 0; font-size: 28px; font-weight: 800; line-height: 1.1">Rasyonel Sayılarla Toplama</h1>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: auto 150px; gap: 6px 8px; font-size: 13px; color: #374151; align-items: end">
+<span>Ad Soyad:</span><span class="ln"></span>
+<span>Sınıf / No:</span><span class="ln"></span>
+<span>Tarih:</span><span class="ln"></span>
+</div>
+</header>
+<p style="margin: 0; font-size: 13.5px; color: #374151">Aşağıdaki işlemleri yapınız. Sonuçları en sade biçimde yazınız.</p>
+<div style="flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(6, minmax(0, 1fr)); gap: 10px">
+
+<div class="q"><span class="n" style="background: #1d4ed8">1</span><div class="e"><span class="f"><span>3</span><span>8</span></span> + <span class="f"><span>1</span><span>8</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #1d4ed8">2</span><div class="e"><span class="p">(</span>−<span class="f"><span>2</span><span>5</span></span><span class="p">)</span> + <span class="f"><span>4</span><span>5</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #1d4ed8">3</span><div class="e"><span class="f"><span>1</span><span>2</span></span> + <span class="f"><span>2</span><span>3</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #1d4ed8">4</span><div class="e"><span class="p">(</span>−<span class="f"><span>3</span><span>4</span></span><span class="p">)</span> + <span class="p">(</span>−<span class="f"><span>5</span><span>6</span></span><span class="p">)</span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #1d4ed8">5</span><div class="e">2<span class="f"><span>1</span><span>3</span></span> + 1<span class="f"><span>3</span><span>4</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #1d4ed8">6</span><div class="e">0,75 + <span class="p">(</span>−<span class="f"><span>1</span><span>2</span></span><span class="p">)</span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #1d4ed8">7</span><div class="e">(−1,2) + 3,45 = ?</div></div>
+
+<div class="q"><span class="n" style="background: #1d4ed8">8</span><div class="e"><span class="f"><span>5</span><span>6</span></span> + <span class="p">(</span>−<span class="f"><span>7</span><span>12</span></span><span class="p">)</span> + <span class="f"><span>1</span><span>4</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #1d4ed8">9</span><div><p class="t">Kutuya gelmesi gereken sayıyı bulunuz.</p><div class="e"><span class="bx"></span> + <span class="f"><span>3</span><span>5</span></span> = <span class="f"><span>1</span><span>2</span></span></div></div></div>
+
+<div class="q"><span class="n" style="background: #1d4ed8">10</span><p class="t">Ali bir pastanın <span class="f"><span>2</span><span>5</span></span>'ini, Ayşe ise <span class="f"><span>1</span><span>3</span></span>'ünü yedi. İkisi birlikte pastanın kaçta kaçını yemiştir?</p></div>
+
+<div class="q"><span class="n" style="background: #1d4ed8">11</span><p class="t">Bir depoya sabah <span class="f"><span>3</span><span>4</span></span> ton, akşam 1<span class="f"><span>1</span><span>2</span></span> ton su eklendi. Depoya toplam kaç ton su eklenmiştir?</p></div>
+
+<div class="q"><span class="n" style="background: #1d4ed8">12</span><div><p class="t">İşlemi değişme özelliğini kullanarak kolayca yapınız.</p><div class="e"><span class="p">(</span>−<span class="f"><span>2</span><span>3</span></span><span class="p">)</span> + <span class="f"><span>4</span><span>9</span></span> + <span class="f"><span>2</span><span>3</span></span> = ?</div></div></div>
+
+</div>
+<footer style="display: flex; justify-content: space-between; font-size: 12px; color: #4b5563"><span>Rasyonel Sayılarda İşlemler</span><span>Sayfa 1 / 4</span></footer>
+</div>
+</div></div>
+<div class="mp-sheet" data-board="Cikarma.dc.html" aria-label="2 · Çıkarma"><div class="mp-page">
+<div style="width: 794px; height: 1123px; box-sizing: border-box; padding: 40px 40px 32px; display: flex; flex-direction: column; gap: 12px; background: #fff; font-family: 'Nunito', system-ui, sans-serif; color: #111">
+<header style="display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; padding-bottom: 12px; border-bottom: 3px solid #c2410c">
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="width: 56px; height: 56px; border-radius: 14px; background: #c2410c; color: #fff; font-size: 40px; font-weight: 800; display: flex; align-items: center; justify-content: center; line-height: 1">−</div>
+<div>
+<p style="margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #4b5563">7. Sınıf Matematik · Rasyonel Sayılar</p>
+<h1 style="margin: 2px 0 0; font-size: 28px; font-weight: 800; line-height: 1.1">Rasyonel Sayılarla Çıkarma</h1>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: auto 150px; gap: 6px 8px; font-size: 13px; color: #374151; align-items: end">
+<span>Ad Soyad:</span><span class="ln"></span>
+<span>Sınıf / No:</span><span class="ln"></span>
+<span>Tarih:</span><span class="ln"></span>
+</div>
+</header>
+<p style="margin: 0; font-size: 13.5px; color: #374151">Aşağıdaki işlemleri yapınız. Sonuçları en sade biçimde yazınız.</p>
+<div style="flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(6, minmax(0, 1fr)); gap: 10px">
+
+<div class="q"><span class="n" style="background: #c2410c">1</span><div class="e"><span class="f"><span>7</span><span>9</span></span> − <span class="f"><span>2</span><span>9</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #c2410c">2</span><div class="e"><span class="f"><span>3</span><span>4</span></span> − <span class="f"><span>5</span><span>6</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #c2410c">3</span><div class="e"><span class="p">(</span>−<span class="f"><span>2</span><span>3</span></span><span class="p">)</span> − <span class="f"><span>1</span><span>4</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #c2410c">4</span><div class="e"><span class="f"><span>1</span><span>2</span></span> − <span class="p">(</span>−<span class="f"><span>3</span><span>8</span></span><span class="p">)</span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #c2410c">5</span><div class="e"><span class="p">(</span>−<span class="f"><span>5</span><span>6</span></span><span class="p">)</span> − <span class="p">(</span>−<span class="f"><span>1</span><span>3</span></span><span class="p">)</span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #c2410c">6</span><div class="e">4<span class="f"><span>1</span><span>5</span></span> − 2<span class="f"><span>2</span><span>3</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #c2410c">7</span><div class="e">3 − <span class="f"><span>7</span><span>4</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #c2410c">8</span><div class="e">2,5 − (−1,75) = ?</div></div>
+
+<div class="q"><span class="n" style="background: #c2410c">9</span><div class="e">(−0,6) − <span class="f"><span>2</span><span>5</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #c2410c">10</span><div><p class="t">Kutuya gelmesi gereken sayıyı bulunuz.</p><div class="e"><span class="bx"></span> − <span class="f"><span>3</span><span>8</span></span> = <span class="p">(</span>−<span class="f"><span>1</span><span>4</span></span><span class="p">)</span></div></div></div>
+
+<div class="q"><span class="n" style="background: #c2410c">11</span><p class="t">2<span class="f"><span>3</span><span>4</span></span> metrelik bir kumaştan 1<span class="f"><span>1</span><span>3</span></span> metre kesildi. Geriye kaç metre kumaş kalmıştır?</p></div>
+
+<div class="q"><span class="n" style="background: #c2410c">12</span><p class="t">Bir şehirde hava sıcaklığı sabah −2,5 °C, öğle saatlerinde 4,25 °C olarak ölçüldü. Öğle ile sabah arasındaki sıcaklık farkı kaç °C'dir?</p></div>
+
+</div>
+<footer style="display: flex; justify-content: space-between; font-size: 12px; color: #4b5563"><span>Rasyonel Sayılarda İşlemler</span><span>Sayfa 2 / 4</span></footer>
+</div>
+</div></div>
+<div class="mp-sheet" data-board="Carpma.dc.html" aria-label="3 · Çarpma"><div class="mp-page">
+<div style="width: 794px; height: 1123px; box-sizing: border-box; padding: 40px 40px 32px; display: flex; flex-direction: column; gap: 12px; background: #fff; font-family: 'Nunito', system-ui, sans-serif; color: #111">
+<header style="display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; padding-bottom: 12px; border-bottom: 3px solid #15803d">
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="width: 56px; height: 56px; border-radius: 14px; background: #15803d; color: #fff; font-size: 40px; font-weight: 800; display: flex; align-items: center; justify-content: center; line-height: 1">×</div>
+<div>
+<p style="margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #4b5563">7. Sınıf Matematik · Rasyonel Sayılar</p>
+<h1 style="margin: 2px 0 0; font-size: 28px; font-weight: 800; line-height: 1.1">Rasyonel Sayılarla Çarpma</h1>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: auto 150px; gap: 6px 8px; font-size: 13px; color: #374151; align-items: end">
+<span>Ad Soyad:</span><span class="ln"></span>
+<span>Sınıf / No:</span><span class="ln"></span>
+<span>Tarih:</span><span class="ln"></span>
+</div>
+</header>
+<p style="margin: 0; font-size: 13.5px; color: #374151">Aşağıdaki işlemleri yapınız. Sonuçları en sade biçimde yazınız.</p>
+<div style="flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(6, minmax(0, 1fr)); gap: 10px">
+
+<div class="q"><span class="n" style="background: #15803d">1</span><div class="e"><span class="f"><span>2</span><span>3</span></span> · <span class="f"><span>3</span><span>5</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #15803d">2</span><div class="e"><span class="p">(</span>−<span class="f"><span>4</span><span>7</span></span><span class="p">)</span> · <span class="f"><span>7</span><span>8</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #15803d">3</span><div class="e"><span class="p">(</span>−<span class="f"><span>5</span><span>6</span></span><span class="p">)</span> · <span class="p">(</span>−<span class="f"><span>3</span><span>10</span></span><span class="p">)</span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #15803d">4</span><div class="e">1<span class="f"><span>1</span><span>2</span></span> · <span class="f"><span>2</span><span>9</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #15803d">5</span><div class="e">(−12) · <span class="f"><span>5</span><span>8</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #15803d">6</span><div class="e">0,4 · (−2,5) = ?</div></div>
+
+<div class="q"><span class="n" style="background: #15803d">7</span><div class="e"><span class="p">(</span>−<span class="f"><span>2</span><span>3</span></span><span class="p">)</span> · <span class="p">(</span>−<span class="f"><span>2</span><span>3</span></span><span class="p">)</span> · <span class="p">(</span>−<span class="f"><span>2</span><span>3</span></span><span class="p">)</span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #15803d">8</span><div class="e"><span class="p">(</span>−<span class="f"><span>1</span><span>2</span></span><span class="p">)</span> · <span class="f"><span>4</span><span>5</span></span> · <span class="p">(</span>−<span class="f"><span>10</span><span>3</span></span><span class="p">)</span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #15803d">9</span><div><p class="t">Dağılma özelliğini kullanarak işlemi yapınız.</p><div class="e"><span class="f"><span>3</span><span>4</span></span> · <span class="p">(</span><span class="f"><span>8</span><span>9</span></span> − <span class="f"><span>4</span><span>3</span></span><span class="p">)</span> = ?</div></div></div>
+
+<div class="q"><span class="n" style="background: #15803d">10</span><p class="t">Zeynep 60 sayfalık bir kitabın <span class="f"><span>3</span><span>5</span></span>'ini okudu. Zeynep kaç sayfa okumuştur?</p></div>
+
+<div class="q"><span class="n" style="background: #15803d">11</span><p class="t">Bir bisikletli saatte 12,5 km yol gidiyor. Aynı hızla 2<span class="f"><span>1</span><span>2</span></span> saatte kaç km yol gider?</p></div>
+
+<div class="q"><span class="n" style="background: #15803d">12</span><p class="t">Elif'in 480 TL harçlığı var. Harçlığının <span class="f"><span>3</span><span>8</span></span>'i ile kitap aldı. Elif kitaba kaç TL vermiştir?</p></div>
+
+</div>
+<footer style="display: flex; justify-content: space-between; font-size: 12px; color: #4b5563"><span>Rasyonel Sayılarda İşlemler</span><span>Sayfa 3 / 4</span></footer>
+</div>
+</div></div>
+<div class="mp-sheet mp-last" data-board="Bolme.dc.html" aria-label="4 · Bölme"><div class="mp-page">
+<div style="width: 794px; height: 1123px; box-sizing: border-box; padding: 40px 40px 32px; display: flex; flex-direction: column; gap: 12px; background: #fff; font-family: 'Nunito', system-ui, sans-serif; color: #111">
+<header style="display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; padding-bottom: 12px; border-bottom: 3px solid #7c3aed">
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="width: 56px; height: 56px; border-radius: 14px; background: #7c3aed; color: #fff; font-size: 40px; font-weight: 800; display: flex; align-items: center; justify-content: center; line-height: 1">÷</div>
+<div>
+<p style="margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #4b5563">7. Sınıf Matematik · Rasyonel Sayılar</p>
+<h1 style="margin: 2px 0 0; font-size: 28px; font-weight: 800; line-height: 1.1">Rasyonel Sayılarla Bölme</h1>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: auto 150px; gap: 6px 8px; font-size: 13px; color: #374151; align-items: end">
+<span>Ad Soyad:</span><span class="ln"></span>
+<span>Sınıf / No:</span><span class="ln"></span>
+<span>Tarih:</span><span class="ln"></span>
+</div>
+</header>
+<p style="margin: 0; font-size: 13.5px; color: #374151">Aşağıdaki işlemleri yapınız. Sonuçları en sade biçimde yazınız.</p>
+<div style="flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(6, minmax(0, 1fr)); gap: 10px">
+
+<div class="q"><span class="n" style="background: #7c3aed">1</span><div class="e"><span class="f"><span>3</span><span>4</span></span> ÷ <span class="f"><span>1</span><span>2</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #7c3aed">2</span><div class="e"><span class="p">(</span>−<span class="f"><span>5</span><span>6</span></span><span class="p">)</span> ÷ <span class="f"><span>10</span><span>9</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #7c3aed">3</span><div class="e"><span class="p">(</span>−<span class="f"><span>7</span><span>8</span></span><span class="p">)</span> ÷ <span class="p">(</span>−<span class="f"><span>21</span><span>16</span></span><span class="p">)</span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #7c3aed">4</span><div class="e">6 ÷ <span class="p">(</span>−<span class="f"><span>3</span><span>4</span></span><span class="p">)</span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #7c3aed">5</span><div class="e">2<span class="f"><span>1</span><span>2</span></span> ÷ 1<span class="f"><span>1</span><span>4</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #7c3aed">6</span><div class="e"><span class="p">(</span>−<span class="f"><span>4</span><span>9</span></span><span class="p">)</span> ÷ 8 = ?</div></div>
+
+<div class="q"><span class="n" style="background: #7c3aed">7</span><div class="e">1,8 ÷ (−0,6) = ?</div></div>
+
+<div class="q"><span class="n" style="background: #7c3aed">8</span><div><p class="t">Sayının çarpma işlemine göre tersini yazınız.</p><div class="e">−2<span class="f"><span>3</span><span>5</span></span> → <span class="bx"></span></div></div></div>
+
+<div class="q"><span class="n" style="background: #7c3aed">9</span><div class="e"><span class="p">(</span><span class="f"><span>2</span><span>3</span></span> + <span class="f"><span>1</span><span>6</span></span><span class="p">)</span> ÷ <span class="f"><span>5</span><span>12</span></span> = ?</div></div>
+
+<div class="q"><span class="n" style="background: #7c3aed">10</span><div><p class="t">Kutuya gelmesi gereken sayıyı bulunuz.</p><div class="e"><span class="bx"></span> ÷ <span class="f"><span>3</span><span>4</span></span> = <span class="p">(</span>−<span class="f"><span>8</span><span>9</span></span><span class="p">)</span></div></div></div>
+
+<div class="q"><span class="n" style="background: #7c3aed">11</span><p class="t">4<span class="f"><span>1</span><span>2</span></span> litre süt, <span class="f"><span>3</span><span>4</span></span> litrelik şişelere dolduruluyor. Kaç şişe süt elde edilir?</p></div>
+
+<div class="q"><span class="n" style="background: #7c3aed">12</span><p class="t"><span class="f"><span>15</span><span>4</span></span> kg fındık, her biri <span class="f"><span>5</span><span>8</span></span> kg olan paketlere ayrılıyor. Kaç paket fındık hazırlanır?</p></div>
+
+</div>
+<footer style="display: flex; justify-content: space-between; font-size: 12px; color: #4b5563"><span>Rasyonel Sayılarda İşlemler</span><span>Sayfa 4 / 4</span></footer>
+</div>
+</div></div>
+</main>
+<p class="mp-note mp-noprint" style="margin:0 auto 24px;padding:0 16px">Bu çalışma kâğıdında ayrı bir cevap anahtarı sayfası yok.</p>
+<script>
+(function(){
+  function fit(){var w=document.documentElement.clientWidth-32;var s=Math.min(1,w/794);
+    document.documentElement.style.setProperty('--s',s.toFixed(4));}
+  fit();window.addEventListener('resize',fit);window.addEventListener('orientationchange',fit);
+})();
+
+(function(){
+  var b=document.getElementById('mp-toggle'),box=document.getElementById('mp-answer-pages'),sec=document.getElementById('mp-answers');
+  if(!b)return;
+  b.addEventListener('click',function(){var open=box.hasAttribute('hidden');
+    if(open){box.removeAttribute('hidden');sec.classList.add('mp-open');b.textContent='Cevap anahtarını gizle';b.setAttribute('aria-expanded','true');}
+    else{box.setAttribute('hidden','');sec.classList.remove('mp-open');b.textContent='Cevap anahtarını göster';b.setAttribute('aria-expanded','false');}
+  });
+})();
+</script>
+</body>
+</html>

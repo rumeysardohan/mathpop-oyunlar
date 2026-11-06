@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kesişen Çemberlerle Üçgen İnşa Ediyorum (MAT.5.3.7)</title>
+<meta name="description" content="5. sınıf matematik çalışma kâğıdı: Kesişen çemberlerle üçgen inşası (MAT.5.3.7).">
+<link rel="icon" href="../assets/simge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800;900&display=swap">
+<style>
+:root{--indigo:#2B17B0;--lav:#EEE8FF;--turq:#1CC8D8;--coral:#F47A5E;--ink:#1E1B3A;--s:1;
+  --display:"Baloo 2","Nunito",system-ui,sans-serif;--body:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--lav);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+.mp-bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:10px max(16px,env(safe-area-inset-left,0px));background:var(--indigo);color:#fff;box-shadow:0 2px 12px rgba(43,23,176,.25)}
+.mp-bar img{width:48px;height:48px;border-radius:50%;background:#fff;flex:none;object-fit:cover}
+.mp-bar h1{flex:1 1 200px;min-width:0;margin:0;font-family:var(--display);font-weight:800;font-size:clamp(18px,3.4vw,26px);line-height:1.15}
+.mp-back,.mp-print{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border-radius:999px;
+  font-family:var(--body);font-weight:800;font-size:16px;text-decoration:none;cursor:pointer;border:2px solid #fff}
+.mp-back{color:#fff;background:transparent}
+.mp-back:hover,.mp-back:focus-visible{background:rgba(255,255,255,.15)}
+.mp-print{color:var(--indigo);background:#fff}
+.mp-print:hover,.mp-print:focus-visible{background:var(--lav)}
+@media (max-width:600px){.mp-bar{gap:8px 10px}.mp-bar img{order:-1;width:44px;height:44px}.mp-print{margin-left:auto}.mp-bar h1{order:5;flex-basis:100%}}
+.mp-main{padding:24px 16px 8px;display:flex;flex-direction:column;align-items:center;gap:24px}
+.mp-sheet{width:calc(794px * var(--s));height:calc(1123px * var(--s));flex:none;background:#fff;
+  box-shadow:0 10px 30px rgba(43,23,176,.18),0 2px 6px rgba(43,23,176,.12);border-radius:4px;overflow:hidden;position:relative}
+.mp-page{width:794px;height:1123px;transform:scale(var(--s));transform-origin:0 0;position:absolute;left:0;top:0}
+.mp-answers{display:flex;flex-direction:column;align-items:center;gap:24px;padding:8px 16px 40px}
+.mp-toggle{min-height:56px;padding:12px 28px;border:0;border-radius:999px;background:var(--coral);color:var(--ink);
+  font-family:var(--display);font-weight:800;font-size:clamp(18px,4vw,22px);cursor:pointer;box-shadow:0 6px 18px rgba(244,122,94,.35)}
+.mp-toggle[aria-expanded="true"]{background:var(--turq)}
+.mp-toggle:focus-visible,.mp-back:focus-visible,.mp-print:focus-visible{outline:3px solid var(--turq);outline-offset:3px}
+.mp-answer-pages{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%}
+.mp-answer-pages[hidden]{display:none}
+.mp-note{max-width:794px;text-align:center;color:#4A4470;font-weight:700;margin:0}
+.mp-foot{text-align:center;padding:0 16px 32px;color:#4A4470;font-weight:700;font-size:14px}
+.mp-foot a{color:var(--indigo)}
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:#fff!important}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mp-bar,.mp-toggle,.mp-note,.mp-foot,.mp-noprint{display:none!important}
+  .mp-main,.mp-answers,.mp-answer-pages{display:block;padding:0;margin:0;gap:0}
+  .mp-answers:not(.mp-open){display:none!important}
+  .mp-sheet{--s:1;width:210mm;height:296.5mm;box-shadow:none;border-radius:0;margin:0;break-inside:avoid;break-after:page;page-break-after:always}
+  .mp-sheet.mp-last{break-after:auto;page-break-after:auto}
+  .mp-page{transform:none}
+}
+
+.mp-doc{width:100%;max-width:794px;background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(43,23,176,.18);
+  padding:clamp(20px,5vw,52px);font-size:16px;line-height:1.6;overflow-wrap:anywhere;word-break:normal}
+.mp-doc h1,.mp-doc h2,.mp-doc h3,.mp-doc h4{font-family:var(--display);color:var(--indigo);line-height:1.2;overflow-wrap:break-word}
+.mp-doc h1{font-size:clamp(26px,5vw,36px);font-weight:800;margin:0 0 14px;padding-bottom:10px;border-bottom:3px solid var(--indigo)}
+.mp-doc h2{font-size:clamp(21px,4vw,26px);font-weight:800;margin:30px 0 10px;padding:6px 14px;background:var(--lav);border-left:6px solid var(--turq);border-radius:10px}
+.mp-doc h3{font-size:clamp(18px,3.4vw,21px);font-weight:700;margin:22px 0 8px;color:#3a24c4}
+.mp-doc p{margin:8px 0}
+.mp-doc strong{color:#21136E}
+.mp-doc ul,.mp-doc ol{padding-left:1.4em;margin:8px 0}
+.mp-doc li{margin:4px 0}
+.mp-doc li p{margin:2px 0}
+.mp-doc blockquote,.mp-doc .mp-quote{margin:12px 0;padding:10px 16px;background:#F7F4FF;border-left:5px solid var(--coral);border-radius:10px}
+.mp-doc img{max-width:100%;height:auto;display:block;margin:12px auto;border-radius:10px}
+.mp-doc code{font-family:ui-monospace,Menlo,Consolas,monospace;background:#F7F4FF;padding:1px 5px;border-radius:5px}
+.mp-tablewrap{width:100%;overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+.mp-doc table{border-collapse:collapse;min-width:60%;font-size:15px;overflow-wrap:normal;word-break:normal}
+.mp-doc th{background:var(--indigo);color:#fff;font-family:var(--display);font-weight:700;text-align:left}
+.mp-doc th,.mp-doc td{border:1.5px solid #B9A6F0;padding:6px 10px;vertical-align:top;min-width:3.2em;height:2.4em}
+.mp-doc tbody tr:nth-child(even) td{background:#F7F4FF}
+.mp-doc th p,.mp-doc td p{margin:0}
+.mp-tabname{display:inline-block;margin:0 0 10px;padding:4px 14px;border-radius:999px;background:var(--turq);color:var(--ink);font-weight:800;font-size:14px}
+@media print{
+  @page mpdoc{size:A4;margin:14mm 14mm 16mm}
+  .mp-doc{page:mpdoc;max-width:none;box-shadow:none;border-radius:0;padding:0;margin:0;break-before:page;font-size:12pt}
+  .mp-main .mp-doc:first-child{break-before:auto}
+  .mp-doc h2,.mp-doc h3{break-after:avoid}
+  .mp-doc table,.mp-doc img{break-inside:avoid}
+  .mp-tablewrap{overflow:visible}
+}
+</style>
+</head>
+<body>
+<header class="mp-bar">
+<a class="mp-back" href="../">← Tüm oyunlar</a>
+<h1>Kesişen Çemberlerle Üçgen İnşa Ediyorum (MAT.5.3.7)</h1>
+<button class="mp-print" type="button" onclick="window.print()">Yazdır</button>
+<img src="../assets/simge.png" alt="MathPop simgesi" width="48" height="48">
+</header>
+<main class="mp-main">
+<article class="mp-doc">
+<h1>Kesişen Çemberlerle Üçgen İnşa Ediyorum (MAT.5.3.7)</h1><h2>Öğretmen İçin: Kazanım ve Süreç</h2><p>Bu materyal, öğrencinin iki kesişen çemberle üçgen kurup kenarları <strong>yarıçaplar üzerinden</strong> karşılaştırarak üçgen türünü kendisinin keşfetmesi için hazırlandı. Kural en başta verilmez; öğrenci önce çizer, sonra tahmin eder, en son genelleme yapar.</p><div class="mp-tablewrap"><table><thead><tr><th><p>Bilgi</p></th><th><p>Ayrıntı</p></th></tr></thead><tbody><tr><td><p>Öğrenme çıktısı</p></td><td><p>MAT.5.3.7. Matematiksel araç ve teknoloji yardımıyla düzlemde iki noktada kesişen çember çiftinin merkezleri ve kesişim noktalarından biri ile inşa edilen üçgenlerin kenar özelliklerine yönelik çıkarım yapabilme</p></td></tr><tr><td><p>Süre</p></td><td><p>3 ders saati (+ 2 saat okul temelli planlama)</p></td></tr><tr><td><p>Süreç bileşeni a</p></td><td><p>Varsayımda bulunur → Bölüm 2 "Tahmin Et" kutuları, Çalışma Kâğıdı Etkinlik 1</p></td></tr><tr><td><p>Süreç bileşeni b</p></td><td><p>Çeşitkenar, ikizkenar, eşkenar üçgenleri belirler → Etkinlik 2 tablosu ve Etkinlik 3</p></td></tr><tr><td><p>Araç-gereç</p></td><td><p>Pergel, ölçüsüz cetvel, kareli ve çizgisiz kâğıt; varsa GeoGebra (OB2)</p></td></tr><tr><td><p>Değerler ve beceriler</p></td><td><p>SDB1.1, SDB1.2, OB2, OB4, D7.1, E3.3</p></td></tr></tbody></table></div><p><strong>Önerilen akış:</strong> 1. ders hatırlatma + Keşif 1–2 · 2. ders Keşif 3 + Etkinlik 1–2 · 3. ders Öklid'in birinci önermesi + Etkinlik 3–4 + öz değerlendirme.</p><h2>Konu Anlatımı: Kesişen Çemberlerle Üçgen Kuruyorum</h2><p>İki çemberin merkezlerini ve kesişim noktalarından birini birleştirince bir üçgen oluşur. Bu üçgenin kenarlarını <strong>ölçmeden</strong>, sadece çemberlere bakarak tanıyabiliriz. Nasıl mı? Birlikte keşfedelim.</p><h3>Hatırlayalım</h3><ul><li><strong>Çember:</strong> Bir noktaya (merkeze) eşit uzaklıktaki noktaların oluşturduğu kapalı eğridir. Pergelin sivri ucu merkezi, açıklığı yarıçapı belirler.</li><li><strong>Yarıçap:</strong> Merkezi, çemberin üzerindeki bir noktaya birleştiren doğru parçasıdır.</li><li><strong>Üçgen çeşitleri (kenarlarına göre):</strong> Üç kenarı farklı uzunlukta → <strong>çeşitkenar</strong> · İki kenarı eşit → <strong>ikizkenar</strong> · Üç kenarı eşit → <strong>eşkenar</strong>.</li></ul><blockquote><strong>ANAHTAR BİLGİ:</strong> Bir çemberin bütün yarıçapları birbirine eşittir. Bu konudaki her şey bu bilgiye dayanır!</blockquote><h3>Üçgenimizi Tanıyalım</h3><p>Şekilde K ve L merkezli iki çember A ve B noktalarında kesişiyor. K, L ve A noktalarını birleştirince KLA üçgeni oluşur.</p><p><img alt="K ve L merkezli kesişen iki çember · KLA üçgeni" src="gorsel-1.png"/></p><p>K ve L merkezli kesişen iki çember · KLA üçgeni</p><p>Bu üçgenin her kenarı "bir şeyin" uzunluğudur:</p><div class="mp-tablewrap"><table><thead><tr><th><p>Kenar</p></th><th><p>Aslında nedir?</p></th></tr></thead><tbody><tr><td><p>KA</p></td><td><p>K merkezli çemberin yarıçapı</p></td></tr><tr><td><p>LA</p></td><td><p>L merkezli çemberin yarıçapı</p></td></tr><tr><td><p>KL</p></td><td><p>İki merkez arasındaki uzaklık</p></td></tr></tbody></table></div><blockquote><strong>HATIRLATMA:</strong> Çizim boyunca pergelin açıklığını değiştirme. Açıklık değişirse yarıçap da değişir!</blockquote><h3>Keşif 1: Farklı Yarıçaplar</h3><p>K merkezli 3 cm, L merkezli 4 cm yarıçaplı iki çember çiz. Merkezler arası uzaklık 5 cm olsun.</p><ul><li><strong>Tahmin et:</strong> KLA üçgeninin kenarları eşit olur mu? ............................................</li><li><strong>Kontrol et:</strong> KA = ...... cm, LA = ...... cm, KL = ...... cm</li><li><strong>Çıkarım yap:</strong> Üç kenar da farklı olduğuna göre bu üçgen ........................................ üçgendir.</li></ul><h3>Keşif 2: Eşit Yarıçaplar</h3><p>Şimdi iki çemberin yarıçapı da 4 cm olsun, merkezler arası uzaklık 5 cm.</p><ul><li><strong>Tahmin et:</strong> Hangi iki kenar kesinlikle eşit olur? Neden? ............................................</li><li><strong>Kontrol et:</strong> KA = ...... cm, LA = ...... cm, KL = ...... cm</li><li><strong>Çıkarım yap:</strong> KA ile LA eşittir, çünkü ........................................................................</li></ul><h3>Keşif 3: Her Çember Diğerinin Merkezinden Geçerse</h3><p>KL doğru parçasını 4 cm çiz. Pergeli 4 cm açıp K merkezli ve L merkezli iki çember çiz. Her çemberin diğerinin merkezinden geçtiğine dikkat et.</p><ul><li><strong>Tahmin et:</strong> KL kenarı neden de 4 cm olur? ............................................</li><li><strong>Çıkarım yap:</strong> KA = LA = KL olduğuna göre bu üçgen ........................................ üçgendir.</li></ul><h3>Keşfettiklerimizi Özetleyelim</h3><div class="mp-tablewrap"><table><thead><tr><th><p>Çemberlerin durumu</p></th><th><p>Eşit kenarlar</p></th><th><p>Üçgen çeşidi</p></th></tr></thead><tbody><tr><td><p>Yarıçaplar farklı, merkezler arası uzaklık ikisinden de farklı</p></td><td><p>Yok</p></td><td><p>Çeşitkenar</p></td></tr><tr><td><p>Yarıçaplar eşit</p></td><td><p>KA = LA</p></td><td><p>İkizkenar</p></td></tr><tr><td><p>Bir çember diğerinin merkezinden geçiyor (örneğin K merkezli çember L'den geçiyor)</p></td><td><p>KA = KL</p></td><td><p>İkizkenar</p></td></tr><tr><td><p>Yarıçaplar eşit ve her çember diğerinin merkezinden geçiyor</p></td><td><p>KA = LA = KL</p></td><td><p>Eşkenar</p></td></tr></tbody></table></div><blockquote><strong>DİKKAT:</strong> Diğer kesişim noktası B'yi seçsen de aynı çeşit üçgeni elde edersin; çünkü KB ve LB de aynı çemberlerin yarıçaplarıdır.</blockquote><blockquote><strong>DİKKAT:</strong> İki çember kesişmiyorsa (çok uzaktaysa) A noktası oluşmaz, dolayısıyla üçgen de kurulamaz.</blockquote><h3>Tarihten Bir Sayfa: Öklid'in Birinci Önermesi</h3><p>Yaklaşık 2300 yıl önce yaşamış matematikçi Öklid, "Elemanlar" adlı kitabının <strong>ilk önermesinde</strong> tam olarak Keşif 3'te yaptığımızı anlatır: Verilen bir doğru parçası üzerine eşkenar üçgen kurmak.</p><ol><li>Bir KL doğru parçası çiz.</li><li>Pergeli KL uzunluğunda aç; K merkezli bir çember çiz.</li><li>Açıklığı bozmadan L merkezli bir çember çiz.</li><li>Çemberlerin kesişim noktasına A de ve K, L, A'yı birleştir.</li></ol><p>Öklid'in bu inşada hiç cetvelle ölçüm yapmadığına dikkat et! Kenarların eşit olduğunu yalnızca çemberin özelliğinden çıkarır.</p><h3>Günlük Hayattan: Yaşam Çiçeği</h3><p>Aynı yarıçaplı çemberlerin her biri komşusunun merkezinden geçecek şekilde çizilirse "yaşam çiçeği" adı verilen süsleme oluşur. Bu desende merkezleri birleştirdiğinde her yerde eşkenar üçgenler görürsün. Tarihî camilerdeki, çinilerdeki ve kapı süslemelerindeki birçok desen bu yöntemle çizilmiştir.</p><h3>Biliyor muydun?</h3><p>Atatürk, 1936–1937 yıllarında yazdığı "Geometri" kitabında <strong>üçgen, yarıçap, ikizkenar, eşkenar</strong> gibi bugün kullandığımız birçok Türkçe geometri terimini önerdi. Bundan önce bu kavramlar için Arapça kökenli kelimeler kullanılıyordu.</p><h2>Çalışma Kâğıdı</h2><p>Ad Soyad: ................................................ Sınıf: ........ No: ........ Tarih: ................</p><p>Gerekli malzemeler: pergel, ölçüsüz cetvel, kurşun kalem, çizgisiz kâğıt.</p><h3>Etkinlik 1: Varsayımda Bulun</h3><p>Henüz çizim yapma! Her cümle için önce tahminini yaz, sonra Etkinlik 2'deki çizimlerinle kontrol et.</p><div class="mp-tablewrap"><table><thead><tr><th><p>Cümle</p></th><th><p>Tahminim (D / Y)</p></th><th><p>Çizimden sonra (D / Y)</p></th></tr></thead><tbody><tr><td><p>1. İki çemberin yarıçapları eşitse KLA üçgeninin iki kenarı kesinlikle eşittir.</p></td><td></td><td></td></tr><tr><td><p>2. Yarıçaplar farklıysa üçgen her zaman çeşitkenar olur.</p></td><td></td><td></td></tr><tr><td><p>3. KL kenarının uzunluğunu çemberlerin yarıçapları belirler.</p></td><td></td><td></td></tr><tr><td><p>4. A yerine B kesişim noktasını seçersem farklı çeşit üçgen elde ederim.</p></td><td></td><td></td></tr></tbody></table></div><h3>Etkinlik 2: Çiz, Bul, Sınıflandır</h3><p>Her satır için önce KL doğru parçasını çiz, sonra K ve L merkezli çemberleri çiz. Kenarları <strong>yarıçaplara bakarak</strong> yaz, sonra cetvelle kontrol et.</p><div class="mp-tablewrap"><table><thead><tr><th><p>No</p></th><th><p>K'li çemberin yarıçapı</p></th><th><p>L'li çemberin yarıçapı</p></th><th><p>KL</p></th><th><p>KA</p></th><th><p>LA</p></th><th><p>Üçgen çeşidi</p></th></tr></thead><tbody><tr><td><p>a</p></td><td><p>5 cm</p></td><td><p>3 cm</p></td><td><p>4 cm</p></td><td></td><td></td><td></td></tr><tr><td><p>b</p></td><td><p>3 cm</p></td><td><p>3 cm</p></td><td><p>3 cm</p></td><td></td><td></td><td></td></tr><tr><td><p>c</p></td><td><p>4 cm</p></td><td><p>4 cm</p></td><td><p>6 cm</p></td><td></td><td></td><td></td></tr><tr><td><p>d</p></td><td><p>4 cm</p></td><td><p>3 cm</p></td><td><p>4 cm</p></td><td></td><td></td><td></td></tr><tr><td><p>e</p></td><td><p>5 cm</p></td><td><p>4 cm</p></td><td><p>3 cm</p></td><td></td><td></td><td></td></tr></tbody></table></div><p><strong>Çıkarım yap:</strong> Tabloya bakarak bir kural yaz. "Yarıçaplar eşitse ..."</p><p>.................................................................................................................................</p><p>.................................................................................................................................</p><h3>Etkinlik 3: Ölçmeden Bul</h3><ol><li>Ali iki çemberi pergelin açıklığını hiç değiştirmeden çizdi. Merkezler arasındaki uzaklık 6 cm. Ali'nin üçgeni hangi çeşittir? Nasıl anladın? ......................................................................................................................</li><li>Zeynep'in çemberlerinin yarıçapları 5 cm ve 3 cm. Merkezleri arasındaki uzaklık 5 cm. Zeynep'in üçgeni hangi çeşittir? İpucu: Hangi iki kenar aynı uzunlukta? ......................................................................................................................</li><li>Yarıçapı 6 cm olan iki çemberin her biri diğerinin merkezinden geçiyor. Oluşan KLA üçgeninin çevresi kaç cm'dir? ......................................................................................................................</li><li>Kenar uzunluğu 7 cm olan bir eşkenar üçgeni iki çemberle kurmak istiyorsun. Pergelini kaç cm açmalısın? Merkezleri kaç cm uzağa koymalısın? ......................................................................................................................</li></ol><h3>Etkinlik 4: Kim Haklı?</h3><p>Ece şöyle diyor: "Çemberlerin yarıçapları farklıysa üçgen asla ikizkenar olamaz."</p><p>Ece'ye katılıyor musun? Etkinlik 2'deki tablodan bir satır göstererek açıkla.</p><p>.................................................................................................................................</p><p>.................................................................................................................................</p><h3>Etkinlik 5: Üçgen Neden Oluşmadı?</h3><p>Mert, yarıçapları 2 cm ve 3 cm olan iki çemberi merkezleri arasında 8 cm olacak şekilde çizdi ama üçgen kuramadı.</p><ul><li>Neden üçgen oluşmadı? ...............................................................................</li><li>Üçgen kurabilmesi için merkezleri birbirine yaklaştırmalı mı, uzaklaştırmalı mı? ...............................</li></ul><h3>Etkinlik 6: Süsleme Tasarla</h3><p>Pergeli 3 cm aç. Bir çember çiz. Çemberin üzerinde bir nokta seç ve oraya pergelin ucunu koyarak yeni bir çember çiz. Yeni kesişim noktalarından devam ederek en az 7 çember çiz ve desenini boya.</p><ul><li>Deseninde kaç tane eşkenar üçgen bulabildin? ........</li><li>Neden hepsi eşkenar? ...................................................................................</li></ul><h3>Etkinlik 7 (Dijital): GeoGebra ile Dene</h3><p>GeoGebra'da iki çember çiz ve merkezlerini, kesişim noktasını birleştirerek üçgen oluştur. Çemberlerden birinin yarıçapını kaydırarak değiştir.</p><ul><li>Yarıçapı değiştirdiğinde üçgenin hangi kenarları değişti? ....................................................</li><li>Kâğıtta çizmenin ve bilgisayarda çizmenin birer avantajını yaz. Kâğıt: .................... Bilgisayar: ....................</li></ul><h3>Kendimi Değerlendiriyorum</h3><div class="mp-tablewrap"><table><thead><tr><th><p>Ben ...</p></th><th><p>Evet</p></th><th><p>Kısmen</p></th><th><p>Henüz değil</p></th></tr></thead><tbody><tr><td><p>Pergelle kesişen iki çember çizebiliyorum.</p></td><td></td><td></td><td></td></tr><tr><td><p>Üçgenin hangi kenarının hangi yarıçap olduğunu söyleyebiliyorum.</p></td><td></td><td></td><td></td></tr><tr><td><p>Ölçmeden üçgenin çeşidini bulabiliyorum.</p></td><td></td><td></td><td></td></tr><tr><td><p>Eşkenar üçgeni iki çemberle kurabiliyorum.</p></td><td></td><td></td><td></td></tr><tr><td><p>Bulduğum kuralı kendi cümlelerimle açıklayabiliyorum.</p></td><td></td><td></td><td></td></tr></tbody></table></div>
+</article>
+</main>
+<section class="mp-answers" id="mp-answers" aria-label="Cevap anahtarı">
+<button class="mp-toggle" id="mp-toggle" type="button" aria-expanded="false" aria-controls="mp-answer-pages">Cevap anahtarını göster</button>
+<div class="mp-answer-pages" id="mp-answer-pages" hidden>
+<article class="mp-doc">
+<p class="mp-tabname">Kesişen Çemberlerle Üçgen İnşa Ediyorum (MAT.5.3.7)</p>
+<h2>Cevap Anahtarı (Öğretmen İçin)</h2><p><strong>Etkinlik 1:</strong> 1. D · 2. Y (Etkinlik 2-d'de yarıçaplar farklı ama üçgen ikizkenar) · 3. Y (KL, merkezleri ne kadar uzağa koyduğumuza bağlıdır) · 4. Y (KB ve LB de aynı yarıçaplardır).</p><p><strong>Etkinlik 2:</strong></p><div class="mp-tablewrap"><table><thead><tr><th><p>No</p></th><th><p>KA</p></th><th><p>LA</p></th><th><p>KL</p></th><th><p>Üçgen çeşidi</p></th></tr></thead><tbody><tr><td><p>a</p></td><td><p>5 cm</p></td><td><p>3 cm</p></td><td><p>4 cm</p></td><td><p>Çeşitkenar</p></td></tr><tr><td><p>b</p></td><td><p>3 cm</p></td><td><p>3 cm</p></td><td><p>3 cm</p></td><td><p>Eşkenar</p></td></tr><tr><td><p>c</p></td><td><p>4 cm</p></td><td><p>4 cm</p></td><td><p>6 cm</p></td><td><p>İkizkenar</p></td></tr><tr><td><p>d</p></td><td><p>4 cm</p></td><td><p>3 cm</p></td><td><p>4 cm</p></td><td><p>İkizkenar (KA = KL)</p></td></tr><tr><td><p>e</p></td><td><p>5 cm</p></td><td><p>4 cm</p></td><td><p>3 cm</p></td><td><p>Çeşitkenar</p></td></tr></tbody></table></div><p>Beklenen kural: Yarıçaplar eşitse üçgen ikizkenardır; merkezler arası uzaklık da yarıçapa eşitse eşkenardır. Bir yarıçap merkezler arası uzaklığa eşitse yine ikizkenar olur.</p><p><strong>Etkinlik 3:</strong> 1. İkizkenar; KA ve LA aynı pergel açıklığıyla çizilen yarıçaplardır. · 2. İkizkenar; KA = KL = 5 cm. · 3. 6 + 6 + 6 = 18 cm. · 4. Pergel 7 cm açılır, merkezler 7 cm uzağa konur.</p><p><strong>Etkinlik 4:</strong> Ece haklı değil. Etkinlik 2-d'de yarıçaplar 4 cm ve 3 cm olduğu hâlde KA = KL = 4 cm olduğu için üçgen ikizkenardır.</p><p><strong>Etkinlik 5:</strong> Çemberler birbirine değmediği için kesişim noktası (A) yoktur. Merkezler yaklaştırılmalıdır; 2 cm + 3 cm = 5 cm'den daha yakın olmalılar.</p><p><strong>Etkinlik 6:</strong> Üçgen sayısı çizime göre değişir. Hepsi eşkenardır, çünkü her kenar aynı pergel açıklığıyla (3 cm) çizilmiş bir yarıçaptır.</p><h3>Değerlendirme Kontrol Listesi</h3><div class="mp-tablewrap"><table><thead><tr><th><p>Ölçüt</p></th><th><p>Gözlendi</p></th><th><p>Gelişiyor</p></th><th><p>Gözlenmedi</p></th></tr></thead><tbody><tr><td><p>Kesişen iki çemberi pergelle doğru çizer.</p></td><td></td><td></td><td></td></tr><tr><td><p>Üçgenin kenarlarını yarıçap ve merkezler arası uzaklık olarak adlandırır.</p></td><td></td><td></td><td></td></tr><tr><td><p>Çizim yapmadan önce üçgen çeşidi hakkında varsayımda bulunur.</p></td><td></td><td></td><td></td></tr><tr><td><p>Ölçme aracı kullanmadan çeşitkenar, ikizkenar ve eşkenar üçgeni ayırt eder.</p></td><td></td><td></td><td></td></tr><tr><td><p>Bulduğu kuralı gerekçesiyle açıklar ve karşı örnek verebilir.</p></td><td></td><td></td><td></td></tr></tbody></table></div><p>Performans görevi olarak dijital sunum verilecekse aynı ölçütler bütüncül ya da analitik dereceli puanlama anahtarına dönüştürülebilir.</p>
+</article>
+</div>
+</section>
+<script>
+(function(){
+  var b=document.getElementById('mp-toggle'),box=document.getElementById('mp-answer-pages'),sec=document.getElementById('mp-answers');
+  if(!b)return;
+  b.addEventListener('click',function(){var open=box.hasAttribute('hidden');
+    if(open){box.removeAttribute('hidden');sec.classList.add('mp-open');b.textContent='Cevap anahtarını gizle';b.setAttribute('aria-expanded','true');}
+    else{box.setAttribute('hidden','');sec.classList.remove('mp-open');b.textContent='Cevap anahtarını göster';b.setAttribute('aria-expanded','false');}
+  });
+})();
+</script>
+</body>
+</html>
