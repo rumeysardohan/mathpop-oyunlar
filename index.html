@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MathPop Oyunları</title>
+<meta name="description" content="Kesir, ondalık gösterim ve yüzde dönüşümleri için deniz altı temalı matematik oyunları.">
+<link rel="icon" href="assets/simge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@700;800&display=swap">
+<style>
+:root{--deep:#2B17B0;--abyss:#120856;--lav:#EEE8FF;--card:#FFFFFF;--ok:#1CC8D8;--ink:#21136E;--muted:#5A4BB0;
+  --display:"Baloo 2","Nunito",system-ui,sans-serif;--body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:var(--body);color:var(--card);background:var(--abyss);
+  background-image:linear-gradient(rgba(18,8,86,.35),rgba(18,8,86,.75)),url("assets/deniz-arka-plan.jpg");background-size:cover;background-position:center;background-attachment:fixed}
+.wrap{max-width:980px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:flex;align-items:center;gap:14px}
+header img{width:64px;height:64px;border-radius:50%;background:var(--card)}
+header span{font-weight:800;color:var(--lav)}
+h1{font-family:var(--display);font-size:clamp(40px,7vw,68px);line-height:1;margin:36px 0 8px;text-wrap:balance}
+.lead{font-size:clamp(17px,2.4vw,21px);font-weight:700;max-width:40ch;line-height:1.45;margin:0 0 28px;color:var(--lav)}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+a.game{display:flex;flex-direction:column;gap:8px;background:var(--card);color:var(--ink);text-decoration:none;border-radius:26px;padding:22px;
+  box-shadow:0 8px 0 rgba(18,8,86,.45);transition:transform .15s}
+a.game:hover{transform:translateY(-3px)}
+a.game:focus-visible{outline:4px solid #FFC94D;outline-offset:4px}
+.game img{height:96px;width:auto;align-self:flex-start}
+.game h2{font-family:var(--display);font-size:clamp(28px,4vw,36px);line-height:1.05;margin:4px 0 0;color:var(--deep)}
+.game p{margin:0;font-weight:700;line-height:1.45;color:var(--muted)}
+.go{margin-top:8px;align-self:flex-start;background:var(--ok);color:var(--ink);font-family:var(--display);font-weight:800;font-size:22px;padding:8px 22px;border-radius:16px}
+footer{margin-top:32px;color:var(--lav);font-weight:700;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><img src="assets/simge.png" alt="MathPopWithRu simgesi"><span>@mathpopwithru</span></header>
+  <h1>Deniz Altı Matematik</h1>
+  <p class="lead">Kesir, ondalık gösterim ve yüzde aynı sayıyı farklı yazar. Eşleri bul, hazineyi topla!</p>
+  <div class="games">
+    <a class="game" href="deniz-alti-es-avi/">
+      <img src="assets/balik-2.webp" alt="">
+      <h2>Deniz Altı Eş Avı</h2>
+      <p>Hazine kartındaki sayının 3 eşini balık sürüsünde bul. 8 tur, 120 saniye.</p>
+      <span class="go">Oyna</span>
+    </a>
+    <a class="game" href="buyutecle-es-avi/">
+      <img src="assets/balik-1.webp" alt="">
+      <h2>Büyüteçle Eş Avı</h2>
+      <p>Karanlık denizde büyüteçle yüzen balıkları netleştir. Kolay, orta ve zor seviye; can ve ses efektli.</p>
+      <span class="go">Oyna</span>
+    </a>
+  </div>
+  <footer>5. ve 6. sınıf kesir, ondalık gösterim ve yüzde kazanımları için hazırlanmıştır.</footer>
+</div>
+</body>
+</html>
