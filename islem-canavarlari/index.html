@@ -1,0 +1,1273 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>İşlem Canavarları</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800;900&display=swap">
+<style>
+/* Düzen: sarı oyun masası, sticker tarzı kalın mürekkep çizgili paneller; solda parkur, sağda kontrol paneli */
+:root{
+  --ink:#1d1840; --paper:#fffdf6; --table:#ffd84a; --table2:#ffc928; --muted:#5d5880;
+  --topla:#2f7bf5; --cik:#ef3b3b; --carp:#22b34a; --bol:#8b4fe0; --karma:#ff8a1f; --bonus:#ffc61a; --tuzak:#2a2140; --meydan:#14a8a0;
+  --good:#1fa64a; --bad:#e2334a;
+  --f-disp:"Baloo 2","Arial Rounded MT Bold","Trebuchet MS",system-ui,sans-serif;
+  --f-body:"Nunito","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{min-height:100%}
+body{margin:0;background:var(--table);color:var(--ink);font-family:var(--f-body);font-weight:700;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cg opacity='.55'%3E%3Cpath d='M20 30l14-4-4 14z' fill='%23ff5d8f'/%3E%3Ccircle cx='170' cy='40' r='6' fill='%232f7bf5'/%3E%3Cpath d='M120 120h14v14h-14z' fill='%2322b34a' transform='rotate(20 127 127)'/%3E%3Cpath d='M60 170l10 18H50z' fill='%238b4fe0'/%3E%3Ccircle cx='190' cy='180' r='5' fill='%23ff8a1f'/%3E%3Cpath d='M90 60q8-10 16 0' stroke='%2314a8a0' stroke-width='4' fill='none'/%3E%3C/g%3E%3C/svg%3E"),
+  radial-gradient(circle at 20% 0%,#fff1a0 0,transparent 45%),linear-gradient(var(--table),var(--table2));
+}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:4px solid var(--topla);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding-block:14px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Başlık */
+.top{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.top .mon{width:66px}
+.brand{text-align:center;min-width:0}
+.brand h1{font-family:var(--f-disp);font-weight:800;margin:0;line-height:.95;font-size:clamp(28px,5.4vw,56px);letter-spacing:.5px;text-wrap:balance;
+  color:#fff;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:0 4px 0 var(--ink)}
+.brand h1 .l1{display:block}
+.brand h1 span.c{display:inline-block}
+.brand .sub{display:inline-block;margin-top:8px;background:var(--paper);border:3px solid var(--ink);border-radius:999px;padding:3px 14px;font-weight:900;font-size:14px;letter-spacing:.06em}
+.sub i{font-style:normal}
+@media (max-width:600px){.top .mon.hide-s{display:none}.top .mon{width:52px}}
+
+.panel{background:var(--paper);border:3px solid var(--ink);border-radius:22px;box-shadow:0 6px 0 var(--ink)}
+
+/* Kurulum */
+#setup{max-width:760px;margin:10px auto 0;padding:22px}
+#setup h2{font-family:var(--f-disp);font-size:28px;margin:0 0 4px}
+.lead{margin:0 0 16px;color:var(--muted);max-width:60ch}
+.field{margin:16px 0}
+.field>.lbl{display:block;font-weight:900;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;color:var(--muted)}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{border:3px solid var(--ink);background:#fff;border-radius:14px;padding:8px 14px;font-weight:900;box-shadow:0 3px 0 var(--ink);transition:transform .1s}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.seg button:active{transform:translateY(3px);box-shadow:none}
+.prow{display:flex;align-items:center;gap:10px;margin:8px 0}
+.prow .mon{width:46px;flex:none}
+.prow input{flex:1;min-width:0;font:inherit;font-weight:800;border:3px solid var(--ink);border-radius:12px;padding:9px 12px;background:#fff;color:var(--ink)}
+.cta{display:inline-flex;align-items:center;gap:10px;border:3px solid var(--ink);background:var(--carp);color:#fff;font-family:var(--f-disp);font-weight:800;font-size:22px;border-radius:18px;padding:10px 26px 8px;box-shadow:0 5px 0 var(--ink);transition:transform .1s}
+.cta:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ink)}
+.cta.alt{background:#fff;color:var(--ink);font-size:17px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:20px}
+details.rules{margin-top:18px;border-top:3px dashed #d8d2ee;padding-top:12px}
+details.rules summary{cursor:pointer;font-weight:900}
+.rules ul{padding-left:20px;margin:8px 0;line-height:1.55;max-width:65ch}
+
+/* Oyun düzeni */
+#game{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start}
+@media (min-width:981px){#game #board{max-width:max(420px,calc(100vh - 150px));margin:0 auto}}
+@media (max-width:980px){#game{grid-template-columns:minmax(0,1fr)}
+  #game>aside{display:contents}
+  #turnBox{order:1}.diceRow{order:2;padding:10px}#game>div:first-child{order:3}.plist{order:4}.logBox{order:5}.tools{order:6}
+  .turn{grid-template-columns:64px minmax(0,1fr);padding:10px}.turn .mon{width:64px}.scene{--ds:70px}}
+.boardWrap{padding:12px}
+#board{position:relative;width:100%;aspect-ratio:1/1;max-width:100%;container-type:inline-size;border-radius:16px;
+  background:radial-gradient(circle at 50% 50%,#e9fbff 0,#c9efff 70%);overflow:hidden}
+#board svg.road{position:absolute;inset:0;width:100%;height:100%}
+.tile{position:absolute;border:max(2px,.45cqw) solid var(--ink);border-radius:2.2cqw;display:flex;align-items:center;justify-content:center;
+  color:#fff;box-shadow:0 .7cqw 0 var(--ink);transition:transform .2s}
+.tile .no{position:absolute;top:.3cqw;left:.9cqw;font-family:var(--f-disp);font-weight:800;font-size:2.3cqw;line-height:1.2;opacity:.95}
+.tile .sym{font-family:var(--f-disp);font-weight:800;font-size:6.2cqw;line-height:1;-webkit-text-stroke:.25cqw var(--ink);paint-order:stroke fill;margin-top:1cqw}
+.tile .word{font-family:var(--f-disp);font-weight:800;font-size:2.2cqw;line-height:1;text-align:center;margin-top:1.6cqw;letter-spacing:.02em}
+.tile svg.ic{width:6.4cqw;height:6.4cqw;margin-top:1.2cqw}
+.tile.t-bonus{color:var(--ink)}
+.tile.t-start,.tile.t-finish{background:#fff;color:var(--ink)}
+.tile.t-finish{background:linear-gradient(135deg,#ffe46b,#ffb21a)}
+.tile.pulse{animation:pulse .8s ease 2}
+@keyframes pulse{50%{transform:scale(1.12)}}
+.tile.here{outline:.7cqw solid #fff;outline-offset:.2cqw}
+
+.pawn{position:absolute;width:9.4cqw;margin-left:-4.7cqw;margin-top:-6.6cqw;transition:left .22s ease,top .22s ease;z-index:5;filter:drop-shadow(0 .5cqw 0 rgba(29,24,64,.35));pointer-events:none}
+.pawn.hop{animation:hop .24s ease}
+.pawn.active{z-index:6}
+.pawn.active::after{content:"";position:absolute;left:50%;bottom:-1.2cqw;width:6cqw;height:1.6cqw;margin-left:-3cqw;border-radius:50%;background:rgba(255,255,255,.85);border:.3cqw solid var(--ink);z-index:-1}
+.pawn.jump{transition:left .6s cubic-bezier(.3,1.4,.5,1),top .6s cubic-bezier(.3,1.4,.5,1)}
+@keyframes hop{50%{transform:translateY(-2.4cqw) scale(1.05)}}
+
+.legend{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:12px;font-size:13px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:16px;height:16px;border-radius:5px;border:2px solid var(--ink);display:inline-block}
+
+/* Yan panel */
+aside{display:flex;flex-direction:column;gap:14px;min-width:0}
+.turn{padding:14px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;align-items:center}
+.turn .mon{width:96px}
+.turn .who{font-family:var(--f-disp);font-weight:800;font-size:24px;line-height:1.05;overflow-wrap:anywhere}
+.turn .hint{color:var(--muted);font-size:14px;margin-top:2px}
+.diceRow{display:flex;align-items:center;gap:16px;padding:16px;justify-content:center;flex-wrap:wrap}
+.scene{--ds:84px;width:var(--ds);height:var(--ds);perspective:420px;cursor:pointer;border:0;background:none;padding:0}
+.cube{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 1.05s cubic-bezier(.2,.9,.25,1.05);transform:rotateX(-20deg) rotateY(25deg)}
+.face{position:absolute;inset:0;background:#fff;border:3px solid var(--ink);border-radius:14px;display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);padding:9px;backface-visibility:hidden}
+.face b{width:14px;height:14px;border-radius:50%;background:var(--ink);place-self:center}
+.f1{transform:translateZ(calc(var(--ds) / 2))} .f6{transform:rotateY(180deg) translateZ(calc(var(--ds) / 2))}
+.f2{transform:rotateY(90deg) translateZ(calc(var(--ds) / 2))} .f5{transform:rotateY(-90deg) translateZ(calc(var(--ds) / 2))}
+.f3{transform:rotateX(90deg) translateZ(calc(var(--ds) / 2))} .f4{transform:rotateX(-90deg) translateZ(calc(var(--ds) / 2))}
+.f1 b,.f5 b:nth-child(5){background:var(--cik)}
+#rollBtn{font-size:24px}
+#rollBtn:disabled{background:#b9b4cf;cursor:wait}
+.lastRoll{font-family:var(--f-disp);font-weight:800;font-size:15px;color:var(--muted);min-width:7ch;text-align:center}
+
+.plist{padding:10px 12px}
+.plist h3,.logBox h3{margin:2px 4px 8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pl{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:8px;align-items:center;padding:6px;border-radius:14px;border:2px solid transparent}
+.pl.on{border-color:var(--ink);background:#fff6cc}
+.pl .mon{width:40px}
+.pl .nm{font-weight:900;overflow-wrap:anywhere;line-height:1.15}
+.pl .chips{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px}
+.chip{font-size:11px;font-weight:900;border:2px solid var(--ink);border-radius:999px;padding:0 7px;background:#fff;white-space:nowrap}
+.chip.sh{background:#c9f2ff}.chip.sk{background:#ffd1d8}.chip.mo{background:#e2f7d0}
+.pl .pos{font-family:var(--f-disp);font-weight:800;font-size:22px;text-align:right;line-height:1;font-variant-numeric:tabular-nums}
+.pl .pos small{display:block;font-family:var(--f-body);font-size:11px;color:var(--muted)}
+.bar{height:6px;border-radius:9px;background:#ece8f7;margin-top:4px;overflow:hidden;border:1.5px solid var(--ink)}
+.bar i{display:block;height:100%;background:var(--carp)}
+.logBox{padding:10px 12px}
+#log{list-style:none;margin:0;padding:0 4px;max-height:220px;overflow:auto;font-size:13.5px;line-height:1.4}
+#log li{padding:5px 0;border-bottom:1.5px dashed #e3def3}
+#log li:first-child{font-weight:900}
+.tools{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.tools button{border:3px solid var(--ink);background:#fff;border-radius:12px;padding:5px 12px;font-weight:900;box-shadow:0 3px 0 var(--ink)}
+
+/* Modal ve kartlar */
+#modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:rgba(29,24,64,.55);
+  padding:max(12px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+.sheet{width:min(560px,100%);max-height:100%;overflow:auto;animation:deal .35s cubic-bezier(.2,1.3,.4,1)}
+@keyframes deal{from{transform:translateY(40px) rotate(-6deg) scale(.8);opacity:0}}
+.card{--c:var(--topla);background:var(--paper);border:4px solid var(--ink);border-radius:26px;box-shadow:0 8px 0 var(--ink);overflow:hidden}
+.card .hd{background:var(--c);color:#fff;display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:4px solid var(--ink)}
+.card .hd .mon{width:58px;flex:none;margin-bottom:-18px}
+.card .hd h2{margin:0;font-family:var(--f-disp);font-weight:800;font-size:26px;line-height:1;-webkit-text-stroke:1.5px var(--ink);paint-order:stroke fill;flex:1;min-width:0}
+.card .hd .num{font-family:var(--f-disp);font-weight:800;background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:999px;padding:0 10px;font-size:16px}
+.card .bd{padding:18px 18px 20px}
+.card.t-bonus .hd{color:var(--ink)} .card.t-bonus .hd h2{color:#fff}
+.forwho{font-size:14px;color:var(--muted);margin:0 0 6px}
+.expr{font-family:var(--f-disp);font-weight:700;font-size:clamp(28px,7vw,42px);text-align:center;padding:14px 4px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.05em .1em;line-height:1}
+.expr .op{margin:0 .18em;color:var(--c)} .expr .pr{font-weight:600;font-size:1.25em}
+.fr{display:inline-flex;flex-direction:column;align-items:stretch;vertical-align:middle;text-align:center;line-height:1;margin:0 .06em;font-variant-numeric:tabular-nums}
+.fr b{font-weight:inherit;border-bottom:.075em solid currentColor;padding:0 .14em .05em}
+.fr i{font-style:normal;padding:.06em .14em 0}
+.mx{margin-right:.04em}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.opt{border:3px solid var(--ink);border-radius:16px;background:#fff;box-shadow:0 4px 0 var(--ink);padding:10px 6px;font-family:var(--f-disp);font-weight:700;font-size:26px;display:flex;align-items:center;justify-content:center;gap:10px;min-height:76px;transition:transform .1s,background .2s}
+.opt .k{font-size:14px;font-family:var(--f-body);font-weight:900;width:24px;height:24px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;flex:none;background:var(--table)}
+.opt:hover:not(:disabled){transform:translateY(-2px)}
+.opt:disabled{cursor:default}
+.opt.ok{background:#c8f5d4;border-color:var(--good)}
+.opt.no{background:#ffd3d9}
+.opt.dim{opacity:.55}
+.opt.sel{background:#fff1a8}
+.timer{height:12px;border:2.5px solid var(--ink);border-radius:9px;overflow:hidden;margin-top:12px;background:#fff}
+.timer i{display:block;height:100%;background:var(--karma);transform-origin:left;animation:drain linear forwards}
+@keyframes drain{to{transform:scaleX(0)}}
+.fb{margin-top:14px}
+.verdict{font-family:var(--f-disp);font-weight:800;font-size:26px;display:flex;align-items:center;gap:8px}
+.verdict.ok{color:var(--good)} .verdict.no{color:var(--bad)}
+.steps{margin:8px 0 0;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;padding:8px 10px 8px 38px;position:relative;background:#f4f1ff;border-radius:12px;margin-top:6px}
+.steps li::before{content:counter(s);position:absolute;left:8px;top:8px;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;display:grid;place-items:center}
+.steps .lb{font-size:13px;color:var(--muted)}
+.steps .eq{font-family:var(--f-disp);font-weight:700;font-size:21px;display:flex;flex-wrap:wrap;align-items:center;gap:.1em .25em;margin-top:2px;line-height:1.05}
+.btnrow{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:16px}
+.btnrow .cta{font-size:19px;padding:8px 22px 6px}
+.spec{font-size:22px;line-height:1.35;text-align:center;padding:12px 6px 4px;font-weight:900;text-wrap:balance}
+.backface{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:300px;background:var(--c);
+  background-image:repeating-conic-gradient(from 0deg at 50% 45%,rgba(255,255,255,.18) 0 10deg,transparent 10deg 20deg)}
+.backface .mon{width:150px;animation:wobble 1s ease-in-out infinite}
+.backface h2{font-family:var(--f-disp);font-weight:800;font-size:40px;margin:0;color:#fff;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:0 4px 0 var(--ink)}
+.flipOut{animation:flipOut .18s ease-in forwards}.flipIn{animation:flipIn .22s ease-out}
+@keyframes flipOut{to{transform:scaleX(0)}}@keyframes flipIn{from{transform:scaleX(0)}}
+@keyframes wobble{50%{transform:rotate(-6deg) scale(1.04)}}
+.rollers{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:12px 0}
+.roller{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:96px}
+.roller .mon{width:56px}
+.roller .nm{font-weight:900;font-size:14px;text-align:center;max-width:12ch;overflow-wrap:anywhere}
+.mini{width:58px;height:58px;background:#fff;border:3px solid var(--ink);border-radius:12px;display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);padding:6px;box-shadow:0 4px 0 var(--ink)}
+.mini b{width:10px;height:10px;border-radius:50%;background:var(--ink);place-self:center}
+.mini.spin{animation:shake .12s linear infinite}
+.roller.win .mini{background:#c8f5d4}.roller.lose .mini{background:#ffd3d9}
+@keyframes shake{50%{transform:rotate(12deg)}}
+.choices{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:12px}
+.choices button{display:flex;align-items:center;gap:8px;border:3px solid var(--ink);border-radius:16px;background:#fff;padding:6px 14px 6px 6px;font-weight:900;box-shadow:0 4px 0 var(--ink)}
+.choices .mon{width:44px}
+.note{background:#fff6cc;border:2.5px dashed var(--ink);border-radius:14px;padding:10px 12px;margin-top:12px;font-size:15px}
+.rank{list-style:none;padding:0;margin:12px 0}
+.rank li{display:grid;grid-template-columns:30px 44px minmax(0,1fr) auto;gap:8px;align-items:center;padding:6px 4px;border-bottom:2px dashed #e3def3}
+.rank .mon{width:44px}
+.rank b{font-family:var(--f-disp);font-size:22px}
+
+/* Canavar animasyonları */
+.mon{display:block;overflow:visible}
+.mon .body{animation:bob 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+.mon .eye{animation:blink 4.2s infinite;transform-box:fill-box;transform-origin:center}
+.mon .armR{animation:wave 1.6s ease-in-out infinite;transform-box:fill-box;transform-origin:20% 80%}
+.mon.happy .body{animation:jump .45s ease 3}
+.mon.sad .body{animation:sadShake .4s ease 2}
+@keyframes bob{50%{transform:translateY(-4px) scaleY(1.03)}}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+@keyframes wave{50%{transform:rotate(-28deg)}}
+@keyframes jump{50%{transform:translateY(-18px)}}
+@keyframes sadShake{25%{transform:translateX(-6px) rotate(-5deg)}75%{transform:translateX(6px) rotate(5deg)}}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:60;width:100%;height:100%}
+.toast{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;border-radius:14px;padding:10px 16px;font-weight:900;z-index:70;max-width:calc(100% - 32px);text-align:center;animation:deal .3s}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <span class="hide-s" data-mon="topla"></span>
+    <span data-mon="cik"></span>
+    <div class="brand">
+      <h1><span class="l1">Rasyonel Sayılar:</span>İşlem Canavarları</h1>
+      <div class="sub">TOPLA · ÇIKAR · ÇARP · BÖL · DÜŞÜN · KAZAN</div>
+    </div>
+    <span data-mon="carp"></span>
+    <span class="hide-s" data-mon="bol"></span>
+  </header>
+
+  <section id="setup" class="panel">
+    <h2>Oyunu kur</h2>
+    <p class="lead">Zar at, parkurda ilerle, geldiğin karenin kartını çek. Her kart yeni bir işlem: oyun boyunca aynı soru ikinci kez çıkmaz. 49. kareye ilk ulaşan kazanır.</p>
+    <div class="field"><span class="lbl">Nasıl oynanacak?</span>
+      <div class="seg" id="modeSeg">
+        <button type="button" data-v="tek" id="m-tek">Tek oyuncu</button>
+        <button type="button" data-v="cok" id="m-cok" aria-pressed="true">Oyuncularla</button>
+        <button type="button" data-v="grup" id="m-grup">Gruplarla</button>
+      </div>
+    </div>
+    <div class="field" id="countField"><span class="lbl" id="countLbl">Oyuncu sayısı</span>
+      <div class="seg" id="countSeg">
+        <button type="button" data-v="2" id="c2" aria-pressed="true">2</button>
+        <button type="button" data-v="3" id="c3">3</button>
+        <button type="button" data-v="4" id="c4">4</button>
+      </div>
+    </div>
+    <div class="field"><span class="lbl" id="namesLbl">İsimler</span><div id="names"></div></div>
+    <div class="field"><span class="lbl">Zorluk</span>
+      <div class="seg" id="levelSeg">
+        <button type="button" data-v="kolay" id="l-kolay">Kolay</button>
+        <button type="button" data-v="orta" id="l-orta" aria-pressed="true">Orta</button>
+        <button type="button" data-v="zor" id="l-zor">Zor</button>
+      </div>
+    </div>
+    <div class="field"><span class="lbl">Soru süresi</span>
+      <div class="seg" id="timeSeg">
+        <button type="button" data-v="0" id="t-0" aria-pressed="true">Süresiz</button>
+        <button type="button" data-v="90" id="t-90">90 sn</button>
+        <button type="button" data-v="60" id="t-60">60 sn</button>
+        <button type="button" data-v="40" id="t-40">40 sn</button>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="cta" id="startBtn" type="button">Oyunu başlat</button>
+      <button class="cta alt" id="resumeBtn" type="button" hidden>Kayıtlı oyuna devam et</button>
+    </div>
+    <details class="rules" id="rulesBox">
+      <summary>Kurallar</summary>
+      <ul>
+        <li>Sırası gelen oyuncu zar atar, piyonunu ilerletir ve geldiği karenin kartını çeker.</li>
+        <li><b>İşlem kareleri</b> (+ − × ÷ ve ? karma): soruyu çöz. Doğruysa yerinde kalır ve yıldız kazanırsın (karmada 2 yıldız), yanlışsa 1 kare geri gidersin. Her yanıttan sonra çözüm adımları gösterilir.</li>
+        <li><b>Bonus</b> kartları ödül, <b>Tuzak</b> kartları ceza verir. Kalkanın varsa bir tuzak kartı seni etkilemez.</li>
+        <li><b>Meydan okuma</b> kartları zar yarışı, düello ya da süreli görev ister. Düelloda ikiniz aynı soruyu sırayla çözersiniz; doğru ve daha hızlı olan kazanır.</li>
+        <li>Kartla yapılan hareketler yeni kart çektirmez. 49. kareye ilk ulaşan kazanır. Tek oyuncuda hedef, bitişe en az turda ulaşmak.</li>
+      </ul>
+    </details>
+  </section>
+
+  <main id="game" hidden>
+    <div>
+      <div class="panel boardWrap">
+        <div id="board"></div>
+      </div>
+      <div class="legend" id="legend"></div>
+    </div>
+    <aside>
+      <div class="panel turn" id="turnBox"></div>
+      <div class="panel diceRow">
+        <button class="scene" id="diceScene" type="button" aria-label="Zar at">
+          <div class="cube" id="cube"></div>
+        </button>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+          <button class="cta" id="rollBtn" type="button">Zar at</button>
+          <div class="lastRoll" id="lastRoll">Hazır</div>
+        </div>
+      </div>
+      <div class="panel plist"><h3 id="plTitle">Oyuncular</h3><div id="players"></div></div>
+      <div class="panel logBox"><h3>Olaylar</h3><ul id="log"></ul></div>
+      <div class="tools">
+        <button type="button" id="soundBtn">Ses: açık</button>
+        <button type="button" id="rulesBtn">Kurallar</button>
+        <button type="button" id="newBtn">Yeni oyun</button>
+      </div>
+    </aside>
+  </main>
+</div>
+<div id="modal" hidden><div class="sheet" id="sheet"></div></div>
+<canvas id="confetti" hidden></canvas>
+
+<script>/* İşlem Canavarları — saf oyun mantığı (DOM yok) */
+const L = (() => {
+  const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) { const t = a % b; a = b; b = t; } return a || 1; };
+  const lcm = (a, b) => Math.abs(a * b) / gcd(a, b);
+  class Fr {
+    constructor(n, d = 1) {
+      if (!Number.isInteger(n) || !Number.isInteger(d)) throw new Error('tam sayı değil');
+      if (d === 0) throw new Error('sıfıra bölme');
+      if (d < 0) { n = -n; d = -d; }
+      const g = gcd(n, d);
+      this.n = (n / g) || 0;
+      this.d = n === 0 ? 1 : d / g;
+    }
+    add(o) { return new Fr(this.n * o.d + o.n * this.d, this.d * o.d); }
+    sub(o) { return new Fr(this.n * o.d - o.n * this.d, this.d * o.d); }
+    mul(o) { return new Fr(this.n * o.n, this.d * o.d); }
+    div(o) { if (o.n === 0) throw new Error('sıfıra bölme'); return new Fr(this.n * o.d, this.d * o.n); }
+    neg() { return new Fr(-this.n, this.d); }
+    eq(o) { return this.n === o.n && this.d === o.d; }
+    key() { return this.n + '/' + this.d; }
+  }
+  const ri = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+  const pick = a => a[Math.floor(Math.random() * a.length)];
+  const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const MINUS = '−';
+
+  const LEVELS = {
+    kolay: { den: [2, 3, 4, 5, 6, 8, 10], kden: [2, 3, 4, 5, 6], maxD: 24, maxN: 30, kmaxD: 24, kmaxN: 30, improper: 0, whole: 1, intMax: 4,
+      dec: ['0,5', '0,25', '0,75', '0,2', '0,4', '0,6', '0,8', '1,5'] },
+    orta: { den: [2, 3, 4, 5, 6, 8, 9, 10, 12], kden: [2, 3, 4, 5, 6, 8, 10], maxD: 40, maxN: 60, kmaxD: 48, kmaxN: 60, improper: 0.15, whole: 2, intMax: 6,
+      dec: ['0,5', '0,25', '0,75', '0,2', '0,4', '0,6', '0,8', '1,5', '0,1', '0,3', '0,7', '0,9', '1,2', '2,5'] },
+    zor: { den: [2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 15, 16, 18, 20], kden: [2, 3, 4, 5, 6, 7, 8, 9, 10, 12], maxD: 72, maxN: 120, kmaxD: 72, kmaxN: 120, improper: 0.3, whole: 3, intMax: 9,
+      dec: ['0,5', '0,25', '0,75', '0,2', '0,4', '0,6', '0,8', '1,5', '0,1', '0,3', '0,7', '0,9', '1,2', '2,5', '0,05', '0,125', '1,25', '2,4', '3,5'] }
+  };
+
+  function decToFr(s) {
+    const [i, f = ''] = s.split(',');
+    const d = Math.pow(10, f.length);
+    return { raw: [parseInt(i, 10) * d + (f ? parseInt(f, 10) : 0), d], v: null };
+  }
+  function leaf(kind, v, extra = {}) { return Object.assign({ t: 'leaf', kind, v }, extra); }
+
+  function makeLeaf(lv, w, dens) {
+    const r = Math.random(); let acc = 0, kind = 'frac';
+    for (const k of ['frac', 'dec', 'mixed', 'int']) { acc += w[k] || 0; if (r < acc) { kind = k; break; } }
+    const neg = Math.random() < 0.5;
+    if (kind === 'dec') {
+      const s = pick(lv.dec); const [n, d] = decToFr(s).raw; const v = new Fr(neg ? -n : n, d);
+      return leaf('dec', v, { s, rn: n, rd: d });
+    }
+    if (kind === 'mixed') {
+      const ds = [2, 3, 4, 5, 6, 8].filter(x => dens.includes(x));
+      const d = pick(ds); const cands = []; for (let i = 1; i < d; i++) if (gcd(i, d) === 1) cands.push(i);
+      const n = pick(cands); const w0 = ri(1, lv.whole); const ng = Math.random() < 0.3;
+      return leaf('mixed', new Fr((ng ? -1 : 1) * (w0 * d + n), d), { w: w0, pn: n, pd: d });
+    }
+    if (kind === 'int') { const k = ri(2, lv.intMax); return leaf('int', new Fr(neg ? -k : k)); }
+    const d = pick(dens); const cands = [];
+    for (let i = 1; i < d; i++) if (gcd(i, d) === 1) cands.push(i);
+    if (lv.improper && Math.random() < lv.improper) { const imp = []; for (let i = d + 1; i < 2 * d; i++) if (gcd(i, d) === 1) imp.push(i); if (imp.length) return leaf('frac', new Fr(neg ? -pick(imp) : pick(imp), d)); }
+    const n = pick(cands);
+    return leaf('frac', new Fr(neg ? -n : n, d));
+  }
+
+  const W_ADD = { frac: 0.62, dec: 0.18, mixed: 0.14, int: 0.06 };
+  const W_MUL = { frac: 0.6, dec: 0.14, mixed: 0.14, int: 0.12 };
+  const W_K = { frac: 0.78, dec: 0.14, int: 0.08 };
+  const OPKEY = { topla: '+', cik: '-', carp: '*', bol: '/' };
+
+  function apply(op, x, y) { switch (op) { case '+': return x.add(y); case '-': return x.sub(y); case '*': return x.mul(y); case '/': return x.div(y); } throw new Error('op'); }
+  function evalN(n) { return n.t === 'leaf' ? n.v : apply(n.op, evalN(n.a), evalN(n.b)); }
+  const isOne = f => Math.abs(f.n) === f.d;
+  const okResult = (r, maxD, maxN) => r.n !== 0 && r.d <= maxD && Math.abs(r.n) <= maxN;
+
+  function genBinary(type, lv) {
+    const op = OPKEY[type]; const w = (op === '+' || op === '-') ? W_ADD : W_MUL;
+    for (let i = 0; i < 80; i++) {
+      const a = makeLeaf(lv, w, lv.den), b = makeLeaf(lv, w, lv.den);
+      if (a.kind === 'int' && b.kind === 'int') continue;
+      if (a.v.eq(b.v) || a.v.eq(b.v.neg())) continue;
+      if ((op === '*' || op === '/') && (isOne(a.v) || isOne(b.v))) continue;
+      let r; try { r = apply(op, a.v, b.v); } catch (e) { continue; }
+      if (!okResult(r, lv.maxD, lv.maxN)) continue;
+      return { t: 'op', op, a, b, grp: false };
+    }
+    return null;
+  }
+
+  function genKarma(lv) {
+    const ops = ['+', '-', '*', '/'];
+    for (let i = 0; i < 120; i++) {
+      const s = ri(1, 4); let op1, op2;
+      if (s === 3) { op1 = pick(['+', '-']); op2 = pick(['*', '/']); }
+      else if (s === 4) { op1 = pick(['*', '/']); op2 = pick(['+', '-']); }
+      else { op1 = pick(ops); do { op2 = pick(ops); } while (op2 === op1); }
+      const a = makeLeaf(lv, W_K, lv.kden), b = makeLeaf(lv, W_K, lv.kden), c = makeLeaf(lv, W_K, lv.kden);
+      if ([a, b, c].filter(x => x.kind === 'int').length > 1) continue;
+      if (a.v.eq(b.v) || b.v.eq(c.v)) continue;
+      let node, inner;
+      if (s === 1) { inner = { t: 'op', op: op1, a, b, grp: true }; node = { t: 'op', op: op2, a: inner, b: c, grp: false }; }
+      else if (s === 2) { inner = { t: 'op', op: op2, a: b, b: c, grp: true }; node = { t: 'op', op: op1, a, b: inner, grp: false }; }
+      else if (s === 3) { inner = { t: 'op', op: op2, a: b, b: c, grp: false }; node = { t: 'op', op: op1, a, b: inner, grp: false }; }
+      else { inner = { t: 'op', op: op1, a, b, grp: false }; node = { t: 'op', op: op2, a: inner, b: c, grp: false }; }
+      let r, iv;
+      try { iv = evalN(inner); r = evalN(node); } catch (e) { continue; }
+      if (iv.n === 0 || iv.d > lv.kmaxD || Math.abs(iv.n) > lv.kmaxN) continue;
+      // ×/÷ işleminde ±1 ile işlem yapılmasın
+      let bad = false;
+      (function walk(n) { if (n.t === 'leaf') return; if ((n.op === '*' || n.op === '/') && (isOne(evalN(n.a)) || isOne(evalN(n.b)))) bad = true; walk(n.a); walk(n.b); })(node);
+      if (bad) continue;
+      if (!okResult(r, lv.kmaxD, lv.kmaxN)) continue;
+      return node;
+    }
+    return null;
+  }
+
+  /* ---------- Gösterim ---------- */
+  const SYM = { '+': '+', '-': MINUS, '*': '×', '/': '÷' };
+  const stack = (n, d) => d === 1 ? String(n) : `<span class="fr"><b>${n}</b><i>${d}</i></span>`;
+  function rawH(n, d) { if (d < 0) { n = -n; d = -d; } return (n < 0 ? MINUS : '') + stack(Math.abs(n), d); }
+  const frH = f => rawH(f.n, f.d);
+  const P = (f, first) => (f.n < 0 && !first) ? `(${frH(f)})` : frH(f);
+  const Praw = (n, d, first) => (n < 0 && !first) ? `(${rawH(n, d)})` : rawH(n, d);
+  function frText(f) { return (f.n < 0 ? '-' : '') + Math.abs(f.n) + (f.d === 1 ? '' : '/' + f.d); }
+
+  function leafH(l) {
+    const neg = l.v.n < 0, sg = neg ? MINUS : '';
+    if (l.kind === 'dec') return sg + l.s;
+    if (l.kind === 'mixed') return `${sg}<span class="mx">${l.w}</span>${stack(l.pn, l.pd)}`;
+    if (l.kind === 'int') return sg + Math.abs(l.v.n);
+    return sg + stack(Math.abs(l.v.n), l.v.d);
+  }
+  function leafText(l) {
+    const sg = l.v.n < 0 ? '-' : '';
+    if (l.kind === 'dec') return sg + l.s;
+    if (l.kind === 'mixed') return `${sg}${l.w} ${l.pn}/${l.pd}`;
+    if (l.kind === 'int') return sg + Math.abs(l.v.n);
+    return sg + Math.abs(l.v.n) + '/' + l.v.d;
+  }
+  function toks(node, pos, out) {
+    if (node.t === 'leaf') {
+      let p = false;
+      if (node.v.n < 0) {
+        if (pos === 'mid') p = true;
+        else if (pos === 'start') p = (node.kind === 'frac' || node.kind === 'mixed');
+      }
+      out.push({ k: 'num', leaf: node, paren: p }); return out;
+    }
+    if (node.grp) { out.push({ k: 'lp' }); toks(node.a, 'groupStart', out); out.push({ k: 'op', op: node.op }); toks(node.b, 'mid', out); out.push({ k: 'rp' }); }
+    else { toks(node.a, pos, out); out.push({ k: 'op', op: node.op }); toks(node.b, 'mid', out); }
+    return out;
+  }
+  function exprHTML(node) {
+    return toks(node, 'start', []).map(t => {
+      if (t.k === 'num') return t.paren ? `<span class="pr">(</span>${leafH(t.leaf)}<span class="pr">)</span>` : leafH(t.leaf);
+      if (t.k === 'op') return `<span class="op">${SYM[t.op]}</span>`;
+      return `<span class="pr">${t.k === 'lp' ? '(' : ')'}</span>`;
+    }).join('');
+  }
+  function exprText(node) {
+    return toks(node, 'start', []).map(t => {
+      if (t.k === 'num') return t.paren ? `(${leafText(t.leaf)})` : leafText(t.leaf);
+      if (t.k === 'op') return ' ' + t.op + ' ';
+      return t.k === 'lp' ? '(' : ')';
+    }).join('');
+  }
+  function canonKey(type, node) {
+    if (type !== 'karma' && (node.op === '+' || node.op === '*')) {
+      const s = [leafText(node.a), leafText(node.b)].sort();
+      return type + ':' + s[0] + node.op + s[1];
+    }
+    return type + ':' + exprText(node);
+  }
+
+  /* ---------- Çözüm adımları ---------- */
+  function solve(node) {
+    const steps = [];
+    let opCount = 0;
+    const isKarma = node.a.t === 'op' || node.b.t === 'op';
+    function conv(l) {
+      if (l.kind === 'dec') {
+        const sg = l.v.n < 0 ? -1 : 1;
+        const raw = rawH(sg * l.rn, l.rd);
+        const red = frH(l.v);
+        steps.push({ label: 'Ondalık sayıyı kesre çevir', html: `${leafH(l)} = ${raw}${raw !== red ? ' = ' + red : ''}` });
+      } else if (l.kind === 'mixed') {
+        steps.push({ label: 'Tam sayılı kesri bileşik kesre çevir', html: `${leafH(l)} = ${frH(l.v)}` });
+      }
+    }
+    function ev(n) {
+      if (n.t === 'leaf') { conv(n); return n.v; }
+      const x = ev(n.a), y = ev(n.b), r = apply(n.op, x, y);
+      opCount++;
+      let label = '', html = '';
+      if (n.op === '+' || n.op === '-') {
+        const sym = SYM[n.op], sgn = n.op === '+' ? 1 : -1;
+        if (x.d === y.d) {
+          const sn = x.n + sgn * y.n;
+          html = `${P(x, true)} ${sym} ${P(y)} = ${rawH(sn, x.d)}`;
+          if (sn !== r.n || x.d !== r.d) html += ` = ${frH(r)}`;
+          label = 'Paydalar eşit, payları ' + (n.op === '+' ? 'topla' : 'çıkar');
+        } else {
+          const Lc = lcm(x.d, y.d), X = x.n * (Lc / x.d), Y = y.n * (Lc / y.d), sn = X + sgn * Y;
+          html = `${P(x, true)} ${sym} ${P(y)} = ${Praw(X, Lc, true)} ${sym} ${Praw(Y, Lc)} = ${rawH(sn, Lc)}`;
+          if (sn !== r.n || Lc !== r.d) html += ` = ${frH(r)}`;
+          label = `Ortak payda ${Lc}: paydaları eşitle, payları ` + (n.op === '+' ? 'topla' : 'çıkar');
+        }
+      } else if (n.op === '*') {
+        const rn = x.n * y.n, rd = x.d * y.d;
+        html = `${P(x, true)} × ${P(y)} = ${rawH(rn, rd)}`;
+        if (rn !== r.n || rd !== r.d) html += ` = ${frH(r)}`;
+        label = 'Payları ve paydaları çarp' + signNote(x, y);
+      } else {
+        const rec = new Fr(y.d, y.n), rn = x.n * rec.n, rd = x.d * rec.d;
+        html = `${P(x, true)} ÷ ${P(y)} = ${P(x, true)} × ${P(rec)} = ${rawH(rn, rd)}`;
+        if (rn !== r.n || rd !== r.d) html += ` = ${frH(r)}`;
+        label = 'Bölen ters çevrilir, çarpmaya dönüşür' + signNote(x, y);
+      }
+      if (isKarma) {
+        if (opCount === 1) label = (n.grp ? 'Önce parantez içi: ' : (n.op === '*' || n.op === '/') ? 'Önce çarpma/bölme: ' : 'Önce: ') + label;
+        else label = 'Sonra: ' + label;
+      }
+      steps.push({ label, html });
+      return r;
+    }
+    const r = ev(node);
+    return { r, steps };
+  }
+  function signNote(x, y) {
+    if (x.n < 0 && y.n < 0) return ' (− ile − çarpılınca +)';
+    if ((x.n < 0) !== (y.n < 0)) return ' (işaretler farklı, sonuç −)';
+    return '';
+  }
+
+  /* ---------- Çeldiriciler ---------- */
+  function cloneN(n) { return n.t === 'leaf' ? n : Object.assign({}, n, { a: cloneN(n.a), b: cloneN(n.b) }); }
+  function opNodes(n, out = []) { if (n.t === 'op') { out.push(n); opNodes(n.a, out); opNodes(n.b, out); } return out; }
+  function flatEval(node) {
+    const t = toks(node, 'start', []).filter(x => x.k !== 'lp' && x.k !== 'rp');
+    let v = t[0].leaf.v;
+    for (let i = 1; i < t.length; i += 2) v = apply(t[i].op, v, t[i + 1].leaf.v);
+    return v;
+  }
+  function distractors(node, ans) {
+    const mistakes = [], perturb = [];
+    const tryP = (arr, fn) => { try { const f = fn(); if (f && f.d <= 400 && Math.abs(f.n) <= 999) arr.push(f); } catch (e) { } };
+    const first = [];
+    if (ans.n !== 0) tryP(first, () => ans.neg());
+    const c = cloneN(node);
+    for (const nd of opNodes(c)) {
+      const o = nd.op; nd.op = { '+': '-', '-': '+', '*': '/', '/': '*' }[o];
+      tryP(mistakes, () => evalN(c)); nd.op = o;
+    }
+    if (node.a.t === 'leaf' && node.b.t === 'leaf') {
+      const x = node.a.v, y = node.b.v;
+      if (node.op === '+' || node.op === '-') tryP(mistakes, () => new Fr(x.n + (node.op === '+' ? 1 : -1) * y.n, x.d + y.d));
+      if (node.op === '/' ) tryP(mistakes, () => new Fr(ans.d, ans.n));
+      if (node.op === '*') tryP(mistakes, () => new Fr(x.n * y.d, x.d * y.n).neg());
+      if (node.op === '-') tryP(mistakes, () => x.sub(y.neg()).neg());
+    } else {
+      tryP(mistakes, () => flatEval(node));
+    }
+    tryP(perturb, () => new Fr(ans.n + 1, ans.d));
+    tryP(perturb, () => new Fr(ans.n - 1, ans.d));
+    tryP(perturb, () => new Fr(ans.n, ans.d + 1));
+    tryP(perturb, () => new Fr(ans.n * 2, ans.d));
+    tryP(perturb, () => new Fr(ans.n + ans.d, ans.d));
+    tryP(perturb, () => new Fr(ans.n + 2, ans.d * 2 + 1));
+    const all = [...first, ...shuffle(mistakes), ...shuffle(perturb)];
+    const seen = new Set([ans.key()]), out = [];
+    for (const f of all) { if (seen.has(f.key())) continue; seen.add(f.key()); out.push(f); if (out.length === 3) break; }
+    let k = 2;
+    while (out.length < 3) { const f = new Fr(ans.n + k, ans.d); if (!seen.has(f.key())) { seen.add(f.key()); out.push(f); } k++; }
+    return out;
+  }
+
+  /* ---------- Kart üretimi (tekrarsız) ---------- */
+  function nextCard(type, levelName, used) {
+    const lv = LEVELS[levelName] || LEVELS.orta;
+    for (let i = 0; i < 4000; i++) {
+      const node = type === 'karma' ? genKarma(lv) : genBinary(type, lv);
+      if (!node) continue;
+      const key = canonKey(type, node);
+      if (used[key]) continue;
+      used[key] = 1;
+      const { r, steps } = solve(node);
+      const ans = evalN(node);
+      if (!r.eq(ans)) throw new Error('çözüm tutarsız');
+      return { type, key, node, ans, html: exprHTML(node), text: exprText(node), steps, wrong: distractors(node, ans) };
+    }
+    throw new Error('Yeni kart üretilemedi');
+  }
+
+  /* ---------- Özel kartlar ---------- */
+  const BONUS = [
+    { t: 'Paydaları eşitlemeyi unutmadın! 2 kare ilerle.', e: { move: 2 } },
+    { t: 'Zar at, gelen sayı kadar ilerle.', e: { rollMove: 1 } },
+    { t: 'Harika gidiyorsun! Bir tur daha oyna.', e: { extra: true } },
+    { t: 'Kalkan kazandın! Bir sonraki tuzak kartı seni etkilemez.', e: { shield: 1 } },
+    { t: 'Zihinden doğru işlem yaptın! 3 kare ilerle.', e: { move: 3 } },
+    { t: 'Tüm rakiplerin 1 kare geri gitsin.', e: { othersBack: 1 }, r: 1 },
+    { t: 'Kısa yolu buldun! 1 kare ilerle.', e: { move: 1 } },
+    { t: 'Zar at: çift gelirse 3 kare, tek gelirse 1 kare ilerle.', e: { rollEvenOdd: [3, 1] } },
+    { t: 'Bir önündeki oyuncunun karesine geç. Önünde kimse yoksa 2 kare ilerle.', e: { jumpAhead: 2 }, r: 1 },
+    { t: 'Sadeleştirme ustası! 2 kare ilerle.', e: { move: 2 } },
+    { t: 'Zar at ve gelen sayının iki katı kadar ilerle.', e: { rollMove: 2 } },
+    { t: 'Bonus soru: Toplama sorusu çöz, doğruysa 3 kare ilerle.', e: { quiz: { type: 'topla', win: 3 } } },
+    { t: 'Ters çevir-çarp şampiyonu! Bölme sorusu çöz, doğruysa 4 kare ilerle.', e: { quiz: { type: 'bol', win: 4 } } },
+    { t: 'Yıldız yağmuru! 2 yıldız kazan.', e: { stars: 2 } },
+    { t: 'Bir sonraki turunda zarın 2 fazla sayılır.', e: { nextMod: 2 } },
+    { t: 'İşaret kuralını biliyorsun! 1 kare ilerle ve 1 yıldız kazan.', e: { move: 1, stars: 1 } },
+    { t: 'Bir rakibini seç, bir tur beklesin.', e: { chooseSkip: 1 }, r: 1 },
+    { t: 'Kalkan kazan ve 1 kare ilerle.', e: { shield: 1, move: 1 } },
+    { t: 'Bir sonraki Karma (?) karesine kadar ilerle.', e: { toNext: 'karma' } },
+    { t: 'Rasyonel roket! 5 kare ilerle.', e: { move: 5 } },
+    { t: 'Çarpma sorusu çöz; doğruysa 3 kare ilerle.', e: { quiz: { type: 'carp', win: 3 } } },
+    { t: 'İki zar at, büyük olanı kadar ilerle.', e: { rollMax2: 1 } },
+    { t: 'Ortak payda avcısı! 2 kare ilerle, bir rakibin 1 kare geri gitsin.', e: { move: 2, chooseBack: 1 }, r: 1 },
+    { t: 'Sihirli kesir! Zar at; 4, 5 veya 6 gelirse 4 kare ilerle.', e: { rollThresh: [4, 4] } }
+  ];
+  const TUZAK = [
+    { t: 'İşlemde hata yaptın! 3 kare geri git.', e: { back: 3 } },
+    { t: 'Bomba patladı! Başlangıç karesine dön.', e: { toStart: 1 } },
+    { t: 'Sonucu sadeleştirmeyi unuttun. Bir tur bekle.', e: { skip: 1 } },
+    { t: 'Zar at ve gelen sayı kadar geri git.', e: { rollBack: 1 } },
+    { t: 'Bir kare geri git, sıradaki oyuncu 1 kare ilerlesin.', e: { back: 1, nextFwd: 1 }, r: 1 },
+    { t: 'Paydaları eşitlemeyi unuttun! 2 kare geri git.', e: { back: 2 } },
+    { t: 'İşaret hatası! Bir tur bekle.', e: { skip: 1 } },
+    { t: 'Dengen bozuldu! 4 kare geri git.', e: { back: 4 } },
+    { t: 'Yanlış yola saptın! 2 kare geri git.', e: { back: 2 } },
+    { t: 'Rüzgâr seni geriye savurdu! 3 kare geri git.', e: { back: 3 } },
+    { t: 'Zarın kayboldu! Bir sonraki turda zar atamazsın.', e: { skip: 1 } },
+    { t: 'Kalkanını kaybet. Kalkanın yoksa 1 kare geri git.', e: { loseShield: 1 } },
+    { t: 'Kesir canavarı yıldızlarını çaldı! 2 yıldız kaybet.', e: { stars: -2 } },
+    { t: 'Ters çevirmeyi unuttun! Bölme sorusu çöz; yanlışsa 3 kare geri git.', e: { quiz: { type: 'bol', lose: 3 } } },
+    { t: 'Ondalık kaydı! Zar at: tek gelirse 2 kare geri git.', e: { rollOddBack: 2 } },
+    { t: 'Sayı doğrusunda ters yöne yürüdün! Bir önceki Toplama (+) karesine dön.', e: { toPrev: 'topla' } },
+    { t: 'Bir sonraki turunda zarın 2 eksik sayılır.', e: { nextMod: -2 } },
+    { t: 'Rakiplerinin hepsi 1 kare ilerlesin.', e: { othersFwd: 1 }, r: 1 },
+    { t: 'Karma sorusu çöz; yanlışsa 2 kare geri git.', e: { quiz: { type: 'karma', lose: 2 } } },
+    { t: 'Pay ile paydayı karıştırdın! 1 kare geri git ve bir tur bekle.', e: { back: 1, skip: 1 } },
+    { t: 'Canavar seni kovaladı! 5 kare geri git.', e: { back: 5 } },
+    { t: 'Ayağın kaydı! 1 kare geri git.', e: { back: 1 } },
+    { t: 'Zar at: 1, 2 veya 3 gelirse bir tur bekle.', e: { rollLowSkip: 3 } },
+    { t: 'Çıkarma sorusu çöz; yanlışsa bir tur bekle.', e: { quiz: { type: 'cik', failSkip: 1 } } }
+  ];
+  const MEYDAN = [
+    { t: 'Hız testi: 30 saniyede Toplama sorusu çöz. Doğruysa 3 kare ilerle, yanlışsa 1 kare geri git.', e: { quiz: { type: 'topla', win: 3, lose: 1, time: 30 } } },
+    { t: 'Herkes zar atar. En yüksek atan 2 kare ilerler.', e: { allHigh: 2 }, r: 1 },
+    { t: 'Herkes zar atar. En düşük atan 3 kare geri gider.', e: { allLow: 3 }, r: 1 },
+    { t: 'Bölme sorusu çöz. Doğruysa 4 kare ilerle.', e: { quiz: { type: 'bol', win: 4 } } },
+    { t: 'Bir rakip seç ve Çarpma düellosu yapın. Doğru ve daha hızlı cevaplayan 2 kare ilerler.', e: { duelQ: { type: 'carp', win: 2 } }, r: 1 },
+    { t: 'Herkes zar atar. En büyük zarı atan 3 kare ilerler.', e: { allHigh: 3 }, r: 1 },
+    { t: 'Herkes zar atar. En küçük zarı atan bir tur bekler.', e: { allLowSkip: 1 }, r: 1 },
+    { t: 'Karma sorusu çöz. Doğruysa 3 kare ilerle.', e: { quiz: { type: 'karma', win: 3 } } },
+    { t: 'Çifte soru: Toplama ve Çıkarma soruları. Her doğru cevap 1 kare ilerletir.', e: { multi: { types: ['topla', 'cik'], each: 1 } } },
+    { t: 'Öndeki oyuncuyla zar yarışı yap. Kazanan 2 kare ilerler.', e: { duelDice: { vs: 'ahead', win: 2 } }, r: 1 },
+    { t: 'Herkes zar atar. 5 veya 6 atan herkes 2 kare ilerler.', e: { allThresh: [5, 2] }, r: 1 },
+    { t: 'Sıradaki oyuncuyla zarlarınızı toplayın. Toplam çiftse ikiniz de 2 kare ilerleyin.', e: { pairRoll: 2 }, r: 1 },
+    { t: 'Bir rakip seç ve Karma düellosu yapın. Doğru ve daha hızlı cevaplayan 3 kare ilerler.', e: { duelQ: { type: 'karma', win: 3 } }, r: 1 },
+    { t: '20 saniyede Çarpma sorusu çöz. Doğruysa 3 kare ilerle, yanlışsa 2 kare geri git.', e: { quiz: { type: 'carp', win: 3, lose: 2, time: 20 } } },
+    { t: 'Üçlü seri: Çarpma, Bölme ve Karma soruları. Üçü de doğruysa 5 kare ilerle.', e: { multi: { types: ['carp', 'bol', 'karma'], all: 5 } } },
+    { t: 'Bir rakip seç, zar düellosu yapın. Kazanan 2 kare ilerler, kaybeden 1 kare geri gider.', e: { duelDice: { vs: 'choose', win: 2, lose: 1 } }, r: 1 },
+    { t: 'Bir rakip seç ve Bölme düellosu yapın. Doğru ve daha hızlı cevaplayan 3 kare ilerler.', e: { duelQ: { type: 'bol', win: 3 } }, r: 1 },
+    { t: 'Cesaret sorusu! İstersen Karma sorusu çöz: doğruysa 4 kare ilerle, yanlışsa 2 kare geri git. Pas geçebilirsin.', e: { quiz: { type: 'karma', win: 4, lose: 2, optional: 1 } } },
+    { t: '25 saniyede Çıkarma sorusu çöz. Doğruysa 2 kare ilerle ve 1 yıldız kazan.', e: { quiz: { type: 'cik', win: 2, stars: 1, time: 25 } } },
+    { t: 'Dayanışma! En arkadaki oyuncu 2 kare ilerler.', e: { lastFwd: 2 }, r: 1 },
+    { t: 'Bir rakip seç ve Toplama düellosu yapın. Doğru ve daha hızlı cevaplayan 2 kare ilerler.', e: { duelQ: { type: 'topla', win: 2 } }, r: 1 },
+    { t: 'Dörtlü maraton: her işlemden bir soru. Her doğru cevap 1 kare ilerletir.', e: { multi: { types: ['topla', 'cik', 'carp', 'bol'], each: 1 } } },
+    { t: 'Zar at: 6 gelirse 6 kare ilerle, 1 gelirse 1 kare geri git.', e: { rollSix: 1 } },
+    { t: '15 saniyede Bölme sorusu çöz. Doğruysa 4 kare ilerle, yanlışsa 1 kare geri git.', e: { quiz: { type: 'bol', win: 4, lose: 1, time: 15 } } }
+  ];
+
+  // 49 karelik parkur (basılı tahtayla aynı sıra)
+  const BOARD = ['start', 'topla', 'cik', 'carp', 'bol', 'karma', 'bonus', 'tuzak', 'carp', 'cik', 'bol', 'karma', 'meydan', 'topla',
+    'cik', 'bol', 'bonus', 'carp', 'karma', 'topla', 'tuzak', 'bol', 'cik', 'meydan', 'carp', 'karma', 'bonus', 'topla',
+    'bol', 'cik', 'carp', 'karma', 'tuzak', 'topla', 'bol', 'bonus', 'karma', 'cik', 'carp', 'tuzak', 'topla', 'bol',
+    'cik', 'karma', 'carp', 'bonus', 'bol', 'topla', 'finish'];
+
+  return { Fr, gcd, lcm, LEVELS, nextCard, evalN, exprText, frH, frText, shuffle, BONUS, TUZAK, MEYDAN, BOARD, solve };
+})();
+if (typeof module !== 'undefined') module.exports = L;
+</script>
+<script>
+const $ = s => document.querySelector(s);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+const TYPES = {
+  topla: { name: 'Toplama', color: '#2f7bf5', sym: '+' },
+  cik: { name: 'Çıkarma', color: '#ef3b3b', sym: '−' },
+  carp: { name: 'Çarpma', color: '#22b34a', sym: '×' },
+  bol: { name: 'Bölme', color: '#8b4fe0', sym: '÷' },
+  karma: { name: 'Karma', color: '#ff8a1f', sym: '?' },
+  bonus: { name: 'Bonus', color: '#ffc61a', sym: '★' },
+  tuzak: { name: 'Tuzak', color: '#2a2140', sym: '!' },
+  meydan: { name: 'Meydan Okuma', color: '#14a8a0', sym: '⚔' },
+  start: { name: 'Başlangıç', color: '#ffffff' }, finish: { name: 'Bitiş', color: '#ffc61a' }
+};
+const PCOL = [
+  { color: '#2f7bf5', sym: '+' }, { color: '#ef3b3b', sym: '−' }, { color: '#22b34a', sym: '×' }, { color: '#8b4fe0', sym: '÷' }
+];
+
+/* ---------- Canavar çizimi ---------- */
+function shade(hex, amt) {
+  const n = parseInt(hex.slice(1), 16); let r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+  const f = v => Math.round(amt < 0 ? v * (1 + amt) : v + (255 - v) * amt);
+  return '#' + [f(r), f(g), f(b)].map(v => Math.max(0, Math.min(255, v)).toString(16).padStart(2, '0')).join('');
+}
+const furCache = {};
+function fur(cx, cy, r1, r2, n) {
+  const k = [cx, cy, r1, r2, n].join(); if (furCache[k]) return furCache[k];
+  const p = []; for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2 - Math.PI / 2, r = i % 2 ? r1 : r2; p.push((cx + Math.cos(a) * r).toFixed(1) + ',' + (cy + Math.sin(a) * r * 1.02).toFixed(1)); }
+  return furCache[k] = p.join(' ');
+}
+function monster(color, sym, cls = '') {
+  const ink = '#1d1840', dark = shade(color, -0.35), light = shade(color, 0.45), iris = shade(color, -0.15);
+  const symFill = sym === '★' ? '#e6a400' : dark;
+  return `<svg class="mon ${cls}" viewBox="-4 -2 128 134" aria-hidden="true"><g class="body">
+<ellipse cx="44" cy="120" rx="13" ry="7.5" fill="${dark}" stroke="${ink}" stroke-width="3"/>
+<ellipse cx="76" cy="120" rx="13" ry="7.5" fill="${dark}" stroke="${ink}" stroke-width="3"/>
+<ellipse cx="16" cy="80" rx="9" ry="15" transform="rotate(28 16 80)" fill="${color}" stroke="${ink}" stroke-width="3"/>
+<g class="armR"><ellipse cx="104" cy="74" rx="9" ry="15" transform="rotate(-30 104 74)" fill="${color}" stroke="${ink}" stroke-width="3"/></g>
+<path d="M37 40 Q23 26 26 8 Q37 22 48 33 Z" fill="#fff3c4" stroke="${ink}" stroke-width="3" stroke-linejoin="round"/>
+<path d="M83 40 Q97 26 94 8 Q83 22 72 33 Z" fill="#fff3c4" stroke="${ink}" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="${fur(60, 72, 41, 47, 34)}" fill="${color}" stroke="${ink}" stroke-width="3" stroke-linejoin="round"/>
+<ellipse cx="60" cy="80" rx="30" ry="28" fill="${light}" opacity=".35"/>
+<g class="eye"><circle cx="60" cy="55" r="18" fill="#fff" stroke="${ink}" stroke-width="3"/><circle cx="61" cy="56" r="10" fill="${iris}"/><circle cx="61" cy="56" r="5.5" fill="${ink}"/><circle cx="65" cy="51" r="2.8" fill="#fff"/></g>
+<path d="M40 80 Q60 103 80 80 Q60 87 40 80 Z" fill="#3a0d1c" stroke="${ink}" stroke-width="3" stroke-linejoin="round"/>
+<path d="M51 91 Q60 98 69 91 Q60 86 51 91 Z" fill="#ff6f8e"/>
+<path d="M46 81.5 l3 6 l3-5.5 Z M68 81.5 l3 5.5 l3-6 Z" fill="#fff"/>
+${sym ? `<circle cx="60" cy="106" r="11" fill="#fff" stroke="${ink}" stroke-width="2.5"/><text x="60" y="112.5" text-anchor="middle" font-family="Baloo 2,Arial Rounded MT Bold,sans-serif" font-weight="800" font-size="19" fill="${symFill}">${sym}</text>` : ''}
+</g></svg>`;
+}
+const pMon = (p, cls = '') => monster(p.color, p.sym, cls);
+
+/* ---------- İkonlar ---------- */
+const ICON = {
+  star: c => `<svg class="ic" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.8-4.9 4.6 1.3 6.5L12 17.2l-5.9 3.2 1.3-6.5L2.5 9.3l6.6-.8z" fill="${c || '#fff'}" stroke="#1d1840" stroke-width="1.6" stroke-linejoin="round"/></svg>`,
+  swords: () => `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke-linecap="round"><g stroke="#1d1840" stroke-width="4.2"><path d="M4 4l12 12M20 4L8 16"/><path d="M14 18l4-4M10 18l-4-4"/></g><g stroke="#fff" stroke-width="2"><path d="M4 4l12 12M20 4L8 16"/></g><g stroke="#ffd84a" stroke-width="2.2"><path d="M14 18l4-4M10 18l-4-4"/></g></svg>`,
+  trophy: () => `<svg class="ic" viewBox="0 0 24 24"><path d="M7 3h10v5a5 5 0 0 1-10 0z M7 5H4a3 3 0 0 0 3 4 M17 5h3a3 3 0 0 1-3 4 M12 13v4 M8 21h8l-1-4H9z" fill="#ffe26b" stroke="#1d1840" stroke-width="1.6" stroke-linejoin="round"/></svg>`
+};
+
+/* ---------- Ses ---------- */
+let audio = null, soundOn = true;
+function beep(freq, dur = 0.08, type = 'square', vol = 0.05, when = 0) {
+  if (!soundOn) return;
+  try {
+    audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+    const t = audio.currentTime + when, o = audio.createOscillator(), g = audio.createGain();
+    o.type = type; o.frequency.setValueAtTime(freq, t);
+    g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(audio.destination); o.start(t); o.stop(t + dur + 0.02);
+  } catch (e) { }
+}
+const sfx = {
+  step: () => beep(660, 0.05, 'triangle', 0.06),
+  roll: () => { for (let i = 0; i < 8; i++) beep(200 + Math.random() * 300, 0.04, 'square', 0.03, i * 0.07); },
+  good: () => [523, 659, 784, 1047].forEach((f, i) => beep(f, 0.12, 'triangle', 0.07, i * 0.09)),
+  bad: () => { beep(220, 0.18, 'sawtooth', 0.05); beep(160, 0.25, 'sawtooth', 0.05, 0.15); },
+  card: () => beep(880, 0.06, 'sine', 0.06),
+  win: () => [523, 659, 784, 1047, 784, 1047, 1319].forEach((f, i) => beep(f, 0.16, 'triangle', 0.08, i * 0.12))
+};
+
+/* ---------- Durum ---------- */
+let S = null, busy = false;
+const SAVE = 'islem-canavarlari-v1';
+function save() { try { if (S && S.winner === null) localStorage.setItem(SAVE, JSON.stringify(S)); else localStorage.removeItem(SAVE); } catch (e) { } }
+function loadSaved() { try { const t = localStorage.getItem(SAVE); return t ? JSON.parse(t) : null; } catch (e) { return null; } }
+
+const setup = { mode: 'cok', count: 2, level: 'orta', time: 0, names: ['', '', '', ''] };
+
+function makeDeck(list, solo) {
+  const ids = list.map((c, i) => i).filter(i => !(solo && list[i].r));
+  return { order: L.shuffle(ids), i: 0, round: 1 };
+}
+function drawSpecial(kind) {
+  const list = kind === 'bonus' ? L.BONUS : kind === 'tuzak' ? L.TUZAK : L.MEYDAN;
+  const d = S.decks[kind];
+  if (d.i >= d.order.length) { d.order = L.shuffle(d.order); d.i = 0; d.round++; log(`${TYPES[kind].name} destesi bitti, yeniden karıştırıldı.`); }
+  const id = d.order[d.i++];
+  return { id, no: id + 1, ...list[id] };
+}
+
+function newGame() {
+  const solo = setup.mode === 'tek', n = solo ? 1 : setup.count;
+  const players = [];
+  for (let i = 0; i < n; i++) {
+    const def = solo ? 'Oyuncu' : setup.mode === 'grup' ? `${i + 1}. Grup` : `${i + 1}. Oyuncu`;
+    players.push({ name: (setup.names[i] || '').trim().slice(0, 24) || def, color: PCOL[i].color, sym: PCOL[i].sym, pos: 1, skip: 0, shield: 0, stars: 0, nextMod: 0, extra: false, correct: 0, answered: 0 });
+  }
+  S = { v: 1, mode: setup.mode, level: setup.level, time: setup.time, players, cur: 0, used: {}, cardNo: 0, turns: 1, log: [], winner: null,
+    decks: { bonus: makeDeck(L.BONUS, solo), tuzak: makeDeck(L.TUZAK, solo), meydan: makeDeck(L.MEYDAN, solo) } };
+  log(`Oyun başladı! İlk sıra ${S.players[0].name}.`);
+  startGame();
+}
+function startGame() {
+  $('#setup').hidden = true; $('#game').hidden = false;
+  $('#plTitle').textContent = S.mode === 'grup' ? 'Gruplar' : S.mode === 'tek' ? 'Oyuncu' : 'Oyuncular';
+  buildBoard(); renderAll(); save();
+}
+
+/* ---------- Parkur ---------- */
+const cellOf = k => { const i = k - 1, row = Math.floor(i / 7); return { row, col: row % 2 === 0 ? i % 7 : 6 - (i % 7) }; };
+function buildBoard() {
+  const b = $('#board'); const C = 100 / 7;
+  const pts = []; for (let k = 1; k <= 49; k++) { const { row, col } = cellOf(k); pts.push(`${col * 100 + 50},${row * 100 + 50}`); }
+  let html = `<svg class="road" viewBox="0 0 700 700" preserveAspectRatio="none" aria-hidden="true">
+    <polyline points="${pts.join(' ')}" fill="none" stroke="#1d1840" stroke-width="94" stroke-linejoin="round" stroke-linecap="round"/>
+    <polyline points="${pts.join(' ')}" fill="none" stroke="#fff" stroke-width="84" stroke-linejoin="round" stroke-linecap="round"/>
+    <polyline points="${pts.join(' ')}" fill="none" stroke="#ffd84a" stroke-width="6" stroke-dasharray="14 14" stroke-linejoin="round"/></svg>`;
+  L.BOARD.forEach((t, i) => {
+    const k = i + 1, { row, col } = cellOf(k), T = TYPES[t], pad = 1.25;
+    let inner = '';
+    if (t === 'start') inner = `<span class="word">BAŞLA</span>`;
+    else if (t === 'finish') inner = `${ICON.trophy()}`;
+    else if (t === 'bonus') inner = ICON.star('#fff');
+    else if (t === 'meydan') inner = ICON.swords();
+    else if (t === 'tuzak') inner = `<span class="sym" style="color:#ff4d5e">!</span>`;
+    else inner = `<span class="sym">${T.sym}</span>`;
+    html += `<div class="tile t-${t}" id="tile${k}" title="${k}. kare: ${T.name}" style="left:${col * C + pad}%;top:${row * C + pad}%;width:${C - 2 * pad}%;height:${C - 2 * pad}%;background:${t === 'start' || t === 'finish' ? '' : T.color}"><span class="no">${k}</span>${inner}</div>`;
+  });
+  S.players.forEach((p, i) => html += `<div class="pawn" id="pawn${i}">${pMon(p)}</div>`);
+  b.innerHTML = html;
+  $('#legend').innerHTML = ['topla', 'cik', 'carp', 'bol', 'karma', 'bonus', 'tuzak', 'meydan'].map(t => `<span><i style="background:${TYPES[t].color}"></i>${TYPES[t].name}</span>`).join('');
+  placePawns();
+}
+function placePawns(jumpIdx = -1) {
+  const C = 100 / 7, groups = {};
+  S.players.forEach((p, i) => (groups[p.pos] = groups[p.pos] || []).push(i));
+  const offs = [[0, 0], [-1.6, -0.8], [1.6, -0.8], [0, 1.2]];
+  Object.entries(groups).forEach(([pos, ids]) => {
+    const { row, col } = cellOf(+pos);
+    ids.forEach((id, j) => {
+      const el = $('#pawn' + id); if (!el) return;
+      const o = ids.length > 1 ? offs[j] || [0, 0] : [0, 0];
+      el.classList.toggle('jump', id === jumpIdx);
+      el.style.left = `${(col + 0.5) * C + o[0]}%`; el.style.top = `${(row + 0.5) * C + o[1] + 1.2}%`;
+      el.classList.toggle('active', id === S.cur);
+    });
+  });
+  document.querySelectorAll('.tile.here').forEach(t => t.classList.remove('here'));
+  const me = S.players[S.cur]; if (me) $('#tile' + me.pos)?.classList.add('here');
+}
+
+/* ---------- Panel ---------- */
+function renderAll() { renderTurn(); renderPlayers(); renderLog(); placePawns(); }
+function renderTurn(mood = '') {
+  const p = S.players[S.cur];
+  const sq = L.BOARD[p.pos - 1];
+  $('#turnBox').innerHTML = `${pMon(p, mood)}<div><div class="hint">${S.mode === 'tek' ? `${S.turns}. tur` : 'Sıra sende'}</div><div class="who">${esc(p.name)}</div><div class="hint">${p.pos}. kare · ${TYPES[sq].name}</div></div>`;
+}
+function renderPlayers() {
+  $('#players').innerHTML = S.players.map((p, i) => {
+    const chips = [];
+    if (p.shield) chips.push(`<span class="chip sh">Kalkan ${p.shield > 1 ? '×' + p.shield : ''}</span>`);
+    if (p.skip) chips.push(`<span class="chip sk">${p.skip} tur bekliyor</span>`);
+    if (p.nextMod) chips.push(`<span class="chip mo">Zar ${p.nextMod > 0 ? '+' : '−'}${Math.abs(p.nextMod)}</span>`);
+    chips.push(`<span class="chip">★ ${p.stars}</span>`, `<span class="chip">${p.correct}/${p.answered} doğru</span>`);
+    return `<div class="pl ${i === S.cur ? 'on' : ''}">${pMon(p)}<div><div class="nm">${esc(p.name)}</div><div class="chips">${chips.join('')}</div><div class="bar"><i style="width:${(p.pos - 1) / 48 * 100}%;background:${p.color}"></i></div></div><div class="pos">${p.pos}<small>/49</small></div></div>`;
+  }).join('');
+}
+function log(msg) { S.log.unshift(msg); S.log = S.log.slice(0, 40); renderLog(); }
+function renderLog() { const el = $('#log'); if (el && S) el.innerHTML = S.log.map(m => `<li>${m}</li>`).join(''); }
+function toast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2200); }
+
+/* ---------- Zar ---------- */
+const PIPS = { 1: [5], 2: [1, 9], 3: [1, 5, 9], 4: [1, 3, 7, 9], 5: [1, 3, 5, 7, 9], 6: [1, 3, 4, 6, 7, 9] };
+const pipHTML = v => Array.from({ length: 9 }, (_, i) => PIPS[v].includes(i + 1) ? '<b></b>' : '<span></span>').join('');
+function buildCube() { $('#cube').innerHTML = [1, 2, 3, 4, 5, 6].map(v => `<div class="face f${v}">${pipHTML(v)}</div>`).join(''); }
+const FACE = { 1: [0, 0], 6: [0, 180], 2: [0, -90], 5: [0, 90], 3: [-90, 0], 4: [90, 0] };
+let spins = 0;
+async function rollMain() {
+  const v = 1 + Math.floor(Math.random() * 6); spins++;
+  const [rx, ry] = FACE[v];
+  sfx.roll();
+  $('#cube').style.transform = `rotateX(${rx + 720 * spins}deg) rotateY(${ry + 720 * spins}deg)`;
+  await sleep(1100);
+  return v;
+}
+
+/* ---------- Modal yardımcıları ---------- */
+function openModal(html) { const sh = $('#sheet'); sh.innerHTML = html; sh.style.animation = 'none'; void sh.offsetWidth; sh.style.animation = ''; $('#modal').hidden = false; }
+function closeModal() { $('#modal').hidden = true; $('#sheet').innerHTML = ''; }
+function waitBtn(sel) { return new Promise(res => { const b = $('#sheet').querySelector(sel); b.focus({ preventScroll: true }); b.addEventListener('click', () => res(), { once: true }); }); }
+function cardHead(type, title, num, p) {
+  const T = TYPES[type];
+  const mon = p ? pMon(p) : monster(T.color === '#ffc61a' ? '#ffc61a' : T.color, T.sym);
+  return `<div class="hd">${mon}<h2>${title}</h2>${num ? `<span class="num">${num}</span>` : ''}</div>`;
+}
+async function info(type, title, bodyHTML, btn = 'Tamam', p) {
+  openModal(`<div class="card t-${type}" style="--c:${TYPES[type].color}">${cardHead(type, title, '', p)}<div class="bd">${bodyHTML}<div class="btnrow"><button class="cta" id="okB" type="button">${btn}</button></div></div></div>`);
+  await waitBtn('#okB'); closeModal();
+}
+async function cardBack(type) {
+  const T = TYPES[type];
+  openModal(`<div class="card t-${type}" style="--c:${T.color}"><div class="backface">${monster(T.color, T.sym)}<h2>${T.name.toUpperCase()}</h2><div class="sub" style="background:#fff">KARTI ÇEKİLİYOR…</div></div></div>`);
+  sfx.card(); await sleep(700);
+  const c = $('#sheet .card'); c.classList.add('flipOut'); await sleep(180);
+}
+
+/* ---------- Soru kartı ---------- */
+function askQuestion({ type, who, time = 0, reveal = true, card = null, title = null, note = '' }) {
+  return new Promise(async resolve => {
+    const T = TYPES[type];
+    if (!card) { card = L.nextCard(type, S.level, S.used); S.cardNo++; }
+    await cardBack(type);
+    const opts = L.shuffle([card.ans, ...card.wrong]);
+    const lim = time || (S.time || 0);
+    openModal(`<div class="card flipIn t-${type}" style="--c:${T.color}">${cardHead(type, title || T.name.toUpperCase() + ' KARTI', '#' + S.cardNo, who)}
+      <div class="bd"><p class="forwho">${esc(who.name)} çözüyor${note ? ' · ' + note : ''}</p>
+      <div class="expr">${card.html}<span class="op">=</span><span>?</span></div>
+      <div class="opts">${opts.map((f, i) => `<button class="opt" type="button" data-i="${i}" id="opt${i}"><span class="k">${'ABCD'[i]}</span><span>${L.frH(f)}</span></button>`).join('')}</div>
+      ${lim ? `<div class="timer"><i style="animation-duration:${lim}s"></i></div>` : ''}
+      <div class="fb" id="fb"></div></div></div>`);
+    const t0 = performance.now(); let done = false, timer = null;
+    const finish = async (idx) => {
+      if (done) return; done = true; clearTimeout(timer);
+      const ms = performance.now() - t0;
+      const correct = idx >= 0 && opts[idx].eq(card.ans);
+      who.answered++; if (correct) who.correct++;
+      const btns = [...document.querySelectorAll('#sheet .opt')];
+      btns.forEach(b => b.disabled = true);
+      $('#sheet .timer i')?.style.setProperty('animation-play-state', 'paused');
+      const fb = $('#fb');
+      if (reveal) {
+        btns.forEach((b, i) => { if (opts[i].eq(card.ans)) b.classList.add('ok'); else if (i === idx) b.classList.add('no'); else b.classList.add('dim'); });
+        correct ? sfx.good() : sfx.bad();
+        fb.innerHTML = `<div class="verdict ${correct ? 'ok' : 'no'}">${correct ? 'Doğru!' : idx < 0 ? 'Süre doldu!' : 'Yanlış!'}</div>${solutionHTML(card)}<div class="btnrow"><button class="cta" id="goB" type="button">Devam</button></div>`;
+        const mon = $('#sheet .hd .mon'); mon && mon.classList.add(correct ? 'happy' : 'sad');
+      } else {
+        btns.forEach((b, i) => b.classList.add(i === idx ? 'sel' : 'dim'));
+        fb.innerHTML = `<div class="note">${idx < 0 ? 'Süre doldu.' : 'Cevabın kaydedildi.'} Sonuç düello bitince açıklanacak.</div><div class="btnrow"><button class="cta" id="goB" type="button">Devam</button></div>`;
+      }
+      await waitBtn('#goB'); closeModal();
+      resolve({ correct, ms: idx < 0 ? Infinity : ms, card });
+    };
+    document.querySelectorAll('#sheet .opt').forEach(b => b.addEventListener('click', () => finish(+b.dataset.i)));
+    if (lim) timer = setTimeout(() => finish(-1), lim * 1000);
+    $('#opt0')?.focus({ preventScroll: true });
+  });
+}
+function solutionHTML(card) {
+  return `<ol class="steps">${card.steps.map(s => `<li><div class="lb">${s.label}</div><div class="eq">${s.html}</div></li>`).join('')}</ol>`;
+}
+
+/* ---------- Özel kart gösterimi ---------- */
+async function showSpecial(kind, c, p) {
+  await cardBack(kind);
+  const T = TYPES[kind];
+  openModal(`<div class="card flipIn t-${kind}" style="--c:${T.color}">${cardHead(kind, T.name.toUpperCase() + ' KARTI', '#' + c.no)}<div class="bd"><p class="forwho">${esc(p.name)} için</p><div class="spec">${c.t}</div><div class="btnrow"><button class="cta" id="okB" type="button">Uygula</button></div></div></div>`);
+  kind === 'bonus' ? sfx.good() : kind === 'tuzak' ? sfx.bad() : sfx.card();
+  await waitBtn('#okB'); closeModal();
+}
+
+/* ---------- Zar diyaloğu (birden çok kişi) ---------- */
+function rollDialog(entries, title, type = 'meydan', judge = null) {
+  // entries: [{p, label}]
+  return new Promise(async resolve => {
+    const T = TYPES[type];
+    openModal(`<div class="card t-${type}" style="--c:${T.color}">${cardHead(type, title)}<div class="bd">
+      <div class="rollers">${entries.map((e, i) => `<div class="roller" id="rl${i}">${pMon(e.p)}<div class="mini" id="md${i}">${pipHTML(1)}</div><div class="nm">${esc(e.label || e.p.name)}</div></div>`).join('')}</div>
+      <div id="rmsg"></div><div class="btnrow"><button class="cta" id="rollB" type="button">Zar at!</button></div></div></div>`);
+    await waitBtn('#rollB');
+    $('#rollB').disabled = true; sfx.roll();
+    const vals = entries.map(() => 1 + Math.floor(Math.random() * 6));
+    const els = entries.map((e, i) => $('#md' + i));
+    els.forEach(el => el.classList.add('spin'));
+    for (let k = 0; k < 9; k++) { els.forEach(el => el.innerHTML = pipHTML(1 + Math.floor(Math.random() * 6))); await sleep(70); }
+    els.forEach((el, i) => { el.classList.remove('spin'); el.innerHTML = pipHTML(vals[i]); });
+    const res = judge ? judge(vals) : null;
+    if (res) { res.win?.forEach(i => $('#rl' + i).classList.add('win')); res.lose?.forEach(i => $('#rl' + i).classList.add('lose')); }
+    $('#rmsg').innerHTML = `<div class="note">${res?.msg || 'Gelen: ' + vals.join(', ')}</div>`;
+    const btn = $('#rollB'); btn.textContent = 'Devam'; btn.id = 'contB'; btn.disabled = false;
+    await waitBtn('#contB'); closeModal(); resolve(vals);
+  });
+}
+function choosePlayer(title, list, type = 'meydan', msg = 'Bir oyuncu seç:') {
+  return new Promise(resolve => {
+    const T = TYPES[type];
+    openModal(`<div class="card t-${type}" style="--c:${T.color}">${cardHead(type, title)}<div class="bd"><p class="forwho">${msg}</p><div class="choices">${list.map((q, i) => `<button type="button" data-i="${i}" id="ch${i}">${pMon(q)}${esc(q.name)}</button>`).join('')}</div></div></div>`);
+    document.querySelectorAll('#sheet .choices button').forEach(b => b.addEventListener('click', () => { closeModal(); resolve(list[+b.dataset.i]); }, { once: true }));
+    $('#ch0')?.focus({ preventScroll: true });
+  });
+}
+function yesNo(type, title, html, yes, no) {
+  return new Promise(resolve => {
+    const T = TYPES[type];
+    openModal(`<div class="card t-${type}" style="--c:${T.color}">${cardHead(type, title)}<div class="bd">${html}<div class="btnrow"><button class="cta alt" id="noB" type="button">${no}</button><button class="cta" id="yesB" type="button">${yes}</button></div></div></div>`);
+    $('#yesB').addEventListener('click', () => { closeModal(); resolve(true); }, { once: true });
+    $('#noB').addEventListener('click', () => { closeModal(); resolve(false); }, { once: true });
+    $('#yesB').focus({ preventScroll: true });
+  });
+}
+
+/* ---------- Hareket ---------- */
+async function moveBy(p, delta) {
+  if (S.winner !== null || !delta) return;
+  const idx = S.players.indexOf(p), dir = Math.sign(delta);
+  for (let s = 0; s < Math.abs(delta); s++) {
+    const np = p.pos + dir; if (np < 1 || np > 49) break;
+    p.pos = np; placePawns(); sfx.step();
+    const el = $('#pawn' + idx); el.classList.remove('hop'); void el.offsetWidth; el.classList.add('hop');
+    await sleep(250);
+    if (p.pos === 49) { S.winner = idx; break; }
+  }
+  renderPlayers(); renderTurn();
+}
+async function jumpTo(p, pos) {
+  if (S.winner !== null) return;
+  const idx = S.players.indexOf(p); p.pos = Math.max(1, Math.min(49, pos));
+  placePawns(idx); sfx.step(); await sleep(650); $('#pawn' + idx).classList.remove('jump');
+  if (p.pos === 49) S.winner = idx;
+  renderPlayers(); renderTurn();
+}
+const nm = p => `<b>${esc(p.name)}</b>`;
+
+/* ---------- Kare eylemleri ---------- */
+async function doSquare(p) {
+  const t = L.BOARD[p.pos - 1];
+  $('#tile' + p.pos).classList.add('pulse'); setTimeout(() => $('#tile' + p.pos)?.classList.remove('pulse'), 1700);
+  if (['topla', 'cik', 'carp', 'bol', 'karma'].includes(t)) {
+    const r = await askQuestion({ type: t, who: p });
+    if (r.correct) { const st = t === 'karma' ? 2 : 1; p.stars += st; log(`${nm(p)} ${TYPES[t].name.toLowerCase()} sorusunu doğru çözdü: ${r.card.text.replace(/\*/g, '×').replace(/ \/ /g, ' ÷ ')} (+${st} yıldız)`); renderTurn('happy'); }
+    else { log(`${nm(p)} yanlış cevap verdi, 1 kare geri gidiyor.`); renderTurn('sad'); await moveBy(p, -1); }
+    return;
+  }
+  if (t === 'bonus' || t === 'tuzak' || t === 'meydan') {
+    const c = drawSpecial(t);
+    await showSpecial(t, c, p);
+    log(`${nm(p)} · ${TYPES[t].name} #${c.no}: ${c.t}`);
+    if (t === 'tuzak' && p.shield > 0) {
+      p.shield--; sfx.good();
+      await info('bonus', 'KALKAN!', `<div class="spec">Kalkanın bu tuzağı engelledi. Hiçbir şey olmadı.</div>`, 'Harika', p);
+      log(`${nm(p)} kalkanıyla tuzaktan korundu.`); return;
+    }
+    await applyEff(p, c.e, t);
+  }
+}
+
+async function applyEff(p, e, kind) {
+  const rivals = S.players.filter(q => q !== p);
+  const nextOf = q => S.players[(S.players.indexOf(q) + 1) % S.players.length];
+  if (e.move) await moveBy(p, e.move);
+  if (e.back) await moveBy(p, -e.back);
+  if (e.toStart) await jumpTo(p, 1);
+  if (e.skip) p.skip += e.skip;
+  if (e.extra) p.extra = true;
+  if (e.shield) p.shield += e.shield;
+  if (e.loseShield) { if (p.shield > 0) { p.shield--; log(`${nm(p)} kalkanını kaybetti.`); } else await moveBy(p, -1); }
+  if (e.stars) p.stars = Math.max(0, p.stars + e.stars);
+  if (e.nextMod) p.nextMod += e.nextMod;
+  if (e.rollMove) { const [v] = await rollDialog([{ p }], 'ZAR AT', kind); await moveBy(p, v * e.rollMove); }
+  if (e.rollEvenOdd) { const [v] = await rollDialog([{ p }], 'ÇİFT Mİ TEK Mİ?', kind, vs => ({ msg: `${vs[0]} geldi: ${vs[0] % 2 ? 'tek' : 'çift'}, ${vs[0] % 2 ? e.rollEvenOdd[1] : e.rollEvenOdd[0]} kare ilerle.` })); await moveBy(p, v % 2 === 0 ? e.rollEvenOdd[0] : e.rollEvenOdd[1]); }
+  if (e.rollThresh) { const [mn, n] = e.rollThresh; const [v] = await rollDialog([{ p }], 'SİHİRLİ ZAR', kind, vs => ({ msg: vs[0] >= mn ? `${vs[0]} geldi! ${n} kare ilerle.` : `${vs[0]} geldi, bu sefer olmadı.` })); if (v >= mn) await moveBy(p, n); }
+  if (e.rollMax2) { const vs = await rollDialog([{ p, label: '1. zar' }, { p, label: '2. zar' }], 'İKİ ZAR', kind, v => ({ msg: `Büyük olan ${Math.max(...v)}: ${Math.max(...v)} kare ilerle.` })); await moveBy(p, Math.max(...vs)); }
+  if (e.rollBack) { const [v] = await rollDialog([{ p }], 'GERİ ZARI', kind, vs => ({ msg: `${vs[0]} kare geri.` })); await moveBy(p, -v); }
+  if (e.rollOddBack) { const [v] = await rollDialog([{ p }], 'KAYGAN ZAR', kind, vs => ({ msg: vs[0] % 2 ? `${vs[0]} tek geldi, ${e.rollOddBack} kare geri.` : `${vs[0]} çift geldi, kurtuldun!` })); if (v % 2) await moveBy(p, -e.rollOddBack); }
+  if (e.rollLowSkip) { const [v] = await rollDialog([{ p }], 'ŞANS ZARI', kind, vs => ({ msg: vs[0] <= e.rollLowSkip ? `${vs[0]} geldi, bir tur bekleyeceksin.` : `${vs[0]} geldi, kurtuldun!` })); if (v <= e.rollLowSkip) p.skip++; }
+  if (e.rollSix) { const [v] = await rollDialog([{ p }], 'ALTI MI BİR Mİ?', kind, vs => ({ msg: vs[0] === 6 ? '6 geldi! 6 kare ilerle.' : vs[0] === 1 ? '1 geldi, 1 kare geri.' : `${vs[0]} geldi, yerinde kal.` })); if (v === 6) await moveBy(p, 6); else if (v === 1) await moveBy(p, -1); }
+  if (e.othersBack) for (const q of rivals) await moveBy(q, -e.othersBack);
+  if (e.othersFwd) for (const q of rivals) await moveBy(q, e.othersFwd);
+  if (e.nextFwd && rivals.length) await moveBy(nextOf(p), e.nextFwd);
+  if (e.chooseSkip && rivals.length) { const q = await choosePlayer('KİM BEKLESİN?', rivals, kind); q.skip++; log(`${nm(q)} bir tur bekleyecek.`); }
+  if (e.chooseBack && rivals.length) { const q = await choosePlayer('KİM GERİ GİTSİN?', rivals, kind); await moveBy(q, -e.chooseBack); }
+  if (e.jumpAhead) {
+    const ahead = rivals.filter(q => q.pos > p.pos).sort((a, b) => a.pos - b.pos)[0];
+    if (ahead) await jumpTo(p, ahead.pos); else await moveBy(p, e.jumpAhead);
+  }
+  if (e.toNext) { let k = p.pos + 1; while (k < 49 && L.BOARD[k - 1] !== e.toNext) k++; if (k < 49) await jumpTo(p, k); else await moveBy(p, 2); }
+  if (e.toPrev) { let k = p.pos - 1; while (k > 1 && L.BOARD[k - 1] !== e.toPrev) k--; await jumpTo(p, k); }
+  if (e.quiz) {
+    const q = e.quiz;
+    let go = true;
+    if (q.optional) go = await yesNo(kind, 'CESARET', `<div class="spec">Karma sorusunu çözmek ister misin?</div>`, 'Çözeceğim', 'Pas geç');
+    if (go) {
+      const r = await askQuestion({ type: q.type, who: p, time: q.time || 0, note: q.time ? `${q.time} saniye` : '' });
+      if (r.correct) { if (q.win) await moveBy(p, q.win); if (q.stars) p.stars += q.stars; log(`${nm(p)} görevi başardı!`); }
+      else { if (q.lose) await moveBy(p, -q.lose); if (q.failSkip) p.skip++; log(`${nm(p)} görevi başaramadı.`); }
+    } else log(`${nm(p)} pas geçti.`);
+  }
+  if (e.multi) {
+    let ok = 0;
+    for (const [i, t] of e.multi.types.entries()) {
+      if (S.winner !== null) break;
+      const r = await askQuestion({ type: t, who: p, note: `${i + 1}/${e.multi.types.length}` });
+      if (r.correct) { ok++; if (e.multi.each) await moveBy(p, e.multi.each); }
+    }
+    if (e.multi.all) { if (ok === e.multi.types.length) await moveBy(p, e.multi.all); }
+    log(`${nm(p)} ${e.multi.types.length} sorudan ${ok} tanesini doğru çözdü.`);
+  }
+  if (e.allHigh || e.allLow || e.allLowSkip || e.allThresh) {
+    const ent = S.players.map(q => ({ p: q }));
+    const title = 'HERKES ZAR ATAR';
+    let res;
+    const vals = await rollDialog(ent, title, kind, vs => {
+      const mx = Math.max(...vs), mn = Math.min(...vs);
+      if (e.allHigh) { const w = vs.map((v, i) => v === mx ? i : -1).filter(i => i >= 0); return res = { win: w, msg: `En yüksek ${mx}: ${w.map(i => esc(S.players[i].name)).join(', ')} ${e.allHigh} kare ilerler.` }; }
+      if (e.allLow || e.allLowSkip) { const l = vs.map((v, i) => v === mn ? i : -1).filter(i => i >= 0); return res = { lose: l, msg: `En düşük ${mn}: ${l.map(i => esc(S.players[i].name)).join(', ')} ${e.allLow ? e.allLow + ' kare geri gider' : 'bir tur bekler'}.` }; }
+      const w = vs.map((v, i) => v >= e.allThresh[0] ? i : -1).filter(i => i >= 0);
+      return res = { win: w, msg: w.length ? `${w.map(i => esc(S.players[i].name)).join(', ')} ${e.allThresh[1]} kare ilerler.` : 'Kimse 5 veya 6 atamadı.' };
+    });
+    if (e.allHigh) for (const i of res.win) await moveBy(S.players[i], e.allHigh);
+    if (e.allThresh) for (const i of res.win) await moveBy(S.players[i], e.allThresh[1]);
+    if (e.allLow) for (const i of res.lose) await moveBy(S.players[i], -e.allLow);
+    if (e.allLowSkip) res.lose.forEach(i => S.players[i].skip++);
+    void vals;
+  }
+  if (e.duelDice && rivals.length) {
+    let q;
+    if (e.duelDice.vs === 'ahead') q = rivals.filter(x => x.pos > p.pos).sort((a, b) => a.pos - b.pos)[0] || rivals.slice().sort((a, b) => b.pos - a.pos)[0];
+    else q = await choosePlayer('ZAR DÜELLOSU', rivals, kind, 'Rakibini seç:');
+    let winner = null;
+    for (let t = 0; t < 3 && !winner; t++) {
+      const [a, b] = await rollDialog([{ p }, { p: q }], t ? 'TEKRAR!' : 'ZAR DÜELLOSU', kind, vs => vs[0] === vs[1] ? { msg: 'Berabere! Yeniden atılacak.' } : { win: [vs[0] > vs[1] ? 0 : 1], lose: [vs[0] > vs[1] ? 1 : 0], msg: `${esc((vs[0] > vs[1] ? p : q).name)} kazandı!` });
+      if (a !== b) winner = a > b ? p : q;
+    }
+    if (winner) { const loser = winner === p ? q : p; await moveBy(winner, e.duelDice.win); if (e.duelDice.lose) await moveBy(loser, -e.duelDice.lose); log(`${nm(winner)} zar düellosunu kazandı.`); }
+  }
+  if (e.pairRoll && rivals.length) {
+    const q = nextOf(p);
+    const vs = await rollDialog([{ p }, { p: q }], 'ORTAK ZAR', kind, v => ({ msg: `Toplam ${v[0] + v[1]}: ${(v[0] + v[1]) % 2 ? 'tek, kimse ilerlemiyor.' : 'çift! İkiniz de ' + e.pairRoll + ' kare ilerleyin.'}`, win: (v[0] + v[1]) % 2 ? [] : [0, 1] }));
+    if ((vs[0] + vs[1]) % 2 === 0) { await moveBy(p, e.pairRoll); await moveBy(q, e.pairRoll); }
+  }
+  if (e.lastFwd) {
+    const mn = Math.min(...S.players.map(q => q.pos));
+    for (const q of S.players.filter(q => q.pos === mn)) await moveBy(q, e.lastFwd);
+  }
+  if (e.duelQ && rivals.length) {
+    const q = await choosePlayer('DÜELLO', rivals, kind, 'Rakibini seç. Aynı soruyu sırayla çözeceksiniz; diğer oyuncu ekrana bakmasın.');
+    const card = L.nextCard(e.duelQ.type, S.level, S.used); S.cardNo++;
+    const r1 = await askQuestion({ type: e.duelQ.type, who: p, card, reveal: false, title: 'DÜELLO', note: '1. oyuncu' });
+    await info(kind, 'SIRA DEĞİŞİYOR', `<div class="spec">Şimdi sıra: ${esc(q.name)}. Ekranı ona ver.</div>`, 'Hazırım', q);
+    const r2 = await askQuestion({ type: e.duelQ.type, who: q, card, reveal: false, title: 'DÜELLO', note: '2. oyuncu' });
+    let w = null;
+    if (r1.correct && r2.correct) w = r1.ms <= r2.ms ? p : q;
+    else if (r1.correct) w = p; else if (r2.correct) w = q;
+    const fmt = r => r.ms === Infinity ? 'süre doldu' : (r.ms / 1000).toFixed(1).replace('.', ',') + ' sn';
+    const body = `<div class="expr" style="--c:${TYPES[e.duelQ.type].color}">${card.html}<span class="op">=</span>${L.frH(card.ans)}</div>
+      <div class="note">${esc(p.name)}: ${r1.correct ? 'doğru' : 'yanlış'} (${fmt(r1)})<br>${esc(q.name)}: ${r2.correct ? 'doğru' : 'yanlış'} (${fmt(r2)})</div>
+      <div class="verdict ${w ? 'ok' : 'no'}" style="margin-top:10px">${w ? esc(w.name) + ' kazandı! +' + e.duelQ.win + ' kare' : 'Kazanan yok'}</div>${solutionHTML(card)}`;
+    w ? sfx.good() : sfx.bad();
+    await info(kind, 'DÜELLO SONUCU', body, 'Devam', w || p);
+    if (w) { await moveBy(w, e.duelQ.win); log(`${nm(w)} düelloyu kazandı.`); }
+  }
+  renderPlayers();
+}
+
+/* ---------- Tur akışı ---------- */
+async function onRoll() {
+  if (busy || !S || S.winner !== null) return;
+  busy = true; $('#rollBtn').disabled = true;
+  try {
+    const p = S.players[S.cur];
+    const v = await rollMain();
+    let steps = v;
+    if (p.nextMod) { steps = Math.max(1, v + p.nextMod); log(`${nm(p)} ${v} attı, zar etkisiyle ${steps} kare.`); p.nextMod = 0; }
+    else log(`${nm(p)} ${v} attı.`);
+    $('#lastRoll').textContent = `Gelen: ${v}`;
+    await moveBy(p, steps);
+    if (S.winner === null) await doSquare(p);
+    if (S.winner !== null) { showWin(); return; }
+    endTurn();
+  } catch (err) { console.error(err); toast('Bir hata oluştu, tur devam ediyor.'); endTurn(); }
+  finally { busy = false; $('#rollBtn').disabled = false; }
+}
+function endTurn() {
+  const p = S.players[S.cur];
+  if (p.extra) { p.extra = false; log(`${nm(p)} bir tur daha oynuyor!`); }
+  else {
+    const n = S.players.length;
+    for (let guard = 0; guard < 100; guard++) {
+      S.cur = (S.cur + 1) % n;
+      if (S.cur === 0 || n === 1) S.turns++;
+      const q = S.players[S.cur];
+      if (q.skip > 0) { q.skip--; log(`${nm(q)} bu turu bekliyor.`); continue; }
+      break;
+    }
+  }
+  renderAll(); save();
+  if (S.mode !== 'tek') toast(`Sıra: ${S.players[S.cur].name}`);
+}
+
+/* ---------- Kazanma ---------- */
+function showWin() {
+  const w = S.players[S.winner]; sfx.win(); confetti();
+  const rank = S.players.slice().sort((a, b) => b.pos - a.pos || b.stars - a.stars);
+  const body = S.mode === 'tek'
+    ? `<div class="spec">${esc(w.name)}, bitişe ${S.turns}. turda ulaştın!</div><div class="note">Doğru cevap: ${w.correct}/${w.answered} · Yıldız: ${w.stars} · Çözülen kart: ${S.cardNo}</div>`
+    : `<div class="spec">${esc(w.name)} bitişe ilk ulaştı!</div><ol class="rank">${rank.map((p, i) => `<li><b>${i + 1}</b>${pMon(p)}<span>${esc(p.name)}<br><small>★ ${p.stars} · ${p.correct}/${p.answered} doğru</small></span><b>${p.pos}</b></li>`).join('')}</ol>`;
+  S.winner = S.winner; save();
+  openModal(`<div class="card t-finish" style="--c:#ffc61a">${cardHead('finish', 'KAZANAN!', '', w)}<div class="bd">${body}<div class="btnrow"><button class="cta alt" id="boardB" type="button">Parkuru gör</button><button class="cta" id="againB" type="button">Yeni oyun</button></div></div></div>`);
+  $('#sheet .hd .mon')?.classList.add('happy');
+  $('#againB').addEventListener('click', () => { closeModal(); backToSetup(); });
+  $('#boardB').addEventListener('click', () => { closeModal(); $('#rollBtn').disabled = true; $('#lastRoll').textContent = 'Oyun bitti'; });
+}
+function confetti() {
+  const cv = $('#confetti'); cv.hidden = false; const ctx = cv.getContext('2d');
+  const W = cv.width = innerWidth, H = cv.height = innerHeight;
+  const cols = ['#2f7bf5', '#ef3b3b', '#22b34a', '#8b4fe0', '#ff8a1f', '#ffc61a', '#14a8a0'];
+  const ps = Array.from({ length: 160 }, () => ({ x: Math.random() * W, y: -20 - Math.random() * H * .5, vx: (Math.random() - .5) * 3, vy: 2 + Math.random() * 4, r: Math.random() * 6, s: 6 + Math.random() * 8, c: cols[Math.floor(Math.random() * cols.length)], a: Math.random() * 6 }));
+  const t0 = performance.now();
+  (function f(t) {
+    ctx.clearRect(0, 0, W, H);
+    ps.forEach(p => { p.x += p.vx; p.y += p.vy; p.a += .1; ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.a); ctx.fillStyle = p.c; ctx.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2); ctx.restore(); });
+    if (t - t0 < 4500) requestAnimationFrame(f); else { ctx.clearRect(0, 0, W, H); cv.hidden = true; }
+  })(t0);
+}
+
+/* ---------- Kurulum ekranı ---------- */
+function seg(id, key, after) {
+  document.querySelectorAll(`#${id} button`).forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll(`#${id} button`).forEach(x => x.setAttribute('aria-pressed', x === b));
+    setup[key] = isNaN(+b.dataset.v) ? b.dataset.v : +b.dataset.v; after && after();
+  }));
+}
+function renderNames() {
+  const solo = setup.mode === 'tek', n = solo ? 1 : setup.count;
+  $('#countField').hidden = solo;
+  $('#countLbl').textContent = setup.mode === 'grup' ? 'Grup sayısı' : 'Oyuncu sayısı';
+  $('#namesLbl').textContent = setup.mode === 'grup' ? 'Grup adları' : solo ? 'Adın' : 'Oyuncu adları';
+  let h = '';
+  for (let i = 0; i < n; i++) {
+    const ph = solo ? 'Oyuncu' : setup.mode === 'grup' ? `${i + 1}. Grup` : `${i + 1}. Oyuncu`;
+    h += `<div class="prow">${monster(PCOL[i].color, PCOL[i].sym)}<input id="nm${i}" maxlength="24" placeholder="${ph}" value="${esc(setup.names[i])}" aria-label="${ph} adı"></div>`;
+  }
+  $('#names').innerHTML = h;
+  for (let i = 0; i < n; i++) $('#nm' + i).addEventListener('input', ev => setup.names[i] = ev.target.value);
+}
+function backToSetup() {
+  S = null; busy = false; try { localStorage.removeItem(SAVE); } catch (e) { }
+  $('#game').hidden = true; $('#setup').hidden = false; $('#resumeBtn').hidden = true; $('#rollBtn').disabled = false; $('#lastRoll').textContent = 'Hazır';
+  scrollTo(0, 0);
+}
+
+function boot(data) {
+  document.querySelectorAll('[data-mon]').forEach(el => { const T = TYPES[el.dataset.mon]; el.outerHTML = monster(T.color, T.sym, el.className); });
+  buildCube();
+  seg('modeSeg', 'mode', renderNames); seg('countSeg', 'count', renderNames); seg('levelSeg', 'level'); seg('timeSeg', 'time');
+  renderNames();
+  $('#startBtn').addEventListener('click', newGame);
+  $('#rollBtn').addEventListener('click', onRoll);
+  $('#diceScene').addEventListener('click', onRoll);
+  $('#soundBtn').addEventListener('click', () => { soundOn = !soundOn; $('#soundBtn').textContent = 'Ses: ' + (soundOn ? 'açık' : 'kapalı'); });
+  $('#rulesBtn').addEventListener('click', () => { if (busy) return; info('karma', 'KURALLAR', `<div style="line-height:1.5">${$('#rulesBox ul').outerHTML}</div>`, 'Anladım'); });
+  $('#newBtn').addEventListener('click', async () => {
+    if (busy) return;
+    const ok = await yesNo('tuzak', 'YENİ OYUN', '<div class="spec">Bu oyun silinsin ve yeni oyun kurulsun mu?</div>', 'Evet, yeni oyun', 'Vazgeç');
+    if (ok) backToSetup();
+  });
+  const saved = (data && data.S) || loadSaved();
+  if (saved && saved.v === 1 && saved.players) {
+    $('#resumeBtn').hidden = false;
+    $('#resumeBtn').addEventListener('click', () => { S = saved; S.winner = null; startGame(); toast(`Kaldığınız yerden: sıra ${S.players[S.cur].name}`); });
+    if (data && data.S) { S = saved; startGame(); }
+  }
+  window.claude?.hot?.snapshot?.(() => ({ S }));
+}
+window.claude?.hot?.ready ? window.claude.hot.ready(boot) : boot(window.claude?.hot?.data ?? {});
+</script>
+
+</body></html>

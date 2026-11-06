@@ -1,0 +1,325 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Çokgen Kasabası</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@500;700;800&display=swap">
+<style>
+/* Layout: kareli defter "düzlem" zemini üzerinde tek sütun oyun alanı, üstte sekmeler */
+:root{
+  --paper:#F5F8FC; --grid:#DCE6F2; --ink:#1E2A47; --soft:#5B6788;
+  --teal:#169BB0; --card:#FFFFFF; --good:#2BAE66; --bad:#E5484D;
+  --display:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
+  --body:"Nunito",system-ui,-apple-system,sans-serif;
+  color-scheme:light;
+}
+html,body{background:var(--paper);color:var(--ink)}
+body{
+  font-family:var(--body);font-size:16px;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+}
+.wrap{max-width:640px;margin:0 auto;padding-block:16px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:16px}
+header h1{font-family:var(--display);font-weight:800;font-size:2.1rem;line-height:1;margin:0;text-wrap:balance}
+header p{margin:6px 0 0;color:var(--soft);font-weight:700;font-size:.95rem}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:var(--card);padding:6px;border-radius:18px;box-shadow:0 2px 0 var(--grid)}
+.tabs button{font:800 .82rem var(--body);border:0;background:transparent;color:var(--soft);padding:10px 4px;border-radius:13px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--ink);color:#fff}
+button:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.panel{background:var(--card);border-radius:22px;padding:18px;box-shadow:0 3px 0 var(--grid);display:flex;flex-direction:column;gap:14px}
+.panel h2{font-family:var(--display);font-size:1.4rem;margin:0;line-height:1.1}
+.panel .lead{margin:0;color:var(--soft);font-weight:700;line-height:1.45}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.who{border:0;background:#F2F6FB;border-radius:16px;padding:8px 4px 10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;font:inherit;color:inherit}
+.who svg{width:100%;max-width:110px;height:auto}
+.who b{font-family:var(--display);font-size:1rem;line-height:1.1}
+.who small{color:var(--soft);font-weight:700;font-variant-numeric:tabular-nums}
+.bubble{background:var(--ink);color:#fff;border-radius:16px;padding:12px 14px;font-weight:700;line-height:1.4;min-height:3.2em}
+.stage{display:flex;justify-content:center}
+.stage svg{width:100%;max-width:240px;height:auto}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{font:800 1rem var(--body);border:2px solid var(--grid);background:#fff;color:var(--ink);padding:14px 8px;border-radius:14px;cursor:pointer}
+.opt.ok{background:var(--good);border-color:var(--good);color:#fff}
+.opt.no{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt:disabled{cursor:default}
+.bar{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--soft);font-variant-numeric:tabular-nums}
+.stars{color:#F2B705;letter-spacing:2px}
+.go{font:800 1rem var(--body);border:0;background:var(--teal);color:#fff;padding:14px 18px;border-radius:14px;cursor:pointer}
+.go.alt{background:#EAF1F8;color:var(--ink)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row .go{flex:1}
+.feedback{font-weight:800;line-height:1.4;min-height:1.4em}
+.nsel{display:flex;gap:6px;flex-wrap:wrap}
+.nsel button{font:800 .95rem var(--body);border:2px solid var(--grid);background:#fff;color:var(--ink);width:44px;height:44px;border-radius:12px;cursor:pointer}
+.nsel button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+#plane{width:100%;height:auto;background:#FBFDFF;border-radius:16px;border:2px solid var(--grid)}
+.steps{margin:0;padding-left:1.2em;color:var(--soft);font-weight:700;line-height:1.5}
+.big{font-family:var(--display);font-size:2.4rem;text-align:center;margin:0}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+.char{animation:bob 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.eye{animation:blink 4s infinite;transform-box:fill-box;transform-origin:center}
+.pop{animation:pop .5s ease-out both;transform-box:fill-box;transform-origin:center}
+@keyframes draw{from{stroke-dashoffset:var(--len)}to{stroke-dashoffset:0}}
+.dline{animation:draw .7s ease-out both}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+@media (max-width:420px){.tabs button{font-size:.74rem}header h1{font-size:1.8rem}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Çokgen Kasabası</h1>
+    <p>5. Sınıf · Geometrik Şekiller · MAT.5.3.5</p>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="t-tanis" aria-selected="true" data-v="tanis">Tanış</button>
+    <button role="tab" id="t-kim" aria-selected="false" data-v="kim">Kim Bu?</button>
+    <button role="tab" id="t-mi" aria-selected="false" data-v="mi">Çokgen mi?</button>
+    <button role="tab" id="t-kur" aria-selected="false" data-v="kur">Doğrularla Kur</button>
+  </nav>
+
+  <!-- TANIŞ -->
+  <section class="panel" id="v-tanis">
+    <h2>Kasabanın sakinleri</h2>
+    <p class="lead">Her biri düzlemde ardışık kesişen doğrulardan doğmuş. Birine dokun, kendini tanıtsın.</p>
+    <div class="gallery" id="gallery"></div>
+    <div class="bubble" id="say">Merhaba! Ben kimim, merak ediyor musun? Bana dokun.</div>
+  </section>
+
+  <!-- KİM BU -->
+  <section class="panel" id="v-kim" hidden>
+    <div class="bar"><span id="k-round">Soru 1 / 8</span><span class="stars" id="k-score">Puan 0</span></div>
+    <h2>Bu arkadaşımızın adı ne?</h2>
+    <p class="lead">Kenarlarını ya da köşelerini say. Köşeler, doğruların kesiştiği noktalardır.</p>
+    <div class="stage" id="k-stage"></div>
+    <div class="opts" id="k-opts"></div>
+    <div class="feedback" id="k-fb"></div>
+    <button class="go" id="k-next" hidden>Sıradaki</button>
+  </section>
+
+  <!-- ÇOKGEN Mİ -->
+  <section class="panel" id="v-mi" hidden>
+    <div class="bar"><span id="m-round">Soru 1 / 8</span><span class="stars" id="m-score">Puan 0</span></div>
+    <h2>Bu şekil çokgen kasabasına girebilir mi?</h2>
+    <p class="lead">Kapı görevlisi sensin. Çokgen; doğru parçalarından oluşan, kapalı bir şekildir.</p>
+    <div class="stage" id="m-stage"></div>
+    <div class="opts">
+      <button class="opt" id="m-yes">Evet, çokgen</button>
+      <button class="opt" id="m-no">Hayır, değil</button>
+    </div>
+    <div class="feedback" id="m-fb"></div>
+    <button class="go" id="m-next" hidden>Sıradaki</button>
+  </section>
+
+  <!-- DOĞRULARLA KUR -->
+  <section class="panel" id="v-kur" hidden>
+    <h2>Doğrularla yeni bir arkadaş kur</h2>
+    <p class="lead">Kaç doğru kullanacağını seç. Doğruları sırayla çiz; her yeni doğru bir öncekini kessin. Son doğru ilk doğruyu kesince çokgen canlanır.</p>
+    <div class="nsel" id="nsel"></div>
+    <svg id="plane" viewBox="0 0 320 300" aria-label="Düzlem"></svg>
+    <div class="bubble" id="k-say">Hazır! "Doğru çiz" düğmesine bas.</div>
+    <div class="row">
+      <button class="go" id="draw">Doğru çiz (1)</button>
+      <button class="go alt" id="reset">Baştan</button>
+    </div>
+  </section>
+</div>
+
+<script>
+const CH=[
+ {n:3,name:"Üçgen Ümit",c:"#FF7A59",d:"#D1502F",say:"Ben Üçgen Ümit! 3 doğru ardışık kesişti, ben oluştum. Bir çokgen olmak için en az 3 doğru gerekir, yani en küçük çokgen benim."},
+ {n:4,name:"Dörtgen Defne",c:"#FFC531",d:"#C9930A",say:"Ben Dörtgen Defne! 4 kenarım, 4 köşem var. 4. doğru 1. doğruyu kesince kapandım."},
+ {n:5,name:"Beşgen Bora",c:"#34C29E",d:"#1E8F72",say:"Ben Beşgen Bora! 5 doğru sırayla birbirini kesti. Köşelerimi saymayı dene: 5!"},
+ {n:6,name:"Altıgen Arya",c:"#5B8DEF",d:"#3461BF",say:"Ben Altıgen Arya! Arıların peteğinde benim gibi 6 kenarlı gözler var."},
+ {n:7,name:"Yedigen Yakup",c:"#B07BE8",d:"#7D4DB8",say:"Ben Yedigen Yakup! 7 kenarım var. Bazı madeni paralar bana benzer."},
+ {n:8,name:"Sekizgen Selin",c:"#EF5B8D",d:"#BB3363",say:"Ben Sekizgen Selin! Trafikteki DUR levhası 8 kenarlıdır, tıpkı benim gibi."}
+];
+const ADV=["Üçgen","Dörtgen","Beşgen","Altıgen","Yedigen","Sekizgen"];
+
+function pts(n,cx,cy,r,jit){
+  const s=90+180/n,a=[];
+  for(let i=0;i<n;i++){
+    let ang=(s+360*i/n)*Math.PI/180, rr=r;
+    if(jit){ang+=(Math.random()-.5)*0.35/n*3; rr=r*(0.85+Math.random()*0.2);}
+    a.push([cx+rr*Math.cos(ang),cy+rr*Math.sin(ang)]);
+  }
+  return a;
+}
+const P=a=>a.map(p=>p.map(v=>v.toFixed(1)).join(",")).join(" ");
+
+function face(cx,cy,s,mood){
+  const ex=13*s,ey=-6*s,er=8*s,pr=3.8*s;
+  let m;
+  if(mood==="sad") m=`<path d="M${cx-9*s} ${cy+16*s} Q${cx} ${cy+8*s} ${cx+9*s} ${cy+16*s}" stroke="#1E2A47" stroke-width="${3*s}" fill="none" stroke-linecap="round"/>`;
+  else if(mood==="wow") m=`<ellipse cx="${cx}" cy="${cy+12*s}" rx="${5*s}" ry="${6.5*s}" fill="#1E2A47"/>`;
+  else m=`<path d="M${cx-11*s} ${cy+8*s} Q${cx} ${cy+20*s} ${cx+11*s} ${cy+8*s}" stroke="#1E2A47" stroke-width="${3*s}" fill="#fff" stroke-linejoin="round"/>`;
+  return `<g>
+   <circle cx="${cx-ex-6*s}" cy="${cy+7*s}" r="${5*s}" fill="#fff" opacity=".35"/>
+   <circle cx="${cx+ex+6*s}" cy="${cy+7*s}" r="${5*s}" fill="#fff" opacity=".35"/>
+   <g class="eye"><circle cx="${cx-ex}" cy="${cy+ey}" r="${er}" fill="#fff"/><circle cx="${cx-ex+1.5*s}" cy="${cy+ey+1*s}" r="${pr}" fill="#1E2A47"/></g>
+   <g class="eye"><circle cx="${cx+ex}" cy="${cy+ey}" r="${er}" fill="#fff"/><circle cx="${cx+ex+1.5*s}" cy="${cy+ey+1*s}" r="${pr}" fill="#1E2A47"/></g>
+   ${m}</g>`;
+}
+function charSVG(ch,mood="happy",dots=true,anim=true){
+  const cx=100,cy=ch.n===3?112:104,r=ch.n===3?82:72;
+  const p=pts(ch.n,cx,cy,r);
+  const fy=ch.n===3?cy+10:cy;
+  const s=ch.n===3?0.9:1;
+  const feet=`<path d="M78 182 v12 h-10 M122 182 v12 h10" stroke="${ch.d}" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+  return `<svg viewBox="0 0 200 205" role="img" aria-label="${ch.name}">
+   ${feet}
+   <g class="${anim?'char':''}">
+    <polygon points="${P(p)}" fill="${ch.c}" stroke="${ch.d}" stroke-width="5" stroke-linejoin="round"/>
+    ${dots?p.map(q=>`<circle cx="${q[0]}" cy="${q[1]}" r="5" fill="#1E2A47"/>`).join(""):""}
+    ${face(cx,fy,s,mood)}
+   </g></svg>`;
+}
+
+/* tabs */
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".tabs button").forEach(x=>x.setAttribute("aria-selected",x===b));
+  ["tanis","kim","mi","kur"].forEach(v=>document.getElementById("v-"+v).hidden=v!==b.dataset.v);
+});
+
+/* TANIŞ */
+const gal=document.getElementById("gallery");
+CH.forEach((ch,i)=>{
+  const b=document.createElement("button");b.className="who";b.id="who"+i;
+  b.innerHTML=charSVG(ch)+`<b>${ch.name}</b><small>${ch.n} kenar · ${ch.n} köşe</small>`;
+  b.onclick=()=>{
+    document.getElementById("say").textContent=ch.say;
+    b.querySelector("svg").innerHTML=b.querySelector("svg").innerHTML;
+    const g=b.querySelector("svg > g");g.classList.add("pop");
+  };
+  gal.appendChild(b);
+});
+
+/* KİM BU */
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+let kQ=[],kI=0,kS=0;
+function kStart(){kQ=shuffle([...CH,...shuffle(CH).slice(0,2)]);kI=0;kS=0;kShow();}
+function kShow(){
+  const ch=kQ[kI];
+  document.getElementById("k-round").textContent=`Soru ${kI+1} / ${kQ.length}`;
+  document.getElementById("k-score").textContent=`Puan ${kS}`;
+  document.getElementById("k-stage").innerHTML=charSVG({...ch},"happy",true);
+  document.getElementById("k-fb").textContent="";
+  document.getElementById("k-next").hidden=true;
+  const others=shuffle(CH.filter(c=>c!==ch)).slice(0,3);
+  const box=document.getElementById("k-opts");box.innerHTML="";
+  shuffle([ch,...others]).forEach((o,i)=>{
+    const b=document.createElement("button");b.className="opt";b.id="ko"+i;b.textContent=ADV[o.n-3];
+    b.onclick=()=>{
+      box.querySelectorAll("button").forEach(x=>x.disabled=true);
+      const fb=document.getElementById("k-fb");
+      if(o===ch){b.classList.add("ok");kS++;fb.style.color="var(--good)";fb.textContent=`Doğru! Ben ${ch.name}: ${ch.n} doğrunun ardışık kesişmesiyle oluştum.`;}
+      else{b.classList.add("no");fb.style.color="var(--bad)";fb.textContent=`Olmadı. Köşelerimi tek tek say: ${ch.n} tane. Ben bir ${ADV[ch.n-3].toLowerCase()}im.`;
+        document.getElementById("k-stage").innerHTML=charSVG(ch,"sad",true);
+        [...box.children].find(x=>x.textContent===ADV[ch.n-3]).classList.add("ok");}
+      document.getElementById("k-score").textContent=`Puan ${kS}`;
+      const nx=document.getElementById("k-next");nx.hidden=false;nx.textContent=kI+1<kQ.length?"Sıradaki":"Sonucu gör";
+    };
+    box.appendChild(b);
+  });
+}
+document.getElementById("k-next").onclick=()=>{
+  kI++;
+  if(kI<kQ.length) return kShow();
+  document.getElementById("k-stage").innerHTML=charSVG(CH[5],"wow");
+  document.getElementById("k-opts").innerHTML=`<p class="big" style="grid-column:1/-1">${kS} / ${kQ.length}</p>`;
+  document.getElementById("k-fb").style.color="var(--ink)";
+  document.getElementById("k-fb").textContent=kS>=7?"Harika! Kasabadaki herkesi tanıyorsun.":"Güzel deneme! Bir tur daha oynayıp köşe saymayı pekiştir.";
+  const nx=document.getElementById("k-next");nx.textContent="Yeniden oyna";nx.onclick=()=>{nx.onclick=null;location.reload()};
+};
+kStart();
+
+/* ÇOKGEN Mİ */
+const SHAPES=[
+ {yes:true,why:"Doğru parçalarından oluşuyor ve kapalı. Hoş geldin!",d:()=>`<polygon points="${P(pts(5,100,105,70,true))}" fill="#34C29E" stroke="#1E8F72" stroke-width="5" stroke-linejoin="round"/>${face(100,105,1)}`},
+ {yes:true,why:"Ok gibi içe göçük ama kenarları doğru parçası ve kapalı. O da bir çokgen!",d:()=>`<polygon points="40,80 120,80 120,45 175,105 120,165 120,130 40,130" fill="#5B8DEF" stroke="#3461BF" stroke-width="5" stroke-linejoin="round"/>${face(95,105,.8)}`},
+ {yes:true,why:"Eğik duran bir dörtgen. Kapalı ve kenarları düz. Çokgen!",d:()=>`<polygon points="60,50 165,75 145,165 35,140" fill="#FFC531" stroke="#C9930A" stroke-width="5" stroke-linejoin="round"/>${face(100,108,1)}`},
+ {yes:true,why:"Altı doğru ardışık kesişmiş, son doğru ilkini kesmiş. Çokgen!",d:()=>`<polygon points="${P(pts(6,100,105,72,true))}" fill="#EF5B8D" stroke="#BB3363" stroke-width="5" stroke-linejoin="round"/>${face(100,105,1)}`},
+ {yes:false,why:"Kapalı değil! Son çizgi ilk çizgiyle buluşmamış, bir kapı açık kalmış.",d:()=>`<polyline points="45,150 70,55 150,55 170,140 115,165" fill="none" stroke="#FF7A59" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>${face(108,105,1,"sad")}`},
+ {yes:false,why:"Çember düz kenarlardan değil, eğri bir çizgiden oluşur. Çokgen değil.",d:()=>`<circle cx="100" cy="105" r="70" fill="#B07BE8" stroke="#7D4DB8" stroke-width="5"/>${face(100,105,1,"sad")}`},
+ {yes:false,why:"Bir kenarı eğri! Çokgenin bütün kenarları doğru parçası olmalı.",d:()=>`<path d="M40 160 L40 70 L160 70 L160 160 Q100 110 40 160 Z" fill="#34C29E" stroke="#1E8F72" stroke-width="5" stroke-linejoin="round"/>${face(100,100,.9,"sad")}`},
+ {yes:false,why:"Sadece iki doğru parçası var ve kapalı değil. Çokgen için en az üç doğru gerekir.",d:()=>`<polyline points="40,160 100,45 160,160" fill="none" stroke="#5B8DEF" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>${face(100,120,.9,"sad")}`},
+ {yes:false,why:"Kenarları birbirini ardışık kesmiyor, şekil kapanmıyor. Çokgen değil.",d:()=>`<polyline points="50,150 50,60 150,60 150,150 75,150" fill="none" stroke="#EF5B8D" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>${face(100,105,1,"sad")}`},
+ {yes:false,why:"Elips de eğri bir çizgiyle çevrili. Köşesi yok, çokgen değil.",d:()=>`<ellipse cx="100" cy="105" rx="80" ry="55" fill="#FFC531" stroke="#C9930A" stroke-width="5"/>${face(100,105,1,"sad")}`}
+];
+let mQ=[],mI=0,mS=0;
+function mStart(){mQ=shuffle(SHAPES).slice(0,8);mI=0;mS=0;mShow();}
+function mShow(){
+  document.getElementById("m-round").textContent=`Soru ${mI+1} / ${mQ.length}`;
+  document.getElementById("m-score").textContent=`Puan ${mS}`;
+  const s=mQ[mI];
+  document.getElementById("m-stage").innerHTML=`<svg viewBox="0 0 200 205"><g class="char">${s.d().replace(/stroke="#1E2A47" stroke-width="3" fill="none"/,'$&')}</g></svg>`;
+  ["m-yes","m-no"].forEach(id=>{const b=document.getElementById(id);b.disabled=false;b.className="opt"});
+  document.getElementById("m-fb").textContent="";document.getElementById("m-next").hidden=true;
+}
+function mAns(say){
+  const s=mQ[mI],ok=say===s.yes,b=document.getElementById(say?"m-yes":"m-no");
+  document.getElementById("m-yes").disabled=document.getElementById("m-no").disabled=true;
+  b.classList.add(ok?"ok":"no");if(!ok)document.getElementById(s.yes?"m-yes":"m-no").classList.add("ok");
+  if(ok)mS++;
+  const fb=document.getElementById("m-fb");fb.style.color=ok?"var(--good)":"var(--bad)";
+  fb.textContent=(ok?"Doğru! ":"Dikkat! ")+s.why;
+  document.getElementById("m-score").textContent=`Puan ${mS}`;
+  const nx=document.getElementById("m-next");nx.hidden=false;nx.textContent=mI+1<mQ.length?"Sıradaki":"Yeniden oyna";
+}
+document.getElementById("m-yes").onclick=()=>mAns(true);
+document.getElementById("m-no").onclick=()=>mAns(false);
+document.getElementById("m-next").onclick=()=>{mI++; if(mI<mQ.length) mShow(); else mStart();};
+mStart();
+
+/* DOĞRULARLA KUR */
+const plane=document.getElementById("plane"),kSay=document.getElementById("k-say"),drawBtn=document.getElementById("draw");
+const LET="ABCDEFGH";
+let N=5,V=[],step=0;
+const nsel=document.getElementById("nsel");
+for(let n=3;n<=8;n++){const b=document.createElement("button");b.id="n"+n;b.textContent=n;b.setAttribute("aria-pressed",n===N);
+  b.onclick=()=>{N=n;nsel.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));kReset()};nsel.appendChild(b);}
+function kReset(){
+  V=pts(N,160,150,95,true);step=0;
+  plane.innerHTML=`<g id="lines"></g><g id="fill"></g><g id="dots"></g>`;
+  drawBtn.disabled=false;drawBtn.textContent=`Doğru çiz (1 / ${N})`;
+  kSay.textContent=`${N} doğru ile çalışacağız. "Doğru çiz" düğmesine bas.`;
+}
+function addDot(i,hl){
+  const [x,y]=V[i];
+  document.getElementById("dots").insertAdjacentHTML("beforeend",
+   `<g class="pop"><circle cx="${x}" cy="${y}" r="${hl?8:6}" fill="${hl?"#E5484D":"#1E2A47"}"/>
+    <text x="${x+(x>160?10:-18)}" y="${y+(y>150?18:-8)}" font-family="Nunito" font-weight="800" font-size="15" fill="#1E2A47">${LET[i]}</text></g>`);
+}
+const COL=["#FF7A59","#C9930A","#1E8F72","#3461BF","#7D4DB8","#BB3363","#169BB0","#D1502F"];
+drawBtn.onclick=()=>{
+  if(step>=N)return;
+  const p=V[step],q=V[(step+1)%N],dx=q[0]-p[0],dy=q[1]-p[1],L=1.1;
+  const x1=p[0]-dx*L,y1=p[1]-dy*L,x2=q[0]+dx*L,y2=q[1]+dy*L,len=Math.hypot(x2-x1,y2-y1);
+  document.getElementById("lines").insertAdjacentHTML("beforeend",
+    `<line class="dline" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${COL[step]}" stroke-width="3" stroke-dasharray="${len}" style="--len:${len}" stroke-linecap="round"/>
+     <text x="${(p[0]*.2+x2*.8).toFixed(0)}" y="${(p[1]*.2+y2*.8).toFixed(0)}" font-family="Nunito" font-weight="800" font-size="13" fill="${COL[step]}">d${step+1}</text>`);
+  step++;
+  if(step===1){kSay.textContent="1. doğru çizildi. Tek doğru bir şey kapatamaz.";}
+  else if(step<N){addDot(step-1);kSay.textContent=`${step}. doğru, ${step-1}. doğruyu ${LET[step-1]} noktasında kesti. Şekil henüz kapalı değil.`;}
+  else{
+    addDot(N-1);
+    setTimeout(()=>{
+      addDot(0,true);
+      kSay.textContent=`Son doğru (d${N}), ilk doğruyu (d1) ${LET[0]} noktasında kesti! Şekil kapandı...`;
+      setTimeout(()=>{
+        const ch=CH[N-3];
+        let cx=0,cy=0;V.forEach(v=>{cx+=v[0]/N;cy+=v[1]/N});
+        document.getElementById("lines").style.opacity=".35";
+        document.getElementById("fill").innerHTML=`<g class="pop"><polygon points="${P(V)}" fill="${ch.c}" stroke="${ch.d}" stroke-width="5" stroke-linejoin="round"/>${face(cx,cy+(N===3?8:0),N===3?.85:1.1)}</g>`;
+        kSay.textContent=`Merhaba! Ben ${ch.name}. ${N} doğru ardışık kesişti, son doğru ilkini kesti ve ben oluştum. ${N} kenarım, ${N} köşem var: ${LET.slice(0,N).split("").join(", ")}.`;
+        drawBtn.textContent="Tamamlandı";drawBtn.disabled=true;
+      },800);
+    },500);
+  }
+  if(step<N)drawBtn.textContent=`Doğru çiz (${step+1} / ${N})`;
+};
+document.getElementById("reset").onclick=kReset;
+kReset();
+</script>
+
+</body></html>

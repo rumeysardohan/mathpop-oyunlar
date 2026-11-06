@@ -1,0 +1,294 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Kutup Soğukları ve Sıcak Puanlar</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: araştırma istasyonu paneli — solda takım termometreleri, sağda görev masası */
+:root{
+  --bg:#eef4f8; --panel:#ffffff; --ink:#132a3a; --muted:#5b7487; --line:#d3e1ea;
+  --ice:#2f7fb8; --ice-soft:#dcecf7; --heat:#e0602a; --heat-soft:#fbe5da;
+  --good:#1f8a5b; --bad:#c23a3a;
+  --f-display:"Baloo 2","Trebuchet MS",sans-serif;
+  --f-body:"Nunito","Segoe UI",system-ui,sans-serif;
+  --f-num:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c1822; --panel:#13232f; --ink:#e4eef5; --muted:#8fa7b8; --line:#24394a;
+  --ice:#6bb4e8; --ice-soft:#173349; --heat:#ff8a55; --heat-soft:#3a2219;
+  --good:#4cc58d; --bad:#ff7070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1822; --panel:#13232f; --ink:#e4eef5; --muted:#8fa7b8; --line:#24394a;
+  --ice:#6bb4e8; --ice-soft:#173349; --heat:#ff8a55; --heat-soft:#3a2219;
+  --good:#4cc58d; --bad:#ff7070; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+.wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.05;margin:0;text-wrap:balance}
+h1 .c{color:var(--ice)} h1 .h{color:var(--heat)}
+.sub{color:var(--muted);margin:4px 0 0;font-weight:600}
+.round{font-family:var(--f-num);font-size:.85rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+button{font:inherit;cursor:pointer}
+.btn{border:0;border-radius:10px;padding:12px 20px;font-weight:800;font-size:1rem;background:var(--ice);color:#fff}
+.btn.heat{background:var(--heat)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:default}
+.btn:focus-visible,input:focus-visible,.pm:focus-visible{outline:3px solid var(--heat);outline-offset:2px}
+
+/* setup */
+.setup{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.setup h2,.play h2{font-family:var(--f-display);font-size:1.35rem;margin:0}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:.8rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.field input,.field select{font:inherit;padding:10px 12px;border-radius:8px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.teams-in{display:grid;gap:10px}
+.rules{margin:0;padding-left:20px;display:grid;gap:6px}
+.pts{font-family:var(--f-num);font-weight:700}
+.pts.p{color:var(--good)} .pts.n{color:var(--bad)}
+
+/* game */
+.game{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:760px){.game{grid-template-columns:1fr}}
+.board{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;gap:12px;justify-content:space-around}
+.thermo{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0;flex:1}
+.tube{position:relative;width:26px;height:220px;border-radius:13px;background:var(--ice-soft);border:2px solid var(--line);overflow:hidden}
+.zero{position:absolute;left:0;right:0;height:2px;background:var(--muted);opacity:.6}
+.merc{position:absolute;left:3px;right:3px;border-radius:8px;transition:all .6s cubic-bezier(.3,1.4,.5,1)}
+.bulb{width:38px;height:38px;border-radius:50%;margin-top:-16px;border:2px solid var(--line);background:var(--heat)}
+.thermo.neg .bulb{background:var(--ice)}
+.tname{font-weight:800;font-size:.85rem;text-align:center;overflow-wrap:anywhere;line-height:1.2}
+.tscore{font-family:var(--f-num);font-weight:700;font-size:1.1rem}
+.thermo.active .tname{color:var(--heat)}
+.thermo.active .tube{border-color:var(--heat)}
+
+.play{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.turn{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px}
+.turn .who{font-family:var(--f-display);font-weight:800;font-size:1.4rem;color:var(--heat)}
+.step{font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dials{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.dial{width:120px;height:120px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-num);font-weight:700;font-size:2.4rem;border:6px solid var(--line);background:var(--bg)}
+.dial.pos{border-color:var(--heat);color:var(--heat)}
+.dial.neg{border-color:var(--ice);color:var(--ice)}
+.dial.spin{animation:wob .12s linear infinite}
+@keyframes wob{50%{transform:rotate(8deg) scale(.97)}}
+.times{font-family:var(--f-num);font-size:2rem;color:var(--muted)}
+.answer{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center}
+.answer input{font-family:var(--f-num);font-size:1.6rem;font-weight:700;width:150px;text-align:center;padding:8px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.pm{font-family:var(--f-num);font-weight:700;font-size:1.3rem;width:52px;height:52px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.fb{border-radius:12px;padding:14px 16px;font-weight:600}
+.fb.ok{background:color-mix(in srgb,var(--good) 14%,transparent);border:2px solid var(--good)}
+.fb.no{background:color-mix(in srgb,var(--bad) 12%,transparent);border:2px solid var(--bad)}
+.fb strong{font-family:var(--f-display);font-size:1.15rem;display:block}
+.card{border:2px dashed var(--heat);background:var(--heat-soft);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.card .tag{font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--heat)}
+.card p{margin:0;font-size:1.1rem;font-weight:600;max-width:62ch}
+.math{font-family:var(--f-num);font-weight:700;white-space:nowrap}
+.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.rulebox{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font-family:var(--f-num);font-size:.95rem}
+.rulebox div{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center}
+.rulebox .r{font-weight:700}
+.end{text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center}
+.end .trophy{font-family:var(--f-display);font-size:clamp(1.6rem,5vw,2.4rem);font-weight:800;color:var(--heat);line-height:1.1}
+.rank{list-style:none;padding:0;margin:0;display:grid;gap:6px;width:min(100%,380px)}
+.rank li{display:flex;justify-content:space-between;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:800}
+.q{background:var(--ice-soft);border-radius:12px;padding:14px 16px;font-weight:600;max-width:62ch}
+@media (prefers-reduced-motion:reduce){.dial.spin{animation:none}.merc{transition:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1><span class="c">Kutup Soğukları</span> ve <span class="h">Sıcak Puanlar</span></h1>
+      <p class="sub">7. Sınıf · Tam Sayılarda Çarpma İşlemi</p>
+    </div>
+    <div class="round" id="roundLbl"></div>
+  </header>
+
+  <!-- KURULUM -->
+  <section class="setup" id="setup">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <h2>İklim araştırma ekipleri</h2>
+      <div class="field">
+        <label for="teamCount">Takım sayısı</label>
+        <select id="teamCount"><option>2</option><option selected>3</option><option>4</option></select>
+      </div>
+      <div class="teams-in" id="teamInputs"></div>
+      <div class="field">
+        <label for="rounds">Her takımın tur sayısı</label>
+        <select id="rounds"><option>3</option><option selected>4</option><option>5</option><option>6</option></select>
+      </div>
+      <button class="btn heat" id="startBtn">Keşfe başla</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <h2>Nasıl oynanır?</h2>
+      <ol class="rules">
+        <li>Sırası gelen takım <b>İklim Çarkı</b>'nı çevirir, iki tam sayı gelir.</li>
+        <li>Takım iki sayının çarpımını yazar. Doğruysa <span class="pts p">+10</span>, yanlışsa <span class="pts n">−5</span>.</li>
+        <li>Çarpımı doğru yapan takım bir <b>Keşif Görev Kartı</b> çeker. Problemi doğru çözerse <span class="pts p">+20</span>, yanlışsa <span class="pts n">−5</span>.</li>
+        <li>Turlar bitince en yüksek Termo-Puan'ı alan takım <b>Yılın İklim Uzmanları</b> olur.</li>
+      </ol>
+      <div class="rulebox" aria-label="İşaret kuralları">
+        <div>(+) · (+) = <span class="r" style="color:var(--heat)">+</span></div>
+        <div>(−) · (−) = <span class="r" style="color:var(--heat)">+</span></div>
+        <div>(+) · (−) = <span class="r" style="color:var(--ice)">−</span></div>
+        <div>(−) · (+) = <span class="r" style="color:var(--ice)">−</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OYUN -->
+  <section class="game" id="game" hidden>
+    <aside class="board" id="board" aria-label="Puan termometreleri"></aside>
+    <div class="play" id="play"></div>
+  </section>
+</div>
+
+<script>
+const CARDS = [
+ {t:"Sıcaklık · Klima",p:"Klimanın mavi tuşuna her basıldığında oda sıcaklığı 2 °C azalıyor. Mavi tuşa peş peşe 4 kez basılırsa toplam sıcaklık değişimi kaç °C olur?",op:"4 · (−2)",a:-8},
+ {t:"Sıcaklık · Klima",p:"Klimanın kırmızı tuşuna her basıldığında oda sıcaklığı 3 °C artıyor. Kırmızı tuşa 5 kez basılırsa toplam sıcaklık değişimi kaç °C olur?",op:"5 · (+3)",a:15},
+ {t:"Ulaşım kartı",p:"Metroya her binişte ulaşım kartından 7 TL düşüyor. Ay içinde 6 kez geçiş yapan yolcunun kart bakiyesindeki değişim kaç TL'dir?",op:"6 · (−7)",a:-42},
+ {t:"İşaret kuralı",p:"(+4) · (+8) işleminin sonucu kaçtır?",op:"(+4) · (+8)",a:32},
+ {t:"İşaret kuralı",p:"(−5) · (−7) işleminin sonucu kaçtır?",op:"(−5) · (−7)",a:35},
+ {t:"İşaret kuralı",p:"(−6) · (+3) işleminin sonucu kaçtır?",op:"(−6) · (+3)",a:-18},
+ {t:"Çoklu çarpım",p:"(−2) · (−3) · (−4) · (−5) işleminin sonucu kaçtır?",op:"(−2)·(−3)·(−4)·(−5)",a:120},
+ {t:"Çoklu çarpım",p:"(−2) · (+5) · (−3) işleminin sonucu kaçtır?",op:"(−2)·(+5)·(−3)",a:30},
+ {t:"Çoklu çarpım",p:"(−1) · (−1) · (−1) işleminin sonucu kaçtır?",op:"(−1)·(−1)·(−1)",a:-1},
+ {t:"Antarktika istasyonu",p:"Araştırma istasyonunda sıcaklık gece boyunca her saat 4 °C düşüyor. 6 saatte toplam sıcaklık değişimi kaç °C olur?",op:"6 · (−4)",a:-24},
+ {t:"Zamanda geri gitmek",p:"Şu an hava 0 °C ve sıcaklık her saat 2 °C düşüyor. 3 saat önce hava kaç °C idi?",op:"(−3) · (−2)",a:6},
+ {t:"Yönlü uzaklık · Dalış",p:"Deniz seviyesindeki (0 m) bir dalgıç her dakika 3 m aşağı iniyor. 5 dakika sonra konumu kaç metredir?",op:"5 · (−3)",a:-15},
+ {t:"Yönlü uzaklık · Denizaltı",p:"Bir denizaltı her saat 50 m daha derine iniyor. 3 saatte konumundaki değişim kaç metredir?",op:"3 · (−50)",a:-150},
+ {t:"Yönlü uzaklık · Asansör",p:"Zemin katta (0) bulunan asansör her seferinde 3 kat aşağı iniyor. 3 seferden sonra hangi kattadır?",op:"3 · (−3)",a:-9},
+ {t:"Dondurucu",p:"Bir dondurucunun içindeki sıcaklık her dakika 2 °C düşüyor. 7 dakikada toplam değişim kaç °C olur?",op:"7 · (−2)",a:-14},
+ {t:"İşaret kuralı",p:"(−9) · (+4) işleminin sonucu kaçtır?",op:"(−9) · (+4)",a:-36},
+ {t:"İşaret kuralı",p:"(+7) · (−7) işleminin sonucu kaçtır?",op:"(+7) · (−7)",a:-49},
+ {t:"İşaret kuralı",p:"(−10) · (−10) işleminin sonucu kaçtır?",op:"(−10) · (−10)",a:100},
+ {t:"Sıfırın gücü",p:"(−8) · 0 işleminin sonucu kaçtır?",op:"(−8) · 0",a:0},
+ {t:"Eksik sayı",p:"(−4) · ☐ = 28 ise kutuya hangi tam sayı gelmelidir?",op:"(−4) · (−7) = 28",a:-7},
+ {t:"Çöl gezisi",p:"Çölde gece sıcaklık her saat 3 °C düşüyor. 4 saat önce sıcaklık şimdikinden kaç °C farklıydı?",op:"(−4) · (−3)",a:12}
+];
+const DEF = ["Termo-Takım","Kutup Kaşifleri","Çöl Rüzgârları","Buzul Avcıları"];
+const $ = s=>document.querySelector(s);
+const fmt = n => n>0?"+"+n:(n<0?"−"+Math.abs(n):"0");
+const par = n => n<0?"("+fmt(n)+")":"("+fmt(n)+")";
+const parse = v => { v=String(v).trim().replace(/[−–]/g,"-").replace(/\s/g,""); if(!/^[+-]?\d+$/.test(v)) return null; return parseInt(v,10); };
+const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+
+let S = null;
+
+function renderTeamInputs(){
+  const n=+$("#teamCount").value, box=$("#teamInputs"), old=[...box.querySelectorAll("input")].map(i=>i.value);
+  box.innerHTML="";
+  for(let i=0;i<n;i++){
+    const d=document.createElement("div"); d.className="field";
+    d.innerHTML=`<label for="tn${i}">Takım ${i+1}</label><input id="tn${i}" maxlength="22" value="${(old[i]??DEF[i]).replace(/"/g,"&quot;")}">`;
+    box.appendChild(d);
+  }
+}
+$("#teamCount").addEventListener("change",renderTeamInputs); renderTeamInputs();
+
+$("#startBtn").onclick=()=>{
+  const n=+$("#teamCount").value;
+  const teams=[...Array(n)].map((_,i)=>({name:($("#tn"+i).value.trim()||DEF[i]),score:0}));
+  S={teams,turn:0,taken:0,rounds:+$("#rounds").value,deck:shuffle(CARDS),phase:"spin",a:null,b:null};
+  $("#setup").hidden=true; $("#game").hidden=false; draw();
+};
+
+function board(){
+  const max=Math.max(60,...S.teams.map(t=>Math.abs(t.score)));
+  const zeroPct=30; // sıfır çizgisi tüpün alt %30'unda
+  $("#board").innerHTML=S.teams.map((t,i)=>{
+    const active=S.phase!=="end"&&i===S.turn;
+    let style;
+    if(t.score>=0){const h=(t.score/max)*(100-zeroPct);style=`bottom:${zeroPct}%;height:${h}%;background:var(--heat)`;}
+    else{const h=(-t.score/max)*zeroPct;style=`bottom:${zeroPct-h}%;height:${h}%;background:var(--ice)`;}
+    return `<div class="thermo ${active?"active":""} ${t.score<0?"neg":""}">
+      <div class="tscore">${fmt(t.score)}</div>
+      <div class="tube"><div class="zero" style="bottom:${zeroPct}%"></div><div class="merc" style="${style}"></div></div>
+      <div class="bulb"></div><div class="tname">${esc(t.name)}</div></div>`;
+  }).join("");
+  const r=Math.min(S.rounds,Math.floor(S.taken/S.teams.length)+1);
+  $("#roundLbl").textContent=S.phase==="end"?"Keşif tamamlandı":`Tur ${r} / ${S.rounds}`;
+}
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+const team=()=>S.teams[S.turn];
+function head(step){return `<div class="turn"><div><div class="step">Sıradaki ekip</div><div class="who">${esc(team().name)}</div></div><div class="step">${step}</div></div>`;}
+function dial(n,spin){const c=n==null?"":(n>0?"pos":"neg");return `<div class="dial ${c} ${spin?"spin":""}">${n==null?"?":fmt(n)}</div>`;}
+function rule(a,b){
+  if(a===0||b===0) return "Sıfırla yapılan çarpımın sonucu her zaman 0'dır.";
+  return (a>0)===(b>0)?"Aynı işaretli iki tam sayının çarpımı pozitiftir.":"Farklı işaretli iki tam sayının çarpımı negatiftir.";
+}
+function answerBox(id){return `<div class="answer"><button class="pm" id="${id}pm" aria-label="İşareti değiştir">±</button><input id="${id}" inputmode="numeric" autocomplete="off" aria-label="Cevabınız" placeholder="?"><button class="btn" id="${id}ok">Kontrol et</button></div>`;}
+function wireAnswer(id,fn){
+  const inp=$("#"+id); inp.focus();
+  $("#"+id+"pm").onclick=()=>{const v=inp.value.trim(); inp.value=v.startsWith("-")||v.startsWith("−")?v.slice(1):"-"+v.replace(/^\+/,""); inp.focus();};
+  const go=()=>{const v=parse(inp.value); if(v===null){inp.value="";inp.placeholder="Sayı yaz";inp.focus();return;} fn(v);};
+  $("#"+id+"ok").onclick=go; inp.onkeydown=e=>{if(e.key==="Enter")go();};
+}
+
+function draw(){
+  board(); const P=$("#play");
+  if(S.phase==="spin"){
+    P.innerHTML=head("1 · İklim Çarkı")+`<div class="dials">${dial(null)}<span class="times">·</span>${dial(null)}</div>
+      <div class="actions"><button class="btn heat" id="spinBtn">Çarkı çevir</button></div>
+      <p class="sub" style="text-align:center;margin:0">Çarktan −9 ile +9 arasında iki tam sayı gelir.</p>`;
+    $("#spinBtn").onclick=spin; $("#spinBtn").focus();
+  }
+  else if(S.phase==="answer"){
+    P.innerHTML=head("1 · Çarpımı bul")+`<div class="dials">${dial(S.a)}<span class="times">·</span>${dial(S.b)}</div>`+answerBox("ans");
+    wireAnswer("ans",checkProduct);
+  }
+  else if(S.phase==="prodResult"){
+    const ok=S.lastOk, r=S.a*S.b;
+    P.innerHTML=head("1 · Sonuç")+`<div class="dials">${dial(S.a)}<span class="times">·</span>${dial(S.b)}</div>
+      <div class="fb ${ok?"ok":"no"}"><strong>${ok?"Doğru! +10 Termo-Puan":"Fırtına çıktı! −5 Puan"}</strong>
+      <span class="math">${par(S.a)} · ${par(S.b)} = ${fmt(r)}</span> &nbsp;${ok?"":`(Cevabınız: ${fmt(S.given)})`}<br>${rule(S.a,S.b)}</div>
+      <div class="actions">${ok?`<button class="btn heat" id="nx">Keşif Görev Kartı çek</button>`:`<button class="btn" id="nx">Sırayı devret</button>`}</div>`;
+    $("#nx").onclick=ok?()=>{S.card=S.deck.pop()||(S.deck=shuffle(CARDS)).pop();S.phase="card";draw();}:nextTurn; $("#nx").focus();
+  }
+  else if(S.phase==="card"){
+    const c=S.card;
+    P.innerHTML=head("2 · Keşif Görev Kartı")+`<div class="card"><span class="tag">${c.t}</span><p>${c.p}</p></div>`+answerBox("cans");
+    wireAnswer("cans",checkCard);
+  }
+  else if(S.phase==="cardResult"){
+    const c=S.card, ok=S.lastOk;
+    P.innerHTML=head("2 · Sonuç")+`<div class="card"><span class="tag">${c.t}</span><p>${c.p}</p></div>
+      <div class="fb ${ok?"ok":"no"}"><strong>${ok?"Görev başarılı! +20 Termo-Puan":"Görev tamamlanamadı. −5 Puan"}</strong>
+      İşlem: <span class="math">${c.op}</span> → Cevap: <span class="math">${fmt(c.a)}</span>${ok?"":` (Cevabınız: ${fmt(S.given)})`}</div>
+      <div class="actions"><button class="btn" id="nx">Sırayı devret</button></div>`;
+    $("#nx").onclick=nextTurn; $("#nx").focus();
+  }
+  else if(S.phase==="end"){
+    const rank=S.teams.slice().sort((x,y)=>y.score-x.score), top=rank[0].score, win=rank.filter(t=>t.score===top);
+    P.innerHTML=`<div class="end"><div class="step">Yılın İklim Uzmanları</div>
+      <div class="trophy">${win.map(t=>esc(t.name)).join(" & ")}</div>
+      <ol class="rank">${rank.map((t,i)=>`<li><span>${i+1}. ${esc(t.name)}</span><span class="pts ${t.score<0?"n":"p"}">${fmt(t.score)}</span></li>`).join("")}</ol>
+      <div class="q"><b>Sınıfa soru:</b> İki negatif tam sayıyı çarptığımızda sonucun pozitif çıkmasını günlük hayattaki hangi durumla açıklayabilirsiniz? (İpucu: "Her saat 2 °C düşen sıcaklık, 3 saat önce kaç derece yüksekti?")</div>
+      <div class="actions"><button class="btn heat" id="again">Aynı takımlarla yeniden oyna</button><button class="btn ghost" id="reset">Takımları değiştir</button></div></div>`;
+    $("#again").onclick=()=>{S.teams.forEach(t=>t.score=0);Object.assign(S,{turn:0,taken:0,deck:shuffle(CARDS),phase:"spin"});draw();};
+    $("#reset").onclick=()=>{$("#game").hidden=true;$("#setup").hidden=false;$("#roundLbl").textContent="";};
+  }
+}
+function rnd(){let n=0;while(n===0)n=Math.floor(Math.random()*19)-9;return n;}
+function spin(){
+  const P=$("#play"); let k=0; $("#spinBtn").disabled=true;
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const steps=reduce?1:14;
+  const t=setInterval(()=>{
+    const a=rnd(),b=rnd();
+    P.querySelector(".dials").innerHTML=dial(a,true)+'<span class="times">·</span>'+dial(b,true);
+    if(++k>=steps){clearInterval(t);S.a=a;S.b=b;S.phase="answer";draw();}
+  },70);
+}
+function checkProduct(v){S.given=v;S.lastOk=v===S.a*S.b;team().score+=S.lastOk?10:-5;S.phase="prodResult";draw();}
+function checkCard(v){S.given=v;S.lastOk=v===S.card.a;team().score+=S.lastOk?20:-5;S.phase="cardResult";draw();}
+function nextTurn(){
+  S.taken++;
+  if(S.taken>=S.rounds*S.teams.length){S.phase="end";draw();return;}
+  S.turn=(S.turn+1)%S.teams.length;S.phase="spin";draw();
+}
+</script>
+
+</body></html>

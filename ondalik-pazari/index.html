@@ -1,0 +1,679 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ondalık Pazarı</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Mono:wght@400;500&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Düzen: üstte pazar tenti, altında tek sütun. Ana ekran tezgâh listesi, oyun ekranı soru kartı, sonuç ekranı kasa fişi. */
+:root{
+  --bg:#EDF0E8;
+  --card:#FBFCF7;
+  --ink:#12302C;
+  --muted:#4F645C;
+  --line:#C6D1C4;
+  --teal:#0E7C6B;
+  --on-teal:#FFFFFF;
+  --gold:#E9A100;
+  --gold-soft:#FBEDC6;
+  --green-soft:#D6EFE5;
+  --red:#C23B1F;
+  --red-soft:#FADFD7;
+  --f-display:"Bricolage Grotesque","Nunito",system-ui,sans-serif;
+  --f-body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-num:"DM Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1B19;--card:#172826;--ink:#E7F0EA;--muted:#9FB4AB;--line:#2B4540;
+    --teal:#38BBA3;--on-teal:#06231E;--gold:#F5B93A;--gold-soft:#3A3014;
+    --green-soft:#123A33;--red:#FF8266;--red-soft:#3D1F18;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1B19;--card:#172826;--ink:#E7F0EA;--muted:#9FB4AB;--line:#2B4540;
+  --teal:#38BBA3;--on-teal:#06231E;--gold:#F5B93A;--gold-soft:#3A3014;
+  --green-soft:#123A33;--red:#FF8266;--red-soft:#3D1F18;color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+button,input{font:inherit;color:inherit}
+.mono{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+
+.awning{position:relative;height:26px;background:repeating-linear-gradient(90deg,var(--teal) 0 36px,var(--gold) 36px 72px)}
+.awning::after{content:"";position:absolute;left:0;right:0;top:100%;height:18px;background:inherit;
+  -webkit-mask:radial-gradient(circle at 18px 0,#000 17.5px,#0000 18px) 0 0/36px 18px repeat-x;
+  mask:radial-gradient(circle at 18px 0,#000 17.5px,#0000 18px) 0 0/36px 18px repeat-x}
+
+.wrap{max-width:600px;margin:0 auto;padding-block:36px 48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Ana ekran */
+.brand{font:800 clamp(40px,12vw,60px)/0.98 var(--f-display);letter-spacing:-.025em;margin:0;text-wrap:balance}
+.brand em{font-style:normal;color:var(--teal)}
+.lead{margin:12px 0 0;color:var(--muted);max-width:44ch}
+.rank{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;margin:20px 0 22px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--card)}
+.rank span{color:var(--muted);font-size:14px}
+.rank b{font:800 18px var(--f-display)}
+.rank .tot{margin-left:auto;display:flex;align-items:center;gap:6px}
+.stalls{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.stall{display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-width:0;text-align:left;padding:16px;border-radius:16px;background:var(--card);border:1.5px solid var(--line);cursor:pointer;transition:transform .15s,border-color .15s}
+.stall:hover{transform:translateY(-2px);border-color:var(--teal)}
+.st-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;width:100%}
+.st-name{font:800 19px/1.2 var(--f-display)}
+.stars{display:flex;gap:2px;flex:none}
+.st-sub{color:var(--muted);font-size:15px}
+.st-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;margin-top:6px;font-size:13px;color:var(--muted)}
+.sign{font:500 13px var(--f-num);padding:2px 8px;border:1.5px dashed var(--line);border-radius:6px;color:var(--ink);white-space:nowrap}
+.foot{margin:26px 0 0;font-size:13px;color:var(--muted)}
+.star{fill:none;stroke:var(--line);stroke-width:1.6;stroke-linejoin:round}
+.star.on{fill:var(--gold);stroke:var(--gold)}
+
+/* Oyun */
+.hud{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.back{min-height:44px;padding:0 12px 0 0;background:none;border:0;font-weight:800;color:var(--teal);cursor:pointer}
+.chips{display:flex;gap:8px}
+.chip{padding:4px 12px;border-radius:999px;background:var(--card);border:1.5px solid var(--line);font-size:14px;color:var(--muted)}
+.chip b{color:var(--ink);font-size:15px}
+.stname{font:800 24px/1.15 var(--f-display);margin:10px 0 12px;letter-spacing:-.01em}
+.prog{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.prog i{height:8px;border-radius:4px;background:var(--line)}
+.prog i.done{background:var(--teal)}
+.prog i.cur{background:var(--gold)}
+.qcard{margin-top:16px;padding:20px 18px;border-radius:18px;background:var(--card);border:1.5px solid var(--line)}
+.qno{margin:0;font-size:13px;color:var(--muted);font-weight:700}
+.qtext{margin:6px 0 18px;font:700 clamp(20px,5.4vw,25px)/1.45 var(--f-display);text-wrap:balance}
+.num{display:inline-block;padding:0 10px;border-radius:8px;background:var(--gold-soft);font:500 1.05em var(--f-num);letter-spacing:.01em;white-space:nowrap}
+.dg{color:var(--teal);font-family:var(--f-num);font-size:1.1em}
+
+.opts{display:grid;gap:10px;grid-template-columns:1fr}
+@media (min-width:480px){.opts{grid-template-columns:1fr 1fr}}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:56px;min-width:0;padding:10px 14px;border-radius:12px;background:var(--bg);border:2px solid var(--line);text-align:left;cursor:pointer;font-weight:700;transition:border-color .12s}
+.opt:hover:not(:disabled){border-color:var(--teal)}
+.opt.numeric .olab{font:500 20px var(--f-num)}
+.olab{min-width:0;overflow-wrap:anywhere}
+.mk{font-weight:800;font-size:18px;flex:none}
+.opt.ok{border-color:var(--teal);background:var(--green-soft)}
+.opt.ok .mk{color:var(--teal)}
+.opt.bad{border-color:var(--red);background:var(--red-soft)}
+.opt.bad .mk{color:var(--red)}
+.opt.dim{opacity:.55}
+.opt:disabled{cursor:default;color:var(--ink)}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.1;font:500 19px var(--f-num)}
+.fr span:first-child{padding:0 4px 2px;border-bottom:2px solid currentColor}
+.fr span:last-child{padding-top:2px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 24px;border-radius:12px;border:0;background:var(--teal);color:var(--on-teal);font-weight:800;font-size:17px;cursor:pointer}
+.btn:disabled{opacity:.4;cursor:default}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.inrow{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.inrow input{flex:1;min-width:0;min-height:56px;padding:0 14px;border-radius:12px;border:2px solid var(--line);background:var(--bg);font:500 24px var(--f-num)}
+.inrow input.ok{border-color:var(--teal);background:var(--green-soft)}
+.inrow input.bad{border-color:var(--red);background:var(--red-soft)}
+.unit{font:700 18px var(--f-num);color:var(--muted)}
+.msg{min-height:22px;margin:0 0 8px;color:var(--red);font-size:14px;font-weight:700}
+
+/* Sayı doğrusu */
+.nl{touch-action:pan-y;user-select:none;-webkit-user-select:none;padding:0 18px;cursor:pointer;border-radius:12px;background:var(--bg);border:2px solid var(--line);margin-bottom:10px}
+.nl.locked{cursor:default}
+.nl-in{position:relative;height:116px}
+.nl-line{position:absolute;left:0;right:0;top:60px;height:3px;margin-top:-1px;background:var(--ink);border-radius:2px}
+.tk{position:absolute;top:61px;width:2px;margin-left:-1px;background:var(--ink);transform:translateY(-50%)}
+.tk.t0{height:28px}.tk.t1{height:18px}.tk.t2{height:10px;opacity:.6}
+.lb{position:absolute;top:80px;transform:translateX(-50%);font:500 11px var(--f-num);color:var(--muted)}
+.mk-u,.mk-t{position:absolute;top:22px;width:18px;height:38px;margin-left:-9px;pointer-events:none}
+.mk-u::before,.mk-t::before{content:"";position:absolute;left:0;top:0;width:18px;height:18px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 3px var(--bg)}
+.mk-u::after,.mk-t::after{content:"";position:absolute;left:7.5px;top:18px;width:3px;height:20px;background:var(--teal)}
+.mk-u.bad::before,.mk-u.bad::after{background:var(--red)}
+.mk-t::before,.mk-t::after{background:var(--gold)}
+.mk-t.ok::before,.mk-t.ok::after{background:var(--teal)}
+.mk-t span{position:absolute;bottom:100%;left:50%;transform:translate(-50%,-3px);padding:1px 7px;border-radius:6px;background:var(--ink);color:var(--bg);font:500 13px var(--f-num);white-space:nowrap}
+.hintline{margin:0 0 14px;font-size:14px;color:var(--muted)}
+
+/* Sıralama */
+.ends{display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.slot{display:flex;align-items:center;justify-content:center;min-width:0;min-height:52px;border-radius:10px;border:2px dashed var(--line);font-size:15px}
+.slot.filled{border:2px solid var(--teal);background:var(--green-soft)}
+.slot.ok{border:2px solid var(--teal);background:var(--green-soft)}
+.slot.reveal{border:2px solid var(--gold);background:var(--gold-soft)}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{min-height:64px;min-width:0;border-radius:12px;background:var(--bg);border:2px solid var(--line);cursor:pointer;font-size:21px}
+.card:hover:not(:disabled){border-color:var(--teal)}
+.card.used{opacity:.35}
+.card.bad{border-color:var(--red);background:var(--red-soft);opacity:1}
+.card:disabled{cursor:default;color:var(--ink)}
+
+/* Geri bildirim */
+.fb{margin-top:16px}
+.fb.ok,.fb.bad{padding:16px 18px;border-radius:16px;border:1.5px solid}
+.fb.ok{background:var(--green-soft);border-color:var(--teal);animation:pop .3s ease-out}
+.fb.bad{background:var(--red-soft);border-color:var(--red);animation:shake .35s}
+.fbh{margin:0;font:800 20px var(--f-display)}
+.gain{color:var(--teal);margin-left:6px}
+.fbans{margin:6px 0 0}
+.fbans b{font-family:var(--f-num);font-weight:500;font-size:1.05em}
+.fbex{margin:8px 0 14px;color:var(--ink)}
+@keyframes pop{from{transform:scale(.97);opacity:.4}to{transform:none;opacity:1}}
+@keyframes shake{20%{transform:translateX(-5px)}50%{transform:translateX(5px)}80%{transform:translateX(-3px)}}
+
+/* Sonuç: kasa fişi */
+.receipt{--s:14px;position:relative;margin:20px 0;padding:22px 20px calc(22px + var(--s));background:var(--card);font-family:var(--f-num);font-size:15px;
+  -webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/var(--s) 100%;
+  mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/var(--s) 100%;
+  border-top:4px double var(--line)}
+.rc-h{margin:0 0 14px;text-align:center;font:800 20px var(--f-display)}
+.rc-l{display:flex;align-items:baseline;gap:8px;margin:6px 0}
+.rc-l i{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px)}
+.rc-t{display:flex;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:2px dashed var(--ink);font-weight:500;font-size:20px}
+.rc-s{display:flex;justify-content:center;gap:6px;margin-top:16px}
+.res-msg{margin:10px 0 0;font:700 clamp(22px,6vw,28px)/1.2 var(--f-display);text-wrap:balance}
+.res-sub{margin:6px 0 0;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="awning" aria-hidden="true"></div>
+<div class="wrap" lang="tr">
+  <div id="view"></div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var view=document.getElementById('view');
+var R=function(a,b){return a+Math.floor(Math.random()*(b-a+1));};
+var pick=function(a){return a[R(0,a.length-1)];};
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=R(0,i);var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function fmtNum(x){return String(+(+x).toFixed(6)).replace('.',',');}
+function fmtM(c){return (c/100).toFixed(2).replace('.',',');}
+function fmt3(v){return (v/1000).toFixed(3).replace('.',',');}
+function parseNum(s){
+  s=String(s).trim().replace(/\s+/g,'');
+  if(s.indexOf(',')>=0) s=s.replace(/\./g,'').replace(',','.');
+  if(!/^\d+(\.\d+)?$/.test(s)) return NaN;
+  return parseFloat(s);
+}
+function frac(n,d){return '<span class="fr"><span>'+n+'</span><span>'+d+'</span></span>';}
+function starSvg(on,sz){sz=sz||20;return '<svg class="star'+(on?' on':'')+'" width="'+sz+'" height="'+sz+'" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.5l-6 3.4 1.3-6.7-5-4.7 6.8-.8z"/></svg>';}
+function starRow(n,sz){return [0,1,2].map(function(i){return starSvg(i<n,sz);}).join('');}
+
+/* Türkçe okunuş */
+var ONES=['','bir','iki','üç','dört','beş','altı','yedi','sekiz','dokuz'];
+var TENS=['','on','yirmi','otuz','kırk','elli','altmış','yetmiş','seksen','doksan'];
+function words(n){
+  if(n===0) return 'sıfır';
+  var h=Math.floor(n/100),t=Math.floor(n%100/10),o=n%10,out=[];
+  if(h) out.push(h===1?'yüz':ONES[h]+' yüz');
+  if(t) out.push(TENS[t]);
+  if(o) out.push(ONES[o]);
+  return out.join(' ');
+}
+
+/* Kayıt */
+var KEY='ondalik-pazari-v1';
+var save={stars:{},best:{}};
+try{var t=JSON.parse(localStorage.getItem(KEY)||'null');if(t&&t.stars&&t.best)save=t;}catch(e){}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(save));}catch(e){}}
+
+/* ---------- Soru üreticileri ---------- */
+var NAMES=['basamak değeri','birler','onda birler','yüzde birler','binde birler'];
+var PL=['birler','onda birler','yüzde birler','binde birler'];
+var MULT=['1','0,1','0,01','0,001'];
+function distinctDigits(n){return shuffle([1,2,3,4,5,6,7,8,9]).slice(0,n);}
+
+function genRead(L){
+  var int=R(1,99),ds='',j;
+  for(j=0;j<L;j++) ds+=R(1,9);
+  if(L===3&&Math.random()<0.6) ds=ds[0]+'0'+ds[2];
+  if(L===2&&Math.random()<0.4) ds='0'+ds[1];
+  var dens=['onda','yüzde','binde'];
+  function read(F,len){return words(int)+' tam '+dens[len-1]+' '+words(parseInt(F,10));}
+  var correct=read(ds,L);
+  var wr=[];
+  for(var l=1;l<=3;l++) if(l!==L) wr.push(read(ds,l));
+  var alt=(L===3&&ds[1]==='0')?ds[0]+ds[2]:(((+ds[0])%9)+1)+ds.slice(1);
+  wr.push(read(alt,L));
+  var opts=shuffle([correct].concat(wr));
+  return {
+    kind:'choice',
+    text:'<span class="num">'+int+','+ds+'</span> sayısının okunuşu hangisidir?',
+    options:opts,ans:opts.indexOf(correct),ansText:correct,
+    explain:'Virgülden sonra '+L+' basamak olduğu için "'+dens[L-1]+'" denir. Tam kısım "'+words(int)+'", kesir kısmı "'+dens[L-1]+' '+words(parseInt(ds,10))+'" diye okunur.'
+  };
+}
+function genPlace(i){
+  if(i===3) return genRead(R(1,2));
+  if(i===4) return genRead(3);
+  var ds=distinctDigits(4),num=ds[0]+','+ds[1]+ds[2]+ds[3];
+  if(i===0){
+    var pos=R(1,3),opts=shuffle(ds.slice());
+    return {
+      kind:'choice',numeric:true,
+      text:'<span class="num">'+num+'</span> sayısında '+PL[pos]+' basamağındaki rakam hangisidir?',
+      options:opts,ans:opts.indexOf(ds[pos]),ansText:String(ds[pos]),
+      explain:'Virgülden sonra 1. basamak onda birler, 2. basamak yüzde birler, 3. basamak binde birlerdir. '+num+' sayısında '+ds[1]+' onda birler, '+ds[2]+' yüzde birler, '+ds[3]+' binde birler basamağındadır.'
+    };
+  }
+  var p=(i===1)?R(1,2):pick([3,0]);
+  var d=ds[p],val=d/Math.pow(10,p);
+  var order=shuffle([0,1,2,3]);
+  return {
+    kind:'choice',numeric:true,
+    text:'<span class="num">'+num+'</span> sayısında <b class="dg">'+d+'</b> rakamının basamak değeri kaçtır?',
+    options:order.map(function(q){return fmtNum(d/Math.pow(10,q));}),
+    ans:order.indexOf(p),ansText:fmtNum(val),
+    explain:d+' rakamı '+PL[p]+' basamağında. Basamak değeri '+d+' × '+MULT[p]+' = '+fmtNum(val)+' olur.'
+  };
+}
+
+function genLine(i){
+  var n=R(1,8),k;
+  if(i<2) k=pick([2,4,6,8,12,14,16,18]); else k=pick([1,3,5,7,9,11,13,15,17,19]);
+  var labels=i<2?'all':(i<4?'mid':'ends');
+  var t=fmtNum(n+k/20),ex;
+  if(k%2===0) ex=t+' sayısı, '+n+' ile '+(n+1)+' arasındaki '+(k/2)+'. büyük çizgidir. Büyük çizgiler 0,1 aralıklıdır.';
+  else ex=t+' sayısı, '+fmtNum(n+(k-1)/20)+' ile '+fmtNum(n+(k+1)/20)+' çizgilerinin tam ortasındadır.';
+  return {kind:'line',n:n,k:k,labels:labels,
+    text:'<span class="num">'+t+'</span> sayısını sayı doğrusunda işaretle.',
+    ansText:t,explain:ex};
+}
+
+function genOrder(i){
+  var n=R(0,9),d=R(1,8),set={},arr=[];
+  function add(v){if(!set[v]){set[v]=1;arr.push(v);}}
+  var base=n*1000+d*100;
+  add(base);
+  add(base+R(1,9)*10);
+  add(base+R(1,9)*10+R(1,9));
+  if(i%2===1) add(n*1000+R(1,9)*10); else add(n*1000+(d+1)*100);
+  var g=0;
+  while(arr.length<4&&g++<30) add(base+R(1,99));
+  var dir=i%2===0?'asc':'desc';
+  var sorted=arr.slice().sort(function(a,b){return a-b;});
+  if(dir==='desc') sorted.reverse();
+  var items,tries=0;
+  do{items=shuffle(arr);tries++;}while(tries<10&&items.join()===sorted.join());
+  var sep=dir==='asc'?' < ':' > ';
+  var sl=sorted.map(function(v){return fmtNum(v/1000);});
+  return {kind:'order',dir:dir,sorted:sorted,sortedLabels:sl,
+    items:items.map(function(v){return {v:v,label:fmtNum(v/1000)};}),
+    text:'Sayıları '+(dir==='asc'?'küçükten büyüğe':'büyükten küçüğe')+' sıralamak için kartlara sırayla dokun.',
+    ansText:sl.join(sep),
+    explain:'Sağlarına 0 ekleyerek basamak sayılarını eşitle: '+sorted.map(fmt3).join(sep)+'.'};
+}
+
+function randDec(digits){
+  var m=0,j;
+  for(j=0;j<digits;j++) m=m*10+R(1,9);
+  return m/Math.pow(10,pick(digits===2?[1,2]:[1,2,3]));
+}
+function genShift(i){
+  var a,p,res,q;
+  if(i===0){
+    a=randDec(2);p=R(1,2);res=a*Math.pow(10,p);
+    return mk('<span class="num">'+fmtNum(a)+' × '+Math.pow(10,p)+'</span> işleminin sonucu kaçtır?',res,'',
+      'Bir sayıyı '+Math.pow(10,p)+' ile çarparken virgül sağa '+p+' basamak kayar: '+fmtNum(a)+' → '+fmtNum(res)+'.');
+  }
+  if(i===1){
+    a=randDec(3);p=R(1,2);res=a/Math.pow(10,p);
+    return mk('<span class="num">'+fmtNum(a)+' ÷ '+Math.pow(10,p)+'</span> işleminin sonucu kaçtır?',res,'',
+      'Bir sayıyı '+Math.pow(10,p)+' ile bölerken virgül sola '+p+' basamak kayar: '+fmtNum(a)+' → '+fmtNum(res)+'.');
+  }
+  if(i===2){
+    if(Math.random()<0.5){
+      a=(R(1,9)*10+R(1,9))/1000;res=a*1000;
+      return mk('<span class="num">'+fmtNum(a)+' × 1000</span> işleminin sonucu kaçtır?',res,'',
+        '1000 ile çarparken virgül sağa 3 basamak kayar: '+fmtNum(a)+' → '+fmtNum(res)+'.');
+    }
+    a=R(11,999);res=a/1000;
+    return mk('<span class="num">'+a+' ÷ 1000</span> işleminin sonucu kaçtır?',res,'',
+      '1000 ile bölerken virgül sola 3 basamak kayar: '+a+' → '+fmtNum(res)+'.');
+  }
+  if(i===3){
+    p=R(1,3);
+    if(Math.random()<0.5){
+      a=(R(1,9)*10+R(1,9))/100;res=a*Math.pow(10,p);
+      return mk('<span class="num">'+fmtNum(a)+' × ? = '+fmtNum(res)+'</span> eşitliğinde ? yerine ne gelmelidir?',Math.pow(10,p),'',
+        fmtNum(a)+' sayısından '+fmtNum(res)+' sayısına geçerken virgül sağa '+p+' basamak kaymış. Bu, '+Math.pow(10,p)+' ile çarpmaktır.');
+    }
+    var b=R(11,99)*pick([1,10]);res=b/Math.pow(10,p);
+    return mk('<span class="num">'+fmtNum(b)+' ÷ ? = '+fmtNum(res)+'</span> eşitliğinde ? yerine ne gelmelidir?',Math.pow(10,p),'',
+      fmtNum(b)+' sayısından '+fmtNum(res)+' sayısına geçerken virgül sola '+p+' basamak kaymış. Bu, '+Math.pow(10,p)+' ile bölmektir.');
+  }
+  if(Math.random()<0.5){
+    a=(R(1,9)*10+R(1,9))/100;res=a*100;
+    return mk('Bir toplu iğnenin kütlesi '+fmtNum(a)+' g. 100 toplu iğnenin kütlesi kaç gramdır?',res,'g',
+      '100 ile çarparken virgül sağa 2 basamak kayar: '+fmtNum(a)+' → '+fmtNum(res)+'.');
+  }
+  a=R(11,99);res=a/100;
+  return mk(a+' kg şeker 100 pakete eşit olarak paylaştırılıyor. Her paket kaç kilogramdır?',res,'kg',
+    '100 ile bölerken virgül sola 2 basamak kayar: '+a+' → '+fmtNum(res)+'.');
+  function mk(text,ans,unit,ex){return {kind:'input',text:text,ans:ans,unit:unit,ansText:fmtNum(ans)+(unit?' '+unit:''),explain:ex};}
+}
+
+var FR=[
+  {d:'0,5',n:1,m:2,wf:[[1,5],[1,20],[1,4]],wd:['1,2','0,12','0,2']},
+  {d:'0,25',n:1,m:4,wf:[[1,25],[2,5],[1,5]],wd:['0,14','1,4','0,4']},
+  {d:'0,75',n:3,m:4,wf:[[7,5],[3,5],[1,75]],wd:['0,34','3,4','0,43']},
+  {d:'0,2',n:1,m:5,wf:[[1,2],[1,50],[2,5]],wd:['0,15','1,5','0,5']},
+  {d:'0,6',n:3,m:5,wf:[[1,6],[6,5],[3,10]],wd:['0,35','3,5','0,53']},
+  {d:'0,35',n:7,m:20,wf:[[7,10],[3,5],[1,35]],wd:['0,72','7,2','0,27']},
+  {d:'0,125',n:1,m:8,wf:[[1,125],[1,12],[1,4]],wd:['0,18','1,8','0,8']},
+  {d:'0,18',n:9,m:50,wf:[[9,5],[1,18],[9,10]],wd:['0,95','9,5','0,59']}
+];
+function genConv(i){
+  var it,opts,ans,k,digits,den,num;
+  if(i===0){
+    it=pick(FR);k=it.d.split(',')[1].length;digits=parseInt(it.d.split(',')[1],10);den=Math.pow(10,k);
+    var fo=shuffle([[it.n,it.m]].concat(it.wf));
+    return {kind:'choice',
+      text:'<span class="num">'+it.d+'</span> ondalık gösterimi hangi kesre eşittir?',
+      options:fo.map(function(f){return frac(f[0],f[1]);}),
+      ans:fo.findIndex(function(f){return f[0]===it.n&&f[1]===it.m;}),
+      ansText:frac(it.n,it.m),
+      explain:it.d+' = '+frac(digits,den)+' olur. Pay ve paydayı aynı sayıya bölerek sadeleştirince '+frac(it.n,it.m)+' bulunur.'};
+  }
+  if(i===1){
+    it=pick(FR);k=it.d.split(',')[1].length;digits=parseInt(it.d.split(',')[1],10);den=Math.pow(10,k);
+    opts=shuffle([it.d].concat(it.wd));
+    return {kind:'choice',numeric:true,
+      text:frac(it.n,it.m)+' kesrinin ondalık gösterimi hangisidir?',
+      options:opts,ans:opts.indexOf(it.d),ansText:it.d,
+      explain:frac(it.n,it.m)+' kesrini paydası '+den+' olacak biçimde '+(den/it.m)+' ile genişlet: '+frac(digits,den)+' = '+it.d+'.'};
+  }
+  if(i===2){
+    var d=pick([0.07,0.15,0.35,0.6,0.9,0.02,0.45,0.8]);var pc=Math.round(d*100);
+    opts=shuffle(['%'+pc,'%'+fmtNum(pc/10),'%'+fmtNum(pc/100),'%'+fmtNum(pc*10)]);
+    return {kind:'choice',numeric:true,
+      text:'<span class="num">'+fmtNum(d)+'</span> sayısı yüzde kaçtır?',
+      options:opts,ans:opts.indexOf('%'+pc),ansText:'%'+pc,
+      explain:'Yüzde, paydası 100 olan kesirdir. '+fmtNum(d)+' = '+frac(pc,100)+' = %'+pc+'.'};
+  }
+  if(i===3){
+    var p=pick([4,8,12,25,35,60,75]);
+    var vals=[p/100,p/10,p,p/1000].map(fmtNum);
+    opts=shuffle(vals.slice());
+    return {kind:'choice',numeric:true,
+      text:'<span class="num">%'+p+'</span> sayısının ondalık gösterimi hangisidir?',
+      options:opts,ans:opts.indexOf(vals[0]),ansText:vals[0],
+      explain:'%'+p+' = '+frac(p,100)+' = '+vals[0]+'.'};
+  }
+  var pp=pick([10,20,25,50]),am=pick([80,120,160,200,240,400]),c=am*pp/100;
+  var cand=[c*10,c/10,am-c,pp,c+5,c*2,c+10],ws=[];
+  cand.forEach(function(x){if(x!==c&&ws.indexOf(x)<0&&ws.length<3)ws.push(x);});
+  var all=shuffle([c].concat(ws));
+  return {kind:'choice',numeric:true,
+    text:am+' TL\'nin <b class="dg">%'+pp+'</b>\'i kaç TL\'dir?',
+    options:all.map(function(x){return fmtNum(x)+' TL';}),
+    ans:all.indexOf(c),ansText:fmtNum(c)+' TL',
+    explain:'%'+pp+' = '+frac(pp,100)+'. '+am+' × '+pp+' ÷ 100 = '+fmtNum(c)+' TL.'};
+}
+
+var NM=['Ayşe','Mehmet','Zeynep','Can','Elif','Burak','Deniz','Selin'];
+var IT=['defter','kalem','silgi','simit','ayran','çikolata','bisküvi','suluboya'];
+function priceC(lo,hi){return R(lo,hi)*100+pick([10,25,35,40,50,65,75,85,90,95]);}
+function genMarket(i){
+  var nm=pick(NM),it=shuffle(IT),a,b,t,pay,u,n,pk,q,res;
+  if(i===0){
+    a=priceC(5,20);b=priceC(3,15);
+    return mk(nm+', '+fmtM(a)+' TL\'lik '+it[0]+' ile '+fmtM(b)+' TL\'lik '+it[1]+' aldı. Kaç TL ödemesi gerekir?',(a+b)/100,
+      fmtM(a)+' + '+fmtM(b)+' = '+fmtM(a+b)+'. Virgülleri alt alta getirerek topla.');
+  }
+  if(i===1){
+    if(Math.random()<0.5){pay=50;t=priceC(18,44);}else{pay=100;t=priceC(52,94);}
+    return mk(nm+' kasada '+fmtM(t)+' TL\'lik alışveriş için '+pay+' TL verdi. Para üstü kaç TL olmalıdır?',(pay*100-t)/100,
+      pay+',00 − '+fmtM(t)+' = '+fmtM(pay*100-t)+'. Para üstü çıkarma işlemiyle bulunur.');
+  }
+  if(i===2){
+    u=priceC(2,9);n=R(3,9);
+    return mk('Bir '+it[0]+' '+fmtM(u)+' TL. '+n+' '+it[0]+' kaç TL eder?',u*n/100,
+      fmtM(u)+' × '+n+' = '+fmtM(u*n)+'. Önce virgülü yok sayıp çarp, sonra virgülü yerine koy.');
+  }
+  if(i===3){
+    u=R(150,950);if(u%10===0)u+=5;n=pick([2,4,5,8]);t=u*n;
+    return mk(n+' arkadaş '+fmtM(t)+' TL tutan hesabı eşit paylaşıyor. Kişi başı kaç TL öder?',u/100,
+      fmtM(t)+' ÷ '+n+' = '+fmtM(u)+'. Bölme işleminde virgülün üstüne virgül koy.');
+  }
+  pk=pick([8,12,16,20,24,30]);q=pick([0.5,1.5,2.5,3.5]);res=pk*q;
+  return mk('Kilosu '+pk+' TL olan elmadan '+fmtNum(q)+' kg alındı. Kaç TL ödenir?',res,
+    pk+' × '+fmtNum(q)+' = '+fmtNum(res)+'. '+fmtNum(q)+' kg, '+Math.floor(q)+' kg ile yarım kilonun toplamıdır.');
+  function mk(text,ans,ex){return {kind:'input',text:text,ans:ans,unit:'TL',ansText:fmtNum(ans)+' TL',explain:ex};}
+}
+
+var STALLS=[
+  {id:'basamak',name:'Basamak Tezgâhı',sub:'Basamak değeri ve okunuş',sign:'5,28',gen:genPlace},
+  {id:'dogru',name:'Sayı Doğrusu Tezgâhı',sub:'Sayıyı doğru çizgiye koy',sign:'3,45',gen:genLine},
+  {id:'sirala',name:'Sıralama Tezgâhı',sub:'0,4 mü 0,45 mi? Büyüğü bul',sign:'0,4 < 0,45',gen:genOrder},
+  {id:'on',name:'Kaydırma Tezgâhı',sub:'10, 100, 1000 ile çarp ve böl',sign:'× 100',gen:genShift},
+  {id:'kesir',name:'Dönüşüm Tezgâhı',sub:'Kesir, ondalık gösterim, yüzde',sign:'3/4 = 0,75',gen:genConv},
+  {id:'market',name:'Kasa',sub:'Dört işlem problemleri',sign:'12,50 TL',gen:genMarket}
+];
+
+/* ---------- Durum ---------- */
+var S={screen:'home',si:0,qi:0,qs:[],score:0,streak:0,correct:0,log:[],
+  answered:false,ok:false,gain:0,pick:null,picked:[],pos:null,userStr:'',wrongIdx:null};
+function resetQ(){S.answered=false;S.ok=false;S.gain=0;S.pick=null;S.picked=[];S.pos=null;S.userStr='';S.wrongIdx=null;}
+function starsFor(c){return c>=5?3:c===4?2:c===3?1:0;}
+
+function startStall(si){
+  S.si=si;S.qs=[0,1,2,3,4].map(function(i){return STALLS[si].gen(i);});
+  S.qi=0;S.score=0;S.streak=0;S.correct=0;S.log=[];resetQ();S.screen='play';
+  render();window.scrollTo(0,0);
+}
+function settle(ok){
+  S.answered=true;S.ok=ok;
+  if(ok){S.streak++;S.correct++;S.gain=10+Math.min(S.streak-1,3)*5;S.score+=S.gain;}
+  else{S.streak=0;S.gain=0;}
+  S.log.push({ok:ok,gain:S.gain});
+  render(true);
+}
+function next(){
+  if(S.qi<S.qs.length-1){S.qi++;resetQ();render();window.scrollTo(0,0);}
+  else finish();
+}
+function finish(){
+  var st=STALLS[S.si],stars=starsFor(S.correct);
+  save.stars[st.id]=Math.max(save.stars[st.id]||0,stars);
+  save.best[st.id]=Math.max(save.best[st.id]||0,S.score);
+  persist();S.screen='result';render();window.scrollTo(0,0);
+}
+
+/* ---------- Görünümler ---------- */
+function homeHTML(){
+  var tot=0;STALLS.forEach(function(s){tot+=save.stars[s.id]||0;});
+  var max=STALLS.length*3,rank=tot>=15?'Pazar Ustası':tot>=8?'Kalfa':'Çırak';
+  return '<h1 class="brand">Ondalık <em>Pazarı</em></h1>'+
+  '<p class="lead">6. sınıf ondalık gösterimler. Tezgâhları gez, her tezgâhta 5 soruyu çöz, yıldız topla.</p>'+
+  '<div class="rank"><span>Rütbe</span><b>'+rank+'</b><span class="tot"><span class="mono">'+tot+' / '+max+'</span>'+starSvg(tot>0,18)+'</span></div>'+
+  '<div class="stalls">'+STALLS.map(function(s,i){
+    var n=save.stars[s.id]||0,b=save.best[s.id];
+    return '<button type="button" class="stall" data-act="stall" data-i="'+i+'">'+
+      '<span class="st-top"><span class="st-name">'+s.name+'</span><span class="stars">'+starRow(n,18)+'</span></span>'+
+      '<span class="st-sub">'+s.sub+'</span>'+
+      '<span class="st-foot"><span>'+(b?'En iyi: '+b+' puan':'Henüz oynanmadı')+'</span><span class="sign">'+s.sign+'</span></span></button>';
+  }).join('')+'</div>'+
+  '<p class="foot">Öğrenme alanı: Sayılar ve Nicelikler. Cevaplarda virgül kullan, örneğin 3,45.</p>';
+}
+
+function bodyHTML(q){
+  if(q.kind==='choice'){
+    return '<div class="opts">'+q.options.map(function(o,i){
+      var c='opt'+(q.numeric?' numeric':''),m='';
+      if(S.answered){
+        if(i===q.ans){c+=' ok';m='✓';}
+        else if(i===S.pick){c+=' bad';m='✕';}
+        else c+=' dim';
+      }
+      return '<button type="button" class="'+c+'" data-act="opt" data-i="'+i+'"'+(S.answered?' disabled':'')+'><span class="olab">'+o+'</span><span class="mk" aria-hidden="true">'+m+'</span></button>';
+    }).join('')+'</div>';
+  }
+  if(q.kind==='input'){
+    return '<div class="inrow"><input id="ans" type="text" inputmode="decimal" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Cevabın" aria-label="Cevabın" value="'+S.userStr+'"'+(S.answered?' readonly class="'+(S.ok?'ok':'bad')+'"':'')+'>'+(q.unit?'<span class="unit">'+q.unit+'</span>':'')+'</div>'+
+      '<p class="msg" id="msg" role="alert"></p>'+
+      (S.answered?'':'<button type="button" class="btn" data-act="check">Kontrol et</button>');
+  }
+  if(q.kind==='line') return lineHTML(q);
+  return orderHTML(q);
+}
+function marksHTML(q){
+  if(S.answered){
+    var h='';
+    if(!S.ok) h+='<div class="mk-u bad" style="left:'+(S.pos*5)+'%"></div>';
+    h+='<div class="mk-t'+(S.ok?' ok':'')+'" style="left:'+(q.k*5)+'%"><span>'+q.ansText+'</span></div>';
+    return h;
+  }
+  return S.pos!=null?'<div class="mk-u" style="left:'+(S.pos*5)+'%"></div>':'';
+}
+function lineHTML(q){
+  var ticks='',labs='',j,i;
+  for(j=0;j<=20;j++) ticks+='<i class="tk '+(j%10===0?'t0':j%2===0?'t1':'t2')+'" style="left:'+(j*5)+'%"></i>';
+  for(i=0;i<=10;i++){
+    var show=q.labels==='all'||(q.labels==='mid'&&(i===0||i===5||i===10))||(q.labels==='ends'&&(i===0||i===10));
+    if(show) labs+='<span class="lb" style="left:'+(i*10)+'%">'+fmtNum(q.n+i/10)+'</span>';
+  }
+  return '<div class="nl'+(S.answered?' locked':'')+'" id="nl" tabindex="0" role="slider" aria-label="Sayı doğrusu işaretçisi" aria-valuemin="0" aria-valuemax="20" aria-valuenow="'+(S.pos==null?0:S.pos)+'">'+
+    '<div class="nl-in"><div class="nl-line"></div>'+ticks+labs+'<div id="marks">'+marksHTML(q)+'</div></div></div>'+
+    '<p class="hintline">Çubuğa dokun ya da sürükle. Büyük çizgiler 0,1 aralıklıdır, küçük çizgiler yarım aralıktır.</p>'+
+    (S.answered?'':'<button type="button" class="btn" id="checkBtn" data-act="check"'+(S.pos==null?' disabled':'')+'>Onayla</button>');
+}
+function orderHTML(q){
+  var slots=[0,1,2,3].map(function(s){
+    var v='',c='slot';
+    if(S.answered){v=q.sortedLabels[s];c+=S.ok?' ok':' reveal';}
+    else if(S.picked[s]!=null){v=q.items[S.picked[s]].label;c+=' filled';}
+    return '<div class="'+c+'"><span class="mono">'+v+'</span></div>';
+  }).join('');
+  var cards=q.items.map(function(it,i){
+    var used=S.picked.indexOf(i)>=0,c='card';
+    if(used||(S.answered&&S.ok)) c+=' used';
+    if(S.answered&&S.wrongIdx===i) c+=' bad';
+    return '<button type="button" class="'+c+'" data-act="ord" data-i="'+i+'"'+(used||S.answered?' disabled':'')+'><span class="mono">'+it.label+'</span></button>';
+  }).join('');
+  var l=q.dir==='asc'?['En küçük','En büyük']:['En büyük','En küçük'];
+  return '<div class="ends"><span>'+l[0]+'</span><span>'+l[1]+'</span></div><div class="slots">'+slots+'</div><div class="cards">'+cards+'</div>';
+}
+function fbHTML(q){
+  if(!S.answered) return '<div class="fb" id="fb"></div>';
+  var last=S.qi===S.qs.length-1;
+  return '<div class="fb '+(S.ok?'ok':'bad')+'" id="fb" role="status">'+
+    '<p class="fbh">'+(S.ok?'Doğru!<span class="mono gain">+'+S.gain+'</span>':'Bu sefer olmadı.')+'</p>'+
+    (S.ok?'':'<p class="fbans">Doğru cevap: <b>'+q.ansText+'</b></p>')+
+    '<p class="fbex">'+q.explain+'</p>'+
+    '<button type="button" class="btn" id="nextBtn" data-act="next">'+(last?'Fişi gör':'Sonraki soru')+'</button></div>';
+}
+function playHTML(){
+  var st=STALLS[S.si],q=S.qs[S.qi];
+  var prog=S.qs.map(function(_,i){return '<i class="'+((i<S.qi||(i===S.qi&&S.answered))?'done':i===S.qi?'cur':'')+'"></i>';}).join('');
+  return '<div class="hud"><button type="button" class="back" data-act="home">← Tezgâhlar</button>'+
+    '<div class="chips"><span class="chip">Puan <b class="mono">'+S.score+'</b></span><span class="chip">Seri <b class="mono">'+S.streak+'</b></span></div></div>'+
+    '<div class="stname">'+st.name+'</div>'+
+    '<div class="prog" role="img" aria-label="Soru '+(S.qi+1)+' / '+S.qs.length+'">'+prog+'</div>'+
+    '<section class="qcard"><p class="qno">Soru '+(S.qi+1)+' / '+S.qs.length+'</p><h2 class="qtext">'+q.text+'</h2>'+bodyHTML(q)+'</section>'+
+    fbHTML(q);
+}
+function resultHTML(){
+  var st=STALLS[S.si],stars=starsFor(S.correct);
+  var msg=stars===3?'Mükemmel! Bu tezgâh senin.':stars===2?'Çok iyi gidiyorsun.':stars===1?'Fena değil, bir tur daha?':'Bir tur daha dene, ipuçlarını oku.';
+  var lines=S.log.map(function(l,i){return '<div class="rc-l"><span>Soru '+(i+1)+' '+(l.ok?'doğru':'yanlış')+'</span><i></i><span>'+(l.ok?'+'+l.gain:'0')+'</span></div>';}).join('');
+  return '<div class="hud"><button type="button" class="back" data-act="home">← Tezgâhlar</button></div>'+
+    '<p class="res-msg">'+msg+'</p><p class="res-sub">'+S.correct+' / '+S.qs.length+' doğru cevap</p>'+
+    '<div class="receipt"><p class="rc-h">'+st.name+'</p>'+lines+
+    '<div class="rc-t"><span>TOPLAM</span><span>'+S.score+'</span></div><div class="rc-s">'+starRow(stars,30)+'</div></div>'+
+    '<div class="actions"><button type="button" class="btn" data-act="retry">Tekrar oyna</button>'+
+    (S.si<STALLS.length-1?'<button type="button" class="btn ghost" data-act="nextstall">Sonraki tezgâh</button>':'')+
+    '<button type="button" class="btn ghost" data-act="home">Tezgâhlar</button></div>';
+}
+
+function render(focusNext){
+  view.innerHTML=S.screen==='home'?homeHTML():S.screen==='play'?playHTML():resultHTML();
+  if(S.screen==='play') bindPlay();
+  if(focusNext){
+    var b=document.getElementById('nextBtn');
+    if(b){b.focus({preventScroll:true});b.scrollIntoView({block:'nearest'});}
+  }
+}
+
+function paintPos(){
+  var q=S.qs[S.qi],m=document.getElementById('marks'),nl=document.getElementById('nl'),cb=document.getElementById('checkBtn');
+  if(m) m.innerHTML=marksHTML(q);
+  if(nl) nl.setAttribute('aria-valuenow',S.pos==null?0:S.pos);
+  if(cb) cb.disabled=S.pos==null;
+}
+function bindPlay(){
+  var q=S.qs[S.qi];
+  if(S.answered) return;
+  if(q.kind==='line'){
+    var nl=document.getElementById('nl'),inner=nl.querySelector('.nl-in'),drag=false;
+    var setFrom=function(x){
+      var r=inner.getBoundingClientRect(),t=(x-r.left)/r.width;
+      t=Math.max(0,Math.min(1,t));S.pos=Math.round(t*20);paintPos();
+    };
+    nl.addEventListener('pointerdown',function(e){drag=true;try{nl.setPointerCapture(e.pointerId);}catch(err){}setFrom(e.clientX);});
+    nl.addEventListener('pointermove',function(e){if(drag)setFrom(e.clientX);});
+    var end=function(){drag=false;};
+    nl.addEventListener('pointerup',end);nl.addEventListener('pointercancel',end);
+    nl.addEventListener('keydown',function(e){
+      if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
+        e.preventDefault();
+        var d=e.key==='ArrowLeft'?-1:1;
+        S.pos=Math.max(0,Math.min(20,S.pos==null?10:S.pos+d));paintPos();
+      }else if(e.key==='Enter'){check();}
+    });
+  }
+}
+
+function check(){
+  var q=S.qs[S.qi];
+  if(S.answered) return;
+  if(q.kind==='input'){
+    var inp=document.getElementById('ans'),v=parseNum(inp.value);
+    if(isNaN(v)){
+      document.getElementById('msg').textContent='Bir sayı yaz. Virgül kullanabilirsin, örneğin 3,45.';
+      inp.focus();return;
+    }
+    S.userStr=inp.value.replace(/"/g,'');
+    settle(Math.abs(v-q.ans)<1e-6);
+  }else if(q.kind==='line'){
+    if(S.pos==null) return;
+    settle(S.pos===q.k);
+  }
+}
+function pickOpt(i){
+  var q=S.qs[S.qi];
+  if(S.answered) return;
+  S.pick=i;settle(i===q.ans);
+}
+function pickOrd(i){
+  var q=S.qs[S.qi];
+  if(S.answered) return;
+  if(q.items[i].v===q.sorted[S.picked.length]){
+    S.picked.push(i);
+    if(S.picked.length===q.items.length) settle(true); else render();
+  }else{S.wrongIdx=i;settle(false);}
+}
+
+view.addEventListener('click',function(e){
+  var b=e.target.closest('[data-act]');
+  if(!b||b.disabled) return;
+  var a=b.getAttribute('data-act'),i=parseInt(b.getAttribute('data-i'),10);
+  if(a==='stall') startStall(i);
+  else if(a==='home'){S.screen='home';render();window.scrollTo(0,0);}
+  else if(a==='opt') pickOpt(i);
+  else if(a==='ord') pickOrd(i);
+  else if(a==='check') check();
+  else if(a==='next') next();
+  else if(a==='retry') startStall(S.si);
+  else if(a==='nextstall') startStall(S.si+1);
+});
+view.addEventListener('keydown',function(e){
+  if(e.key==='Enter'&&e.target&&e.target.id==='ans'){e.preventDefault();check();}
+});
+
+render();
+})();
+</script>
+
+</body></html>

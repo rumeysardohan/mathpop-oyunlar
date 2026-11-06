@@ -4,48 +4,114 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MathPop Oyunları</title>
-<meta name="description" content="Kesir, ondalık gösterim ve yüzde dönüşümleri için deniz altı temalı matematik oyunları.">
+<meta name="description" content="5, 6, 7 ve 8. sınıf matematik oyunları ve etkinlikleri.">
 <link rel="icon" href="assets/simge.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@700;800&display=swap">
 <style>
-:root{--deep:#2B17B0;--abyss:#120856;--lav:#EEE8FF;--card:#FFFFFF;--ok:#1CC8D8;--ink:#21136E;--muted:#5A4BB0;
+:root{--deep:#2B17B0;--abyss:#120856;--lav:#EEE8FF;--card:#FFFFFF;--ink:#21136E;--muted:#5A4BB0;
   --display:"Baloo 2","Nunito",system-ui,sans-serif;--body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;font-family:var(--body);color:var(--card);background:var(--abyss);
-  background-image:linear-gradient(rgba(18,8,86,.35),rgba(18,8,86,.75)),url("assets/deniz-arka-plan.jpg");background-size:cover;background-position:center;background-attachment:fixed}
-.wrap{max-width:980px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-header{display:flex;align-items:center;gap:14px}
-header img{width:64px;height:64px;border-radius:50%;background:var(--card)}
-header span{font-weight:800;color:var(--lav)}
-h1{font-family:var(--display);font-size:clamp(40px,7vw,68px);line-height:1;margin:36px 0 8px;text-wrap:balance}
-.lead{font-size:clamp(17px,2.4vw,21px);font-weight:700;max-width:40ch;line-height:1.45;margin:0 0 28px;color:var(--lav)}
-.games{display:grid;grid-template-columns:minmax(0,520px);gap:18px}
-a.game{display:flex;flex-direction:column;gap:8px;background:var(--card);color:var(--ink);text-decoration:none;border-radius:26px;padding:22px;
-  box-shadow:0 8px 0 rgba(18,8,86,.45);transition:transform .15s}
-a.game:hover{transform:translateY(-3px)}
-a.game:focus-visible{outline:4px solid #FFC94D;outline-offset:4px}
-.game img{height:96px;width:auto;align-self:flex-start}
-.game h2{font-family:var(--display);font-size:clamp(28px,4vw,36px);line-height:1.05;margin:4px 0 0;color:var(--deep)}
-.game p{margin:0;font-weight:700;line-height:1.45;color:var(--muted)}
-.go{margin-top:8px;align-self:flex-start;background:var(--ok);color:var(--ink);font-family:var(--display);font-weight:800;font-size:22px;padding:8px 22px;border-radius:16px}
-footer{margin-top:32px;color:var(--lav);font-weight:700;font-size:14px}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;font-family:var(--body);color:var(--card);background:var(--abyss);
+  background-image:linear-gradient(rgba(18,8,86,.55),rgba(18,8,86,.88)),url("assets/deniz-arka-plan.jpg");background-size:cover;background-position:center;background-attachment:fixed}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{display:flex;align-items:center;gap:14px;padding-top:calc(20px + env(safe-area-inset-top,0px))}
+header.top img{width:64px;height:64px;border-radius:50%;background:var(--card)}
+header.top span{font-weight:800;color:var(--lav)}
+h1{font-family:var(--display);font-size:clamp(40px,7vw,68px);line-height:1;margin:28px 0 8px;text-wrap:balance}
+.lead{font-size:clamp(17px,2.4vw,21px);font-weight:700;max-width:44ch;line-height:1.45;margin:0 0 20px;color:var(--lav)}
+nav{position:sticky;top:0;z-index:5;padding-block:10px;background:rgba(18,8,86,.92);backdrop-filter:blur(8px);margin-bottom:8px}
+nav .wrap{display:flex;gap:8px;flex-wrap:wrap}
+nav a{font-family:var(--display);font-weight:800;font-size:clamp(18px,2.6vw,22px);color:var(--ink);background:var(--c);text-decoration:none;
+  border-radius:14px;padding:6px 16px;min-height:48px;display:inline-flex;align-items:center;gap:8px}
+nav a small{font-family:var(--body);font-size:13px;background:rgba(255,255,255,.55);border-radius:99px;padding:1px 8px}
+nav a:focus-visible,.card:focus-visible{outline:4px solid #fff;outline-offset:3px}
+section{padding-block:18px 26px}
+h2{font-family:var(--display);font-size:clamp(30px,4.5vw,42px);margin:0 0 14px;display:flex;align-items:center;gap:4px}
+h2 span{display:inline-grid;place-items:center;width:1.4em;height:1.4em;border-radius:50%;background:var(--c);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{display:flex;flex-direction:column;background:var(--card);color:var(--ink);text-decoration:none;border-radius:20px;overflow:hidden;
+  box-shadow:0 6px 0 rgba(0,0,0,.3);transition:transform .15s;border-top:6px solid var(--c)}
+.card:hover{transform:translateY(-3px)}
+.card img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;display:block;background:var(--lav)}
+.body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.tag{align-self:flex-start;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--lav);border-radius:99px;padding:2px 10px}
+.body b{font-family:var(--display);font-size:21px;line-height:1.15;color:var(--deep)}
+.body small{font-size:14px;font-weight:700;color:var(--muted)}
+footer{padding-block:20px 40px;color:var(--lav);font-weight:700;font-size:14px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header><img src="assets/simge.png" alt="MathPopWithRu simgesi"><span>@mathpopwithru</span></header>
-  <h1>Deniz Altı Matematik</h1>
-  <p class="lead">Kesir, ondalık gösterim ve yüzde aynı sayıyı farklı yazar. Eşleri bul, hazineyi topla!</p>
-  <div class="games">
-    <a class="game" href="buyutecle-es-avi/">
-      <img src="assets/balik-1.webp" alt="">
-      <h2>Büyüteçle Eş Avı</h2>
-      <p>Karanlık denizde büyüteçle yüzen balıkları netleştir. Kolay, orta ve zor seviye; can ve ses efektli.</p>
-      <span class="go">Oyna</span>
-    </a>
-  </div>
-  <footer>5. ve 6. sınıf kesir, ondalık gösterim ve yüzde kazanımları için hazırlanmıştır.</footer>
+  <header class="top"><img src="assets/simge.png" alt="MathPopWithRu simgesi"><span>@mathpopwithru</span></header>
+  <h1>MathPop Oyunları</h1>
+  <p class="lead">52 matematik oyunu ve etkinlik. Sınıfını seç, oyna, öğren!</p>
 </div>
+<nav aria-label="Sınıflar"><div class="wrap"><a href="#sinif-5" style="--c:#1CC8D8">5. sınıf <small>15</small></a><a href="#sinif-6" style="--c:#FFC94D">6. sınıf <small>13</small></a><a href="#sinif-7" style="--c:#F47A5E">7. sınıf <small>19</small></a><a href="#sinif-8" style="--c:#B9A8FF">8. sınıf <small>5</small></a></div></nav>
+<main class="wrap">
+<section id="sinif-5" style="--c:#1CC8D8"><h2><span>5</span>. sınıf</h2><div class="grid">
+<a class="card" href="buyutecle-es-avi/"><img src="assets/onizleme/buyutecle-es-avi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Büyüteçle Eş Avı</b><small>Kesir, ondalık ve yüzde</small></span></a>
+<a class="card" href="sayi-canavari-zipliyor/"><img src="assets/onizleme/sayi-canavari-zipliyor.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Sayı Canavarı Zıplıyor</b><small>Doğal sayılarla toplama ve çıkarma</small></span></a>
+<a class="card" href="denk-kesirler-operasyonu/"><img src="assets/onizleme/denk-kesirler-operasyonu.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Denk Kesirler Operasyonu</b><small>Denk kesirler</small></span></a>
+<a class="card" href="kesir-ondalik-eslestirme/"><img src="assets/onizleme/kesir-ondalik-eslestirme.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Kesir–Ondalık Eşleştirme</b><small>Kesir ve ondalık gösterim</small></span></a>
+<a class="card" href="ondalik-kesici/"><img src="assets/onizleme/ondalik-kesici.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Ondalık Kesici</b><small>Ondalık sayıları karşılaştırma</small></span></a>
+<a class="card" href="ondalik-parkuru/"><img src="assets/onizleme/ondalik-parkuru.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Ondalık Parkuru</b><small>Ondalık basamaklar</small></span></a>
+<a class="card" href="aci-avi/"><img src="assets/onizleme/aci-avi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Açı Avı</b><small>Açı çeşitleri</small></span></a>
+<a class="card" href="aci-avcisi/"><img src="assets/onizleme/aci-avcisi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Açı Avcısı</b><small>Kesişen doğruların açıları</small></span></a>
+<a class="card" href="aci-avcisi-2/"><img src="assets/onizleme/aci-avcisi-2.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Açı Avcısı (2. sürüm)</b><small>Kesişen doğruların açıları</small></span></a>
+<a class="card" href="aci-adasi/"><img src="assets/onizleme/aci-adasi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Açı Adası</b><small>Açılar</small></span></a>
+<a class="card" href="aci-kacis-odasi/"><img src="assets/onizleme/aci-kacis-odasi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Açı Kaçış Odası</b><small>Açılar</small></span></a>
+<a class="card" href="isin-mi-dogru-mu/"><img src="assets/onizleme/isin-mi-dogru-mu.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Işın mı Doğru mu?</b><small>Nokta, doğru, doğru parçası, ışın</small></span></a>
+<a class="card" href="cokgen-kasabasi/"><img src="assets/onizleme/cokgen-kasabasi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Çokgen Kasabası</b><small>Çokgenler</small></span></a>
+<a class="card" href="daireden-altigene/"><img src="assets/onizleme/daireden-altigene.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Daireden Altıgene</b><small>Geometrik şekiller, kâğıt katlama</small></span></a>
+<a class="card" href="ucgen-fabrikasi/"><img src="assets/onizleme/ucgen-fabrikasi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Üçgen Fabrikası</b><small>Pergelle üçgen çizme</small></span></a>
+</div></section>
+<section id="sinif-6" style="--c:#FFC94D"><h2><span>6</span>. sınıf</h2><div class="grid">
+<a class="card" href="kesir-duellosu/"><img src="assets/onizleme/kesir-duellosu.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Kesir Düellosu</b><small>Kesirlerle bölme</small></span></a>
+<a class="card" href="kesir-ondalik-yuzde-atolyesi/"><img src="assets/onizleme/kesir-ondalik-yuzde-atolyesi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Atölye</span><b>Kesir, Ondalık ve Yüzde Atölyesi</b><small>Kesir, ondalık ve yüzde</small></span></a>
+<a class="card" href="ondalik-pazari/"><img src="assets/onizleme/ondalik-pazari.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Ondalık Pazarı</b><small>Ondalık gösterim</small></span></a>
+<a class="card" href="carpanlar-ve-katlar-atolyesi/"><img src="assets/onizleme/carpanlar-ve-katlar-atolyesi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Atölye</span><b>Çarpanlar ve Katlar Atölyesi</b><small>Çarpanlar ve katlar</small></span></a>
+<a class="card" href="carpan-gokkusagi/"><img src="assets/onizleme/carpan-gokkusagi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Çarpan Gökkuşağı</b><small>Çarpanlar</small></span></a>
+<a class="card" href="ecenin-kurabiye-tabaklari/"><img src="assets/onizleme/ecenin-kurabiye-tabaklari.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Ece&#x27;nin Kurabiye Tabakları</b><small>Bölenler</small></span></a>
+<a class="card" href="kalem-paketleme-atolyesi/"><img src="assets/onizleme/kalem-paketleme-atolyesi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Atölye</span><b>Kalem Paketleme Atölyesi</b><small>EBOB</small></span></a>
+<a class="card" href="iki-lambanin-sirri/"><img src="assets/onizleme/iki-lambanin-sirri.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>İki Lambanın Sırrı</b><small>EKOK</small></span></a>
+<a class="card" href="otogar-saatleri/"><img src="assets/onizleme/otogar-saatleri.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Otogar Saatleri</b><small>Ortak katlar problemleri</small></span></a>
+<a class="card" href="kayip-rakam-avi/"><img src="assets/onizleme/kayip-rakam-avi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Kayıp Rakam Avı</b><small>Bölünebilme kuralları</small></span></a>
+<a class="card" href="deneysel-olasilik-atolyesi/"><img src="assets/onizleme/deneysel-olasilik-atolyesi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Atölye</span><b>Deneysel Olasılık Atölyesi</b><small>Olasılık</small></span></a>
+<a class="card" href="olasilik-kesif-adasi/"><img src="assets/onizleme/olasilik-kesif-adasi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Olasılık Keşif Adası</b><small>Olasılık</small></span></a>
+<a class="card" href="tumler-ve-butunler-sovu/"><img src="assets/onizleme/tumler-ve-butunler-sovu.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Atölye</span><b>Tümler ve Bütünler Şovu</b><small>Tümler ve bütünler açılar</small></span></a>
+</div></section>
+<section id="sinif-7" style="--c:#F47A5E"><h2><span>7</span>. sınıf</h2><div class="grid">
+<a class="card" href="tam-sayi-treni/"><img src="assets/onizleme/tam-sayi-treni.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Tam Sayı Treni</b><small>Tam sayıları karşılaştırma (4 oyun)</small></span></a>
+<a class="card" href="sayi-dogrusu-istasyonu/"><img src="assets/onizleme/sayi-dogrusu-istasyonu.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Sayı Doğrusu İstasyonu</b><small>Sayı doğrusunda tam sayılar</small></span></a>
+<a class="card" href="isaret-treni/"><img src="assets/onizleme/isaret-treni.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>İşaret Treni</b><small>Tam sayıları karşılaştırma</small></span></a>
+<a class="card" href="siralama-treni/"><img src="assets/onizleme/siralama-treni.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Sıralama Treni</b><small>Küçükten büyüğe sıralama</small></span></a>
+<a class="card" href="ters-tren/"><img src="assets/onizleme/ters-tren.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Ters Tren</b><small>Büyükten küçüğe sıralama</small></span></a>
+<a class="card" href="sayi-canavarlari/"><img src="assets/onizleme/sayi-canavarlari.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Sayı Canavarları</b><small>Tam sayılar</small></span></a>
+<a class="card" href="karabatak-ile-balik/"><img src="assets/onizleme/karabatak-ile-balik.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Karabatak ile Balık</b><small>Tam sayılarla çıkarma</small></span></a>
+<a class="card" href="karanlik-kacis/"><img src="assets/onizleme/karanlik-kacis.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Karanlık Kaçış</b><small>Tam sayılar</small></span></a>
+<a class="card" href="tam-sayilar-duellosu/"><img src="assets/onizleme/tam-sayilar-duellosu.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Tam Sayılar Düellosu</b><small>Tam sayılarla işlemler, 4 takım</small></span></a>
+<a class="card" href="tam-sayi-arenasi/"><img src="assets/onizleme/tam-sayi-arenasi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Tam Sayı Arenası</b><small>Tam sayılarla işlemler</small></span></a>
+<a class="card" href="kutup-soguklari/"><img src="assets/onizleme/kutup-soguklari.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Kutup Soğukları ve Sıcak Puanlar</b><small>Tam sayılarla çarpma</small></span></a>
+<a class="card" href="rasyonel-sayilar-atolyesi/"><img src="assets/onizleme/rasyonel-sayilar-atolyesi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Atölye</span><b>Rasyonel Sayılar Atölyesi</b><small>Rasyonel sayılar</small></span></a>
+<a class="card" href="islem-canavarlari/"><img src="assets/onizleme/islem-canavarlari.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>İşlem Canavarları</b><small>Rasyonel sayılarla işlemler</small></span></a>
+<a class="card" href="kesir-kasifleri/"><img src="assets/onizleme/kesir-kasifleri.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Kesir Kaşifleri</b><small>Rasyonel sayılarda dört işlem</small></span></a>
+<a class="card" href="devir-avcisi/"><img src="assets/onizleme/devir-avcisi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Devir Avcısı</b><small>Devirli ondalık gösterim</small></span></a>
+<a class="card" href="sonlu-mu-devirli-mi/"><img src="assets/onizleme/sonlu-mu-devirli-mi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Sonlu mu, Devirli mi?</b><small>Sonlu ve devirli ondalıklar</small></span></a>
+<a class="card" href="uslu-ifadeler-lunaparki/"><img src="assets/onizleme/uslu-ifadeler-lunaparki.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Üslü İfadeler Lunaparkı</b><small>Üslü ifadeler</small></span></a>
+<a class="card" href="virgul-kaydirma-atolyesi/"><img src="assets/onizleme/virgul-kaydirma-atolyesi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Atölye</span><b>Virgül Kaydırma Atölyesi</b><small>10&#x27;un kuvvetleri</small></span></a>
+<a class="card" href="onun-kuvvetleri-atolyesi/"><img src="assets/onizleme/onun-kuvvetleri-atolyesi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Atölye</span><b>Onun Kuvvetleri Atölyesi</b><small>Çözümleme, 10&#x27;un kuvvetleri</small></span></a>
+</div></section>
+<section id="sinif-8" style="--c:#B9A8FF"><h2><span>8</span>. sınıf</h2><div class="grid">
+<a class="card" href="karekok-canavarlari/"><img src="assets/onizleme/karekok-canavarlari.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Karekök Canavarları</b><small>Kareköklü ifadeler</small></span></a>
+<a class="card" href="karekok-ustasi/"><img src="assets/onizleme/karekok-ustasi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Karekök Ustası</b><small>Kareköklü ifadeler</small></span></a>
+<a class="card" href="karekok-zindani/"><img src="assets/onizleme/karekok-zindani.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Karekök Zindanı</b><small>Karekök tahmini</small></span></a>
+<a class="card" href="kok-fabrikasi/"><img src="assets/onizleme/kok-fabrikasi.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Kök Fabrikası</b><small>a√b biçiminde yazma</small></span></a>
+<a class="card" href="kokunu-bul-galaksiyi-kurtar/"><img src="assets/onizleme/kokunu-bul-galaksiyi-kurtar.webp" alt="" loading="lazy" width="480" height="300"><span class="body"><span class="tag">Oyun</span><b>Kökünü Bul, Galaksiyi Kurtar</b><small>Kareköklü ifadeler</small></span></a>
+</div></section>
+</main>
+<footer class="wrap">Maarif Modeli 5–8. sınıf matematik kazanımlarına göre hazırlanmıştır. · @mathpopwithru</footer>
 </body>
 </html>

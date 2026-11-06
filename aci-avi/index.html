@@ -1,0 +1,833 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Açı Avı</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Lexend:wght@400;500;600&display=swap">
+<style>
+/* Layout: a graph-paper notebook; the angle board is the hero, questions sit beside it like a worksheet */
+:root{
+  --paper:#edf2fa; --grid:#dbe4f2; --card:#ffffff; --ink:#1b2747; --muted:#59668b; --line:#cfd9ea;
+  --accent:#2b56e0; --accent-ink:#ffffff; --pencil:#e0473c; --hl:#ffd23f; --ok:#138a4b; --bad:#cf3434;
+  --c-dar:#1a86cc; --c-dik:#12905a; --c-genis:#d97406; --c-dogru:#7a47cf; --c-tam:#d23c75; --c-none:#8a94ad;
+  --f-display:'Baloo 2','Trebuchet MS',system-ui,sans-serif;
+  --f-body:'Lexend',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0f1626; --grid:#18233a; --card:#162039; --ink:#e6ecfa; --muted:#9ba9c8; --line:#2b3858;
+  --accent:#86a2ff; --accent-ink:#0f1626; --pencil:#ff7466; --hl:#ffd23f; --ok:#3fcf86; --bad:#ff6b6b;
+  --c-dar:#52b5f2; --c-dik:#3fcf86; --c-genis:#ffa23a; --c-dogru:#b08bff; --c-tam:#ff72a6; --c-none:#7d88a3;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0f1626; --grid:#18233a; --card:#162039; --ink:#e6ecfa; --muted:#9ba9c8; --line:#2b3858;
+  --accent:#86a2ff; --accent-ink:#0f1626; --pencil:#ff7466; --hl:#ffd23f; --ok:#3fcf86; --bad:#ff6b6b;
+  --c-dar:#52b5f2; --c-dik:#3fcf86; --c-genis:#ffa23a; --c-dogru:#b08bff; --c-tam:#ff72a6; --c-none:#7d88a3;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:12px 40px; min-height:100vh;
+}
+.app{max-width:1060px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-family:var(--f-display);line-height:1.1;margin:0;text-wrap:balance}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:10px}
+
+/* Header */
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;background:none;border:0;padding:4px;text-align:left}
+.brand b{font-family:var(--f-display);font-size:1.6rem;font-weight:800;display:block;line-height:1}
+.brand small{color:var(--muted);font-size:.78rem;letter-spacing:.04em}
+.hud{display:flex;align-items:center;gap:8px;margin-left:auto;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:2px solid var(--line);border-radius:999px;padding:4px 12px;font-weight:600;font-variant-numeric:tabular-nums}
+.pill svg{width:18px;height:18px}
+.hearts{display:flex;gap:2px}
+.hearts svg{width:24px;height:24px;transition:transform .3s}
+.hearts .lost{opacity:.25;transform:scale(.8)}
+.streak{border-color:var(--hl);background:color-mix(in srgb,var(--hl) 22%,var(--card))}
+.icon-btn{width:42px;height:42px;border-radius:12px;border:2px solid var(--line);background:var(--card);display:grid;place-items:center}
+.icon-btn svg{width:22px;height:22px}
+.top .icon-btn{margin-left:auto}
+.hud:not([hidden]) + .icon-btn{margin-left:0}
+
+/* Buttons */
+.btn{border:2px solid var(--line);border-bottom-width:5px;border-radius:14px;padding:10px 18px;background:var(--card);font-weight:600;transition:transform .12s,border-color .12s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(2px);border-bottom-width:3px}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:color-mix(in srgb,var(--accent) 70%,#000)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+/* Menu */
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:center}
+.hero-text{display:flex;flex-direction:column;gap:14px;min-width:0}
+.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;font-weight:600;color:var(--pencil)}
+.hero h1{font-size:clamp(2.3rem,6vw,3.7rem);font-weight:800}
+.hl{background:linear-gradient(transparent 55%,color-mix(in srgb,var(--hl) 75%,transparent) 55%);padding:0 .1em}
+.lead{color:var(--muted);font-size:1.08rem;max-width:44ch}
+.hero-board{margin:0;background:var(--card);border:2px solid var(--line);border-radius:22px;padding:8px;display:flex;flex-direction:column;align-items:center}
+.hero-board svg{width:100%;max-width:420px;height:auto}
+.hero-board figcaption{font-family:var(--f-display);font-weight:700;font-size:1.25rem;min-height:1.6em;padding-bottom:4px}
+
+.types-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.tcard{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:10px 12px;display:flex;gap:10px;align-items:center;min-width:0}
+.tcard b{font-family:var(--f-display);font-size:1.1rem;display:block;line-height:1.1}
+.tcard span{font-size:.8rem;color:var(--muted)}
+.sec{font-size:1.6rem;font-weight:800}
+.modes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.mode{border:2px solid var(--line);border-bottom-width:6px;border-radius:20px;background:var(--card);padding:16px;text-align:left;display:flex;flex-direction:column;gap:8px;transition:transform .15s}
+.mode:hover{transform:translateY(-3px) rotate(-.4deg)}
+.mode .step{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.mode h3{font-size:1.35rem;font-weight:800}
+.mode p{font-size:.88rem;color:var(--muted)}
+.mode .best{margin-top:auto;font-size:.8rem;font-weight:600;color:var(--accent)}
+.mode-ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center}
+.mode-ic svg{width:40px;height:40px}
+
+/* Play */
+.play-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.mode-name{font-family:var(--f-display);font-size:1.4rem;font-weight:800}
+.qnum{color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums}
+.dots{display:flex;gap:6px;margin-left:auto}
+.dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--line);background:var(--card)}
+.dot.now{border-color:var(--accent);transform:scale(1.25)}
+.dot.ok{background:var(--ok);border-color:var(--ok)}
+.dot.no{background:var(--bad);border-color:var(--bad)}
+.stage{display:grid;grid-template-columns:1.05fr 1fr;gap:20px;align-items:start}
+.board-wrap{background-color:var(--card);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:12px 12px;border:2px solid var(--line);border-radius:22px;padding:8px;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.board-wrap svg{width:100%;height:auto;display:block}
+.board-wrap svg.draggable{touch-action:none;cursor:grab}
+.board-note{font-size:.85rem;color:var(--muted);text-align:center;min-height:1.4em;padding:0 8px 4px}
+.shake{animation:shake .4s}
+@keyframes shake{20%{transform:translateX(-8px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(3px)}}
+.panel{display:flex;flex-direction:column;gap:12px;min-width:0}
+.tag{align-self:flex-start;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:3px 10px;border-radius:8px;background:color-mix(in srgb,var(--accent) 14%,var(--card));color:var(--accent)}
+.panel h2{font-size:clamp(1.35rem,3vw,1.75rem);font-weight:700}
+.panel h2 b{color:var(--accent)}
+.qsub{color:var(--muted);font-size:.92rem}
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.opts.nums{grid-template-columns:repeat(2,1fr)}
+.opt{display:flex;align-items:center;gap:10px;text-align:left;border:2px solid var(--line);border-bottom-width:5px;border-radius:14px;background:var(--card);padding:8px 12px;transition:transform .12s,border-color .12s,background .12s;min-width:0}
+.opt:hover:not(:disabled){transform:translateY(-2px);border-color:var(--accent)}
+.opt:active:not(:disabled){transform:translateY(2px)}
+.opt b{font-family:var(--f-display);font-size:1.12rem;display:block;line-height:1.15}
+.opt small{color:var(--muted);font-size:.78rem}
+.opt kbd{margin-left:auto;font-family:var(--f-body);font-size:.7rem;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:0 5px}
+.opt.num{justify-content:center;font-family:var(--f-display);font-size:1.8rem;font-weight:800;padding:10px;font-variant-numeric:tabular-nums}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--card))}
+.opt.dim{opacity:.5}
+.opts .opt:last-child:nth-child(odd){grid-column:1/-1}
+.ciz{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--card);border:2px dashed var(--line);border-radius:16px;padding:12px 14px}
+.readout{font-family:var(--f-display);font-size:2.4rem;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;min-width:3.2ch}
+.readout-type{font-weight:600}
+.ciz .btn{margin-left:auto}
+.fb{border-radius:16px;padding:12px 16px;border:2px solid;display:flex;flex-direction:column;gap:4px;animation:pop .3s}
+.fb.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
+.fb.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--card))}
+.fb-h{font-family:var(--f-display);font-size:1.3rem;font-weight:800}
+.fb.ok .fb-h{color:var(--ok)} .fb.no .fb-h{color:var(--bad)}
+.fb p{font-size:.95rem}
+.fb .ex{color:var(--muted);font-size:.85rem}
+@keyframes pop{from{transform:scale(.96);opacity:.4}to{transform:none;opacity:1}}
+.actions{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+
+/* Explore */
+.ex-read{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.ex-read .readout{font-size:3.4rem}
+.chip{display:inline-block;font-family:var(--f-display);font-weight:800;font-size:1.4rem;padding:2px 14px;border-radius:12px;color:#fff}
+.zone{position:relative;height:44px;margin-top:6px}
+.zone-bar{display:flex;height:16px;border-radius:8px;overflow:hidden;border:2px solid var(--line)}
+.zone-bar span{height:100%}
+.zone-marker{position:absolute;top:-6px;width:4px;height:28px;background:var(--ink);border-radius:2px;transform:translateX(-2px);transition:left .08s}
+.zone-ticks{position:relative;height:18px;font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.zone-ticks span{position:absolute;transform:translateX(-50%)}
+.quick{display:flex;flex-wrap:wrap;gap:8px}
+.quick .btn{padding:6px 12px;font-variant-numeric:tabular-nums}
+.toggle{display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--muted)}
+.toggle input{width:20px;height:20px;accent-color:var(--accent)}
+.parts{font-size:.88rem;color:var(--muted);background:var(--card);border:2px solid var(--line);border-radius:14px;padding:10px 14px}
+.parts b{color:var(--ink)}
+
+/* Result */
+.result{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:28px 20px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;max-width:640px;margin:0 auto;width:100%}
+.stars{display:flex;gap:8px}
+.stars svg{width:56px;height:56px}
+.stars .on{animation:starIn .5s both}
+.stars .on:nth-child(2){animation-delay:.2s}.stars .on:nth-child(3){animation-delay:.4s}
+@keyframes starIn{from{transform:scale(0) rotate(-90deg)}to{transform:none}}
+.result h2{font-size:2.2rem;font-weight:800}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
+.stat{border:2px solid var(--line);border-radius:14px;padding:10px}
+.stat b{font-family:var(--f-display);font-size:1.8rem;display:block;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{font-size:.78rem;color:var(--muted)}
+.review{width:100%;text-align:left;display:flex;flex-direction:column;gap:8px}
+.review h3{font-size:1.2rem}
+.review li{list-style:none;border-left:4px solid var(--bad);background:color-mix(in srgb,var(--bad) 7%,var(--card));padding:8px 12px;border-radius:0 10px 10px 0;font-size:.88rem}
+.review ul{margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.row-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+
+/* SVG board styles */
+.tick{stroke:var(--muted);stroke-width:1.2}
+.tick-t{fill:var(--muted);font:600 10px var(--f-body);text-anchor:middle;dominant-baseline:middle}
+.prot-ring{fill:color-mix(in srgb,var(--accent) 6%,transparent);stroke:var(--muted);stroke-width:1.2}
+.ghost{stroke:var(--muted);stroke-width:2.5;stroke-dasharray:6 6}
+.ghost-t{fill:var(--muted);font:600 12px var(--f-body);text-anchor:middle;dominant-baseline:middle}
+.deg{font:800 26px var(--f-display);text-anchor:middle;dominant-baseline:middle;paint-order:stroke;stroke:var(--card);stroke-width:6px;stroke-linejoin:round}
+.lett{fill:var(--ink);font:600 15px var(--f-body);text-anchor:middle;dominant-baseline:middle;paint-order:stroke;stroke:var(--card);stroke-width:4px}
+.handle{fill:var(--accent);stroke:var(--card);stroke-width:4}
+.handle-ring{fill:none;stroke:var(--accent);stroke-width:2;opacity:.5}
+.clock-face{fill:var(--card);stroke:var(--ink);stroke-width:4}
+.clock-n{fill:var(--ink);font:700 19px var(--f-display);text-anchor:middle;dominant-baseline:middle}
+@media (prefers-reduced-motion:no-preference){.handle-ring{animation:ring 1.6s infinite}}
+@keyframes ring{0%{r:16;opacity:.6}100%{r:28;opacity:0}}
+
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+
+@media (max-width:860px){
+  .hero,.stage{grid-template-columns:1fr}
+  .modes{grid-template-columns:repeat(2,1fr)}
+  .types-strip{grid-template-columns:repeat(2,1fr)}
+  .types-strip .tcard:last-child{grid-column:1/-1}
+}
+@media (max-width:460px){
+  .modes,.opts{grid-template-columns:1fr}
+  .opts.nums{grid-template-columns:repeat(2,1fr)}
+  .opts .opt:last-child:nth-child(odd){grid-column:auto}
+  .opts.nums .opt:last-child:nth-child(odd){grid-column:1/-1}
+  .dots{margin-left:0;width:100%}
+  .stats{grid-template-columns:1fr 1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="app">
+  <header class="top">
+    <button class="brand" id="homeBtn" aria-label="Ana menüye dön">
+      <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+        <rect x="1" y="1" width="44" height="44" rx="12" fill="var(--accent)"/>
+        <path d="M9 34 H37" stroke="var(--accent-ink)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M9 34 L30 12" stroke="var(--hl)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M20 34 A11 11 0 0 0 16.6 26" fill="none" stroke="var(--accent-ink)" stroke-width="2.5"/>
+        <circle cx="9" cy="34" r="3.2" fill="var(--pencil)"/>
+      </svg>
+      <span><b>Açı Avı</b><small>5. sınıf · açı çeşitleri</small></span>
+    </button>
+    <div class="hud" id="hud" hidden>
+      <span class="pill" title="Puan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z" fill="var(--hl)" stroke="var(--ink)" stroke-width="1.2" stroke-linejoin="round"/></svg><b id="score">0</b></span>
+      <span class="hearts" id="hearts" aria-label="Can"></span>
+      <span class="pill streak" id="streak" hidden></span>
+    </div>
+    <button class="icon-btn" id="soundBtn" aria-label="Sesi kapat"></button>
+  </header>
+
+  <main>
+    <!-- MENU -->
+    <section id="menu" style="display:flex;flex-direction:column;gap:22px">
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">Matematik · Geometri</p>
+          <h1>Açıları avla,<br><span class="hl">açı ustası</span> ol!</h1>
+          <p class="lead">Önce açıları keşfet, sonra bak ve tanı, ölçüsünü tahmin et, en sonunda kendi açını çiz. Her doğru cevap seri yapar, seri puanı katlar.</p>
+        </div>
+        <figure class="hero-board">
+          <svg id="heroBoard" viewBox="0 0 400 310" role="img" aria-label="Dönen bir açı modeli"></svg>
+          <figcaption id="heroCap">&nbsp;</figcaption>
+        </figure>
+      </div>
+      <div class="types-strip" id="typesStrip"></div>
+      <h2 class="sec">Bir oyun seç</h2>
+      <div class="modes" id="modes"></div>
+    </section>
+
+    <!-- EXPLORE -->
+    <section id="explore" hidden>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="play-top"><span class="mode-name">Açı Laboratuvarı</span><span class="qnum">Kolu sürükle, açının nasıl değiştiğini izle.</span></div>
+        <div class="stage">
+          <div class="board-wrap">
+            <svg id="exBoard" class="draggable" viewBox="0 0 400 310" tabindex="0" role="slider" aria-label="Açı ölçüsü" aria-valuemin="0" aria-valuemax="360"></svg>
+            <div class="board-note">Mavi tutamacı sürükle ya da ok tuşlarını kullan.</div>
+          </div>
+          <div class="panel">
+            <div class="ex-read"><span class="readout" id="exDeg">45°</span><span class="chip" id="exChip">Dar Açı</span></div>
+            <p id="exRule" style="font-weight:600"></p>
+            <p id="exText" class="qsub"></p>
+            <div class="zone" aria-hidden="true">
+              <div class="zone-bar">
+                <span style="flex:90;background:var(--c-dar)"></span>
+                <span style="flex:90;background:var(--c-genis)"></span>
+                <span style="flex:180;background:color-mix(in srgb,var(--c-none) 35%,var(--card))"></span>
+              </div>
+              <div class="zone-marker" id="exMarker"></div>
+              <div class="zone-ticks"><span style="left:0%;transform:none">0°</span><span style="left:25%">90°</span><span style="left:50%">180°</span><span style="left:100%;transform:translateX(-100%)">360°</span></div>
+            </div>
+            <div class="quick" id="exQuick"></div>
+            <label class="toggle"><input type="checkbox" id="exProt" checked> İletkiyi göster</label>
+            <p class="parts"><b>Açının elemanları:</b> Ortak başlangıç noktası <b>O</b> açının <b>köşesi</b>dir. <b>[OA</b> ve <b>[OB</b> ışınları açının <b>kolları</b>dır. Açı, <b>AÔB</b> diye okunur.</p>
+            <div class="actions"><button class="btn" id="exSweep">Bir tur döndür</button><button class="btn primary" id="exGo">Oyunlara geç</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAY -->
+    <section id="play" hidden>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="play-top"><span class="mode-name" id="modeName"></span><span class="qnum" id="qnum"></span><div class="dots" id="dots"></div></div>
+        <div class="stage">
+          <div class="board-wrap" id="boardWrap">
+            <svg id="board" viewBox="0 0 400 310" tabindex="0" role="img" aria-label="Soru görseli"></svg>
+            <div class="board-note" id="boardNote"></div>
+          </div>
+          <div class="panel">
+            <span class="tag" id="qtag"></span>
+            <h2 id="qtext"></h2>
+            <p class="qsub" id="qsub"></p>
+            <div class="opts" id="opts"></div>
+            <div class="ciz" id="cizCtl" hidden>
+              <span class="readout" id="cizDeg">0°</span>
+              <span class="readout-type" id="cizType"></span>
+              <button class="btn primary" id="checkBtn" disabled>Kontrol et</button>
+            </div>
+            <div class="fb" id="fb" hidden aria-live="polite"></div>
+            <div class="actions">
+              <button class="btn" id="hintBtn">İpucu (yarım puan)</button>
+              <button class="btn primary" id="nextBtn" hidden>Sonraki soru</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section id="result" hidden>
+      <div class="result">
+        <div class="stars" id="stars"></div>
+        <h2 id="resTitle"></h2>
+        <p id="resMsg" class="qsub"></p>
+        <div class="stats">
+          <div class="stat"><b id="resScore">0</b><span>puan</span></div>
+          <div class="stat"><b id="resRight">0</b><span>doğru cevap</span></div>
+          <div class="stat"><b id="resStreak">0</b><span>en uzun seri</span></div>
+        </div>
+        <p id="resBest" class="qsub"></p>
+        <div class="review" id="review"></div>
+        <div class="row-btns">
+          <button class="btn primary" id="againBtn">Tekrar oyna</button>
+          <button class="btn" id="menuBtn">Başka oyun seç</button>
+          <button class="btn" id="labBtn">Laboratuvara git</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<script>
+/* ---------- data ---------- */
+const TYPES = {
+  dar:   {name:'Dar Açı',   rule:'Ölçüsü 0° ile 90° arasında',    short:'90°\'den küçük',  ex:'Pizza diliminin sivri ucu, az açılmış makas'},
+  dik:   {name:'Dik Açı',   rule:'Ölçüsü tam 90°',                short:'tam 90°',         ex:'Defterin köşesi, duvar ile zemin'},
+  genis: {name:'Geniş Açı', rule:'Ölçüsü 90° ile 180° arasında',  short:'90° ile 180° arası', ex:'Açık dizüstü bilgisayar ekranı, yatırılmış koltuk'},
+  dogru: {name:'Doğru Açı', rule:'Ölçüsü tam 180°',               short:'tam 180°',        ex:'Tamamen açılıp masaya yatırılmış kitap, saat 6:00'},
+  tam:   {name:'Tam Açı',   rule:'Ölçüsü tam 360°',               short:'tam 360°',        ex:'Bir tam tur dönen dönme dolap, kendi etrafında dönen patenci'}
+};
+const ORDER = ['dar','dik','genis','dogru','tam'];
+const ICON_M = {dar:40,dik:90,genis:130,dogru:180,tam:360};
+const LIFE = [
+  {m:90,  text:'Defterinin bir köşesindeki açı hangi çeşittir?'},
+  {m:180, text:'Kitabını tamamen açıp masaya düz yatırdın. İki kapağın arasındaki açı hangi çeşittir?'},
+  {m:360, text:'Pusulanın ibresi bir tam tur dönüp yine kuzeyi gösterdi. İbrenin taradığı açı hangi çeşittir?'},
+  {m:45,  text:'Pizzayı 8 eş dilime böldün. Bir dilimin sivri ucundaki açı 45°. Bu açı hangi çeşittir?'},
+  {m:110, text:'Dizüstü bilgisayarının ekranı klavyeyle 110° açı yapıyor. Bu açı hangi çeşittir?'},
+  {m:60,  text:'Eşkenar üçgenin her köşesindeki açı 60°. Bu açı hangi çeşittir?'},
+  {m:135, text:'Odanın kapısı duvarla 135° açı yapacak kadar açık. Bu açı hangi çeşittir?'}
+];
+const MODES = {
+  tani:   {name:'Açıyı Tanı',        step:'2. adım', desc:'Açıya bak, çeşidini bul. Saat ve günlük hayat soruları da var.', icon:'genis'},
+  tahmin: {name:'Ölçüyü Tahmin Et',  step:'3. adım', desc:'Açı kaç derece? Gözünle tahmin et, 90°\'yi referans al.', icon:'dar'},
+  ciz:    {name:'Açıyı Sen Çiz',     step:'4. adım', desc:'Kolu sürükle, istenen açıyı oluştur. İletki okumayı öğren.', icon:'dogru'}
+};
+const PRAISE = ['Süpersin!','Tam isabet!','Açı ustası!','Harika!','Bravo!','Mükemmel!'];
+const CLOCK_SUF = {1:"'de",2:"'de",3:"'te",4:"'te",5:"'te",6:"'da"};
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const shuffle = a => { a=[...a]; for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];} return a; };
+const rnd = (a,b,step=1) => a + step*Math.floor(Math.random()*((b-a)/step+1));
+const pick = a => a[Math.random()*a.length|0];
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function typeOf(m){ if(m===360) return 'tam'; if(m===180) return 'dogru'; if(m===90) return 'dik'; if(m>0&&m<90) return 'dar'; if(m>90&&m<180) return 'genis'; return null; }
+const col = t => t ? `var(--c-${t})` : 'var(--c-none)';
+function randM(t, clear){
+  if(t==='dar') return clear ? rnd(15,65,5) : (Math.random()<.15 ? 89 : rnd(10,85,5));
+  if(t==='genis') return clear ? rnd(115,165,5) : (Math.random()<.15 ? 91 : rnd(95,175,5));
+  return ICON_M[t];
+}
+function whyText(m){
+  const t = typeOf(m);
+  if(t==='dar') return `${m}°, 90°'den küçük olduğu için dar açıdır.`;
+  if(t==='dik') return `Ölçüsü tam 90° olan açı dik açıdır. Köşesine küçük bir kare işareti konur.`;
+  if(t==='genis') return `${m}°, 90°'den büyük ve 180°'den küçük olduğu için geniş açıdır.`;
+  if(t==='dogru') return `180°'lik açının kolları zıt yönlere bakar ve bir doğru oluşturur. Bu yüzden doğru açı denir.`;
+  if(t==='tam') return `Kol bir tam tur dönüp başladığı yere geldi. 360°'lik bu açıya tam açı denir.`;
+  if(m===0) return `Kollar üst üste duruyor, açı henüz oluşmadı.`;
+  return `${m}°, 180° ile 360° arasında. Bu açıları ileriki sınıflarda öğreneceksin.`;
+}
+
+/* ---------- drawing ---------- */
+const CX=200, CY=155, R=105;
+const f = n => n.toFixed(1);
+function pt(deg,r){ const a=deg*Math.PI/180; return [CX+r*Math.cos(a), CY-r*Math.sin(a)]; }
+function ray(deg,c){
+  const [x,y]=pt(deg,R), [tx,ty]=pt(deg,R+13), a=deg*Math.PI/180, nx=Math.sin(a)*7, ny=Math.cos(a)*7;
+  return `<line x1="${CX}" y1="${CY}" x2="${f(x)}" y2="${f(y)}" stroke="${c}" stroke-width="5" stroke-linecap="round"/>`+
+         `<polygon points="${f(tx)},${f(ty)} ${f(x+nx)},${f(y+ny)} ${f(x-nx)},${f(y-ny)}" fill="${c}"/>`;
+}
+function protractor(rot){
+  let s=`<circle cx="${CX}" cy="${CY}" r="${R+16}" class="prot-ring"/>`;
+  for(let d=0; d<360; d+=5){
+    const long=d%30===0, mid=d%10===0;
+    const [x1,y1]=pt(rot+d,R+16), [x2,y2]=pt(rot+d,R+(long?28:mid?24:20));
+    s+=`<line class="tick" x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}"/>`;
+    if(long){ const [lx,ly]=pt(rot+d,R+38); s+=`<text class="tick-t" x="${f(lx)}" y="${f(ly)}">${d}</text>`; }
+  }
+  return s;
+}
+/* o: {m, rot, label:'show'|'q'|'none', protractor, ghost:[deg], handle, letters} */
+function drawBoard(svg,o){
+  const m=o.m, rot=o.rot||0, c=col(typeOf(m));
+  let s='';
+  if(o.protractor) s+=protractor(rot);
+  (o.ghost||[]).forEach(g=>{
+    const [x,y]=pt(rot+g,R+4), [tx,ty]=pt(rot+g-7,R-10);
+    s+=`<line class="ghost" x1="${CX}" y1="${CY}" x2="${f(x)}" y2="${f(y)}"/><text class="ghost-t" x="${f(tx)}" y="${f(ty)}">${g}°</text>`;
+  });
+  const r=44;
+  if(m>=360){
+    s+=`<circle cx="${CX}" cy="${CY}" r="${r}" fill="${c}" fill-opacity=".15" stroke="${c}" stroke-width="3"/>`;
+    const [ax,ay]=pt(rot-12,r), a=(rot-12)*Math.PI/180;
+    const dx=-Math.sin(a), dy=-Math.cos(a); // ccw tangent in screen coords
+    const nx=Math.cos(a), ny=-Math.sin(a);
+    s+=`<polygon points="${f(ax+dx*10)},${f(ay+dy*10)} ${f(ax-dx*2+nx*7)},${f(ay-dy*2+ny*7)} ${f(ax-dx*2-nx*7)},${f(ay-dy*2-ny*7)}" fill="${c}"/>`;
+  } else if(m===90){
+    const q=24, [ux,uy]=pt(rot,q), [vx,vy]=pt(rot+90,q), wx=ux+vx-CX, wy=uy+vy-CY;
+    s+=`<polygon points="${CX},${CY} ${f(ux)},${f(uy)} ${f(wx)},${f(wy)} ${f(vx)},${f(vy)}" fill="${c}" fill-opacity=".2" stroke="${c}" stroke-width="3" stroke-linejoin="round"/>`;
+  } else if(m>0){
+    const [x1,y1]=pt(rot,r), [x2,y2]=pt(rot+m,r);
+    s+=`<path d="M${CX} ${CY} L${f(x1)} ${f(y1)} A${r} ${r} 0 ${m>180?1:0} 0 ${f(x2)} ${f(y2)} Z" fill="${c}" fill-opacity=".16" stroke="${c}" stroke-width="3" stroke-linejoin="round"/>`;
+  }
+  s+=ray(rot,'var(--ink)');
+  if(m>0) s+=ray(rot+m,c);
+  s+=`<circle cx="${CX}" cy="${CY}" r="6.5" fill="var(--pencil)"/>`;
+  if(o.letters!==false){
+    const [ox,oy]=pt(rot+(m>=360?180:m/2)+180,22);
+    const [axx,ayy]=pt(rot-10,R-8);
+    s+=`<text class="lett" x="${f(ox)}" y="${f(oy)}">O</text><text class="lett" x="${f(axx)}" y="${f(ayy)}">A</text>`;
+    if(m>0 && m<360){ const [bx,by]=pt(rot+m+10,R-8); s+=`<text class="lett" x="${f(bx)}" y="${f(by)}">B</text>`; }
+  }
+  if(o.label && o.label!=='none' && m>0){
+    const [lx,ly] = m<30 ? pt(rot+m+20,66) : pt(rot+(m>=360?180:m/2),74);
+    s+=`<text class="deg" x="${f(lx)}" y="${f(ly)}" fill="${c}">${o.label==='q'?'?':m}°</text>`;
+  }
+  if(o.handle){
+    const [hx,hy]=pt(rot+m,R);
+    s+=`<circle class="handle-ring" cx="${f(hx)}" cy="${f(hy)}" r="16"/><circle class="handle" cx="${f(hx)}" cy="${f(hy)}" r="14"/>`;
+  }
+  svg.innerHTML=s;
+}
+function drawClock(svg,h,reveal){
+  const m=h*30, c=col(typeOf(m));
+  let s=`<circle cx="${CX}" cy="${CY}" r="130" class="clock-face"/>`;
+  for(let i=0;i<60;i++){
+    const big=i%5===0, [x1,y1]=pt(90-i*6,big?112:119), [x2,y2]=pt(90-i*6,125);
+    s+=`<line x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}" stroke="var(--ink)" stroke-width="${big?3:1.2}"/>`;
+  }
+  for(let n=1;n<=12;n++){ const [x,y]=pt(90-n*30,96); s+=`<text class="clock-n" x="${f(x)}" y="${f(y)}">${n}</text>`; }
+  const [x1,y1]=pt(90-m,50), [x2,y2]=pt(90,50);
+  s+=`<path d="M${CX} ${CY} L${f(x1)} ${f(y1)} A50 50 0 0 0 ${f(x2)} ${f(y2)} Z" fill="${c}" fill-opacity=".22" stroke="${c}" stroke-width="3"/>`;
+  const [mx,my]=pt(90,84), [hx,hy]=pt(90-m,64);
+  s+=`<line x1="${CX}" y1="${CY}" x2="${f(mx)}" y2="${f(my)}" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>`;
+  s+=`<line x1="${CX}" y1="${CY}" x2="${f(hx)}" y2="${f(hy)}" stroke="var(--pencil)" stroke-width="8" stroke-linecap="round"/>`;
+  s+=`<circle cx="${CX}" cy="${CY}" r="7" fill="var(--ink)"/>`;
+  if(reveal){ const [lx,ly]=pt(90-m/2,30); s+=`<text class="deg" style="font-size:20px" x="${f(lx)}" y="${f(ly)}" fill="${c}">${m}°</text>`; }
+  svg.innerHTML=s;
+}
+function miniIcon(t,size=34){
+  const m=ICON_M[t], c=col(t), a=m*Math.PI/180, x=16*Math.cos(a), y=-16*Math.sin(a);
+  let arc;
+  if(m===360) arc=`<circle r="7" fill="none" stroke="${c}" stroke-width="2.5"/>`;
+  else if(m===90) arc=`<path d="M6 0V-6H0" fill="none" stroke="${c}" stroke-width="2"/>`;
+  else arc=`<path d="M7 0A7 7 0 0 0 ${f(7*Math.cos(a))} ${f(-7*Math.sin(a))}" fill="none" stroke="${c}" stroke-width="2.5"/>`;
+  return `<svg viewBox="-19 -19 38 38" width="${size}" height="${size}" aria-hidden="true" style="flex:none"><line x1="0" y1="0" x2="16" y2="0" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/><line x1="0" y1="0" x2="${f(x)}" y2="${f(y)}" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>${arc}<circle r="2.5" fill="var(--pencil)"/></svg>`;
+}
+
+/* ---------- dragging ---------- */
+function bindDrag(svg,opt){
+  let dragging=false;
+  const move=e=>{
+    const r=svg.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width*400, y=(e.clientY-r.top)/r.height*310;
+    if(Math.hypot(x-CX,y-CY)<10) return;
+    let d=Math.atan2(CY-y,x-CX)*180/Math.PI;
+    d=((d-(opt.rot?opt.rot():0))%360+360)%360;
+    const prev=opt.get();
+    if(prev>270 && d<90) d=360; else if(prev<90 && d>270) d=0;
+    d=Math.min(360,Math.round(d/opt.step)*opt.step);
+    if(d!==prev) opt.set(d);
+  };
+  svg.addEventListener('pointerdown',e=>{ if(!opt.enabled()) return; dragging=true; svg.setPointerCapture(e.pointerId); move(e); e.preventDefault(); });
+  svg.addEventListener('pointermove',e=>{ if(dragging) move(e); });
+  ['pointerup','pointercancel'].forEach(ev=>svg.addEventListener(ev,()=>dragging=false));
+  svg.addEventListener('keydown',e=>{
+    if(!opt.enabled()) return;
+    let d=opt.get();
+    if(e.key==='ArrowRight'||e.key==='ArrowDown') d-=opt.kstep; else if(e.key==='ArrowLeft'||e.key==='ArrowUp') d+=opt.kstep; else return;
+    e.preventDefault(); opt.set(Math.max(0,Math.min(360,d)));
+  });
+}
+
+/* ---------- sound ---------- */
+let AC=null, muted=false;
+try{ muted = localStorage.getItem('aciAvi.muted')==='1'; }catch(e){}
+const SND={ok:[[660,0,.12],[880,.1,.2]], bad:[[260,0,.18],[196,.15,.3]], win:[[523,0,.15],[659,.13,.15],[784,.26,.15],[1046,.39,.35]], tick:[[1400,0,.04]], pop:[[520,0,.06]]};
+function play(name){
+  if(muted) return;
+  try{
+    AC = AC || new (window.AudioContext||window.webkitAudioContext)();
+    const now=AC.currentTime;
+    SND[name].forEach(([fr,t,d])=>{
+      const o=AC.createOscillator(), g=AC.createGain();
+      o.type='triangle'; o.frequency.value=fr;
+      g.gain.setValueAtTime(.0001,now+t); g.gain.exponentialRampToValueAtTime(.16,now+t+.012); g.gain.exponentialRampToValueAtTime(.0001,now+t+d);
+      o.connect(g).connect(AC.destination); o.start(now+t); o.stop(now+t+d+.05);
+    });
+  }catch(e){}
+}
+function soundIcon(){
+  $('#soundBtn').innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="var(--ink)"/>${muted?'<path d="M16 9l5 6M21 9l-5 6" stroke="var(--bad)" stroke-width="2.2" stroke-linecap="round"/>':'<path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>'}</svg>`;
+  $('#soundBtn').setAttribute('aria-label', muted?'Sesi aç':'Sesi kapat');
+}
+
+/* ---------- confetti ---------- */
+const fx=$('#fx'), fctx=fx.getContext('2d'); let parts=[], fxRun=false;
+function confetti(n=90){
+  if(reduceMotion) return;
+  fx.width=innerWidth; fx.height=innerHeight;
+  const colors=['--c-dar','--c-dik','--c-genis','--c-dogru','--c-tam','--hl'].map(v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim());
+  for(let i=0;i<n;i++) parts.push({x:innerWidth/2+(Math.random()-.5)*200,y:innerHeight*.35,vx:(Math.random()-.5)*14,vy:-Math.random()*12-4,r:Math.random()*Math.PI,vr:(Math.random()-.5)*.3,s:6+Math.random()*6,c:pick(colors),life:90+Math.random()*40});
+  if(!fxRun){ fxRun=true; requestAnimationFrame(fxTick); }
+}
+function fxTick(){
+  fctx.clearRect(0,0,fx.width,fx.height);
+  parts=parts.filter(p=>p.life-->0);
+  parts.forEach(p=>{ p.vy+=.35; p.vx*=.99; p.x+=p.vx; p.y+=p.vy; p.r+=p.vr; fctx.save(); fctx.translate(p.x,p.y); fctx.rotate(p.r); fctx.fillStyle=p.c; fctx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2); fctx.restore(); });
+  if(parts.length) requestAnimationFrame(fxTick); else { fxRun=false; fctx.clearRect(0,0,fx.width,fx.height); }
+}
+
+/* ---------- storage ---------- */
+let BEST={};
+try{ BEST=JSON.parse(localStorage.getItem('aciAvi.best')||'{}')||{}; }catch(e){ BEST={}; }
+function saveBest(){ try{ localStorage.setItem('aciAvi.best',JSON.stringify(BEST)); }catch(e){} }
+
+/* ---------- screens ---------- */
+const SCREENS=['menu','explore','play','result'];
+function show(id){
+  SCREENS.forEach(s=>$('#'+s).hidden = s!==id);
+  $('#hud').hidden = id!=='play';
+  if(id==='menu') startHero(); else stopHero();
+  scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'});
+}
+
+/* ---------- menu ---------- */
+function buildMenu(){
+  $('#typesStrip').innerHTML = ORDER.map(t=>`<div class="tcard">${miniIcon(t,40)}<div><b style="color:${col(t)}">${TYPES[t].name}</b><span>${TYPES[t].short}</span></div></div>`).join('');
+  const cards=[{id:'lab',name:'Açı Laboratuvarı',step:'1. adım',desc:'Kolu sürükle, açı büyüdükçe çeşidinin nasıl değiştiğini gör.',icon:'dik'}]
+    .concat(Object.entries(MODES).map(([id,m])=>({id,...m})));
+  $('#modes').innerHTML = cards.map(c=>`<button class="mode" data-mode="${c.id}">
+      <span class="mode-ic" style="background:color-mix(in srgb,${col(c.icon)} 14%,var(--card))">${miniIcon(c.icon,40)}</span>
+      <span class="step">${c.step}</span><h3>${c.name}</h3><p>${c.desc}</p>
+      <span class="best">${c.id==='lab'?'Puan yok, serbest keşif':(BEST[c.id]?`En iyi puanın: ${BEST[c.id]}`:'Henüz oynanmadı')}</span></button>`).join('');
+  $('#modes').querySelectorAll('.mode').forEach(b=>b.onclick=()=>{ play('pop'); b.dataset.mode==='lab' ? openLab() : startMode(b.dataset.mode); });
+}
+let heroRaf=null;
+function startHero(){
+  const svg=$('#heroBoard'), cap=$('#heroCap');
+  if(reduceMotion){ drawBoard(svg,{m:135,label:'show'}); cap.textContent='135° → Geniş Açı'; cap.style.color=col('genis'); return; }
+  let m=0, hold=0;
+  const tick=()=>{
+    if(hold>0) hold--;
+    else if(m>=360) m=0;
+    else { m++; if(m===90||m===180) hold=55; if(m===360) hold=90; }
+    drawBoard(svg,{m,label:'show'});
+    const t=typeOf(m);
+    cap.textContent = t ? `${m}° → ${TYPES[t].name}` : (m===0?'Kollar üst üste':`${m}°`);
+    cap.style.color = col(t);
+    heroRaf=requestAnimationFrame(tick);
+  };
+  stopHero(); heroRaf=requestAnimationFrame(tick);
+}
+function stopHero(){ if(heroRaf) cancelAnimationFrame(heroRaf); heroRaf=null; }
+
+/* ---------- explore ---------- */
+const EX={m:45,sweep:null};
+function openLab(){ show('explore'); paintLab(); }
+function paintLab(){
+  const m=EX.m, t=typeOf(m);
+  drawBoard($('#exBoard'),{m,label:'show',handle:true,protractor:$('#exProt').checked});
+  $('#exBoard').setAttribute('aria-valuenow',m);
+  $('#exDeg').textContent=m+'°'; $('#exDeg').style.color=col(t);
+  const chip=$('#exChip');
+  chip.textContent = t ? TYPES[t].name : (m===0?'Sıfır':'İleride öğreneceksin');
+  chip.style.background=col(t);
+  $('#exRule').textContent = t ? TYPES[t].rule+'.' : '';
+  $('#exText').textContent = whyText(m) + (t ? ' Günlük hayatta: '+TYPES[t].ex+'.' : '');
+  $('#exMarker').style.left = (m/360*100)+'%';
+}
+let lastLabType=null;
+bindDrag($('#exBoard'),{step:1,kstep:1,enabled:()=>!$('#explore').hidden,get:()=>EX.m,set:d=>{ stopSweep(); EX.m=d; const t=typeOf(d); if(t!==lastLabType){ play('tick'); lastLabType=t; } paintLab(); }});
+$('#exQuick').innerHTML=[30,45,89,90,91,135,179,180,360].map(v=>`<button class="btn" data-v="${v}">${v}°</button>`).join('');
+$('#exQuick').querySelectorAll('button').forEach(b=>b.onclick=()=>{ stopSweep(); EX.m=+b.dataset.v; play('tick'); paintLab(); });
+$('#exProt').onchange=paintLab;
+function stopSweep(){ if(EX.sweep){ cancelAnimationFrame(EX.sweep); EX.sweep=null; $('#exSweep').textContent='Bir tur döndür'; } }
+$('#exSweep').onclick=()=>{
+  if(EX.sweep){ stopSweep(); return; }
+  EX.m=0; $('#exSweep').textContent='Durdur';
+  let hold=0;
+  const step=()=>{
+    if(hold>0) hold--; else { EX.m=Math.min(360,EX.m+(reduceMotion?10:1)); if([90,180].includes(EX.m)){ hold=45; play('tick'); } }
+    paintLab();
+    if(EX.m<360) EX.sweep=requestAnimationFrame(step); else { play('win'); stopSweep(); }
+  };
+  EX.sweep=requestAnimationFrame(step);
+};
+$('#exGo').onclick=()=>{ stopSweep(); show('menu'); document.getElementById('modes').scrollIntoView({behavior:reduceMotion?'auto':'smooth'}); };
+
+/* ---------- question generators ---------- */
+function genTani(){
+  const easy=shuffle(['dar','dik','genis']).map(t=>({kind:'draw',m:randM(t),rot:0,showM:true}));
+  const eye=shuffle(['dogru','tam',pick(['dar','genis'])]).map(t=>({kind:'draw',m:randM(t,true),rot:rnd(0,330,15),showM:false}));
+  const clocks=shuffle([1,2,3,4,5,6]).slice(0,2).map(h=>({kind:'clock',h,m:h*30}));
+  const life=shuffle(LIFE).slice(0,2).map(x=>({kind:'life',m:x.m,text:x.text,rot:0}));
+  return [...easy,...shuffle([...eye,...clocks,...life])];
+}
+function genTahmin(){
+  return shuffle([20,30,45,60,75,90,105,120,135,150,165,180,40,140,110,70]).slice(0,10).map((m,i)=>{
+    const near=shuffle([...Array(36)].map((_,k)=>(k+1)*5).filter(c=>Math.abs(c-m)>=20&&Math.abs(c-m)<=35));
+    const far=shuffle([...Array(36)].map((_,k)=>(k+1)*5).filter(c=>Math.abs(c-m)>35));
+    const opts=new Set([m,near[0]]); far.forEach(c=>{ if(opts.size<4) opts.add(c); });
+    return {kind:'est',m,rot:i<4?0:rnd(0,330,15),opts:shuffle([...opts])};
+  });
+}
+function genCiz(){
+  const types=shuffle(ORDER).map(t=>({kind:'type',t}));
+  const exact=shuffle([30,45,60,120,135,150,75,105,165,15]).slice(0,5).sort(()=>0).map(m=>({kind:'exact',m}));
+  return [...types,...exact];
+}
+const GEN={tani:genTani,tahmin:genTahmin,ciz:genCiz};
+
+/* ---------- game ---------- */
+let G=null;
+function startMode(mode){
+  G={mode,qs:GEN[mode](),i:0,score:0,lives:3,streak:0,maxStreak:0,results:[],mistakes:[]};
+  $('#modeName').textContent=MODES[mode].name;
+  show('play'); hud(); renderQ();
+}
+const cur=()=>G.qs[G.i];
+function hud(){
+  $('#score').textContent=G.score;
+  $('#hearts').innerHTML=[0,1,2].map(i=>`<svg viewBox="0 0 24 24" class="${i<G.lives?'':'lost'}" aria-hidden="true"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3.1A4.6 4.6 0 0 1 20 10c0 5.7-8 11-8 11z" fill="var(--pencil)"/></svg>`).join('');
+  $('#hearts').setAttribute('aria-label',`${G.lives} can`);
+  const st=$('#streak');
+  st.hidden=G.streak<2; st.textContent=`Seri ×${G.streak}`;
+}
+function dots(){
+  $('#dots').innerHTML=G.qs.map((_,i)=>`<span class="dot ${i<G.results.length?(G.results[i]?'ok':'no'):(i===G.i?'now':'')}"></span>`).join('');
+  $('#qnum').textContent=`Soru ${G.i+1} / ${G.qs.length}`;
+}
+function renderQ(){
+  const q=cur(); G.answered=false; G.hint=false;
+  $('#fb').hidden=true; $('#nextBtn').hidden=true;
+  $('#hintBtn').hidden=false; $('#hintBtn').disabled=false;
+  $('#cizCtl').hidden=G.mode!=='ciz';
+  $('#opts').hidden=G.mode==='ciz';
+  $('#board').classList.toggle('draggable',G.mode==='ciz');
+  $('#board').setAttribute('role',G.mode==='ciz'?'slider':'img');
+  $('#boardNote').textContent='';
+  dots();
+  if(G.mode==='tani') setupTani(q);
+  if(G.mode==='tahmin') setupTahmin(q);
+  if(G.mode==='ciz') setupCiz(q);
+  paintBoard(false);
+}
+function paintBoard(reveal){
+  const q=cur(), svg=$('#board');
+  if(G.mode==='tani'){
+    if(q.kind==='clock') drawClock(svg,q.h,reveal);
+    else drawBoard(svg,{m:q.m,rot:q.rot,label:(q.showM||q.kind==='life'||reveal)?'show':'q',ghost:G.hint?[90]:null});
+  } else if(G.mode==='tahmin'){
+    drawBoard(svg,{m:q.m,rot:q.rot,label:reveal?'show':'q',protractor:reveal,ghost:G.hint&&!reveal?[90,180]:null});
+  } else {
+    drawBoard(svg,{m:G.drag,rot:0,label:(q.kind==='type'||reveal)?'show':'none',protractor:q.kind==='exact'||reveal,handle:!reveal,ghost:G.hint&&!reveal?[90,180]:null});
+  }
+}
+
+/* Tanı */
+function setupTani(q){
+  const tags={draw:q.showM?'Ölçüye bak':'Gözünle tanı',clock:'Saat sorusu',life:'Günlük hayat'};
+  $('#qtag').textContent=tags[q.kind];
+  if(q.kind==='draw') $('#qtext').innerHTML = q.showM ? `Ölçüsü <b>${q.m}°</b> olan açı hangi çeşittir?` : `Ölçüsü yazmıyor! Bu açı hangi çeşittir?`;
+  if(q.kind==='clock') $('#qtext').innerHTML = `Saat <b>${q.h}:00</b>${CLOCK_SUF[q.h]} akrep ile yelkovan arasındaki açı hangi çeşittir?`;
+  if(q.kind==='life') $('#qtext').textContent = q.text;
+  $('#qsub').textContent = q.kind==='draw'&&!q.showM ? 'Açı biraz döndürülmüş olabilir. Açının çeşidi, kollar nereye bakarsa baksın değişmez.' : 'Doğru çeşidi seç. Klavyede 1–5 tuşlarını da kullanabilirsin.';
+  $('#opts').className='opts';
+  $('#opts').innerHTML=ORDER.map((t,i)=>`<button class="opt" data-t="${t}">${miniIcon(t)}<span><b>${TYPES[t].name}</b><small>${TYPES[t].short}</small></span><kbd>${i+1}</kbd></button>`).join('');
+  $('#opts').querySelectorAll('.opt').forEach(b=>b.onclick=()=>choose(b));
+}
+/* Tahmin */
+function setupTahmin(q){
+  $('#qtag').textContent = q.rot ? 'Döndürülmüş açı' : 'Tahmin';
+  $('#qtext').innerHTML='Bu açının ölçüsü kaç derece?';
+  $('#qsub').textContent='Önce çeşidini düşün: 90°\'den küçük mü, büyük mü? Sonra en yakın ölçüyü seç.';
+  $('#opts').className='opts nums';
+  $('#opts').innerHTML=q.opts.map(v=>`<button class="opt num" data-v="${v}">${v}°</button>`).join('');
+  $('#opts').querySelectorAll('.opt').forEach(b=>b.onclick=()=>choose(b));
+}
+/* Çiz */
+function setupCiz(q){
+  G.drag=0; G.lastType=null;
+  if(q.kind==='type'){
+    $('#qtag').textContent='Çeşide göre çiz';
+    $('#qtext').innerHTML=`Bir <b style="color:${col(q.t)}">${TYPES[q.t].name.toLowerCase()}</b> oluştur.`;
+    $('#qsub').textContent=TYPES[q.t].rule+'. Mavi tutamacı sürükle, sonra kontrol et.';
+  } else {
+    $('#qtag').textContent='İletkiyle çiz';
+    $('#qtext').innerHTML=`<b>${q.m}°</b>'lik bir açı oluştur.`;
+    $('#qsub').textContent='İletkide 0 çizgisinden başla, saat yönünün tersine say. ±5° hata kabul edilir.';
+  }
+  $('#boardNote').textContent='Mavi tutamacı sürükle ya da ok tuşlarını kullan.';
+  updateCiz();
+}
+function updateCiz(){
+  const q=cur(), m=G.drag, t=typeOf(m);
+  $('#cizDeg').textContent = q.kind==='exact' && !G.answered ? '?°' : m+'°';
+  $('#cizDeg').style.color = col(t);
+  $('#cizType').textContent = q.kind==='exact' && !G.answered ? 'İletkiden oku' : (t?TYPES[t].name:(m===0?'Henüz açı yok':'180°\'yi geçti'));
+  $('#cizType').style.color = col(t);
+  $('#checkBtn').disabled = m===0 || G.answered;
+}
+bindDrag($('#board'),{step:5,kstep:5,enabled:()=>G&&G.mode==='ciz'&&!G.answered&&!$('#play').hidden,get:()=>G.drag,set:d=>{
+  G.drag=d; const t=typeOf(d); if(t!==G.lastType){ play('tick'); G.lastType=t; }
+  paintBoard(false); updateCiz();
+}});
+$('#checkBtn').onclick=()=>{
+  const q=cur(), m=G.drag;
+  if(q.kind==='type'){
+    const ok=typeOf(m)===q.t;
+    const why = ok ? whyText(m) : `${whyText(m)} Hatırla: ${TYPES[q.t].name.toLowerCase()} — ${TYPES[q.t].rule.toLowerCase()}.`;
+    answer(ok,why,`${m}° çizdin`,`bir ${TYPES[q.t].name.toLowerCase()}`);
+  } else {
+    const diff=Math.abs(m-q.m), ok=diff<=5;
+    const why = ok ? (diff===0?`Tam ${q.m}°, iletkiyi çok iyi okudun! `:`${m}° çizdin, hedef ${q.m}° idi. Çok yakın! `)+whyText(q.m)
+                   : `${m}° çizdin, hedef ${q.m}° idi (fark ${diff}°). İletkide 0'dan başlayıp ${q.m}'e kadar say.`;
+    answer(ok,why,`${m}° çizdin`,`${q.m}°`);
+  }
+  updateCiz();
+};
+
+function choose(btn){
+  if(G.answered) return;
+  const q=cur();
+  let ok, right, why;
+  if(G.mode==='tani'){
+    right=typeOf(q.m); ok=btn.dataset.t===right;
+    why = q.kind==='clock' ? `Saatte iki sayı arası 30°'dir. Akrep ${q.h}'${['','de','de','te','te','te','da'][q.h]}, yelkovan 12'de: ${q.h} × 30° = ${q.m}°. ${whyText(q.m)}` : whyText(q.m);
+    $('#opts').querySelectorAll('.opt').forEach(b=>{ b.disabled=true; if(b.dataset.t===right) b.classList.add('right'); else if(b!==btn) b.classList.add('dim'); });
+    if(!ok) btn.classList.add('wrong');
+    answer(ok,why,TYPES[btn.dataset.t].name,TYPES[right].name);
+  } else {
+    const v=+btn.dataset.v; ok=v===q.m;
+    $('#opts').querySelectorAll('.opt').forEach(b=>{ b.disabled=true; if(+b.dataset.v===q.m) b.classList.add('right'); else if(b!==btn) b.classList.add('dim'); });
+    if(!ok) btn.classList.add('wrong');
+    why = ok ? `Bu açı ${q.m}°. ${whyText(q.m)}` : `Bu açı ${q.m}°, senin tahminin ${v}° idi (fark ${Math.abs(v-q.m)}°). ${whyText(q.m)} İletkiden kontrol et.`;
+    answer(ok,why,`${v}°`,`${q.m}°`);
+  }
+}
+function answer(ok,why,given,correct){
+  G.answered=true;
+  const pts = ok ? (G.hint?5:10) + Math.min(G.streak,5)*2 : 0;
+  if(ok){ G.score+=pts; G.streak++; G.maxStreak=Math.max(G.maxStreak,G.streak); play('ok'); if(G.streak%3===0) confetti(50); }
+  else {
+    G.lives--; G.streak=0; play('bad');
+    const w=$('#boardWrap'); w.classList.remove('shake'); void w.offsetWidth; w.classList.add('shake');
+    G.mistakes.push({q:$('#qtext').textContent,given,correct,why});
+  }
+  G.results.push(ok);
+  hud(); dots(); paintBoard(true);
+  $('#hintBtn').hidden=true; $('#boardNote').textContent='';
+  const t = typeOf(G.mode==='ciz' && cur().kind==='type' ? G.drag : (cur().m||G.drag));
+  const fb=$('#fb');
+  fb.className='fb '+(ok?'ok':'no'); fb.hidden=false;
+  fb.innerHTML = `<div class="fb-h">${ok?pick(PRAISE)+` +${pts} puan`:'Olmadı!'}</div>`+
+    (ok?'':`<p>Doğru cevap: <b>${correct}</b></p>`)+`<p>${why}</p>`+
+    (t?`<p class="ex">Günlük hayatta ${TYPES[t].name.toLowerCase()}: ${TYPES[t].ex}.</p>`:'');
+  const last = G.lives<=0 || G.i>=G.qs.length-1;
+  $('#nextBtn').textContent = G.lives<=0 ? 'Canların bitti, sonucu gör' : (last?'Sonucu gör':'Sonraki soru');
+  $('#nextBtn').hidden=false; $('#nextBtn').focus({preventScroll:true});
+}
+$('#nextBtn').onclick=()=>{ if(G.lives<=0 || G.i>=G.qs.length-1) finish(); else { G.i++; play('pop'); renderQ(); } };
+$('#hintBtn').onclick=()=>{
+  if(G.answered||G.hint) return;
+  G.hint=true; $('#hintBtn').disabled=true;
+  const q=cur();
+  if(G.mode==='tani' && q.kind==='clock') $('#boardNote').textContent='İpucu: Saatte iki sayı arası 30°. Akrebin 12\'den kaç sayı uzakta olduğunu say.';
+  else if(G.mode==='tani') $('#boardNote').textContent='İpucu: Kesikli çizgi 90°\'yi gösteriyor. Mor kol bu çizginin hangi tarafında?';
+  else if(G.mode==='tahmin') $('#boardNote').textContent='İpucu: Kesikli çizgiler 90° ve 180°. Açı bunlara ne kadar yakın?';
+  else $('#boardNote').textContent='İpucu: Kesikli çizgiler 90° ve 180°\'yi gösteriyor.';
+  paintBoard(false);
+};
+
+/* ---------- result ---------- */
+function finish(){
+  const n=G.results.filter(Boolean).length;
+  const stars = n>=9?3 : n>=7?2 : n>=4?1 : 0;
+  const isBest = G.score>(BEST[G.mode]||0);
+  if(isBest){ BEST[G.mode]=G.score; saveBest(); }
+  show('result');
+  $('#stars').innerHTML=[0,1,2].map(i=>`<svg viewBox="0 0 24 24" class="${i<stars?'on':''}" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z" fill="${i<stars?'var(--hl)':'var(--line)'}" stroke="var(--ink)" stroke-width="1" stroke-linejoin="round"/></svg>`).join('');
+  $('#stars').setAttribute('aria-label',`${stars} yıldız`);
+  const titles=['Pes etmek yok!','İyi başlangıç!','Çok iyi!','Açı Ustası!'];
+  $('#resTitle').textContent = G.lives<=0 && stars<2 ? 'Canların bitti!' : titles[stars];
+  $('#resMsg').textContent = stars===3 ? 'Açı çeşitlerini çok iyi kavradın. Bir sonraki oyunu dene!'
+    : stars===2 ? 'Neredeyse kusursuz. Aşağıdaki hatalarına bir göz at.'
+    : 'Laboratuvarda açıları biraz daha keşfet, sonra tekrar dene. Her denemede daha iyi olacaksın.';
+  $('#resScore').textContent=G.score; $('#resRight').textContent=`${n}/${G.qs.length}`; $('#resStreak').textContent=G.maxStreak;
+  $('#resBest').textContent = isBest && G.score>0 ? 'Yeni rekor! Bu oyundaki en yüksek puanın bu.' : (BEST[G.mode]?`Bu oyundaki rekorun: ${BEST[G.mode]} puan`:'');
+  $('#review').innerHTML = G.mistakes.length ? `<h3>Hatalarından öğren</h3><ul>${G.mistakes.map(x=>`<li><b>${x.q}</b><br>Senin cevabın: ${x.given} · Doğrusu: ${x.correct}<br><span class="qsub">${x.why}</span></li>`).join('')}</ul>` : '';
+  if(stars>=2){ play('win'); confetti(160); }
+}
+$('#againBtn').onclick=()=>startMode(G.mode);
+$('#menuBtn').onclick=()=>{ buildMenu(); show('menu'); };
+$('#labBtn').onclick=openLab;
+$('#homeBtn').onclick=()=>{ stopSweep(); buildMenu(); show('menu'); };
+$('#soundBtn').onclick=()=>{ muted=!muted; try{ localStorage.setItem('aciAvi.muted',muted?'1':'0'); }catch(e){} soundIcon(); if(!muted) play('pop'); };
+
+document.addEventListener('keydown',e=>{
+  if($('#play').hidden || !G) return;
+  if(G.mode==='tani' && !G.answered && /^[1-5]$/.test(e.key)){ const b=$('#opts').querySelectorAll('.opt')[+e.key-1]; if(b) choose(b); }
+  if(G.mode==='tahmin' && !G.answered && /^[1-4]$/.test(e.key)){ const b=$('#opts').querySelectorAll('.opt')[+e.key-1]; if(b) choose(b); }
+});
+
+soundIcon(); buildMenu(); startHero();
+</script>
+
+</body></html>

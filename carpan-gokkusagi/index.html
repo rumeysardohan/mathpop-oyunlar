@@ -1,0 +1,309 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Çarpan Gökkuşağı</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@500;700;800&display=swap">
+<style>
+/* Layout: sabit "gökyüzü" sahnesi — üstte sayı bulutu, ortada çarpan çiftlerini taşıyan gökkuşağı yayları, altta kesilecek sayı kartları şeridi. Tek (açık) tema bilinçli seçim: sınıf tahtası/yazdırılabilir etkinlik görünümü. */
+:root{
+  color-scheme: light;
+  --sky:#eaf6ff; --sky2:#d7eeff; --paper:#fffdf6; --ink:#1d2340; --ink-soft:#56607f;
+  --line:#c9d6ea; --grass:#6cc24a; --grass-dk:#3f8f2a; --gold:#f6b82a; --wood:#a8662f;
+  --good:#1f9d55; --bad:#e0413a;
+  --r1:#ef4136; --r2:#f7882f; --r3:#fcd03a; --r4:#7bcf4a; --r5:#33bfa8; --r6:#3a9cf0; --r7:#6a6be8; --r8:#a65ad8;
+  --f-display:"Baloo 2","Nunito","Trebuchet MS",system-ui,sans-serif;
+  --f-body:"Nunito","Segoe UI",system-ui,sans-serif;
+}
+html,body{min-height:100%}
+body{background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 60%,var(--paper) 100%);color:var(--ink);font-family:var(--f-body);font-size:16px}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px 32px;display:flex;flex-direction:column;gap:14px}
+
+header{text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(30px,7vw,48px);line-height:1;margin:0;letter-spacing:.5px;text-wrap:balance}
+h1 span{display:inline-block}
+.sign{font-family:var(--f-display);font-weight:800;font-size:clamp(16px,4vw,21px);background:#e9a85a;color:#3a1f08;padding:2px 18px;border-radius:8px;border:2px solid var(--wood);transform:rotate(-1.5deg);box-shadow:0 3px 0 var(--wood)}
+
+.levels{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center}
+.lv{font:800 15px/1 var(--f-body);min-width:44px;height:38px;padding:0 8px;border-radius:12px;border:2px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;position:relative;font-variant-numeric:tabular-nums}
+.lv[aria-current="true"]{border-color:var(--ink);background:var(--ink);color:#fff}
+.lv .st{position:absolute;right:-4px;top:-7px;font-size:11px;color:var(--gold);text-shadow:0 0 2px #7a5200}
+.custom{display:flex;gap:6px;align-items:center}
+.custom input{width:72px;height:38px;border-radius:12px;border:2px dashed var(--ink-soft);font:800 16px var(--f-body);text-align:center;background:#fff;color:var(--ink)}
+.custom button{height:38px}
+
+.howto{background:var(--paper);border:2px solid #f3a54a;border-radius:14px;padding:10px 14px;font-weight:700;font-size:15px;line-height:1.45;color:var(--ink)}
+.howto b{color:#c2551b}
+
+/* sahne */
+.stage{position:relative;padding-top:8px}
+.cloud{position:relative;z-index:3;margin:0 auto -14px;width:max-content;min-width:120px;background:#fff;border-radius:60px;padding:4px 30px 6px;box-shadow:0 4px 0 #bfe0fa, 0 0 0 3px #bfe0fa inset;text-align:center}
+.cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%;z-index:-1}
+.cloud::before{width:56px;height:56px;left:14px;top:-20px}
+.cloud::after{width:70px;height:70px;right:12px;top:-28px}
+.cloud .num{font-family:var(--f-display);font-weight:800;font-size:clamp(44px,10vw,60px);line-height:1;font-variant-numeric:tabular-nums}
+.rainbow{position:relative;margin:0 auto}
+.band{position:absolute;border-radius:50% 50% 0 0 / 100% 100% 0 0}
+.row{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;z-index:2}
+.times{font-family:var(--f-display);font-weight:800;font-size:22px;width:18px;text-align:center;color:var(--ink)}
+.slot{width:var(--sw);height:var(--sh);border-radius:14px;background:#fff;border:3px dashed rgba(29,35,64,.35);font:800 22px var(--f-display);color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0;font-variant-numeric:tabular-nums;transition:transform .15s}
+.slot.filled{border-style:solid;border-color:var(--good);background:#f0fff4;cursor:default}
+.slot.target{border-color:var(--ink);animation:pulse 1s ease-in-out infinite}
+.slot.hint{box-shadow:0 0 0 4px var(--gold)}
+.slot.shake{animation:shake .4s}
+.row.done .times{color:var(--good)}
+.row .eq{position:absolute;left:100%;margin-left:8px;white-space:nowrap;font:800 13px var(--f-body);background:rgba(255,255,255,.9);border-radius:8px;padding:2px 6px;color:var(--good)}
+.ground{position:absolute;left:-16px;right:-16px;bottom:-10px;height:34px;background:var(--grass);border-radius:50% 50% 0 0/100% 100% 0 0;z-index:1;box-shadow:inset 0 -8px 0 var(--grass-dk)}
+.chest{position:absolute;right:-6px;bottom:-4px;width:clamp(74px,16vw,104px);z-index:4}
+.chest .lid{transform-origin:12% 44%;transition:transform .6s cubic-bezier(.3,1.6,.5,1)}
+.chest.open .lid{transform:rotate(-38deg) translate(-4px,-6px)}
+.chest .glow{opacity:0;transition:opacity .5s}
+.chest.open .glow{opacity:1}
+
+.msg{min-height:52px;border-radius:14px;padding:10px 14px;font-weight:800;font-size:15px;line-height:1.4;background:#fff;border:2px solid var(--line);display:flex;align-items:center;gap:10px}
+.msg.good{border-color:var(--good);color:#11663a;background:#effcf3}
+.msg.bad{border-color:var(--bad);color:#9d1f19;background:#fff1f0}
+.msg .ic{font-family:var(--f-display);font-size:22px;line-height:1}
+
+.trayhead{display:flex;align-items:center;gap:8px;font:800 13px var(--f-body);color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase}
+.trayhead::after{content:"";flex:1;border-top:2px dashed var(--ink-soft)}
+.tray{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:10px}
+.card{position:relative;aspect-ratio:1;max-width:100%;border-radius:14px;border:3px solid var(--cb);background:var(--cf);font:800 clamp(24px,6vw,32px)/1 var(--f-display);color:var(--ink);cursor:pointer;transition:transform .15s, box-shadow .15s;font-variant-numeric:tabular-nums;outline-offset:3px}
+.card:hover{transform:translateY(-2px)}
+.card.sel{transform:translateY(-6px) scale(1.06);box-shadow:0 8px 0 var(--ink);border-color:var(--ink)}
+.card.used{visibility:hidden}
+.card.x{cursor:default;opacity:.55;transform:none}
+.card.x::after{content:"";position:absolute;inset:10%;background:linear-gradient(45deg,transparent 45%,var(--bad) 45% 55%,transparent 55%),linear-gradient(-45deg,transparent 45%,var(--bad) 45% 55%,transparent 55%)}
+.card.x .tag{position:absolute;left:50%;bottom:-9px;transform:translateX(-50%);font:800 9px var(--f-body);background:var(--bad);color:#fff;border-radius:6px;padding:2px 4px;white-space:nowrap;letter-spacing:.02em}
+.card.hint{animation:pulse 1s ease-in-out infinite;box-shadow:0 0 0 4px var(--gold)}
+
+.tools{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.btn{font:800 15px var(--f-body);height:42px;padding:0 16px;border-radius:12px;border:2px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;box-shadow:0 3px 0 var(--ink)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
+.btn.primary{background:var(--gold)}
+.stats{text-align:center;font-weight:700;font-size:14px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+
+.win{position:fixed;inset:0;z-index:20;background:rgba(29,35,64,.45);display:grid;place-items:center;padding:20px max(16px,env(safe-area-inset-right,0px)) 20px max(16px,env(safe-area-inset-left,0px))}
+.win .box{background:var(--paper);border-radius:22px;border:3px solid var(--gold);max-width:420px;width:100%;padding:20px;text-align:center;display:flex;flex-direction:column;gap:10px;box-shadow:0 8px 0 #c98f12;max-height:90vh;overflow:auto}
+.win h2{font-family:var(--f-display);font-size:30px;margin:0;line-height:1.1}
+.win .stars{font-size:40px;letter-spacing:6px;color:var(--gold);line-height:1}
+.win .stars .off{color:#d9d2bf}
+.win .eqs{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font:800 16px var(--f-display);font-variant-numeric:tabular-nums}
+.win .list{font-weight:700;line-height:1.5}
+.win .list b{font-family:var(--f-display);font-size:18px}
+
+button:focus-visible,input:focus-visible{outline:3px solid #3a9cf0;outline-offset:2px}
+@keyframes pulse{50%{transform:scale(1.06)}}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1 aria-label="Çarpan Gökkuşağı"><span style="color:var(--r1)">Ç</span><span style="color:var(--r2)">a</span><span style="color:#e0a800">r</span><span style="color:var(--grass-dk)">p</span><span style="color:var(--r5)">a</span><span style="color:var(--r6)">n</span> <span style="color:var(--r7)">G</span><span style="color:var(--r8)">ö</span><span style="color:var(--r1)">k</span><span style="color:var(--r2)">k</span><span style="color:#e0a800">u</span><span style="color:var(--grass-dk)">ş</span><span style="color:var(--r5)">a</span><span style="color:var(--r6)">ğ</span><span style="color:var(--r7)">ı</span></h1>
+    <div class="sign">Hazineye Ulaş!</div>
+  </header>
+
+  <nav class="levels" id="levels" aria-label="Sayı seç"></nav>
+
+  <div class="howto">Bir kart seç, sonra yaydaki kutuya dokun. <b>En dıştaki yaydan başla:</b> küçük çarpan sola, eşi sağa. Dikkat, kartların arasında <b>çarpan olmayan sayılar</b> da var!</div>
+
+  <section class="stage" aria-label="Gökkuşağı">
+    <div class="cloud"><div class="num" id="target">24</div></div>
+    <div class="rainbow" id="rainbow"></div>
+  </section>
+
+  <div class="msg" id="msg" role="status" aria-live="polite"><span class="ic">☁</span><span id="msgText">Bir sayı kartı seç.</span></div>
+
+  <div class="trayhead">Sayı kartları</div>
+  <div class="tray" id="tray"></div>
+
+  <div class="stats" id="stats"></div>
+  <div class="tools">
+    <button class="btn" id="hintBtn">İpucu</button>
+    <button class="btn" id="resetBtn">Baştan başla</button>
+    <span class="custom"><input id="customN" type="number" inputmode="numeric" min="4" max="200" placeholder="Sayı" aria-label="Kendi sayın"><button class="btn primary" id="customBtn">Oyna</button></span>
+  </div>
+</div>
+
+<div class="win" id="win" hidden>
+  <div class="box">
+    <h2>Hazineye ulaştın!</h2>
+    <div class="stars" id="winStars"></div>
+    <div class="list" id="winList"></div>
+    <div class="eqs" id="winEqs"></div>
+    <button class="btn primary" id="nextBtn">Sonraki sayı</button>
+    <button class="btn" id="againBtn">Bu sayıyı tekrar oyna</button>
+  </div>
+</div>
+
+<script>
+const LEVELS=[12,18,20,24,30,36,40,48,60,72,100];
+const BAND=["--r1","--r2","--r3","--r4","--r5","--r6","--r7","--r8"];
+const PASTEL=[["#ffd9e2","#f28da5"],["#ffe2cc","#f2a66b"],["#fff1b8","#e8c23a"],["#d6f5c9","#7cc464"],["#cdeefe","#5fb5ea"],["#e3dafc","#9d84e6"],["#fbd8f6","#d77ccb"],["#d2f3ec","#4fbfa6"]];
+const $=id=>document.getElementById(id);
+let S={};
+
+// Türkçe ilgi hâli eki: 24'ün, 12'nin, 30'un ...
+function gen(n){
+  const ones={1:"in",2:"nin",3:"ün",4:"ün",5:"in",6:"nın",7:"nin",8:"in",9:"un"};
+  const tens={1:"un",2:"nin",3:"un",4:"ın",5:"nin",6:"ın",7:"in",8:"in",9:"ın"};
+  let s;
+  if(n%10) s=ones[n%10];
+  else if(n%100) s=tens[(n/10|0)%10];
+  else if(n%1000) s="ün"; else s="in";
+  return n+"'"+s;
+}
+function divisors(n){const d=[];for(let i=1;i<=n;i++) if(n%i===0) d.push(i);return d}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a}
+function gcd(a,b){while(b){[a,b]=[b,a%b]}return a}
+function load(){try{return JSON.parse(localStorage.getItem("cg-stars")||"{}")}catch(e){return{}}}
+function save(o){try{localStorage.setItem("cg-stars",JSON.stringify(o))}catch(e){}}
+
+function start(n){
+  const d=divisors(n), pairs=[];
+  for(const a of d){ if(a*a>n) break; pairs.push(a*a===n?{vals:[a],f:[false]}:{vals:[a,n/a],f:[false,false]}); }
+  // çeldiriciler: çarpan olmayan, tercihen ortak böleni olan "aldatıcı" sayılar
+  const lim=Math.min(n-1,Math.max(30,Math.ceil(n*0.75)));
+  const non=[];for(let i=2;i<=lim;i++) if(n%i) non.push(i);
+  const tricky=shuffle(non.filter(i=>gcd(i,n)>1)), other=shuffle(non.filter(i=>gcd(i,n)===1));
+  const k=Math.max(3,Math.min(6,Math.round(d.length*0.6)));
+  const dist=[]; while(dist.length<k&&(tricky.length||other.length)){ const src=(dist.length%3!==2&&tricky.length)?tricky:(other.length?other:tricky); dist.push(src.pop()); }
+  const cards=shuffle([...d,...dist].map(v=>({v,st:"free"})));
+  const pal=shuffle(PASTEL.slice());cards.forEach((c,i)=>c.c=pal[i%pal.length]);
+  S={n,pairs,cards,sel:null,mistakes:0,hints:0,hint:null};
+  $("win").hidden=true;
+  $("target").textContent=n;
+  renderLevels();buildRainbow();renderTray();
+  say(`${gen(n)} çarpan çiftlerini bul. ${pairs.length} yay seni bekliyor.`);
+}
+
+function renderLevels(){
+  const st=load(), nav=$("levels");nav.innerHTML="";
+  LEVELS.forEach(n=>{const b=document.createElement("button");b.className="lv";b.textContent=n;
+    if(n===S.n) b.setAttribute("aria-current","true");
+    if(st[n]){const s=document.createElement("span");s.className="st";s.textContent="★".repeat(st[n]);b.appendChild(s)}
+    b.onclick=()=>start(n);nav.appendChild(b)});
+}
+
+function buildRainbow(){
+  const rb=$("rainbow"), W=rb.parentElement.clientWidth, N=S.pairs.length;
+  const small=W<520, sw=small?58:74, sh=small?40:46, t=sh+14;
+  const tx=Math.min(t*0.8,(W/2-46)/N), inner=small?66:84, H=N*t+inner;
+  rb.style.width=W+"px";rb.style.height=H+"px";rb.style.setProperty("--sw",sw+"px");rb.style.setProperty("--sh",sh+"px");
+  rb.innerHTML="";
+  for(let k=0;k<=N;k++){const b=document.createElement("div");b.className="band";
+    b.style.left=b.style.right=(k*tx)+"px";b.style.top=(k*t)+"px";b.style.bottom="0";
+    b.style.background=k<N?`var(${BAND[k]})`:"var(--sky)";if(k===N)b.style.background="linear-gradient(180deg,#fff,var(--sky))";
+    rb.appendChild(b)}
+  S.pairs.forEach((p,k)=>{const r=document.createElement("div");r.className="row";r.style.top=(k*t+(t-sh)/2)+"px";r.dataset.row=k;
+    p.vals.forEach((v,side)=>{
+      if(side===1){const x=document.createElement("span");x.className="times";x.textContent="×";r.appendChild(x)}
+      const s=document.createElement("button");s.className="slot";s.dataset.row=k;s.dataset.side=side;
+      s.setAttribute("aria-label",`${k+1}. yay, ${p.vals.length===1?"tek kutu":side?"sağ kutu":"sol kutu"}`);
+      s.onclick=()=>tapSlot(k,side,s);r.appendChild(s)});
+    if(p.vals.length===1){const x=document.createElement("span");x.className="times";x.textContent="× kendisi";x.style.width="auto";x.style.fontSize="15px";r.appendChild(x)}
+    rb.appendChild(r)});
+  const g=document.createElement("div");g.className="ground";rb.appendChild(g);
+  rb.insertAdjacentHTML("beforeend",chestSVG());
+  restoreFills();
+}
+function chestSVG(){return `<svg class="chest" id="chest" viewBox="0 0 120 110" aria-hidden="true">
+<g class="glow"><circle cx="60" cy="52" r="40" fill="#fff3a6" opacity=".7"/><path d="M60 0v20M28 10l10 16M92 10l-10 16M10 34l18 8M110 34l-18 8" stroke="#f6b82a" stroke-width="5" stroke-linecap="round"/></g>
+<rect x="14" y="54" width="92" height="50" rx="6" fill="#9a5a26" stroke="#5c3212" stroke-width="4"/>
+<g class="glow"><circle cx="38" cy="56" r="9" fill="#ffd23f" stroke="#c98f12" stroke-width="2"/><circle cx="56" cy="52" r="9" fill="#ffd23f" stroke="#c98f12" stroke-width="2"/><circle cx="74" cy="56" r="9" fill="#ffd23f" stroke="#c98f12" stroke-width="2"/><rect x="84" y="48" width="10" height="10" transform="rotate(45 89 53)" fill="#4cc3f0" stroke="#1b7aa8" stroke-width="2"/></g>
+<rect x="14" y="66" width="92" height="8" fill="#f6b82a" stroke="#5c3212" stroke-width="3"/>
+<rect x="52" y="64" width="16" height="20" rx="3" fill="#f6b82a" stroke="#5c3212" stroke-width="3"/><circle cx="60" cy="72" r="3" fill="#5c3212"/>
+<g class="lid"><path d="M12 56 Q12 24 60 24 Q108 24 108 56 Z" fill="#b06a2e" stroke="#5c3212" stroke-width="4"/><path d="M30 28 V56 M90 28 V56" stroke="#f6b82a" stroke-width="7"/></g>
+</svg>`}
+function restoreFills(){
+  S.pairs.forEach((p,k)=>p.vals.forEach((v,side)=>{if(p.f[side]){const s=slotEl(k,side);s.textContent=v;s.classList.add("filled")}}));
+  S.pairs.forEach((p,k)=>{if(p.f.every(Boolean)) markRow(k,false)});
+  updateTargets();
+}
+function slotEl(k,side){return document.querySelector(`.slot[data-row="${k}"][data-side="${side}"]`)}
+
+function renderTray(){
+  const tr=$("tray");tr.innerHTML="";
+  S.cards.forEach((c,i)=>{const b=document.createElement("button");b.className="card";b.style.setProperty("--cf",c.c[0]);b.style.setProperty("--cb",c.c[1]);
+    b.textContent=c.v;b.dataset.i=i;
+    if(c.st==="used") b.classList.add("used");
+    if(c.st==="x"){b.classList.add("x");b.insertAdjacentHTML("beforeend",'<span class="tag">çarpan değil</span>');b.setAttribute("aria-label",c.v+", çarpan değil");}
+    if(S.sel===i) b.classList.add("sel");
+    if(S.hint&&S.hint.card===i) b.classList.add("hint");
+    b.onclick=()=>tapCard(i);tr.appendChild(b)});
+  const left=S.pairs.reduce((a,p)=>a+p.f.filter(x=>!x).length,0);
+  $("stats").textContent=`Boş kutu: ${left} · Hata: ${S.mistakes} · İpucu: ${S.hints}`;
+}
+function tapCard(i){
+  const c=S.cards[i];if(c.st!=="free") return;
+  S.sel=S.sel===i?null:i;clearHint();renderTray();updateTargets();
+  if(S.sel!==null) say(`${c.v} seçildi. Şimdi yaydaki bir kutuya dokun.`);
+}
+function updateTargets(){document.querySelectorAll(".slot").forEach(s=>s.classList.toggle("target",S.sel!==null&&!s.classList.contains("filled")))}
+
+function tapSlot(k,side,el){
+  const p=S.pairs[k];if(p.f[side]) return;
+  if(S.sel===null){say("Önce aşağıdan bir sayı kartı seç.");return}
+  const ci=S.sel,c=S.cards[ci],v=c.v,n=S.n;S.sel=null;clearHint();
+  if(n%v!==0){
+    c.st="x";S.mistakes++;shake(el);
+    say(`${v}, ${gen(n)} çarpanı değil. ${n} ÷ ${v} = ${Math.floor(n/v)}, kalan ${n%v}.`,"bad");
+  } else if(v===p.vals[side]){
+    c.st="used";p.f[side]=true;el.textContent=v;el.classList.add("filled");
+    if(p.f.every(Boolean)){markRow(k,true);
+      const eq=p.vals.length===1?`${v} × ${v} = ${n}`:`${p.vals[0]} × ${p.vals[1]} = ${n}`;
+      if(S.pairs.every(q=>q.f.every(Boolean))){say(`${eq} ✓ Tüm yaylar tamam!`,"good");renderTray();updateTargets();setTimeout(win,500);return}
+      say(`${eq} ✓ Yay tamamlandı!`,"good");
+    } else say(`${v} doğru yerde! Şimdi eşini bul: ${v} × ? = ${n}`,"good");
+  } else {
+    S.mistakes++;shake(el);
+    const partner=n/v, isSmall=v<=partner;
+    const wantSide=p.vals.length===1?"ortadaki":(isSmall?"sol":"sağ");
+    let why;
+    if(p.vals.length>1&&isSmall&&side===1) why=`Küçük çarpan sola yazılır.`;
+    else if(p.vals.length>1&&!isSmall&&side===0) why=`Büyük çarpan sağa yazılır.`;
+    else why=`Yaylar dıştan içe sırayla dolar: en dışta 1, sonra bir sonraki en küçük çarpan.`;
+    say(`${v} gerçekten ${gen(n)} çarpanı (${v} × ${partner} = ${n}) ama bu kutunun sayısı değil. ${why}`,"bad");
+  }
+  renderTray();updateTargets();
+}
+function markRow(k,anim){const r=document.querySelector(`.row[data-row="${k}"]`);r.classList.add("done")}
+function shake(el){el.classList.remove("shake");void el.offsetWidth;el.classList.add("shake")}
+function say(t,kind){const m=$("msg");m.className="msg"+(kind?" "+kind:"");$("msgText").textContent=t;m.querySelector(".ic").textContent=kind==="good"?"✓":kind==="bad"?"✗":"☁"}
+
+function clearHint(){S.hint=null;document.querySelectorAll(".slot.hint").forEach(s=>s.classList.remove("hint"))}
+$("hintBtn").onclick=()=>{
+  for(let k=0;k<S.pairs.length;k++){const p=S.pairs[k];for(let side=0;side<p.vals.length;side++) if(!p.f[side]){
+    const ci=S.cards.findIndex(c=>c.st==="free"&&c.v===p.vals[side]);
+    S.hints++;S.sel=null;clearHint();S.hint={card:ci};renderTray();updateTargets();slotEl(k,side).classList.add("hint");
+    const other=p.vals.length===1?null:p.vals[1-side];
+    say(side===0?`Sıradaki en küçük çarpanı düşün: ${S.n} hangi sayıya kalansız bölünür? Parlayan kart parlayan kutuya.`:`${other} × ? = ${S.n}. ${S.n} ÷ ${other} işlemini yap.`);
+    return}}
+};
+$("resetBtn").onclick=()=>start(S.n);
+$("customBtn").onclick=()=>{
+  const n=parseInt($("customN").value,10);
+  if(!(n>=4&&n<=200)){say("4 ile 200 arasında bir sayı yaz.","bad");return}
+  if(divisors(n).length>16){say(`${n} çok fazla çarpana sahip (${divisors(n).length} tane). Daha küçük bir sayı dene.`,"bad");return}
+  start(n);
+};
+$("customN").addEventListener("keydown",e=>{if(e.key==="Enter")$("customBtn").click()});
+
+function win(){
+  $("chest").classList.add("open");
+  const bad=S.mistakes+S.hints, stars=bad===0?3:bad<=2?2:1, st=load();
+  st[S.n]=Math.max(st[S.n]||0,stars);save(st);renderLevels();
+  $("winStars").innerHTML="★".repeat(stars)+`<span class="off">${"★".repeat(3-stars)}</span>`;
+  const d=divisors(S.n);
+  $("winList").innerHTML=`${gen(S.n)} çarpanları (${d.length} tane):<br><b>${d.join(", ")}</b>`;
+  $("winEqs").innerHTML=S.pairs.map(p=>`<div>${p.vals[0]} × ${p.vals[1]??p.vals[0]} = ${S.n}</div>`).join("");
+  setTimeout(()=>{$("win").hidden=false;$("nextBtn").focus()},700);
+}
+$("nextBtn").onclick=()=>{const i=LEVELS.indexOf(S.n);start(LEVELS[(i+1)%LEVELS.length]>S.n||i<0?LEVELS[(i+1)%LEVELS.length]:LEVELS[0])};
+$("againBtn").onclick=()=>start(S.n);
+
+let rt;addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(()=>{const open=$("chest")?.classList.contains("open");buildRainbow();if(open)$("chest").classList.add("open")},150)});
+start(24);
+</script>
+
+</body></html>

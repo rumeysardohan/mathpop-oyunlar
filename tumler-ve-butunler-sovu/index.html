@@ -1,0 +1,794 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Tümler ve Bütünler Şovu</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800;900&display=swap">
+<style>
+/* Layout: a TV game show. Moving sunset-stage background, hosts T and B on the left, the question card on the right, team scoreboard across the top */
+:root{
+  color-scheme:dark;
+  --bg1:#3a0b8c; --bg2:#8e1fb6; --bg3:#ff3d7f; --bg4:#ff9a2e;
+  --card:#ffffff; --card2:#f3eefe; --ink:#1e1242; --muted:#5f5689; --line:#ddd3f5;
+  --tum:#14bff0; --tum-d:#0877a8; --but:#ff8a1f; --but-d:#c25400;
+  --x:#ffd400; --ok:#16b865; --bad:#ff3d5a; --glass:rgba(255,255,255,.14); --glass-b:rgba(255,255,255,.28); --on:#ffffff;
+  --t0:#3d7bff; --t1:#ff4fa0; --t2:#1fbf6e; --t3:#ffb300;
+  --f-display:'Fredoka','Trebuchet MS',system-ui,sans-serif;
+  --f-body:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--bg1)}
+body{
+  margin:0;min-height:100vh;color:var(--on);font-family:var(--f-body);font-size:16px;line-height:1.5;
+  background:linear-gradient(125deg,var(--bg1),var(--bg2),var(--bg3),var(--bg4),var(--bg2),var(--bg1));
+  background-size:400% 400%;animation:bgmove 26s ease-in-out infinite;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px 40px;
+}
+@keyframes bgmove{0%{background-position:0% 40%}50%{background-position:100% 60%}100%{background-position:0% 40%}}
+#bgfx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60}
+.app{position:relative;z-index:1;max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.05;text-wrap:balance}
+p{margin:0}
+button,input,select{font:inherit}
+button{cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--x);outline-offset:3px}
+
+/* header */
+.top{display:flex;align-items:center;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;text-align:left}
+.logo b{font-family:var(--f-display);font-size:1.55rem;font-weight:700;display:block;line-height:1;text-shadow:0 3px 0 rgba(0,0,0,.25)}
+.logo small{font-size:.8rem;opacity:.85;font-weight:700;letter-spacing:.04em}
+.logo-badge{display:flex;gap:3px}
+.logo-badge span{width:30px;height:38px;border-radius:9px;display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:1.4rem;color:#fff;box-shadow:0 3px 0 rgba(0,0,0,.3)}
+.icon-btn{margin-left:auto;width:44px;height:44px;border-radius:14px;border:2px solid var(--glass-b);background:var(--glass);display:grid;place-items:center}
+.icon-btn svg{width:22px;height:22px}
+
+/* generic */
+.card{background:var(--card);color:var(--ink);border-radius:26px;box-shadow:0 8px 0 rgba(30,8,70,.35)}
+.glass{background:var(--glass);border:2px solid var(--glass-b);border-radius:22px;backdrop-filter:blur(6px)}
+.btn{border:0;border-radius:16px;padding:12px 22px;font-family:var(--f-display);font-weight:600;font-size:1.1rem;background:var(--card);color:var(--ink);box-shadow:0 5px 0 rgba(30,8,70,.35);transition:transform .1s,box-shadow .1s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(30,8,70,.35)}
+.btn.go{background:var(--x);color:var(--ink);font-size:1.3rem;padding:14px 30px}
+.btn.ghost{background:var(--glass);color:var(--on);border:2px solid var(--glass-b);box-shadow:none}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+
+/* setup */
+.setup{display:grid;grid-template-columns:1fr 1.15fr;gap:22px;align-items:center}
+.setup-hero{display:flex;flex-direction:column;gap:16px;min-width:0}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-weight:800;font-size:.78rem;opacity:.9}
+.setup-hero h1{font-size:clamp(2.4rem,6.4vw,4.2rem);font-weight:700;text-shadow:0 5px 0 rgba(0,0,0,.22)}
+.setup-hero h1 .t{color:var(--tum);-webkit-text-stroke:0}
+.setup-hero h1 .b{color:var(--x)}
+.duo{display:flex;align-items:flex-end;gap:10px}
+.duo .mascot{width:150px}
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rule{border-radius:18px;padding:12px 14px;color:var(--ink);background:var(--card)}
+.rule b{font-family:var(--f-display);font-size:1.15rem;display:block}
+.rule .eq{font-family:var(--f-display);font-weight:700;font-size:1.5rem}
+.rule.tum .eq{color:var(--tum-d)} .rule.but .eq{color:var(--but-d)}
+.setup-card{padding:22px;display:flex;flex-direction:column;gap:16px}
+.setup-card h2{font-size:1.7rem}
+.teams{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.team-in{display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:16px;padding:8px 10px;transition:opacity .15s}
+.team-in.off{opacity:.45}
+.team-in .sw{width:14px;height:40px;border-radius:7px;flex:none}
+.team-in input[type=text]{flex:1;min-width:0;border:0;background:transparent;font-weight:800;color:var(--ink);font-size:1rem;padding:4px 2px;border-bottom:2px dashed var(--line);border-radius:0}
+.team-in input[type=text]:focus{outline:none;border-bottom-color:var(--ink)}
+.team-in input[type=checkbox]{width:22px;height:22px;accent-color:var(--bg2);flex:none}
+.opts-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opts-row label{display:flex;flex-direction:column;gap:4px;font-weight:800;font-size:.85rem;color:var(--muted)}
+.opts-row select{border:2px solid var(--line);border-radius:12px;padding:8px 10px;color:var(--ink);background:var(--card2);font-weight:800}
+.points{font-size:.85rem;color:var(--muted);background:var(--card2);border-radius:14px;padding:10px 14px}
+.points b{color:var(--ink)}
+.err{color:var(--bad);font-weight:800;font-size:.9rem;min-height:1.2em}
+
+/* scoreboard */
+.board{display:grid;gap:10px}
+.tcard{position:relative;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:18px;background:var(--glass);border:3px solid transparent;transition:transform .2s,background .2s;min-width:0}
+.tcard.active{background:var(--card);color:var(--ink);transform:translateY(-3px);box-shadow:0 6px 0 rgba(30,8,70,.35)}
+.tcard .sw{width:12px;height:40px;border-radius:6px;flex:none}
+.tcard .nm{font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.95rem}
+.tcard .st{font-size:.72rem;font-weight:800;opacity:.75;text-transform:uppercase;letter-spacing:.06em}
+.tcard .sc{margin-left:auto;font-family:var(--f-display);font-weight:700;font-size:1.9rem;font-variant-numeric:tabular-nums}
+.tcard .who{min-width:0}
+.float{position:absolute;right:12px;top:-8px;font-family:var(--f-display);font-weight:700;font-size:1.4rem;color:var(--x);text-shadow:0 2px 0 rgba(0,0,0,.4);animation:floatUp 1.3s forwards;pointer-events:none}
+@keyframes floatUp{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-36px)}}
+
+/* game */
+.round-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.round-name{font-family:var(--f-display);font-weight:700;font-size:1.35rem;text-shadow:0 2px 0 rgba(0,0,0,.25)}
+.qcount{font-weight:800;opacity:.9;font-variant-numeric:tabular-nums}
+.mult{background:var(--x);color:var(--ink);font-weight:900;border-radius:10px;padding:2px 10px;font-size:.85rem}
+.stage{display:grid;grid-template-columns:290px 1fr;gap:18px;align-items:start}
+.host{display:flex;flex-direction:column;align-items:center;gap:6px;position:sticky;top:12px}
+.bubble{position:relative;background:var(--card);color:var(--ink);border-radius:20px;padding:12px 16px;font-weight:800;font-size:1rem;line-height:1.35;box-shadow:0 6px 0 rgba(30,8,70,.3);width:100%;min-height:72px}
+.bubble::after{content:"";position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);border:14px solid transparent;border-bottom:0;border-top-color:var(--card)}
+.bubble .who{display:block;font-family:var(--f-display);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.mascot{width:200px;max-width:100%;filter:drop-shadow(0 8px 0 rgba(30,8,70,.3))}
+.mascot svg{width:100%;height:auto;display:block;overflow:visible}
+.bob{animation:bob 2.4s ease-in-out infinite}
+.hop{animation:hop .5s ease-out 2}
+.droop{animation:droop .6s ease-out forwards}
+.tilt{animation:tilt 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+@keyframes hop{40%{transform:translateY(-26px) scale(1.04,.96)}}
+@keyframes droop{to{transform:translateY(6px) rotate(-4deg)}}
+@keyframes tilt{50%{transform:rotate(5deg)}}
+
+.qcard{padding:20px 22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.qhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.qtag{font-weight:900;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:10px;color:#fff}
+.turn{font-weight:900;font-size:.9rem;display:flex;align-items:center;gap:8px}
+.turn i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:700;font-size:1.4rem;font-variant-numeric:tabular-nums}
+.tbar{height:12px;border-radius:6px;background:var(--card2);overflow:hidden}
+.tbar span{display:block;height:100%;background:linear-gradient(90deg,var(--ok),var(--x));border-radius:6px;transition:width .1s linear}
+.tbar.low span{background:var(--bad)}
+.qtext{font-family:var(--f-display);font-weight:600;font-size:clamp(1.35rem,3vw,1.8rem);line-height:1.2}
+.visual{background:var(--card2);border-radius:20px;display:flex;justify-content:center;padding:6px}
+.visual svg{width:100%;max-width:420px;height:auto}
+.formula{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding:16px}
+.formula div{border-radius:16px;padding:10px 16px;font-family:var(--f-display);font-weight:700;font-size:1.25rem;background:var(--card);border:3px solid var(--line);opacity:.55}
+.formula div.on{opacity:1}
+.formula .tum.on{border-color:var(--tum);color:var(--tum-d)}
+.formula .but.on{border-color:var(--but);color:var(--but-d)}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ans{display:flex;align-items:center;gap:12px;border:3px solid var(--line);border-radius:18px;background:var(--card);color:var(--ink);padding:10px 14px;text-align:left;font-family:var(--f-display);font-weight:700;font-size:1.45rem;box-shadow:0 4px 0 var(--line);transition:transform .1s,border-color .1s;font-variant-numeric:tabular-nums;min-width:0}
+.ans:hover:not(:disabled){transform:translateY(-2px);border-color:var(--bg2)}
+.ans:active:not(:disabled){transform:translateY(3px);box-shadow:none}
+.ans .k{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--card2);font-size:1rem;flex:none}
+.ans:disabled{cursor:default}
+.ans.gone{opacity:.25;text-decoration:line-through}
+.ans.wrong{border-color:var(--bad);background:#ffe6ea}
+.ans.right{border-color:var(--ok);background:#ddf8e9;animation:pulse .6s 2}
+@keyframes pulse{50%{transform:scale(1.03)}}
+.jokers{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.joker{border:2px dashed var(--muted);background:transparent;color:var(--ink);border-radius:12px;padding:6px 12px;font-weight:900;font-size:.88rem}
+.joker:disabled{opacity:.35;cursor:not-allowed}
+.jlab{font-size:.78rem;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.steal{border-radius:18px;padding:12px 14px;background:#fff4c2;border:3px solid var(--x);display:flex;flex-direction:column;gap:10px}
+.steal b{font-family:var(--f-display);font-size:1.2rem}
+.steal-btns{display:flex;gap:8px;flex-wrap:wrap}
+.steal-btns button{border:0;border-radius:12px;padding:8px 14px;font-weight:900;color:#fff;box-shadow:0 3px 0 rgba(0,0,0,.25)}
+.steal-btns .none{background:var(--card);color:var(--ink);border:2px solid var(--line);box-shadow:none}
+.reveal{border-radius:18px;padding:12px 16px;border:3px solid;display:flex;flex-direction:column;gap:4px;animation:pop .3s}
+.reveal.ok{border-color:var(--ok);background:#e5faef}
+.reveal.no{border-color:var(--bad);background:#ffeef1}
+.reveal .h{font-family:var(--f-display);font-weight:700;font-size:1.3rem}
+.reveal.ok .h{color:#0c8a4a} .reveal.no .h{color:#d1213d}
+.reveal .calc{font-family:var(--f-display);font-weight:700;font-size:1.25rem}
+@keyframes pop{from{transform:scale(.95);opacity:.4}to{transform:none;opacity:1}}
+.next-row{display:flex;justify-content:flex-end}
+.shake{animation:shake .4s}
+@keyframes shake{20%{transform:translateX(-8px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(3px)}}
+
+/* round intro */
+.intro{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;padding:24px}
+.intro .mascots{display:flex;gap:8px;align-items:flex-end}
+.intro .mascot{width:190px}
+.intro-text{display:flex;flex-direction:column;gap:12px;min-width:0}
+.intro-text .eyebrow{color:var(--bg2)}
+.intro-text h2{font-size:clamp(2rem,5vw,3.2rem);font-weight:700}
+.intro-text p{font-size:1.1rem;color:var(--muted);font-weight:700}
+.mini-standing{display:flex;gap:8px;flex-wrap:wrap}
+.mini-standing span{border-radius:10px;padding:4px 10px;font-weight:900;color:#fff;font-size:.88rem}
+
+/* results */
+.result{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+.result h2{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:700;text-shadow:0 5px 0 rgba(0,0,0,.22)}
+.podium-wrap{display:flex;align-items:flex-end;justify-content:center;gap:12px;width:100%}
+.podium-wrap .mascot{width:130px;flex:none}
+.podium{display:flex;align-items:flex-end;gap:10px;min-width:0}
+.pod{display:flex;flex-direction:column;align-items:center;gap:6px;width:130px;min-width:0}
+.pod .nm{font-weight:900;font-size:1rem;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pod .sc{font-family:var(--f-display);font-weight:700;font-size:1.6rem}
+.pod .blk{width:100%;border-radius:16px 16px 6px 6px;display:grid;place-items:start center;padding-top:8px;font-family:var(--f-display);font-weight:700;font-size:2.4rem;color:#fff;box-shadow:0 6px 0 rgba(30,8,70,.35);animation:rise .7s both}
+@keyframes rise{from{transform:scaleY(0);transform-origin:bottom}to{transform:scaleY(1);transform-origin:bottom}}
+.stats-list{padding:14px 18px;width:100%;max-width:560px;text-align:left;display:flex;flex-direction:column;gap:6px}
+.stats-list div{display:flex;justify-content:space-between;gap:10px;font-weight:800;font-variant-numeric:tabular-nums}
+.row-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+
+@media (max-width:880px){
+  .setup,.stage,.intro{grid-template-columns:1fr}
+  .host{position:static;flex-direction:row;align-items:center}
+  .host .mascot{width:110px;flex:none;order:-1}
+  .bubble::after{left:-12px;top:50%;bottom:auto;transform:translateY(-50%);border:12px solid transparent;border-left:0;border-right-color:var(--card)}
+  .intro .mascots{justify-content:center}
+  .intro .mascot{width:140px}
+  .podium-wrap .mascot{display:none}
+}
+@media (max-width:520px){
+  .teams,.opts-row,.answers,.rules{grid-template-columns:1fr}
+  .duo .mascot{width:110px}
+  .pod{width:88px}
+  .pod .blk{font-size:1.8rem}
+  .tcard .sc{font-size:1.5rem}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<canvas id="bgfx" aria-hidden="true"></canvas>
+<div class="app">
+  <header class="top">
+    <button class="logo" id="homeBtn" aria-label="Ayarlara dön">
+      <span class="logo-badge"><span style="background:var(--tum)">T</span><span style="background:var(--but)">B</span></span>
+      <span><b>Tümler ve Bütünler Şovu</b><small>Sınıf içi açı yarışması</small></span>
+    </button>
+    <button class="icon-btn" id="soundBtn" aria-label="Sesi kapat"></button>
+  </header>
+
+  <!-- SETUP -->
+  <section id="setup">
+    <div class="setup">
+      <div class="setup-hero">
+        <p class="eyebrow">Matematik yarışması · 3 tur</p>
+        <h1>Sahne <span class="t">T</span>'nin ve <span class="b">B</span>'nin!</h1>
+        <div class="duo"><div class="mascot bob" id="duoT"></div><div class="mascot bob" id="duoB" style="animation-delay:-1.2s"></div></div>
+        <div class="rules">
+          <div class="rule tum"><b>Tümler T</b><span class="eq">a + b = 90°</span><br><small>Toplamı 90° olan iki açı</small></div>
+          <div class="rule but"><b>Bütünler B</b><span class="eq">a + b = 180°</span><br><small>Toplamı 180° olan iki açı</small></div>
+        </div>
+      </div>
+      <form class="card setup-card" id="setupForm">
+        <h2>Takımlarınızı kurun</h2>
+        <div class="teams" id="teamInputs"></div>
+        <div class="opts-row">
+          <label for="qPer">Tur başına soru
+            <select id="qPer"><option value="4">4 soru (hızlı)</option><option value="6" selected>6 soru</option><option value="8">8 soru (uzun)</option></select>
+          </label>
+          <label for="tSec">Cevap süresi
+            <select id="tSec"><option value="20">20 saniye</option><option value="30" selected>30 saniye</option><option value="45">45 saniye</option></select>
+          </label>
+        </div>
+        <p class="points"><b>Puanlar:</b> doğru cevap 10 · sürenin ilk yarısında cevap +5 · çalma 5 · Final turunda hepsi ×2. Her takımın bir <b>50:50</b> ve bir <b>+15 sn</b> jokeri var. Yanlış cevaba puan düşmez; diğer takımlar soruyu çalabilir.</p>
+        <p class="err" id="setupErr" aria-live="polite"></p>
+        <button class="btn go" type="submit">Yarışmayı başlat</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ROUND INTRO -->
+  <section id="intro" hidden>
+    <div class="card intro">
+      <div class="mascots" id="introMascots"></div>
+      <div class="intro-text">
+        <p class="eyebrow" id="introEyebrow"></p>
+        <h2 id="introTitle"></h2>
+        <p id="introText"></p>
+        <div class="mini-standing" id="introStanding"></div>
+        <div><button class="btn go" id="introGo">Tura başla</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAME -->
+  <section id="game" hidden>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="board" id="board"></div>
+      <div class="round-bar"><span class="round-name" id="roundName"></span><span class="qcount" id="qcount"></span><span class="mult" id="multTag" hidden>Puanlar ×2</span></div>
+      <div class="stage">
+        <aside class="host">
+          <div class="bubble" id="bubble"></div>
+          <div class="mascot" id="hostMascot"></div>
+        </aside>
+        <div class="card qcard" id="qcard">
+          <div class="qhead">
+            <span class="qtag" id="qtag"></span>
+            <span class="turn" id="turn"></span>
+            <span class="timer" id="timer"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 9v4l3 2M9 2h6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg><span id="tnum">30</span></span>
+          </div>
+          <div class="tbar" id="tbar"><span id="tfill" style="width:100%"></span></div>
+          <p class="qtext" id="qtext"></p>
+          <div class="visual" id="visual"></div>
+          <div class="answers" id="answers"></div>
+          <div class="jokers" id="jokers"></div>
+          <div class="steal" id="steal" hidden></div>
+          <div class="reveal" id="reveal" hidden aria-live="polite"></div>
+          <div class="next-row"><button class="btn go" id="nextBtn" hidden>Devam</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="result" hidden>
+    <div class="result">
+      <p class="eyebrow">Yarışma bitti</p>
+      <h2 id="winTitle"></h2>
+      <div class="podium-wrap">
+        <div class="mascot" id="resT"></div>
+        <div class="podium" id="podium"></div>
+        <div class="mascot" id="resB"></div>
+      </div>
+      <div class="card stats-list" id="stats"></div>
+      <div class="row-btns">
+        <button class="btn go" id="againBtn">Rövanş</button>
+        <button class="btn ghost" id="setupBtn">Takımları değiştir</button>
+      </div>
+    </div>
+  </section>
+</div>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<script>
+/* ================= helpers ================= */
+const $=s=>document.querySelector(s);
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;};
+const rnd=(a,b,s=1)=>a+s*Math.floor(Math.random()*((b-a)/s+1));
+const pick=a=>a[Math.random()*a.length|0];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const f=n=>n.toFixed(1);
+const TEAM_COLORS=['var(--t0)','var(--t1)','var(--t2)','var(--t3)'];
+const DEFAULT_NAMES=['Mavi Şimşekler','Pembe Panterler','Yeşil Roketler','Sarı Yıldızlar'];
+
+/* ================= mascots ================= */
+function mouth(mood,mx,my){
+  if(mood==='cheer') return `<ellipse cx="${mx}" cy="${my+3}" rx="11" ry="9" fill="#3a0a2a"/><ellipse cx="${mx}" cy="${my+7}" rx="6" ry="3.5" fill="#ff6f8e"/>`;
+  const d={happy:`M${mx-13} ${my} Q${mx} ${my+14} ${mx+13} ${my}`,sad:`M${mx-12} ${my+7} Q${mx} ${my-5} ${mx+12} ${my+7}`,think:`M${mx-8} ${my+3} L${mx+10} ${my}`,idle:`M${mx-11} ${my} Q${mx} ${my+9} ${mx+11} ${my}`}[mood]||'';
+  return `<path d="${d}" fill="none" stroke="#3a0a2a" stroke-width="4" stroke-linecap="round"/>`;
+}
+function arms(mood,L,R,c){
+  const [lx,ly]=L,[rx,ry]=R;
+  const P={
+    idle:[[lx-18,ly+6,lx-24,ly+28],[rx+18,ry+6,rx+24,ry+28]],
+    happy:[[lx-22,ly+2,lx-32,ly-16],[rx+22,ry+2,rx+32,ry-16]],
+    cheer:[[lx-24,ly-18,lx-20,ly-52],[rx+24,ry-18,rx+20,ry-52]],
+    sad:[[lx-10,ly+18,lx-8,ly+40],[rx+10,ry+18,rx+8,ry+40]],
+    think:[[lx-18,ly+6,lx-24,ly+28],[rx+20,ry-4,rx-6,ry-20]]
+  }[mood]||[];
+  return P.map(([cx,cy,ex,ey],i)=>{const [sx,sy]=i?R:L;return `<path d="M${sx} ${sy} Q${cx} ${cy} ${ex} ${ey}" fill="none" stroke="${c}" stroke-width="8" stroke-linecap="round"/><circle cx="${ex}" cy="${ey}" r="8" fill="${c}"/>`;}).join('');
+}
+function eye(x,y,r,mood){
+  const off=mood==='think'?[3,-3]:mood==='sad'?[0,2]:[0,0];
+  return `<circle cx="${x}" cy="${y}" r="${r}" fill="#fff"/><circle cx="${x+off[0]}" cy="${y+off[1]}" r="${r*.48}" fill="#1e1242"/><circle cx="${x+off[0]+r*.2}" cy="${y+off[1]-r*.22}" r="${r*.16}" fill="#fff"/>`;
+}
+function brows(mood,a,b,y){
+  if(mood==='sad') return `<path d="M${a-9} ${y-2} L${a+7} ${y+3} M${b+9} ${y-2} L${b-7} ${y+3}" stroke="#1e1242" stroke-width="3.5" stroke-linecap="round"/>`;
+  if(mood==='think') return `<path d="M${a-8} ${y+1} Q${a} ${y-6} ${a+8} ${y+1} M${b-8} ${y-3} L${b+8} ${y-3}" stroke="#1e1242" stroke-width="3.5" stroke-linecap="round" fill="none"/>`;
+  return '';
+}
+function mascotT(mood='idle'){
+  const c='var(--tum)',d='var(--tum-d)';
+  const body=`<rect x="12" y="18" width="136" height="46" rx="16"/><rect x="56" y="40" width="48" height="122" rx="16"/>`;
+  return `<svg viewBox="-30 -50 220 240" role="img" aria-label="Tümler T karakteri">
+    <ellipse cx="68" cy="168" rx="15" ry="7" fill="${d}"/><ellipse cx="94" cy="168" rx="15" ry="7" fill="${d}"/>
+    ${arms(mood,[58,104],[102,104],d)}
+    <g fill="${d}" stroke="${d}" stroke-width="10" stroke-linejoin="round">${body}</g>
+    <g fill="${c}">${body}</g>
+    <rect x="20" y="22" width="120" height="10" rx="5" fill="#fff" opacity=".35"/>
+    <path d="M42 64 V78 H56" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    ${eye(58,41,12,mood)}${eye(102,41,12,mood)}${brows(mood,58,102,24)}
+    ${mouth(mood,80,84)}
+    <rect x="61" y="110" width="38" height="24" rx="9" fill="#fff"/>
+    <text x="80" y="127" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="16" fill="${d}">90°</text>
+  </svg>`;
+}
+function mascotB(mood='idle'){
+  const c='var(--but)',d='var(--but-d)';
+  const body=`<path d="M30 12 H94 C126 12 140 34 134 58 C131 70 124 78 116 84 C136 90 148 108 144 132 C140 156 122 168 98 168 H30 Z"/>`;
+  return `<svg viewBox="-30 -50 220 240" role="img" aria-label="Bütünler B karakteri">
+    <ellipse cx="54" cy="172" rx="15" ry="7" fill="${d}"/><ellipse cx="100" cy="172" rx="15" ry="7" fill="${d}"/>
+    ${arms(mood,[30,100],[140,104],d)}
+    <g fill="${d}" stroke="${d}" stroke-width="10" stroke-linejoin="round">${body}</g>
+    <g fill="${c}">${body}</g>
+    <line x1="38" y1="20" x2="38" y2="160" stroke="#fff" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" opacity=".7"/>
+    <rect x="50" y="26" width="66" height="44" rx="20" fill="#fff" opacity=".95"/>
+    ${eye(70,48,10,mood)}${eye(97,48,10,mood)}${brows(mood,70,97,33)}
+    <rect x="50" y="94" width="78" height="58" rx="24" fill="#fff" opacity=".95"/>
+    ${mouth(mood,89,108)}
+    <text x="89" y="142" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="16" fill="${d}">180°</text>
+  </svg>`;
+}
+const MOOD_ANIM={idle:'bob',happy:'hop',cheer:'hop',sad:'droop',think:'tilt'};
+function setMascot(el,who,mood){
+  el.innerHTML=who==='T'?mascotT(mood):mascotB(mood);
+  el.className='mascot '+(MOOD_ANIM[mood]||'');
+  if(mood==='happy'||mood==='cheer') el.addEventListener('animationend',()=>{ if(el.classList.contains('hop')) el.className='mascot bob'; },{once:true});
+}
+
+/* ================= sound ================= */
+let AC=null,muted=false;
+try{muted=localStorage.getItem('tbsov.muted')==='1';}catch(e){}
+const SND={
+  ok:[[523,0,.1],[659,.08,.1],[784,.16,.22]],bad:[[300,0,.16,'sawtooth'],[200,.14,.3,'sawtooth']],
+  tick:[[1100,0,.05]],tock:[[1500,0,.07]],pop:[[600,0,.07]],steal:[[440,0,.1],[660,.1,.1],[440,.2,.1],[880,.3,.2]],
+  win:[[523,0,.15],[659,.14,.15],[784,.28,.15],[1046,.42,.2],[784,.6,.12],[1046,.72,.45]],round:[[392,0,.12],[523,.12,.12],[659,.24,.3]]
+};
+function play(n){
+  if(muted)return;
+  try{
+    AC=AC||new(window.AudioContext||window.webkitAudioContext)();
+    if(AC.state==='suspended')AC.resume();
+    const t0=AC.currentTime;
+    SND[n].forEach(([fr,t,d,type])=>{const o=AC.createOscillator(),g=AC.createGain();o.type=type||'triangle';o.frequency.value=fr;
+      g.gain.setValueAtTime(.0001,t0+t);g.gain.exponentialRampToValueAtTime(type?.08:.17,t0+t+.012);g.gain.exponentialRampToValueAtTime(.0001,t0+t+d);
+      o.connect(g).connect(AC.destination);o.start(t0+t);o.stop(t0+t+d+.05);});
+  }catch(e){}
+}
+function soundIcon(){
+  $('#soundBtn').innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#fff"/>${muted?'<path d="M16 9l5 6M21 9l-5 6" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>':'<path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>'}</svg>`;
+  $('#soundBtn').setAttribute('aria-label',muted?'Sesi aç':'Sesi kapat');
+}
+$('#soundBtn').onclick=()=>{muted=!muted;try{localStorage.setItem('tbsov.muted',muted?'1':'0');}catch(e){}soundIcon();play('pop');};
+
+/* ================= background ================= */
+const bg=$('#bgfx'),bctx=bg.getContext('2d');let shapes=[];
+function bgSize(){bg.width=innerWidth*devicePixelRatio;bg.height=innerHeight*devicePixelRatio;}
+function bgInit(){
+  bgSize();
+  const n=Math.round(Math.min(34,innerWidth/38));
+  shapes=[...Array(n)].map(()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,s:14+Math.random()*30,r:Math.random()*6.28,vr:(Math.random()-.5)*.006,vy:-.15-Math.random()*.35,vx:(Math.random()-.5)*.2,k:pick(['tum','but','txt90','txt180','dot']),a:.14+Math.random()*.2}));
+}
+function bgDraw(){
+  const d=devicePixelRatio;bctx.setTransform(d,0,0,d,0,0);bctx.clearRect(0,0,innerWidth,innerHeight);
+  shapes.forEach(p=>{
+    if(!reduceMotion){p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;if(p.y<-60){p.y=innerHeight+40;p.x=Math.random()*innerWidth;}}
+    bctx.save();bctx.translate(p.x,p.y);bctx.rotate(p.r);bctx.globalAlpha=p.a;bctx.strokeStyle='#fff';bctx.fillStyle='#fff';bctx.lineWidth=3;bctx.lineCap='round';
+    const s=p.s;
+    if(p.k==='tum'){bctx.beginPath();bctx.moveTo(0,-s);bctx.lineTo(0,0);bctx.lineTo(s,0);bctx.stroke();bctx.strokeRect(0,-s*.3,s*.3,s*.3);}
+    else if(p.k==='but'){bctx.beginPath();bctx.moveTo(-s,0);bctx.lineTo(s,0);bctx.moveTo(0,0);bctx.lineTo(Math.cos(-1)*s,Math.sin(-1)*s);bctx.stroke();bctx.beginPath();bctx.arc(0,0,s*.35,-Math.PI,0);bctx.stroke();}
+    else if(p.k==='dot'){bctx.beginPath();bctx.arc(0,0,s*.18,0,6.28);bctx.fill();}
+    else{bctx.font=`700 ${s*.8}px Fredoka, sans-serif`;bctx.textAlign='center';bctx.fillText(p.k==='txt90'?'90°':'180°',0,0);}
+    bctx.restore();
+  });
+  if(!reduceMotion)requestAnimationFrame(bgDraw);
+}
+addEventListener('resize',()=>{bgSize();if(reduceMotion)bgDraw();});
+bgInit();bgDraw();
+
+/* ================= confetti ================= */
+const fx=$('#fx'),fctx=fx.getContext('2d');let parts=[],fxOn=false;
+function confetti(n=100,x){
+  if(reduceMotion)return;fx.width=innerWidth;fx.height=innerHeight;
+  const cs=['#14bff0','#ff8a1f','#ffd400','#ff4fa0','#1fbf6e','#ffffff'];
+  for(let i=0;i<n;i++)parts.push({x:(x??innerWidth/2)+(Math.random()-.5)*160,y:innerHeight*.3,vx:(Math.random()-.5)*15,vy:-Math.random()*13-4,r:Math.random()*6,vr:(Math.random()-.5)*.3,s:6+Math.random()*7,c:pick(cs),l:100+Math.random()*50});
+  if(!fxOn){fxOn=true;requestAnimationFrame(fxTick);}
+}
+function fxTick(){
+  fctx.clearRect(0,0,fx.width,fx.height);parts=parts.filter(p=>p.l-->0);
+  parts.forEach(p=>{p.vy+=.33;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;fctx.save();fctx.translate(p.x,p.y);fctx.rotate(p.r);fctx.fillStyle=p.c;fctx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);fctx.restore();});
+  if(parts.length)requestAnimationFrame(fxTick);else{fxOn=false;fctx.clearRect(0,0,fx.width,fx.height);}
+}
+
+/* ================= diagrams ================= */
+function P(cx,cy,deg,r){const a=deg*Math.PI/180;return[cx+r*Math.cos(a),cy-r*Math.sin(a)];}
+function sector(cx,cy,from,to,r,fill,stroke){
+  const[x1,y1]=P(cx,cy,from,r),[x2,y2]=P(cx,cy,to,r);
+  return `<path d="M${cx} ${cy} L${f(x1)} ${f(y1)} A${r} ${r} 0 ${to-from>180?1:0} 0 ${f(x2)} ${f(y2)} Z" fill="${fill}" fill-opacity=".35" stroke="${stroke}" stroke-width="3" stroke-linejoin="round"/>`;
+}
+function lab(x,y,t,c,size=24){return `<text x="${f(x)}" y="${f(y)}" text-anchor="middle" dominant-baseline="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="${size}" fill="${c}" paint-order="stroke" stroke="var(--card2)" stroke-width="6" stroke-linejoin="round">${t}</text>`;}
+function line(x1,y1,x2,y2,c,w=5){return `<line x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`;}
+/* kind tumler|butunler, a = first angle measure (drawn), aLab, xLab text */
+function diagram(kind,a,aLab,xLab,xDone){
+  const ink='var(--ink)',kc=kind==='tumler'?'var(--tum)':'var(--but)',kd=kind==='tumler'?'var(--tum-d)':'var(--but-d)';
+  const xc=xDone?'var(--ok)':'var(--x)',xt=xDone?'#0c7a42':'#b8860b';
+  let s='';
+  if(kind==='tumler'){
+    const cx=80,cy=190,L=165;
+    s+=sector(cx,cy,0,a,58,kc,kd)+sector(cx,cy,a,90,80,xc,xt);
+    s+=line(cx,cy,cx+L+60,cy,ink)+line(cx,cy,cx,cy-L,ink);
+    const[ix,iy]=P(cx,cy,a,L);s+=line(cx,cy,ix,iy,kd);
+    s+=`<path d="M${cx} ${cy-18} H${cx+18} V${cy}" fill="none" stroke="${ink}" stroke-width="2.5"/>`;
+    const[l1x,l1y]=P(cx,cy,a/2,a<20?120:104),[l2x,l2y]=P(cx,cy,(a+90)/2,(90-a)<20?135:120);
+    s+=lab(l1x,l1y,aLab,kd)+lab(l2x,l2y,xLab,xt);
+    s+=`<circle cx="${cx}" cy="${cy}" r="6" fill="var(--bad)"/>`;
+  } else {
+    const cx=200,cy=190,L=165;
+    s+=sector(cx,cy,0,a,52,kc,kd)+sector(cx,cy,a,180,72,xc,xt);
+    s+=line(cx-185,cy,cx+185,cy,ink);
+    const[ix,iy]=P(cx,cy,a,L);s+=line(cx,cy,ix,iy,kd);
+    const[l1x,l1y]=P(cx,cy,a/2,a<25?120:100),[l2x,l2y]=P(cx,cy,(a+180)/2,(180-a)<25?130:108);
+    s+=lab(l1x,l1y,aLab,kd)+lab(l2x,l2y,xLab,xt);
+    s+=`<circle cx="${cx}" cy="${cy}" r="6" fill="var(--bad)"/>`;
+  }
+  return `<svg viewBox="0 0 400 215" role="img" aria-label="Açı şekli">${s}</svg>`;
+}
+function formula(kind){
+  return `<div class="formula"><div class="tum ${kind==='tumler'?'on':''}">Tümler: a + b = 90°</div><div class="but ${kind==='butunler'?'on':''}">Bütünler: a + b = 180°</div></div>`;
+}
+
+/* ================= questions ================= */
+const NAME={tumler:'tümler',butunler:'bütünler'};
+const SUM={tumler:90,butunler:180};
+function numOpts(ans,S,a){
+  const other=S===90?180:90;
+  const trap=other-a;
+  const pool=shuffle([ans+10,ans-10,ans+5,ans-5,ans+20,ans-20,a]).filter(v=>v>0&&v<180&&v!==ans);
+  const out=[ans];
+  if(trap>0&&trap!==ans)out.push(trap);
+  for(const v of pool){if(out.length>=4)break;if(!out.includes(v))out.push(v);}
+  return shuffle(out).map(v=>v+'°');
+}
+function genQ(kind,variant){
+  const S=SUM[kind],nm=NAME[kind],sfx=kind==='tumler'?'tümleri':'bütünleri';
+  const rule=`${kind==='tumler'?'Tümler':'Bütünler'} açıların toplamı ${S}°'dir.`;
+  if(variant==='which'){
+    const a=kind==='tumler'?rnd(15,75,5):rnd(20,160,5);
+    const other=S===90?180:90;
+    const correct=`${a}° ve ${S-a}°`;
+    const set=new Set([correct]);
+    if(other-a>0)set.add(`${a}° ve ${other-a}°`);
+    while(set.size<4){const b=kind==='tumler'?rnd(15,75,5):rnd(20,160,5);const e=pick([10,-10,15,-15]);const v=S-b+e;if(v>0)set.add(`${b}° ve ${v}°`);}
+    return {kind,variant,text:`Aşağıdaki açı çiftlerinden hangisi birbirinin ${sfx}dir?`,opts:shuffle([...set]),ans:correct,
+      calc:`${a}° + ${S-a}° = ${S}°`,why:`${rule} Diğer çiftlerin toplamı ${S}° etmiyor.`,visual:formula(kind)};
+  }
+  if(variant==='equal'){
+    const ans=S/2;
+    return {kind,variant,text:`Birbirinin ${sfx} olan iki açının ölçüleri eşit. Her biri kaç derecedir?`,opts:numOpts(ans,S,S===90?90:180).slice(0,4),ans:ans+'°',
+      calc:`${S}° ÷ 2 = ${ans}°`,why:`${rule} İki eş parçaya bölersek her biri ${ans}° olur.`,a:ans,diag:true,aLab:'x',xLab:'x'};
+  }
+  if(variant==='chain'){
+    if(Math.random()<.5){
+      const t=rnd(15,75,5),ang=90-t,ans=180-ang;
+      return {kind:'butunler',variant,text:`Bir açının tümleri ${t}°. Aynı açının bütünleri kaç derecedir?`,opts:numOpts(ans,180,ang),ans:ans+'°',
+        calc:`90° − ${t}° = ${ang}° → 180° − ${ang}° = ${ans}°`,why:`Önce açının kendisini bul: tümleri ${t}° ise açı ${ang}°. Sonra bütünlerini hesapla.`,visual:formula('butunler')};
+    }
+    const s=rnd(100,165,5),ang=180-s,ans=90-ang;
+    return {kind:'tumler',variant,text:`Bir açının bütünleri ${s}°. Aynı açının tümleri kaç derecedir?`,opts:numOpts(ans,90,ang),ans:ans+'°',
+      calc:`180° − ${s}° = ${ang}° → 90° − ${ang}° = ${ans}°`,why:`Önce açının kendisini bul: bütünleri ${s}° ise açı ${ang}°. Sonra tümlerini hesapla.`,visual:formula('tumler')};
+  }
+  const a=kind==='tumler'?rnd(10,80,5):rnd(15,165,5);
+  const ans=S-a;
+  const base={kind,variant,opts:numOpts(ans,S,a),ans:ans+'°',calc:`${S}° − ${a}° = ${ans}°`,why:rule,a,diag:true,aLab:a+'°',xLab:'?'};
+  if(variant==='direct') return {...base,text:`Ölçüsü ${a}° olan açının ${nm} açısı kaç derecedir?`};
+  if(variant==='pair') return {...base,text:`Birbirinin ${sfx} olan iki açıdan biri ${a}°. Diğeri kaç derecedir?`};
+  return {...base,text:`Şekildeki x açısı kaç derecedir?`,xLab:'x'};
+}
+function genRound(type,n){
+  if(type==='mix'){
+    const vs=shuffle(['chain','chain','diagram','which','equal','pair','direct','diagram']).slice(0,n);
+    return vs.map((v,i)=>genQ(i%2?'butunler':'tumler',v));
+  }
+  const vs=shuffle(['direct','diagram','pair','which','diagram','direct','pair','which']).slice(0,n);
+  return vs.map(v=>genQ(type,v));
+}
+const VARIANT_TAG={direct:'Hesapla',pair:'Eşini bul',diagram:'Şekil sorusu',which:'Çifti bul',equal:'Eş açılar',chain:'Final sorusu'};
+
+/* ================= state ================= */
+let G=null;
+const ROUNDS=[
+  {type:'tumler',title:'1. Tur: Tümler Turu',host:'T',mult:1,eyebrow:'Sahnede Tümler T',
+   text:'Merhaba, ben Tümler T! Kolumla gövdemin birleştiği köşeye bak: tam 90°. Toplamı 90° olan iki açıya tümler açılar denir. Bir açının tümlerini bulmak için 90°\'den çıkar!'},
+  {type:'butunler',title:'2. Tur: Bütünler Turu',host:'B',mult:1,eyebrow:'Sahnede Bütünler B',
+   text:'Selam, ben Bütünler B! Dimdik sırtım düz bir doğru gibi: 180°. Toplamı 180° olan iki açıya bütünler açılar denir. Bütünlerini bulmak için 180°\'den çıkar!'},
+  {type:'mix',title:'Final: Karışık Tur',host:'both',mult:2,eyebrow:'T ve B birlikte',
+   text:'Final turunda ikimiz birlikteyiz! Sorular karışık, bazıları iki adımlı. Tüm puanlar iki katı. Dikkat: önce 90 mı, 180 mi, ona karar ver!'}
+];
+const LINES={
+  ok:['Harika {t}! Tam isabet.','İşte bu! {t} puanları topluyor.','Mükemmel hesap, {t}!','Süpersin {t}, devam!'],
+  fast:['Şimşek gibi {t}! Hız bonusu da sizin.','Ne hız! {t} hız bonusunu kaptı.'],
+  wrong:['Ah, olmadı {t}! Çalma sırası: bilen takım var mı?','Az kaldı! Diğer takımlar, çalmak isteyen var mı?'],
+  timeout:['Süre doldu! Başka bir takım çalmak ister mi?'],
+  stealOk:['{t} soruyu çaldı! Ne hamle!','Vay! {t} fırsatı kaçırmadı.'],
+  none:['Bu sefer kimse bilemedi. Birlikte bakalım.','Zor bir soruydu. Hesaba birlikte bakalım.'],
+  think:['Düşün, hesapla, cevapla! Sıra {t} takımında.','Hadi {t}! Önce toplamı hatırla.','{t}, süre işliyor!']
+};
+const say=(k,t)=>pick(LINES[k]).replace('{t}',t||'');
+
+/* ================= setup ================= */
+function buildSetup(){
+  let saved=null;try{saved=JSON.parse(localStorage.getItem('tbsov.teams')||'null');}catch(e){}
+  $('#teamInputs').innerHTML=[0,1,2,3].map(i=>{
+    const nm=saved?.[i]?.name??DEFAULT_NAMES[i],on=saved?.[i]?.on??(i<2);
+    return `<div class="team-in ${on?'':'off'}" id="row${i}"><span class="sw" style="background:${TEAM_COLORS[i]}"></span>
+      <input type="text" id="team${i}" maxlength="22" value="${esc(nm)}" aria-label="${i+1}. takım adı">
+      <input type="checkbox" id="on${i}" ${on?'checked':''} aria-label="${i+1}. takım katılıyor"></div>`;
+  }).join('');
+  [0,1,2,3].forEach(i=>$('#on'+i).onchange=e=>$('#row'+i).classList.toggle('off',!e.target.checked));
+  setMascot($('#duoT'),'T','happy');setMascot($('#duoB'),'B','happy');
+  $('#duoT').className='mascot bob';$('#duoB').className='mascot bob';
+}
+$('#setupForm').onsubmit=e=>{
+  e.preventDefault();
+  const teams=[],save=[];
+  [0,1,2,3].forEach(i=>{const name=$('#team'+i).value.trim()||DEFAULT_NAMES[i],on=$('#on'+i).checked;save.push({name,on});if(on)teams.push({name,color:TEAM_COLORS[i],score:0,right:0,steals:0,fast:0,j50:true,jTime:true});});
+  if(!teams.length){$('#setupErr').textContent='En az bir takım seçin.';return;}
+  $('#setupErr').textContent='';
+  try{localStorage.setItem('tbsov.teams',JSON.stringify(save));}catch(e){}
+  startContest(teams);
+};
+function startContest(teams){
+  const n=+$('#qPer').value;
+  G={teams,qPer:n,tSec:+$('#tSec').value,r:0,qi:0,turn:0,rounds:ROUNDS.map(r=>genRound(r.type,n))};
+  play('round');showIntro();
+}
+
+/* ================= screens ================= */
+function show(id){['setup','intro','game','result'].forEach(s=>$('#'+s).hidden=s!==id);scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'});}
+function showIntro(){
+  const R=ROUNDS[G.r];
+  show('intro');
+  const m=$('#introMascots');
+  m.innerHTML=R.host==='both'?'<div class="mascot" id="im1"></div><div class="mascot" id="im2"></div>':'<div class="mascot" id="im1"></div>';
+  setMascot($('#im1'),R.host==='both'?'T':R.host,'cheer');
+  if(R.host==='both')setMascot($('#im2'),'B','cheer');
+  $('#introEyebrow').textContent=R.eyebrow;$('#introTitle').textContent=R.title;$('#introText').textContent=R.text;
+  $('#introStanding').innerHTML=G.r?[...G.teams].sort((a,b)=>b.score-a.score).map((t,i)=>`<span style="background:${t.color}">${i+1}. ${esc(t.name)} · ${t.score}</span>`).join(''):'';
+  $('#introGo').textContent=G.r===2?'Finale başla':'Tura başla';
+}
+$('#introGo').onclick=()=>{play('pop');G.qi=0;show('game');renderBoard();loadQ();};
+
+/* ================= game ================= */
+const Q=()=>G.rounds[G.r][G.qi];
+const R=()=>ROUNDS[G.r];
+function hostFor(q){return R().host==='both'?(q.kind==='tumler'?'T':'B'):R().host;}
+function renderBoard(){
+  const n=G.teams.length;
+  $('#board').style.gridTemplateColumns=`repeat(${Math.min(n,4)},minmax(0,1fr))`;
+  if(innerWidth<520&&n>2)$('#board').style.gridTemplateColumns='repeat(2,minmax(0,1fr))';
+  $('#board').innerHTML=G.teams.map((t,i)=>`<div class="tcard ${i===G.active?'active':''}" id="tc${i}">
+    <span class="sw" style="background:${t.color}"></span>
+    <div class="who"><div class="nm">${esc(t.name)}</div><div class="st">${i===G.active?(G.phase==='steal'?'Çalıyor!':'Sıra sizde'):`${t.j50?'50:50 ':''}${t.jTime?'+15 sn':''}`||'Jokerler bitti'}</div></div>
+    <span class="sc">${t.score}</span></div>`).join('');
+}
+function floatPts(i,pts){const c=$('#tc'+i);if(!c)return;const s=document.createElement('span');s.className='float';s.textContent='+'+pts;c.appendChild(s);setTimeout(()=>s.remove(),1400);}
+function bubble(who,text){$('#bubble').innerHTML=`<span class="who" style="color:${who==='T'?'var(--tum-d)':'var(--but-d)'}">${who==='T'?'Tümler T':'Bütünler B'}</span>${esc(text)}`;}
+
+function loadQ(){
+  const q=Q();
+  G.active=G.turn%G.teams.length;G.owner=G.active;G.phase='answer';G.wrongs=new Set();G.removed=new Set();
+  $('#roundName').textContent=R().title;
+  $('#qcount').textContent=`Soru ${G.qi+1} / ${G.qPer}`;
+  $('#multTag').hidden=R().mult===1;
+  const kc=q.kind==='tumler';
+  $('#qtag').textContent=`${kc?'Tümler':'Bütünler'} · ${VARIANT_TAG[q.variant]}`;
+  $('#qtag').style.background=kc?'var(--tum-d)':'var(--but-d)';
+  $('#qtext').textContent=q.text;
+  paintVisual(false);
+  $('#answers').innerHTML=q.opts.map((o,i)=>`<button class="ans" data-v="${esc(o)}"><span class="k">${'ABCD'[i]}</span><span>${esc(o)}</span></button>`).join('');
+  $('#answers').querySelectorAll('.ans').forEach(b=>b.onclick=()=>choose(b));
+  $('#steal').hidden=true;$('#reveal').hidden=true;$('#nextBtn').hidden=true;
+  const host=hostFor(q);setMascot($('#hostMascot'),host,'think');
+  bubble(host,say('think',G.teams[G.active].name));
+  renderTurn();renderBoard();renderJokers();
+  startTimer(G.tSec);
+}
+function paintVisual(done){
+  const q=Q();
+  if(q.diag) $('#visual').innerHTML=diagram(q.kind,q.a,done&&q.variant==='equal'?q.ans:q.aLab,done?q.ans:q.xLab,done);
+  else $('#visual').innerHTML=q.visual;
+}
+function renderTurn(){
+  const t=G.teams[G.active];
+  $('#turn').innerHTML=`<i style="background:${t.color}"></i>${G.phase==='steal'?'Çalan takım':'Sıra'}: ${esc(t.name)}`;
+}
+function renderJokers(){
+  const t=G.teams[G.active],can=G.phase==='answer';
+  $('#jokers').innerHTML=G.phase==='done'?'':`<span class="jlab">Jokerler</span>
+    <button class="joker" id="j50" ${t.j50&&can?'':'disabled'}>50:50</button>
+    <button class="joker" id="jTime" ${t.jTime&&can?'':'disabled'}>+15 saniye</button>`;
+  if(G.phase==='done')return;
+  $('#j50').onclick=()=>{
+    const q=Q();t.j50=false;play('pop');
+    const wrong=shuffle([...$('#answers').querySelectorAll('.ans')].filter(b=>b.dataset.v!==q.ans&&!b.disabled)).slice(0,2);
+    wrong.forEach(b=>{b.disabled=true;b.classList.add('gone');});
+    renderJokers();renderBoard();
+  };
+  $('#jTime').onclick=()=>{t.jTime=false;play('pop');addTime(15);renderJokers();renderBoard();};
+}
+
+/* timer */
+function startTimer(sec){stopTimer();G.tEnd=performance.now()+sec*1000;G.tTotal=sec;G.lastSec=sec+1;G.tid=setInterval(tick,100);tick();}
+function stopTimer(){clearInterval(G?.tid);}
+function addTime(s){G.tEnd+=s*1000;G.tTotal=Math.max(G.tTotal,(G.tEnd-performance.now())/1000);tick();}
+function tick(){
+  const left=Math.max(0,(G.tEnd-performance.now())/1000),sec=Math.ceil(left);
+  G.left=left;
+  $('#tnum').textContent=sec;
+  $('#tfill').style.width=(left/G.tTotal*100)+'%';
+  $('#tbar').classList.toggle('low',left<=5);
+  $('#timer').style.color=left<=5?'var(--bad)':'var(--ink)';
+  if(sec<G.lastSec){G.lastSec=sec;if(sec<=5&&sec>0)play(sec<=2?'tock':'tick');}
+  if(left<=0){stopTimer();miss(null);}
+}
+
+/* answering */
+function choose(btn){
+  if(G.phase!=='answer'&&G.phase!=='stealAnswer')return;
+  const q=Q(),ok=btn.dataset.v===q.ans;
+  stopTimer();
+  if(ok){
+    const t=G.teams[G.active],m=R().mult;
+    let pts,line;
+    if(G.phase==='answer'){
+      const fast=G.left>=G.tTotal/2;
+      pts=(10+(fast?5:0))*m;t.right++;if(fast)t.fast++;
+      line=say(fast?'fast':'ok',t.name);
+    } else {pts=5*m;t.steals++;t.right++;line=say('stealOk',t.name);}
+    t.score+=pts;
+    btn.classList.add('right');
+    finishQ(true,line,pts);
+  } else {
+    btn.classList.add('wrong');btn.disabled=true;G.wrongs.add(btn.dataset.v);
+    const card=$('#qcard');card.classList.remove('shake');void card.offsetWidth;card.classList.add('shake');
+    miss(btn);
+  }
+}
+function miss(btn){
+  play('bad');
+  const host=hostFor(Q());
+  const others=G.teams.map((_,i)=>i).filter(i=>i!==G.owner&&i!==G.active&&!G.triedSteal?.has(i));
+  if(G.phase==='answer'&&G.teams.length>1){
+    G.phase='steal';G.triedSteal=new Set();
+    setMascot($('#hostMascot'),host,'sad');
+    bubble(host,say(btn?'wrong':'timeout',G.teams[G.active].name));
+    lockAnswers(true);renderJokers();
+    offerSteal();
+    return;
+  }
+  if(G.phase==='stealAnswer'){
+    G.triedSteal.add(G.active);
+    const rest=G.teams.map((_,i)=>i).filter(i=>i!==G.owner&&!G.triedSteal.has(i));
+    if(rest.length&&$('#answers').querySelectorAll('.ans:not(:disabled)').length>1){
+      G.phase='steal';setMascot($('#hostMascot'),host,'sad');
+      bubble(host,`${G.teams[G.active].name} de bilemedi! Başka çalmak isteyen var mı?`);
+      lockAnswers(true);offerSteal();return;
+    }
+  }
+  finishQ(false,say('none'),0);
+}
+function offerSteal(){
+  const rest=G.teams.map((t,i)=>({t,i})).filter(({i})=>i!==G.owner&&!G.triedSteal.has(i));
+  const st=$('#steal');st.hidden=false;
+  st.innerHTML=`<b>Çalma hakkı! Elini ilk kaldıran takım hangisi?</b><div class="steal-btns">${rest.map(({t,i})=>`<button data-i="${i}" style="background:${t.color}">${esc(t.name)}</button>`).join('')}<button class="none" data-i="-1">Kimse çalmıyor</button></div>`;
+  $('#tnum').textContent='–';$('#tfill').style.width='0%';
+  st.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+    const i=+b.dataset.i;st.hidden=true;
+    if(i<0){finishQ(false,say('none'),0);return;}
+    play('steal');G.active=i;G.phase='stealAnswer';
+    lockAnswers(false);renderTurn();renderBoard();
+    const host=hostFor(Q());setMascot($('#hostMascot'),host,'think');
+    bubble(host,`${G.teams[i].name} çalmaya geliyor! 15 saniyen var.`);
+    startTimer(15);
+  });
+}
+function lockAnswers(lock){$('#answers').querySelectorAll('.ans').forEach(b=>{if(lock)b.disabled=true;else if(!G.wrongs.has(b.dataset.v)&&!b.classList.contains('gone'))b.disabled=false;});}
+function finishQ(ok,line,pts){
+  stopTimer();
+  G.phase='done';
+  const q=Q(),host=hostFor(q);
+  $('#steal').hidden=true;
+  $('#answers').querySelectorAll('.ans').forEach(b=>{b.disabled=true;if(b.dataset.v===q.ans)b.classList.add('right');});
+  paintVisual(true);
+  setMascot($('#hostMascot'),host,ok?'cheer':'sad');
+  bubble(host,line);
+  const rv=$('#reveal');rv.hidden=false;rv.className='reveal '+(ok?'ok':'no');
+  rv.innerHTML=`<span class="h">${ok?`Doğru! ${esc(G.teams[G.active].name)} +${pts} puan`:`Doğru cevap: ${esc(q.ans)}`}</span><span class="calc">${esc(q.calc)}</span><span>${esc(q.why)}</span>`;
+  renderJokers();renderBoard();
+  if(ok){play('ok');floatPts(G.active,pts);if(!reduceMotion){const r=$('#tc'+G.active).getBoundingClientRect();confetti(40,r.left+r.width/2);}}
+  const last=G.qi>=G.qPer-1;
+  $('#nextBtn').textContent=last?(G.r<2?'Turu bitir':'Sonuçları gör'):'Sonraki soru';
+  $('#nextBtn').hidden=false;$('#nextBtn').focus({preventScroll:true});
+}
+$('#nextBtn').onclick=()=>{
+  play('pop');G.turn++;
+  if(G.qi<G.qPer-1){G.qi++;loadQ();return;}
+  if(G.r<2){G.r++;play('round');showIntro();return;}
+  finish();
+};
+
+/* ================= result ================= */
+function finish(){
+  stopTimer();show('result');play('win');
+  const sorted=[...G.teams].sort((a,b)=>b.score-a.score);
+  const top=sorted[0],tie=sorted.length>1&&sorted[1].score===top.score;
+  $('#winTitle').textContent=tie?'Berabere! Ne çekişme!':`Şampiyon: ${top.name}!`;
+  const order=sorted.length>=3?[1,0,2,...sorted.slice(3).map((_,i)=>i+3)]:sorted.length===2?[1,0]:[0];
+  const max=Math.max(1,top.score),rank=t=>sorted.findIndex(s=>s.score===t.score)+1;
+  $('#podium').innerHTML=order.map(i=>{const t=sorted[i];const h=60+Math.round(t.score/max*120);
+    return `<div class="pod"><span class="nm">${esc(t.name)}</span><span class="sc">${t.score}</span><div class="blk" style="height:${h}px;background:${t.color};animation-delay:${i*.15}s">${rank(t)}</div></div>`;}).join('');
+  setMascot($('#resT'),'T','cheer');setMascot($('#resB'),'B','cheer');
+  $('#stats').innerHTML=G.teams.map(t=>`<div><span><i style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${t.color};margin-right:8px"></i>${esc(t.name)}</span><span>${t.right} doğru · ${t.fast} hızlı · ${t.steals} çalma</span></div>`).join('');
+  confetti(180);setTimeout(()=>confetti(120),700);
+}
+$('#againBtn').onclick=()=>{G.teams.forEach(t=>Object.assign(t,{score:0,right:0,steals:0,fast:0,j50:true,jTime:true}));startContest(G.teams);};
+$('#setupBtn').onclick=()=>{buildSetup();show('setup');};
+$('#homeBtn').onclick=()=>{stopTimer();buildSetup();show('setup');};
+
+soundIcon();buildSetup();
+</script>
+
+</body></html>

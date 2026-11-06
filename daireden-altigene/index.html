@@ -1,0 +1,473 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Daireden Altıgene</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Lexend:wght@400;500;600&display=swap">
+<style>
+/* Layout: kareli defter zemini; üstte sekmeler, solda katlama sahnesi, sağda soru paneli */
+:root{
+  --bg:#EEF3F8; --grid:#D6E1EC; --ink:#1B2A4A; --muted:#5B6B86;
+  --paper:#1F9A8A; --paper-mid:#62BFB2; --paper-back:#FFFFFF; --edge:#14695E;
+  --sun:#F4B400; --sun-soft:#FFF1C2; --ok:#22995A; --ok-soft:#DDF4E6; --bad:#D9443F; --bad-soft:#FBE1DF;
+  --card:#FFFFFF; --line:#C9D5E3;
+  --display:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
+  --body:"Lexend","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+}
+html,body{min-height:100%}
+body{margin:0;background-color:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px}
+.wrap{max-width:1180px;margin:0 auto;padding-block:18px 40px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:18px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,4vw,44px);line-height:1;margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1 span{color:var(--paper)}
+.sub{color:var(--muted);font-size:14px;margin:4px 0 0}
+.hud{display:flex;gap:10px;align-items:center}
+.pill{font-family:var(--display);font-weight:700;font-size:20px;background:var(--card);border:2px solid var(--ink);border-radius:999px;padding:4px 16px;font-variant-numeric:tabular-nums;box-shadow:3px 3px 0 var(--ink)}
+.pill b{color:var(--paper)}
+.icon-btn{font:inherit;font-size:14px;background:var(--card);border:2px solid var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer;color:var(--ink)}
+nav{display:flex;gap:10px;flex-wrap:wrap}
+.tab{font-family:var(--display);font-weight:700;font-size:19px;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:8px 18px;cursor:pointer;display:flex;gap:10px;align-items:center}
+.tab .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--bg);border:2px solid var(--ink);font-size:15px}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff;box-shadow:4px 4px 0 var(--sun)}
+.tab[aria-selected="true"] .n{background:var(--sun);color:var(--ink)}
+button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.board{background:var(--card);border:2px solid var(--ink);border-radius:18px;box-shadow:6px 6px 0 var(--ink);padding:20px}
+.ws{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:860px){.ws{grid-template-columns:1fr}}
+.stage{background:var(--bg);border-radius:14px;border:2px dashed var(--line);aspect-ratio:1/1;max-width:100%;position:relative}
+.stage svg{width:100%;height:100%;display:block}
+.panel{display:flex;flex-direction:column;gap:14px;min-width:0}
+.steps{display:flex;gap:6px;flex-wrap:wrap}
+.dot{width:30px;height:10px;border-radius:6px;background:var(--line)}
+.dot.done{background:var(--paper)} .dot.now{background:var(--sun)}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.q{font-family:var(--display);font-weight:700;font-size:clamp(22px,2.4vw,28px);line-height:1.2;margin:0;text-wrap:balance}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{font:inherit;font-size:17px;text-align:left;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:12px 16px;cursor:pointer;display:flex;gap:12px;align-items:flex-start;transition:transform .12s}
+.opt:hover:not(:disabled){transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--ink)}
+.opt .k{font-family:var(--display);font-weight:800;flex:none;width:28px;height:28px;border-radius:8px;background:var(--bg);display:grid;place-items:center}
+.opt.right{background:var(--ok-soft);border-color:var(--ok)} .opt.right .k{background:var(--ok);color:#fff}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)} .opt.wrong .k{background:var(--bad);color:#fff}
+.opt:disabled{cursor:default}
+.fb{border-radius:12px;padding:12px 16px;font-size:16px}
+.fb.ok{background:var(--ok-soft);border:2px solid var(--ok)}
+.fb.no{background:var(--bad-soft);border:2px solid var(--bad)}
+.fb.info{background:var(--sun-soft);border:2px solid var(--sun)}
+.go{font-family:var(--display);font-weight:800;font-size:20px;background:var(--sun);color:var(--ink);border:2px solid var(--ink);border-radius:12px;padding:10px 22px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);align-self:flex-start}
+.go:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.go.ghost{background:var(--card)}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
+/* Sıralama */
+.sort{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+@media (max-width:860px){.sort{grid-template-columns:1fr}}
+.col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.col h3{font-family:var(--display);font-size:22px;margin:0}
+.card{font:inherit;font-size:16px;text-align:left;color:var(--ink);background:var(--paper-back);border:2px solid var(--ink);border-radius:12px;padding:10px 12px;cursor:pointer;display:flex;gap:12px;align-items:center}
+.card svg{flex:none;width:58px;height:58px}
+.card:hover:not(:disabled){box-shadow:3px 3px 0 var(--ink);transform:translate(-2px,-2px)}
+.slot{border:2px dashed var(--line);border-radius:12px;padding:10px 12px;min-height:58px;display:flex;gap:12px;align-items:center;color:var(--muted)}
+.slot.filled{border:2px solid var(--ok);background:var(--ok-soft);color:var(--ink)}
+.slot .num{font-family:var(--display);font-weight:800;font-size:22px;width:30px;flex:none;color:var(--ink)}
+.slot svg{flex:none;width:46px;height:46px}
+.statrow{display:flex;gap:18px;flex-wrap:wrap;font-variant-numeric:tabular-nums;color:var(--muted)}
+.statrow b{color:var(--ink);font-family:var(--display);font-size:20px}
+/* Yarışma */
+.quiz{display:flex;flex-direction:column;gap:16px;max-width:820px;margin:0 auto}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg button{font:inherit;font-weight:600;font-size:16px;border:2px solid var(--ink);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 16px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--paper);color:#fff}
+.timer{height:12px;background:var(--bg);border:2px solid var(--ink);border-radius:8px;overflow:hidden}
+.timer i{display:block;height:100%;background:var(--paper);width:100%}
+.timer.low i{background:var(--bad)}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.teams{display:flex;gap:10px;flex-wrap:wrap}
+.team{border:2px solid var(--ink);border-radius:12px;padding:6px 14px;font-family:var(--display);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;background:var(--card)}
+.team.turn{background:var(--sun);box-shadow:3px 3px 0 var(--ink)}
+.fig{display:flex;justify-content:center}
+.fig svg{width:150px;height:150px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:560px){.grid2{grid-template-columns:1fr}}
+.big{font-family:var(--display);font-weight:800;font-size:clamp(30px,4vw,46px);line-height:1.05;margin:0;text-wrap:balance}
+.lead{font-size:18px;max-width:62ch;margin:0}
+.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:50}
+.confetti i{position:absolute;top:-20px;width:12px;height:12px;animation:fall 2.4s linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg)}}
+@media (prefers-reduced-motion:reduce){.confetti{display:none}.opt,.card{transition:none}.shake{animation:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Daireden <span>Altıgene</span></h1>
+      <p class="sub">5. sınıf · Geometrik Şekiller · Kâğıt katlama oyunu</p>
+    </div>
+    <div class="hud">
+      <div class="pill">Puan: <b id="score">0</b></div>
+      <button class="icon-btn" id="soundBtn" aria-pressed="true">Ses: açık</button>
+    </div>
+  </header>
+
+  <nav role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-tab="ws"><span class="n">1</span>Katlama Atölyesi</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="sort"><span class="n">2</span>Adımları Sırala</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="quiz"><span class="n">3</span>Bilgi Yarışması</button>
+  </nav>
+
+  <!-- 1. KATLAMA ATÖLYESİ -->
+  <section class="board" id="tab-ws">
+    <div class="ws">
+      <div class="stage"><svg id="stage" viewBox="-125 -125 250 250" aria-label="Katlanan kâğıt daire"></svg></div>
+      <div class="panel">
+        <div class="steps" id="wsDots"></div>
+        <div class="eyebrow" id="wsStep">Adım 1 / 9</div>
+        <h2 class="q" id="wsQ"></h2>
+        <div class="opts" id="wsOpts"></div>
+        <div id="wsFb"></div>
+        <button class="go" id="wsNext" hidden>Sonraki adım →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. SIRALAMA -->
+  <section class="board" id="tab-sort" hidden>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div>
+        <h2 class="q">Katlama adımlarını doğru sıraya koy</h2>
+        <p class="lead" style="color:var(--muted);margin-top:6px">Kartlara sırayla tıkla. Önce ilk adımı, sonra ikinciyi seç. Yanlış seçim hata sayılır.</p>
+      </div>
+      <div class="statrow"><span>Hata: <b id="sMiss">0</b></span><span>Süre: <b id="sTime">0</b> sn</span></div>
+      <div class="sort">
+        <div class="col"><h3>Karışık kartlar</h3><div class="col" id="sPool"></div></div>
+        <div class="col"><h3>Senin sıran</h3><div class="col" id="sSlots"></div></div>
+      </div>
+      <div id="sFb"></div>
+      <button class="go ghost" id="sReset">Kartları yeniden karıştır</button>
+    </div>
+  </section>
+
+  <!-- 3. YARIŞMA -->
+  <section class="board" id="tab-quiz" hidden>
+    <div class="quiz" id="quiz"></div>
+  </section>
+</div>
+
+<script>
+(function(){
+const NS="http://www.w3.org/2000/svg";
+const R=100, rad=d=>d*Math.PI/180, pt=(r,d)=>[r*Math.cos(rad(d)),r*Math.sin(rad(d))];
+const $=s=>document.querySelector(s);
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function animate(ms,cb){if(reduce)ms=Math.min(ms,120);return new Promise(res=>{const t0=performance.now();function f(now){let t=Math.min(1,(now-t0)/ms);const e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;cb(e);if(t<1)requestAnimationFrame(f);else res()}requestAnimationFrame(f)})}
+
+/* ---------- Ses ---------- */
+let soundOn=true, actx=null;
+function tone(f,d=.12,type="triangle",when=0){if(!soundOn)return;try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();const o=actx.createOscillator(),g=actx.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(.18,actx.currentTime+when);g.gain.exponentialRampToValueAtTime(.001,actx.currentTime+when+d);o.connect(g).connect(actx.destination);o.start(actx.currentTime+when);o.stop(actx.currentTime+when+d+.02)}catch(e){}}
+const sfx={ok(){tone(660);tone(880,.15,"triangle",.1)},bad(){tone(200,.2,"sawtooth")},fold(){tone(420,.08,"sine");tone(520,.08,"sine",.06)},win(){[523,659,784,1047].forEach((f,i)=>tone(f,.18,"triangle",i*.12))}};
+$("#soundBtn").onclick=e=>{soundOn=!soundOn;e.target.textContent="Ses: "+(soundOn?"açık":"kapalı");e.target.setAttribute("aria-pressed",soundOn)};
+
+/* ---------- Puan ---------- */
+let score=0;
+function addScore(n){score+=n;$("#score").textContent=score}
+function confetti(){if(reduce)return;const box=document.createElement("div");box.className="confetti";const cols=[css("--sun"),css("--paper"),css("--bad"),css("--ink"),css("--paper-mid")];for(let i=0;i<70;i++){const c=document.createElement("i");c.style.left=Math.random()*100+"vw";c.style.background=cols[i%cols.length];c.style.animationDelay=Math.random()*.8+"s";c.style.borderRadius=i%2?"50%":"2px";box.appendChild(c)}document.body.appendChild(box);setTimeout(()=>box.remove(),3600)}
+
+/* ---------- Sekmeler ---------- */
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.setAttribute("aria-selected",x===t));
+  ["ws","sort","quiz"].forEach(id=>$("#tab-"+id).hidden=id!==t.dataset.tab);
+});
+
+/* =====================================================
+   1. KATLAMA ATÖLYESİ
+   ===================================================== */
+const svg=$("#stage");
+const FLAP_N=[90,210,330];               // kat çizgilerinin normal açıları
+const VERT=[270,30,150];                 // üçgen köşeleri (saat yönünde)
+let flapS, cornerS, flapG=[], cornerG=[], chordL=[], gBase, gMarks, gCrease, clipPoly, centerDot;
+
+function reflectT(theta,m,s){return `translate(${m[0]} ${m[1]}) rotate(${theta}) scale(${s} 1) rotate(${-theta}) translate(${-m[0]} ${-m[1]})`}
+function cornerPts(phi){const M=pt(R/2,phi),h=R/(2*Math.sqrt(3));const a=pt(h,phi-90),b=pt(h,phi+90);return{M,A:[M[0]+a[0],M[1]+a[1]],B:[M[0]+b[0],M[1]+b[1]],V:pt(R,phi)}}
+
+function buildStage(){
+  svg.innerHTML="";
+  const defs=el("defs",{},svg);
+  const cp=el("clipPath",{id:"hexclip"},defs); clipPoly=el("polygon",{},cp);
+  gCrease=el("g",{},svg);
+  gBase=el("g",{},svg);
+  const tri=VERT.map(d=>pt(R,d).join(",")).join(" ");
+  el("polygon",{points:tri,fill:css("--paper")},gBase);
+  FLAP_N.forEach((th,i)=>{
+    const A=pt(R,th-60),B=pt(R,th+60);
+    const g=el("g",{},gBase);
+    const p=el("path",{d:`M${A} A${R} ${R} 0 0 1 ${B} Z`,fill:css("--paper")},g);
+    el("path",{d:`M${A} A${R} ${R} 0 0 1 ${B}`,fill:"none",stroke:css("--edge"),"stroke-width":1.6},g);
+    flapG[i]={g,p,th,m:pt(R/2,th)};
+    chordL[i]=el("line",{x1:A[0],y1:A[1],x2:B[0],y2:B[1],stroke:css("--edge"),"stroke-width":1.6,opacity:0},gBase);
+  });
+  // çizgileri katmanların üstüne taşı
+  chordL.forEach(l=>gBase.appendChild(l));
+  const cg=el("g",{},svg);
+  VERT.forEach((phi,j)=>{
+    const c=cornerPts(phi);const g=el("g",{},cg);
+    const p=el("polygon",{points:[c.V,c.A,c.B].map(q=>q.join(",")).join(" "),fill:"none",stroke:"none","stroke-width":1.4},g);
+    cornerG[j]={g,p,phi,m:c.M};
+  });
+  gMarks=el("g",{"font-family":"Lexend, sans-serif","font-size":10,"font-weight":600},svg);
+  centerDot=el("circle",{r:3.2,fill:css("--bad"),opacity:0},svg);
+  flapS=[1,1,1]; cornerS=[1,1,1];
+  FLAP_N.forEach((_,i)=>updFlap(i));
+}
+function updFlap(i){const f=flapG[i],s=flapS[i];f.g.setAttribute("transform",reflectT(f.th,f.m,s));f.p.setAttribute("fill",s>0.15?css("--paper"):s>-0.15?css("--paper-mid"):css("--paper-back"));chordL[i].setAttribute("opacity",s<1?1:0)}
+function setClip(){const pts=[];VERT.forEach((phi,j)=>{const c=cornerPts(phi);if(cornerS[j]<1){pts.push(c.A,c.B)}else pts.push(c.V)});clipPoly.setAttribute("points",pts.map(q=>q.join(",")).join(" "));gBase.setAttribute("clip-path","url(#hexclip)")}
+function updCorner(j){const c=cornerG[j],s=cornerS[j];c.g.setAttribute("transform",reflectT(c.phi,c.m,s));if(s<1){c.p.setAttribute("fill",s>0?css("--paper-mid"):css("--paper-back"));c.p.setAttribute("stroke",css("--edge"))}}
+
+async function doCenter(){
+  const lines=[[pt(R,180),pt(R,0)],[pt(R,270),pt(R,90)]];
+  for(const [a,b] of lines){
+    const l=el("line",{x1:a[0],y1:a[1],x2:a[0],y2:a[1],stroke:css("--ink"),"stroke-width":1.2,"stroke-dasharray":"4 3",opacity:.55},gCrease);
+    sfx.fold();
+    await animate(650,t=>{l.setAttribute("x2",a[0]+(b[0]-a[0])*t);l.setAttribute("y2",a[1]+(b[1]-a[1])*t)});
+  }
+  await animate(300,t=>centerDot.setAttribute("opacity",t));
+}
+async function doFlap(i){sfx.fold();await animate(1100,t=>{flapS[i]=Math.cos(Math.PI*t);updFlap(i)});flapS[i]=-1;updFlap(i)}
+async function doCorner(j){cornerS[j]=.999;setClip();sfx.fold();await animate(900,t=>{cornerS[j]=Math.cos(Math.PI*t);updCorner(j)});cornerS[j]=-1;updCorner(j);gMarks.parentNode.appendChild(gMarks);svg.appendChild(centerDot)}
+function clearMarks(){gMarks.innerHTML=""}
+function label(x,y,txt,color){const t=el("text",{x,y,"text-anchor":"middle","dominant-baseline":"middle",fill:color||css("--ink")},gMarks);t.textContent=txt;return t}
+function triMarks(){
+  clearMarks();
+  const V=VERT.map(d=>pt(R,d));
+  for(let i=0;i<3;i++){const a=V[i],b=V[(i+1)%3];const mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2;
+    const dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy),nx=-dy/L,ny=dx/L;
+    el("line",{x1:mx-nx*5,y1:my-ny*5,x2:mx+nx*5,y2:my+ny*5,stroke:css("--sun"),"stroke-width":3,"stroke-linecap":"round"},gMarks);
+    const out=pt(1,Math.atan2(my,mx)*180/Math.PI);label(mx+out[0]*14,my+out[1]*14,"a");
+    el("line",{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:css("--sun"),"stroke-width":2.5,"stroke-linecap":"round",opacity:.9},gMarks);
+  }
+  V.forEach((v,i)=>{const d=VERT[i];const q=pt(R-24,d);label(q[0],q[1],"60°")});
+}
+function hexPts(){const p=[];VERT.forEach(phi=>{const c=cornerPts(phi);p.push(c.A,c.B)});return p}
+async function hexEdges(){
+  clearMarks();const P=hexPts();
+  for(let i=0;i<6;i++){const a=P[i],b=P[(i+1)%6];
+    el("line",{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:css("--sun"),"stroke-width":3,"stroke-linecap":"round"},gMarks);
+    const mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,L=Math.hypot(mx,my);
+    const c=el("circle",{cx:mx*(L+11)/L,cy:my*(L+11)/L,r:8,fill:css("--ink")},gMarks);
+    label(mx*(L+11)/L,my*(L+11)/L+.5,String(i+1),"#fff");
+    tone(440+i*60,.08,"sine");
+    await animate(260,()=>{});
+  }
+}
+function hexAngles(){P=hexPts();P.forEach(p=>{const L=Math.hypot(p[0],p[1]);label(p[0]*(L-15)/L,p[1]*(L-15)/L,"120°")})}
+let P;
+
+const STEPS=[
+ {q:"Elinde kâğıttan bir daire var. Önce dairenin merkezini bulmalısın. Nasıl yaparsın?",
+  o:["Daireyi ikiye katlarım, açıp öbür yönden yine ikiye katlarım. Katların kesiştiği yer merkezdir.","Gözle bakıp ortasına bir nokta koyarım.","Daireyi üç eşit parçaya keserim."],
+  ex:"Kat izlerinin kesiştiği kırmızı nokta dairenin merkezi.",run:doCenter},
+ {q:"Dairenin kenarından bir parçayı katlayacağız. Kenar hangi noktaya değmeli?",
+  o:["Tam merkeze","Karşı kenara","Herhangi bir yere"],
+  ex:"Kenar merkeze değdi. Kat çizgisi daireyi kesen düz bir çizgi (kiriş) oldu.",run:()=>doFlap(0)},
+ {q:"İkinci katlamada ne yapmalısın?",
+  o:["Kat çizgisinin bir ucundan başlayıp kenarı yine merkeze katlarım.","Aynı yeri bir kez daha katlarım.","Kâğıdı ortadan yırtarım."],
+  ex:"İki kat çizgisi tam çemberin üzerinde buluştu.",run:()=>doFlap(1)},
+ {q:"Son kavisli kısmı da merkeze katlıyoruz. Sence hangi şekil oluşacak?",
+  o:["Üçgen","Kare","Beşgen"],
+  ex:"Üç katlamayla bir üçgen elde ettik. Köşeleri çemberin üzerinde.",run:()=>doFlap(2)},
+ {q:"Üçgenin kenarlarını ölçtük: üçü de eşit. Bu üçgene ne ad verilir?",
+  o:["Eşkenar üçgen","İkizkenar üçgen","Çeşitkenar üçgen"],
+  ex:"Eşkenar üçgenin üç kenarı eşittir ve her iç açısı 60°'dir.",run:async()=>{triMarks();sfx.ok();await animate(400,()=>{})}},
+ {q:"Altıgene geçiyoruz! Üçgenin bir köşesini nereye katlarsın?",
+  o:["Merkeze","Karşı kenarın ortasına","Yanındaki köşeye"],
+  ex:"Köşe merkeze değdi ve yerinde düz bir kenar oluştu.",run:async()=>{clearMarks();await doCorner(0)}},
+ {q:"Diğer iki köşe için ne yapmalısın?",
+  o:["Onları da merkeze katlarım.","Makasla keserim.","Olduğu gibi bırakırım."],
+  ex:"Üç köşe de merkezde buluştu.",run:async()=>{await doCorner(1);await doCorner(2)}},
+ {q:"Oluşan şeklin kenarlarını say. Kaç kenarı var?",
+  o:["6 kenar: altıgen","5 kenar: beşgen","8 kenar: sekizgen"],
+  ex:"Altı kenar ve altı köşe var. Bu bir altıgen.",run:hexEdges},
+ {q:"Bu altıgenin bütün kenarları ve bütün açıları eşit. Ona ne denir?",
+  o:["Düzgün altıgen","Eşkenar dörtgen","Eşkenar üçgen"],
+  ex:"Düzgün altıgenin tüm kenarları eşit, her iç açısı 120°.",run:async()=>{hexAngles();sfx.win();confetti()}}
+];
+let step=0, tries=0, wsPts=0;
+const letters="ABC";
+function renderStep(){
+  const dots=$("#wsDots");dots.innerHTML="";
+  STEPS.forEach((_,i)=>{const d=document.createElement("span");d.className="dot"+(i<step?" done":i===step?" now":"");dots.appendChild(d)});
+  $("#wsNext").hidden=true;$("#wsFb").innerHTML="";
+  if(step>=STEPS.length){
+    $("#wsStep").textContent="Tamamlandı";
+    $("#wsQ").textContent="Tebrikler! Daireden önce eşkenar üçgen, sonra düzgün altıgen yaptın.";
+    $("#wsOpts").innerHTML="";
+    $("#wsFb").innerHTML=`<div class="fb info">Atölyeden <b>${wsPts}</b> puan topladın. Şimdi 2. bölümde adımları sıralamayı dene.</div>`;
+    const b=$("#wsNext");b.hidden=false;b.textContent="Baştan oyna ↺";b.onclick=resetWS;return;
+  }
+  const s=STEPS[step];tries=0;
+  $("#wsStep").textContent=`Adım ${step+1} / ${STEPS.length}`;
+  $("#wsQ").textContent=s.q;
+  const box=$("#wsOpts");box.innerHTML="";
+  shuffle(s.o.map((t,i)=>({t,ok:i===0}))).forEach((o,i)=>{
+    const b=document.createElement("button");b.className="opt";
+    b.innerHTML=`<span class="k">${letters[i]}</span><span></span>`;b.lastChild.textContent=o.t;
+    b.onclick=()=>answer(b,o.ok);box.appendChild(b);
+  });
+}
+async function answer(b,ok){
+  const s=STEPS[step];
+  if(!ok){tries++;b.classList.add("wrong","shake");b.disabled=true;sfx.bad();
+    $("#wsFb").innerHTML=`<div class="fb no">Bu olmadı. Kâğıdı gerçekten katladığını düşün ve tekrar dene.</div>`;return}
+  document.querySelectorAll("#wsOpts .opt").forEach(x=>x.disabled=true);
+  b.classList.add("right");sfx.ok();
+  const pts=tries===0?10:tries===1?5:2;wsPts+=pts;addScore(pts);
+  $("#wsFb").innerHTML=`<div class="fb ok">Doğru! +${pts} puan</div>`;
+  await s.run();
+  $("#wsFb").innerHTML=`<div class="fb ok"><b>+${pts} puan.</b> ${s.ex}</div>`;
+  const n=$("#wsNext");n.hidden=false;n.textContent=step===STEPS.length-1?"Sonucu gör →":"Sonraki adım →";
+  n.onclick=()=>{step++;renderStep()};n.focus();
+}
+function resetWS(){step=0;wsPts=0;buildStage();renderStep()}
+resetWS();
+
+/* =====================================================
+   2. ADIMLARI SIRALA
+   ===================================================== */
+// minik çizimler
+function thumb(kind){
+  const s=el("svg",{viewBox:"-112 -112 224 224"});
+  const T=VERT.map(d=>pt(R,d).join(",")).join(" ");
+  const H=hexPts?VERT.flatMap(phi=>{const c=cornerPts(phi);return[c.A,c.B]}).map(q=>q.join(",")).join(" "):"";
+  const pf=css("--paper"),pb=css("--paper-back"),ed=css("--edge"),ink=css("--ink");
+  const flap=th=>{const A=pt(R,th-60),B=pt(R,th+60),c=pt(R,th);return el("path",{d:`M${A} A${R} ${R} 0 0 0 ${B} Z`,fill:pb,stroke:ed,"stroke-width":5},s)};
+  if(kind===0){el("circle",{r:R,fill:pf},s);el("line",{x1:-R,y1:0,x2:R,y2:0,stroke:ink,"stroke-width":5,"stroke-dasharray":"12 8"},s);el("line",{x1:0,y1:-R,x2:0,y2:R,stroke:ink,"stroke-width":5,"stroke-dasharray":"12 8"},s);el("circle",{r:10,fill:css("--bad")},s)}
+  else if(kind<=3){
+    const folded=kind; // 1,2,3 katlama
+    const outline=[];el("polygon",{points:T,fill:pf},s);
+    FLAP_N.forEach((th,i)=>{if(i>=folded){const A=pt(R,th-60),B=pt(R,th+60);el("path",{d:`M${A} A${R} ${R} 0 0 1 ${B} Z`,fill:pf},s)}});
+    FLAP_N.forEach((th,i)=>{if(i<folded)flap(th)});
+  }else{
+    const n=kind===4?1:3;
+    const pts=[];VERT.forEach((phi,j)=>{const c=cornerPts(phi);if(j<n)pts.push(c.A,c.B);else pts.push(c.V)});
+    el("polygon",{points:pts.map(q=>q.join(",")).join(" "),fill:pf},s);
+    VERT.forEach((phi,j)=>{if(j<n){const c=cornerPts(phi);el("polygon",{points:[[0,0],c.A,c.B].map(q=>q.join(",")).join(" "),fill:pb,stroke:ed,"stroke-width":5},s)}});
+  }
+  return s;
+}
+const SORT=[
+ "Daireyi iki kez ikiye katlayıp merkezini bul.",
+ "Kenardaki bir noktayı merkeze getirerek katla.",
+ "Kat çizgisinin ucundan başlayıp kenarı yine merkeze katla.",
+ "Kalan kavisli kısmı da merkeze katla: eşkenar üçgen oluştu.",
+ "Üçgenin bir köşesini merkeze katla.",
+ "Diğer iki köşeyi de merkeze katla: düzgün altıgen oluştu."
+];
+let sNext=0,sMiss=0,sT0=0,sTimer=null,sDone=false;
+function resetSort(){
+  sNext=0;sMiss=0;sDone=false;sT0=0;clearInterval(sTimer);$("#sMiss").textContent=0;$("#sTime").textContent=0;$("#sFb").innerHTML="";
+  const pool=$("#sPool");pool.innerHTML="";
+  shuffle(SORT.map((t,i)=>({t,i}))).forEach(c=>{
+    const b=document.createElement("button");b.className="card";b.appendChild(thumb(c.i));
+    const sp=document.createElement("span");sp.textContent=c.t;b.appendChild(sp);
+    b.onclick=()=>pick(b,c);pool.appendChild(b);
+  });
+  const slots=$("#sSlots");slots.innerHTML="";
+  SORT.forEach((_,i)=>{const d=document.createElement("div");d.className="slot";d.innerHTML=`<span class="num">${i+1}</span><span>…</span>`;slots.appendChild(d)});
+}
+function pick(b,c){
+  if(sDone)return;
+  if(!sT0){sT0=Date.now();sTimer=setInterval(()=>$("#sTime").textContent=Math.floor((Date.now()-sT0)/1000),250)}
+  if(c.i!==sNext){sMiss++;$("#sMiss").textContent=sMiss;sfx.bad();b.classList.remove("shake");void b.offsetWidth;b.classList.add("shake");
+    $("#sFb").innerHTML=`<div class="fb no">Bu kart ${sNext+1}. adım değil. Kâğıdın şimdiki hâlini düşün.</div>`;return}
+  sfx.ok();const slot=$("#sSlots").children[sNext];slot.className="slot filled";slot.innerHTML=`<span class="num">${sNext+1}</span>`;slot.appendChild(thumb(c.i));const sp=document.createElement("span");sp.textContent=c.t;slot.appendChild(sp);
+  b.remove();sNext++;$("#sFb").innerHTML="";
+  if(sNext===SORT.length){sDone=true;clearInterval(sTimer);const sec=Math.floor((Date.now()-sT0)/1000);const pts=Math.max(5,30-sMiss*5);addScore(pts);sfx.win();confetti();
+    $("#sFb").innerHTML=`<div class="fb ok"><b>Harika! +${pts} puan.</b> ${sec} saniyede, ${sMiss} hatayla bitirdin.</div>`}
+}
+$("#sReset").onclick=resetSort;resetSort();
+
+/* =====================================================
+   3. BİLGİ YARIŞMASI
+   ===================================================== */
+function polyFig(n,rot){const s=el("svg",{viewBox:"-110 -110 220 220"});const p=[];for(let i=0;i<n;i++)p.push(pt(95,rot+i*360/n).join(","));el("polygon",{points:p.join(" "),fill:css("--paper"),stroke:css("--edge"),"stroke-width":5,"stroke-linejoin":"round"},s);return s}
+const BANK=[
+ {q:"Daireden eşkenar üçgen elde etmek için kaç kez katladık?",o:["3","2","4","6"]},
+ {q:"Daireyi katlarken kenarı hangi noktaya değdirdik?",o:["Merkeze","Karşı kenara","Çapın ucuna","Hiçbir yere"]},
+ {q:"Eşkenar üçgenin bir iç açısı kaç derecedir?",o:["60°","90°","45°","120°"]},
+ {q:"Düzgün altıgenin bir iç açısı kaç derecedir?",o:["120°","60°","90°","108°"]},
+ {q:"Üçgenden altıgen elde etmek için ne yaptık?",o:["Köşeleri merkeze katladık","Kenarları ikiye böldük","Üçgeni ortadan kestik","Köşeleri yuvarladık"]},
+ {q:"Düzgün altıgenin kaç köşegeni vardır?",o:["9","6","12","3"]},
+ {q:"Hangisi düzgün çokgendir?",o:["Kare","Dikdörtgen","İkizkenar üçgen","Çeşitkenar üçgen"]},
+ {q:"Dikdörtgen neden düzgün çokgen değildir?",o:["Kenar uzunlukları eşit değil","Açıları eşit değil","Dört kenarı var","Köşegeni yok"]},
+ {q:"Bu şeklin adı nedir?",fig:[6,0],o:["Düzgün altıgen","Düzgün beşgen","Sekizgen","Eşkenar üçgen"]},
+ {q:"Tüm kenarları eşit olan bu üçgenin adı nedir?",fig:[3,-90],o:["Eşkenar üçgen","İkizkenar üçgen","Çeşitkenar üçgen","Dik üçgen"]},
+ {q:"Bu şeklin kaç kenarı var?",fig:[5,-90],o:["5","6","4","7"]},
+ {q:"Arı petekleri hangi şekle benzer?",o:["Altıgen","Beşgen","Kare","Daire"]},
+ {q:"Katlayarak yaptığımız eşkenar üçgenin köşeleri nerede kaldı?",o:["Çemberin üzerinde","Merkezde","Dairenin dışında","Çapın ortasında"]},
+ {q:"Dairenin merkezini bulmak için ne yaptık?",o:["İki kez ikiye katladık","Gözle tahmin ettik","Üçe katladık","Kenarını kestik"]},
+ {q:"Düzgün altıgende merkezden köşelere çizgi çekersek kaç eşkenar üçgen oluşur?",o:["6","3","4","8"]},
+ {q:"Eşkenar üçgenin kaç kenarı birbirine eşittir?",o:["3","2","Hiçbiri","1"]}
+];
+const QN=10,QSEC=20;
+let qMode="solo",qList=[],qi=0,qTeam=[0,0],qSolo=0,qTimer=null,qLeft=0,qLocked=false;
+const quiz=$("#quiz");
+function qStart(){
+  clearInterval(qTimer);
+  quiz.innerHTML=`
+   <p class="eyebrow">3. bölüm</p>
+   <h2 class="big">Bilgi Yarışması</h2>
+   <p class="lead">${QN} soru, her soru için ${QSEC} saniye. Doğru cevap 10 puan, hızlı cevap ek puan getirir. Sınıfta iki takım hâlinde de oynayabilirsiniz.</p>
+   <div class="seg" id="modeSeg">
+     <button aria-pressed="${qMode==="solo"}" data-m="solo">Tek oyuncu</button>
+     <button aria-pressed="${qMode==="team"}" data-m="team">İki takım (A – B)</button>
+   </div>
+   <button class="go" id="qGo">Yarışmayı başlat</button>`;
+  quiz.querySelectorAll("#modeSeg button").forEach(b=>b.onclick=()=>{qMode=b.dataset.m;quiz.querySelectorAll("#modeSeg button").forEach(x=>x.setAttribute("aria-pressed",x===b))});
+  $("#qGo").onclick=()=>{qList=shuffle(BANK).slice(0,QN);qi=0;qTeam=[0,0];qSolo=0;qShow()};
+}
+function qShow(){
+  if(qi>=QN)return qEnd();
+  const it=qList[qi];qLocked=false;
+  const team=qi%2;
+  quiz.innerHTML=`
+   <div class="qhead"><span class="eyebrow">Soru ${qi+1} / ${QN}</span>
+     ${qMode==="team"?`<div class="teams"><span class="team ${team===0?"turn":""}">A Takımı: ${qTeam[0]}</span><span class="team ${team===1?"turn":""}">B Takımı: ${qTeam[1]}</span></div>`:`<span class="team">Puan: ${qSolo}</span>`}</div>
+   <div class="timer" id="qBar"><i></i></div>
+   ${qMode==="team"?`<p class="eyebrow" style="margin:0">Sıra: ${team===0?"A":"B"} Takımında</p>`:""}
+   <h2 class="q"></h2><div class="fig" id="qFig"></div>
+   <div class="grid2" id="qOpts"></div><div id="qFb"></div>`;
+  quiz.querySelector("h2.q").textContent=it.q;
+  if(it.fig)$("#qFig").appendChild(polyFig(it.fig[0],it.fig[1]));else $("#qFig").remove();
+  shuffle(it.o.map((t,i)=>({t,ok:i===0}))).forEach((o,i)=>{const b=document.createElement("button");b.className="opt";b.innerHTML=`<span class="k">${"ABCD"[i]}</span><span></span>`;b.lastChild.textContent=o.t;b.dataset.ok=o.ok;b.onclick=()=>qAnswer(b,o.ok);$("#qOpts").appendChild(b)});
+  qLeft=QSEC*10;clearInterval(qTimer);
+  qTimer=setInterval(()=>{qLeft--;const bar=$("#qBar");if(!bar)return clearInterval(qTimer);bar.firstChild.style.width=(qLeft/(QSEC*10)*100)+"%";bar.classList.toggle("low",qLeft<50);if(qLeft<=0){clearInterval(qTimer);qAnswer(null,false,true)}},100);
+}
+function qAnswer(b,ok,timeout){
+  if(qLocked)return;qLocked=true;clearInterval(qTimer);
+  quiz.querySelectorAll("#qOpts .opt").forEach(x=>{x.disabled=true;if(x.dataset.ok==="true")x.classList.add("right")});
+  let msg;
+  if(ok){const bonus=Math.ceil(qLeft/40);const pts=10+bonus;sfx.ok();
+    if(qMode==="team")qTeam[qi%2]+=pts;else{qSolo+=pts;addScore(pts)}
+    msg=`<div class="fb ok"><b>Doğru! +${pts} puan</b> (10 + ${bonus} hız bonusu)</div>`}
+  else{if(b)b.classList.add("wrong");sfx.bad();msg=`<div class="fb no">${timeout?"Süre doldu.":"Yanlış cevap."} Doğru cevap yeşil ile gösterildi.</div>`}
+  $("#qFb").innerHTML=msg+`<div style="margin-top:12px"><button class="go" id="qNext">${qi===QN-1?"Sonuçları gör →":"Sonraki soru →"}</button></div>`;
+  $("#qNext").onclick=()=>{qi++;qShow()};$("#qNext").focus();
+}
+function qEnd(){
+  sfx.win();confetti();
+  let head,detail;
+  if(qMode==="team"){const[a,b]=qTeam;head=a===b?"Berabere!":(a>b?"A Takımı kazandı!":"B Takımı kazandı!");detail=`<div class="teams"><span class="team ${a>=b?"turn":""}">A Takımı: ${a}</span><span class="team ${b>=a?"turn":""}">B Takımı: ${b}</span></div>`}
+  else{head=qSolo>=120?"Geometri ustası!":qSolo>=80?"Çok iyi!":"İyi deneme!";detail=`<p class="lead">Bu yarışmada <b>${qSolo}</b> puan topladın.</p>`}
+  quiz.innerHTML=`<p class="eyebrow">Yarışma bitti</p><h2 class="big"></h2>${detail}<button class="go" id="qAgain">Yeniden oyna</button>`;
+  quiz.querySelector("h2").textContent=head;$("#qAgain").onclick=qStart;
+}
+qStart();
+})();
+</script>
+
+</body></html>

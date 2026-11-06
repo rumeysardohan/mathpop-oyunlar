@@ -1,0 +1,311 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Kayıp Rakam Avı</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: kareli defter zemini üzerinde tek sütun sohbet; altta cevap paneli */
+:root{
+  --paper:#f5f7f1; --grid:#dde6e2; --ink:#1d2733; --muted:#5a6672; --card:#ffffff; --line:#cbd5d1;
+  --teacher:#dff0ea; --teacher-ink:#113d35; --student:#fcefc8; --student-ink:#4a3907;
+  --red:#cc3a30; --red-soft:#fbe3e0; --green:#287f50; --green-soft:#dcf1e4; --teal:#1f7a6a;
+  --f-display:"Fredoka","Trebuchet MS",system-ui,sans-serif;
+  --f-body:"Nunito","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#161f1d; --grid:#222e2b; --ink:#e6ece9; --muted:#9caba6; --card:#1e2926; --line:#34433f;
+  --teacher:#1d3a33; --teacher-ink:#d3efe7; --student:#3a3116; --student-ink:#f5e6b6;
+  --red:#ff7b6f; --red-soft:#4a2320; --green:#6fd09a; --green-soft:#1c3a2a; --teal:#5cc8b3; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#161f1d; --grid:#222e2b; --ink:#e6ece9; --muted:#9caba6; --card:#1e2926; --line:#34433f;
+  --teacher:#1d3a33; --teacher-ink:#d3efe7; --student:#3a3116; --student-ink:#f5e6b6;
+  --red:#ff7b6f; --red-soft:#4a2320; --green:#6fd09a; --green-soft:#1c3a2a; --teal:#5cc8b3; color-scheme:dark }
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--muted:#9caba6}}
+
+*{box-sizing:border-box}
+body{
+  background-color:var(--paper); color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.5;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:26px 26px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:20px 40px;
+}
+.wrap{max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:18px}
+
+header{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:12px 20px}
+h1{font-family:var(--f-display); font-weight:700; font-size:clamp(28px,6vw,40px); line-height:1; margin:0; letter-spacing:-.01em; text-wrap:balance}
+h1 .a{color:var(--red); display:inline-block; transform:rotate(-6deg)}
+.sub{margin:6px 0 0; color:var(--muted); font-size:15px}
+.score{display:flex; gap:8px; flex-wrap:wrap}
+.pill{font-family:var(--f-display); font-weight:600; background:var(--card); border:1.5px solid var(--line); border-radius:999px; padding:4px 12px; font-size:15px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.pill b{color:var(--teal)}
+
+.levels{display:flex; flex-wrap:wrap; gap:6px; align-items:center}
+.levels span{font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-weight:800; margin-right:4px}
+.lvl{font:600 14px var(--f-body); border:1.5px solid var(--line); background:var(--card); color:var(--ink); padding:5px 12px; border-radius:8px; cursor:pointer}
+.lvl[aria-pressed="true"]{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+.lvl small{opacity:.7; font-weight:400}
+
+.board{background:var(--card); border:1.5px solid var(--line); border-radius:16px; padding:18px clamp(12px,3vw,22px); display:flex; flex-direction:column; gap:14px; min-height:200px}
+.qno{font-size:12px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:800; text-align:center}
+
+.msg{display:flex; gap:10px; align-items:flex-end; max-width:92%; animation:pop .28s ease-out}
+.msg.s{align-self:flex-end; flex-direction:row-reverse}
+.av{flex:0 0 44px; width:44px; height:44px}
+.bub{min-width:0; padding:10px 14px; border-radius:16px; position:relative}
+.msg.t .bub{background:var(--teacher); color:var(--teacher-ink); border-bottom-left-radius:4px}
+.msg.s .bub{background:var(--student); color:var(--student-ink); border-bottom-right-radius:4px}
+.who{display:block; font-family:var(--f-display); font-weight:600; font-size:13px; opacity:.75; margin-bottom:2px}
+.bub p{margin:0}
+.bub p+p{margin-top:6px}
+.bub.good{box-shadow:inset 0 0 0 2px var(--green)}
+.bub.bad{box-shadow:inset 0 0 0 2px var(--red)}
+@keyframes pop{from{opacity:0; transform:translateY(6px)}to{opacity:1; transform:none}}
+
+.num{font-family:var(--f-display); font-weight:600; font-variant-numeric:tabular-nums; white-space:nowrap}
+.num .a{color:var(--red)}
+.tiles{display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin:10px 0 4px}
+.tile{width:40px; height:46px; display:grid; place-items:center; background:var(--card); color:var(--ink); border:1.5px solid var(--line); border-radius:8px; font:700 26px var(--f-display)}
+.tile.a{color:var(--red); border-color:var(--red); border-style:dashed}
+.op{font:600 22px var(--f-display); padding:0 4px}
+.set{font-family:var(--f-display); font-weight:600; white-space:nowrap}
+.rule{display:inline-block; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; background:var(--card); color:var(--teal); border-radius:6px; padding:1px 7px; margin-bottom:4px}
+
+.panel{background:var(--card); border:1.5px solid var(--line); border-radius:16px; padding:16px; display:flex; flex-direction:column; gap:12px}
+.panel .hint{margin:0; font-size:14px; color:var(--muted)}
+.pad{display:grid; grid-template-columns:repeat(10,1fr); gap:6px}
+@media (max-width:480px){.pad{grid-template-columns:repeat(5,1fr)}}
+.dg{font:700 22px var(--f-display); aspect-ratio:1/1; max-width:100%; border-radius:10px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); cursor:pointer; transition:transform .1s}
+.dg:hover{transform:translateY(-2px)}
+.dg[aria-pressed="true"]{background:var(--red); border-color:var(--red); color:#fff}
+.row{display:flex; gap:8px; flex-wrap:wrap}
+.btn{font:700 16px var(--f-body); border-radius:10px; padding:10px 18px; cursor:pointer; border:1.5px solid var(--ink); background:var(--ink); color:var(--paper)}
+.btn.ghost{background:transparent; color:var(--ink)}
+.btn:disabled{opacity:.4; cursor:not-allowed}
+button:focus-visible{outline:3px solid var(--teal); outline-offset:2px}
+
+details.rules{background:var(--card); border:1.5px solid var(--line); border-radius:16px; padding:12px 16px}
+details.rules summary{cursor:pointer; font-family:var(--f-display); font-weight:600; font-size:17px}
+.rgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px 18px; margin-top:12px; font-size:14.5px}
+.rgrid div{min-width:0}
+.rgrid b{font-family:var(--f-display); font-size:17px; color:var(--red); margin-right:4px}
+@media (prefers-reduced-motion:reduce){.msg{animation:none}.dg{transition:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Kayıp Rakam Av<span class="a">ı</span></h1>
+      <p class="sub">Bölünebilme kurallarıyla sayının içindeki <b style="color:var(--red)">a</b>'yı bul.</p>
+    </div>
+    <div class="score" aria-live="polite">
+      <span class="pill">Puan <b id="pts">0</b></span>
+      <span class="pill">Seri <b id="streak">0</b></span>
+      <span class="pill">Doğru <b id="ok">0</b>/<span id="tot">0</span></span>
+    </div>
+  </header>
+
+  <div class="levels" role="group" aria-label="Seviye">
+    <span>Bölen</span>
+    <button class="lvl" id="lv1" data-l="1" aria-pressed="false">Kolay <small>2·5·10</small></button>
+    <button class="lvl" id="lv2" data-l="2" aria-pressed="false">Orta <small>3·9</small></button>
+    <button class="lvl" id="lv3" data-l="3" aria-pressed="false">Zor <small>4·6</small></button>
+    <button class="lvl" id="lvm" data-l="m" aria-pressed="true">Karışık</button>
+  </div>
+
+  <section class="board" id="board" aria-live="polite"></section>
+  <section class="panel" id="panel"></section>
+
+  <details class="rules">
+    <summary>Kural defteri</summary>
+    <div class="rgrid">
+      <div><b>2</b>Birler basamağı çift (0, 2, 4, 6, 8) olan sayılar 2'ye bölünür.</div>
+      <div><b>3</b>Rakamlarının toplamı 3'ün katı olan sayılar 3'e bölünür.</div>
+      <div><b>4</b>Son iki basamağı 00 ya da 4'ün katı olan sayılar 4'e bölünür.</div>
+      <div><b>5</b>Birler basamağı 0 ya da 5 olan sayılar 5'e bölünür.</div>
+      <div><b>6</b>Hem 2'ye hem 3'e bölünebilen sayılar 6'ya bölünür.</div>
+      <div><b>9</b>Rakamlarının toplamı 9'un katı olan sayılar 9'a bölünür.</div>
+      <div><b>10</b>Birler basamağı 0 olan sayılar 10'a bölünür.</div>
+    </div>
+  </details>
+</div>
+
+<script>
+(function(){
+const DAT={2:"ye",3:"e",4:"e",5:"e",6:"ya",8:"e",9:"a",10:"a",11:"e",12:"ye",15:"e",18:"e"};
+const GEN={2:"nin",3:"ün",4:"ün",5:"in",6:"nın",8:"in",9:"un",10:"un",11:"in",12:"nin",15:"in",18:"in"};
+const DIST={2:"şer",3:"er",4:"er",5:"er",6:"şar",8:"er",9:"ar",10:"ar",11:"er",12:"şer",15:"er",18:"er"};
+const dat=d=>`${d}'${DAT[d]}`, gen=d=>`${d}'${GEN[d]}`, dist=d=>`${d}'${DIST[d]}`;
+const LEVELS={1:[2,5,10],2:[3,9],3:[4,6]};
+LEVELS.m=[...LEVELS[1],...LEVELS[2],...LEVELS[3]];
+const FACT={2:[2],3:[3],4:[4],5:[5],6:[2,3],9:[9],10:[10]};
+const WHY={
+  6:"6 = 2 × 3. Bir sayı hem 2'ye hem 3'e bölünebiliyorsa 6'ya da bölünür. O hâlde iki kuralı da kontrol etmeliyiz."
+};
+const CTX=[
+  {s:(N,d)=>`Bir okulda ${N} öğrenci var. Gezi için ${dist(d)} kişilik gruplara, hiç öğrenci açıkta kalmayacak şekilde ayrılacaklar.`, rest:"hiçbir öğrenci açıkta kalmaz"},
+  {s:(N,d)=>`Çiftlikte ${N} yumurta toplandı. Her koliye ${d} yumurta konacak ve hiç yumurta artmayacak.`, rest:"hiç yumurta artmaz"},
+  {s:(N,d)=>`Kütüphaneye ${N} yeni kitap geldi. Her rafa ${d} kitap dizilecek, dışarıda kitap kalmayacak.`, rest:"bütün kitaplar raflara sığar"},
+  {s:(N,d)=>`Okul bahçesine ${N} fidan dikilecek. Her sırada ${d} fidan olacak, yarım sıra kalmayacak.`, rest:"bütün sıralar tam dolar"},
+  {s:(N,d)=>`Konser salonuna ${N} sandalye, her sırada ${d} sandalye olacak şekilde boşluksuz dizilecek.`, rest:"hiç sandalye artmaz"},
+  {s:(N,d)=>`Bir fırında ${N} simit pişti. Simitler ${dist(d)} paketlenecek ve tek simit bile açıkta kalmayacak.`, rest:"hiç simit artmaz"}
+];
+const rnd=n=>Math.floor(Math.random()*n), pick=a=>a[rnd(a.length)];
+const fill=(arr,x)=>+arr.map(c=>c==='a'?x:c).join('');
+const numHTML=arr=>`<span class="num">${arr.map(c=>c==='a'?'<span class="a">a</span>':c).join('')}</span>`;
+const fmtSet=s=>`<span class="set">${joinTr(s)}</span>`;
+const joinTr=l=>l.length<=1?String(l[0]??''):l.slice(0,-1).join(', ')+' veya '+l[l.length-1];
+const inter=(a,b)=>a.filter(x=>b.includes(x));
+const ALL=[0,1,2,3,4,5,6,7,8,9];
+
+function check(r,arr){
+  const n=arr.length;
+  if(r===2||r===5||r===10){
+    const ok=r===2?[0,2,4,6,8]:r===5?[0,5]:[0];
+    const kural=r===2?"birler basamağı çift olmalı (0, 2, 4, 6, 8)":r===5?"birler basamağı 0 ya da 5 olmalı":"birler basamağı 0 olmalı";
+    const last=arr[n-1];
+    if(last==='a') return {set:ok,txt:`${dat(r)} bölünebilmesi için ${kural}. Birler basamağında a var, yani a yerine ${fmtSet(ok)} gelebilir.`};
+    const pass=ok.includes(+last);
+    return {set:pass?ALL:[],txt:`${dat(r)} bölünebilmesi için ${kural}. Birler basamağı ${last}; ${pass?"bu şart zaten sağlanıyor, a hangi rakam olursa olsun fark etmez":"bu şart sağlanmıyor"}.`};
+  }
+  if(r===4){
+    const seg=arr.slice(n-2);
+    if(seg.includes('a')){
+      const set=[],tries=[];
+      for(const x of ALL){const s=seg.map(c=>c==='a'?x:c).join(''); if(+s%4===0){set.push(x);tries.push(s);}}
+      return {set,txt:`4'e bölünebilmesi için son iki basamağa bakarım: ${numHTML(seg)} sayısı 00 ya da 4'ün katı olmalı. Tek tek denersem uyanlar: ${tries.join(', ')||'yok'}. Yani a yerine ${fmtSet(set)} gelebilir.`};
+    }
+    const v=seg.join(''); const pass=+v%4===0;
+    return {set:pass?ALL:[],txt:`4'e bölünebilmesi için son iki basamağa bakarım: ${v}. ${pass?"Bu zaten 4'ün katı, a hangi rakam olursa olsun fark etmez.":"Bu 4'ün katı değil."}`};
+  }
+  if(r===3||r===9){
+    const S=arr.filter(c=>c!=='a').map(Number).reduce((a,b)=>a+b,0);
+    const targets=[],set=[];
+    for(let t=Math.ceil(S/r)*r;t<=S+9;t+=r){targets.push(t);set.push(t-S);}
+    return {set,txt:`${dat(r)} bölünebilmesi için rakamların toplamına bakarım: ${arr.join(' + ')} = ${S} + a. Bu toplam ${gen(r)} katı olmalı, yani ${fmtSet(targets)} olabilir. Buradan a yerine ${fmtSet(set)} gelebilir.`};
+  }
+}
+
+function solve(arr,d){
+  const parts=FACT[d].map(f=>({f,...check(f,arr)}));
+  let set=ALL.slice(); parts.forEach(p=>set=inter(set,p.set));
+  const lead=arr[0]==='a';
+  const final=lead?set.filter(x=>x!==0):set;
+  return {parts,set,final,lead};
+}
+
+function generate(level){
+  for(let i=0;i<400;i++){
+    const d=pick(LEVELS[level]); const len=pick([3,3,4]); const p=rnd(len);
+    const arr=[]; for(let j=0;j<len;j++){ arr.push(j===p?'a':String(j===0?1+rnd(9):rnd(10))); }
+    const sol=solve(arr,d); const k=sol.final.length;
+    if(k<1||k>5) continue;
+    const qt=k>=2?pick(['all','all','max','min']):'all';
+    return {arr,d,ctx:pick(CTX),qt,sol};
+  }
+}
+
+// ---- state
+let level='m', Q=null, sel=[], phase='ask', script=[], si=0;
+const S={pts:0,streak:0,ok:0,tot:0};
+const board=document.getElementById('board'), panel=document.getElementById('panel');
+
+const AV_T=`<svg class="av" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="var(--teal)"/><circle cx="22" cy="9" r="6" fill="var(--ink)"/><circle cx="22" cy="24" r="12" fill="#f3d2b3"/><path d="M10 22c0-8 5-12 12-12s12 4 12 12c-3-4-7-6-12-6s-9 2-12 6z" fill="var(--ink)"/><circle cx="17" cy="24" r="3.4" fill="none" stroke="#1d2733" stroke-width="1.5"/><circle cx="27" cy="24" r="3.4" fill="none" stroke="#1d2733" stroke-width="1.5"/><path d="M20.4 24h3.2" stroke="#1d2733" stroke-width="1.5"/><path d="M18 30q4 3 8 0" stroke="#1d2733" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>`;
+const AV_S=`<svg class="av" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#e5a823"/><circle cx="22" cy="25" r="12" fill="#e9bf96"/><path d="M10 22c1-9 6-12 12-12 7 0 11 4 12 11-2-2-4-3-6-3l-1-3-2 3-3-3-2 3-3-3-2 4c-2 0-4 1-5 3z" fill="#5a3a1c"/><circle cx="18" cy="25" r="1.6" fill="#1d2733"/><circle cx="26" cy="25" r="1.6" fill="#1d2733"/><path d="M18 30q4 3.5 8 0" stroke="#1d2733" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>`;
+
+function say(who,html,cls=''){
+  const m=document.createElement('div'); m.className='msg '+who;
+  m.innerHTML=(who==='t'?AV_T:AV_S)+`<div class="bub ${cls}"><span class="who">${who==='t'?'RU Öğretmen':'Can'}</span>${html}</div>`;
+  board.appendChild(m);
+  if(board.children.length>2) m.scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+}
+function updScore(){for(const k in S)document.getElementById(k).textContent=S[k];}
+
+function askText(){
+  const {qt}=Q;
+  if(qt==='max') return `Can, a yerine gelebilecek <b>en büyük</b> rakam kaçtır?`;
+  if(qt==='min') return `Can, a yerine gelebilecek <b>en küçük</b> rakam kaçtır?`;
+  return `Can, a yerine <b>hangi rakamlar</b> gelebilir? Hepsini bul.`;
+}
+
+function newQ(q){
+  Q=q||generate(level); sel=[]; phase='ask'; board.innerHTML='';
+  const tiles=`<div class="tiles" aria-label="sayı">${Q.arr.map(c=>`<span class="tile ${c==='a'?'a':''}">${c}</span>`).join('')}<span class="op">÷ ${Q.d}</span><span class="op">→ kalan 0</span></div>`;
+  board.insertAdjacentHTML('beforeend',`<div class="qno">Soru ${S.tot+1}</div>`);
+  say('t',`<p>${Q.ctx.s(numHTML(Q.arr),Q.d)} (${numHTML(Q.arr)} ${Q.arr.length===4?'dört':'üç'} basamaklı bir sayıdır.)</p>${tiles}<p>${askText()}</p>`);
+  renderPanel();
+}
+
+function renderPanel(){
+  if(phase==='ask'){
+    const multi=Q.qt==='all';
+    panel.innerHTML=`<p class="hint">${multi?'Uyan bütün rakamları seç, sonra cevabını ver.':'Tek bir rakam seç.'}</p>
+      <div class="pad">${ALL.map(x=>`<button class="dg" id="dg${x}" data-x="${x}" aria-pressed="${sel.includes(x)}">${x}</button>`).join('')}</div>
+      <div class="row"><button class="btn" id="go" ${sel.length?'':'disabled'}>Cevabı ver</button><button class="btn ghost" id="skip">Başka soru</button></div>`;
+    panel.querySelectorAll('.dg').forEach(b=>b.onclick=()=>{
+      const x=+b.dataset.x;
+      if(multi) sel=sel.includes(x)?sel.filter(y=>y!==x):[...sel,x].sort((a,b)=>a-b); else sel=sel[0]===x?[]:[x];
+      renderPanel();
+    });
+    panel.querySelector('#go').onclick=answer;
+    panel.querySelector('#skip').onclick=()=>newQ();
+  } else if(phase==='answered'){
+    panel.innerHTML=`<div class="row"><button class="btn" id="why">Nedenini konuşalım</button><button class="btn ghost" id="nx">Yeni soru</button></div>`;
+    panel.querySelector('#why').onclick=startWhy; panel.querySelector('#nx').onclick=()=>newQ();
+  } else if(phase==='explain'){
+    panel.innerHTML=`<p class="hint">Konuşma ${si}/${script.length}</p><div class="row"><button class="btn" id="nxt">Sonraki ▸</button><button class="btn ghost" id="allb">Hepsini göster</button></div>`;
+    panel.querySelector('#nxt').onclick=step; panel.querySelector('#allb').onclick=()=>{while(si<script.length)step(true); renderPanel();};
+  } else {
+    panel.innerHTML=`<div class="row"><button class="btn" id="nx">Yeni soru ▸</button></div>`;
+    panel.querySelector('#nx').onclick=()=>newQ();
+  }
+}
+
+function answer(){
+  const F=Q.sol.final; let correct, target;
+  if(Q.qt==='all'){ correct=sel.length===F.length&&sel.every(x=>F.includes(x)); }
+  else { target=Q.qt==='max'?Math.max(...F):Math.min(...F); correct=sel[0]===target; }
+  S.tot++; if(correct){S.ok++;S.streak++;S.pts+=10+Math.min(S.streak-1,5)*2;} else S.streak=0; updScore();
+  if(Q.qt==='all') say('s',`<p>Bence a yerine ${joinTr(sel)} gelebilir.</p>`);
+  else say('s',`<p>Bence ${Q.qt==='max'?'en büyük':'en küçük'} değer ${sel[0]}.</p>`);
+  let r;
+  if(correct) r=pick(['Harika, tam isabet!','Çok güzel, doğru!','Aynen öyle, bravo!'])+(S.streak>=3?` ${S.streak} soru üst üste doğru!`:'');
+  else if(Q.qt==='all'){
+    const extra=sel.filter(x=>!F.includes(x)), miss=F.filter(x=>!sel.includes(x));
+    const bits=[]; if(extra.length) bits.push(`${joinTr(extra)} uymuyor`); if(miss.length) bits.push(`${joinTr(miss)} eksik kaldı`);
+    r=`Yaklaştın ama ${bits.join(', ')}. Birlikte bakalım.`;
+  } else r=`Bu sefer olmadı, doğru cevap ${target}. Neden öyle, birlikte bakalım.`;
+  setTimeout(()=>{ say('t',`<p>${r}</p>`,correct?'good':'bad'); phase='answered'; renderPanel(); },350);
+  phase='wait'; panel.innerHTML='';
+}
+
+function buildScript(){
+  const {arr,d,sol,qt,ctx}=Q; const L=[]; const comp=FACT[d].length>1;
+  if(comp) L.push(['t',`<span class="rule">${d} kuralı</span><p>${WHY[d]}</p>`]);
+  else L.push(['t',`<p>${dat(d)} bölünebilme kuralını hatırlıyor musun, Can?</p>`]);
+  sol.parts.forEach((p,i)=>{
+    if(comp&&i>0) L.push(['t',`<p>Güzel. Şimdi ${dat(p.f)} bölünme kuralına bakalım.</p>`]);
+    L.push(['s',`<span class="rule">${p.f} kuralı</span><p>${p.txt}</p>`]);
+  });
+  if(comp) L.push(['t',`<p>İki kuralı birden sağlayan rakamlar: ${fmtSet(sol.set)}.</p>`]);
+  if(sol.lead&&sol.set.includes(0)) L.push(['t',`<p>Bir şey daha: a en baştaki basamak. Sayı 0 ile başlayamaz, o yüzden 0'ı eleriz. Kalanlar: ${fmtSet(sol.final)}.</p>`]);
+  if(qt!=='all'){ const t=qt==='max'?Math.max(...sol.final):Math.min(...sol.final); L.push(['t',`<p>Soru ${qt==='max'?'en büyüğü':'en küçüğü'} istiyor: cevap <b>${t}</b>.</p>`]); }
+  const nums=sol.final.map(x=>fill(arr,x));
+  const shown=nums.slice(0,4).map(v=>`${v} ÷ ${d} = ${v/d}`).join(', ');
+  L.push(['s',`<p>Sağlamasını yapayım: ${shown}${nums.length>4?' …':''}. Hepsinde kalan 0!</p>`]);
+  L.push(['t',`<p>Yani sayı ${joinTr(nums)} olabilir ve ${ctx.rest}. Kuralı bildiğin için uzun bölme yapmadan buldun.</p>`]);
+  return L;
+}
+function startWhy(){ script=buildScript(); si=0; phase='explain'; step(); }
+function step(silent){ if(si<script.length){ const [w,h]=script[si++]; say(w,h); } if(si>=script.length) phase='done'; if(!silent) renderPanel(); }
+
+document.querySelectorAll('.lvl').forEach(b=>b.onclick=()=>{
+  level=b.dataset.l; document.querySelectorAll('.lvl').forEach(x=>x.setAttribute('aria-pressed',x===b)); newQ();
+});
+
+// İlk soru: kullanıcının örneği
+const first={arr:['5','2','a'],d:6,ctx:CTX[0],qt:'all'}; first.sol=solve(first.arr,6);
+newQ(first);
+})();
+</script>
+
+</body></html>
