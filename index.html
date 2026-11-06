@@ -20,7 +20,7 @@ header img{width:64px;height:64px;border-radius:50%;background:var(--card)}
 header span{font-weight:800;color:var(--lav)}
 h1{font-family:var(--display);font-size:clamp(40px,7vw,68px);line-height:1;margin:36px 0 8px;text-wrap:balance}
 .lead{font-size:clamp(17px,2.4vw,21px);font-weight:700;max-width:40ch;line-height:1.45;margin:0 0 28px;color:var(--lav)}
-.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.games{display:grid;grid-template-columns:minmax(0,520px);gap:18px}
 a.game{display:flex;flex-direction:column;gap:8px;background:var(--card);color:var(--ink);text-decoration:none;border-radius:26px;padding:22px;
   box-shadow:0 8px 0 rgba(18,8,86,.45);transition:transform .15s}
 a.game:hover{transform:translateY(-3px)}
@@ -38,12 +38,6 @@ footer{margin-top:32px;color:var(--lav);font-weight:700;font-size:14px}
   <h1>Deniz Altı Matematik</h1>
   <p class="lead">Kesir, ondalık gösterim ve yüzde aynı sayıyı farklı yazar. Eşleri bul, hazineyi topla!</p>
   <div class="games">
-    <a class="game" href="deniz-alti-es-avi/">
-      <img src="assets/balik-2.webp" alt="">
-      <h2>Deniz Altı Eş Avı</h2>
-      <p>Hazine kartındaki sayının 3 eşini balık sürüsünde bul. 8 tur, 120 saniye.</p>
-      <span class="go">Oyna</span>
-    </a>
     <a class="game" href="buyutecle-es-avi/">
       <img src="assets/balik-1.webp" alt="">
       <h2>Büyüteçle Eş Avı</h2>

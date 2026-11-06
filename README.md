@@ -5,16 +5,13 @@ Telefonda, bilgisayarda ve akıllı tahtada çalışır. Kurulum gerekmez.
 
 | Oyun | Klasör | Kısaca |
 |---|---|---|
-| Deniz Altı Eş Avı | `deniz-alti-es-avi/` | 9 balık arasından hazine kartındaki sayının 3 eşini bul |
 | Büyüteçle Eş Avı | `buyutecle-es-avi/` | Yüzen balıkları büyüteçle netleştir; kolay / orta / zor, can ve ses efekti |
 
 ## Klasör yapısı
 
 ```
 mathpop-oyunlar/
-├── index.html               ← ana sayfa (iki oyuna bağlantı)
-├── deniz-alti-es-avi/
-│   └── index.html
+├── index.html               ← ana sayfa (oyunlara bağlantı)
 ├── buyutecle-es-avi/
 │   └── index.html
 ├── assets/
@@ -44,7 +41,6 @@ mathpop-oyunlar/
 
 ```
 https://KULLANICI-ADIN.github.io/mathpop-oyunlar/
-https://KULLANICI-ADIN.github.io/mathpop-oyunlar/deniz-alti-es-avi/
 https://KULLANICI-ADIN.github.io/mathpop-oyunlar/buyutecle-es-avi/
 ```
 
