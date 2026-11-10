@@ -52,6 +52,7 @@ Telefonda, bilgisayarda ve akıllı tahtada çalışır. Kurulum gerekmez.
 | Deneysel Olasılık Atölyesi | `deneysel-olasilik-atolyesi/` | Olasılık |
 | Olasılık Keşif Adası | `olasilik-kesif-adasi/` | Olasılık |
 | Tümler ve Bütünler Şovu | `tumler-ve-butunler-sovu/` | Tümler ve bütünler açılar |
+| 6. Sınıf Ortak Yazılı Provası | `6-sinif-ortak-yazili-provasi/` | Çarpan-kat, bölünebilme, asal çarpanlar, ortak kat-bölen, deneysel olasılık, ondalık gösterim |
 
 **Çalışma kağıtları**
 
