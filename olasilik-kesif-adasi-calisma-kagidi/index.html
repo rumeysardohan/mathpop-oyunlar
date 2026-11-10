@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Deneysel Olasılık Çalışma Kağıdı</title>
+<meta name="description" content="6. sınıf matematik çalışma kâğıdı: Deneysel olasılık (Olasılık Keşif Adası). Yazdırılabilir A4.">
+<link rel="icon" href="../assets/simge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800;900&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&amp;family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{--indigo:#2B17B0;--lav:#EEE8FF;--turq:#1CC8D8;--coral:#F47A5E;--ink:#1E1B3A;--s:1;
+  --display:"Baloo 2","Nunito",system-ui,sans-serif;--body:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--lav);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+.mp-bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:10px max(16px,env(safe-area-inset-left,0px));background:var(--indigo);color:#fff;box-shadow:0 2px 12px rgba(43,23,176,.25)}
+.mp-bar img{width:48px;height:48px;border-radius:50%;background:#fff;flex:none;object-fit:cover}
+.mp-bar h1{flex:1 1 200px;min-width:0;margin:0;font-family:var(--display);font-weight:800;font-size:clamp(18px,3.4vw,26px);line-height:1.15}
+.mp-back,.mp-print{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border-radius:999px;
+  font-family:var(--body);font-weight:800;font-size:16px;text-decoration:none;cursor:pointer;border:2px solid #fff}
+.mp-back{color:#fff;background:transparent}
+.mp-back:hover,.mp-back:focus-visible{background:rgba(255,255,255,.15)}
+.mp-print{color:var(--indigo);background:#fff}
+.mp-print:hover,.mp-print:focus-visible{background:var(--lav)}
+@media (max-width:600px){.mp-bar{gap:8px 10px}.mp-bar img{order:-1;width:44px;height:44px}.mp-print{margin-left:auto}.mp-bar h1{order:5;flex-basis:100%}}
+.mp-main{padding:24px 16px 8px;display:flex;flex-direction:column;align-items:center;gap:24px}
+.mp-sheet{width:calc(794px * var(--s));height:calc(1123px * var(--s));flex:none;background:#fff;
+  box-shadow:0 10px 30px rgba(43,23,176,.18),0 2px 6px rgba(43,23,176,.12);border-radius:4px;overflow:hidden;position:relative}
+.mp-page{width:794px;height:1123px;transform:scale(var(--s));transform-origin:0 0;position:absolute;left:0;top:0}
+.mp-answers{display:flex;flex-direction:column;align-items:center;gap:24px;padding:8px 16px 40px}
+.mp-toggle{min-height:56px;padding:12px 28px;border:0;border-radius:999px;background:var(--coral);color:var(--ink);
+  font-family:var(--display);font-weight:800;font-size:clamp(18px,4vw,22px);cursor:pointer;box-shadow:0 6px 18px rgba(244,122,94,.35)}
+.mp-toggle[aria-expanded="true"]{background:var(--turq)}
+.mp-toggle:focus-visible,.mp-back:focus-visible,.mp-print:focus-visible{outline:3px solid var(--turq);outline-offset:3px}
+.mp-answer-pages{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%}
+.mp-answer-pages[hidden]{display:none}
+.mp-note{max-width:794px;text-align:center;color:#4A4470;font-weight:700;margin:0}
+.mp-foot{text-align:center;padding:0 16px 32px;color:#4A4470;font-weight:700;font-size:14px}
+.mp-foot a{color:var(--indigo)}
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:#fff!important}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mp-bar,.mp-toggle,.mp-note,.mp-foot,.mp-noprint{display:none!important}
+  .mp-main,.mp-answers,.mp-answer-pages{display:block;padding:0;margin:0;gap:0}
+  .mp-answers:not(.mp-open){display:none!important}
+  .mp-sheet{--s:1;width:210mm;height:296.5mm;box-shadow:none;border-radius:0;margin:0;break-inside:avoid;break-after:page;page-break-after:always}
+  .mp-sheet.mp-last{break-after:auto;page-break-after:auto}
+  .mp-page{transform:none}
+}
+
+/* çalışma kâğıdı stilleri */
+
+</style>
+<style>@media print{.mp-answers.mp-open ~ * {display:none}.mp-main .mp-sheet.mp-last{break-after:auto}.mp-answers.mp-open .mp-sheet:first-child{break-before:page}}</style>
+</head>
+<body>
+<header class="mp-bar">
+<a class="mp-back" href="../">← Tüm oyunlar</a>
+<h1>Deneysel Olasılık Çalışma Kağıdı</h1>
+<button class="mp-print" type="button" onclick="window.print()">Yazdır</button>
+<img src="../assets/simge.png" alt="MathPop simgesi" width="48" height="48">
+</header>
+<main class="mp-main" id="mp-sheets">
+<div class="mp-sheet" data-board="Main.dc.html" aria-label="A4 · Sayfa 1"><div class="mp-page">
+<div style="width: 794px; height: 1123px; box-sizing: border-box; padding: 40px 52px 32px; background: #FFFFFF; font-family: 'Nunito', sans-serif; color: #1E1B3A; display: flex; flex-direction: column; gap: 15px; position: relative; overflow: hidden">
+
+<div aria-hidden="true" style="position: absolute; top: -70px; right: -70px; width: 220px; height: 220px; border-radius: 50%; background: #EEE8FF"></div>
+<div aria-hidden="true" style="position: absolute; top: 34px; right: 60px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 34px; color: #B9A6F0">π</div>
+<div aria-hidden="true" style="position: absolute; top: 92px; right: 128px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 26px; color: #1CC8D8">+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; position: relative">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-weight: 800; font-size: 13px; letter-spacing: 1.5px; color: #C2492D">6. SINIF · OLASILIK</span>
+<h1 style="margin: 0; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 46px; line-height: 1.05; color: #2B17B0">Deneysel Olasılık</h1>
+<span style="font-weight: 700; font-size: 13px; color: #4A4470">Olasılık Keşif Adası oyununun çalışma kağıdı</span>
+</div>
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 15px; color: #FFFFFF; background: #2B17B0; padding: 6px 16px; border-radius: 999px; white-space: nowrap; margin-right: 150px">Çalışma Kağıdı 1</span>
+</div>
+
+<div style="display: grid; grid-template-columns: 2.2fr 1.2fr 0.8fr; gap: 18px; font-weight: 700; font-size: 14px; color: #4A4470">
+<div style="border-bottom: 1.5px solid #8C84B5; padding-bottom: 4px">Ad Soyad:</div>
+<div style="border-bottom: 1.5px solid #8C84B5; padding-bottom: 4px">Tarih:</div>
+<div style="border-bottom: 1.5px solid #8C84B5; padding-bottom: 4px">Puan:</div>
+</div>
+
+<div style="background: #EEE8FF; border: 2px solid #1CC8D8; border-radius: 18px; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 8px">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2B17B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 21h4"></path><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"></path></svg>
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 20px; color: #2B17B0">Hatırla</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">Deney</span><span style="font-size: 12.5px; line-height: 1.35">Sonucu önceden kesin bilinmeyen işlem. Örn: para atmak</span></div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">Çıktı</span><span style="font-size: 12.5px; line-height: 1.35">Deneyin her bir olası sonucu. Örn: Yazı</span></div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">Olay</span><span style="font-size: 12.5px; line-height: 1.35">Koşula uyan çıktılar. Örn: çift sayı → 2, 4, 6</span></div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">Sıklık</span><span style="font-size: 12.5px; line-height: 1.35">Olayın deneyde kaç kez gerçekleştiği</span></div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">Deneysel olasılık</span><span style="font-size: 12.5px; line-height: 1.35">Olayın sıklığı ÷ toplam deneme sayısı</span></div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">0 ile 1 arası</span><span style="font-size: 12.5px; line-height: 1.35">Olasılık 0 ile 1 arasında bir sayıdır (0 ve 1 dahil).</span></div>
+<div style="background: #FFFFFF; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; line-height: 1.1; color: #2B17B0">Yüzdeye çevir</span><span style="font-size: 12.5px; line-height: 1.35">Paydayı 100 yap: 13/20 = 65/100 = %65</span></div>
+<div style="background: #2B17B0; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 15px; line-height: 1.1; color: #8FF0F8">İpucu</span><span style="font-size: 12.5px; line-height: 1.35; color: #FFFFFF">Para önceki atışları hatırlamaz. Sonraki atış kesin bilinemez.</span></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">1</span>
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45; flex: 1">Bir <b>sayı küpü</b> (1'den 6'ya) atılıyor. Her olayın çıktılarını yaz ve kaç çıktı olduğunu bul.</p>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: kolay">★☆☆</span>
+</div>
+<table style="margin-left: 44px; width: calc(100% - 44px); border-collapse: collapse; font-size: 15px; text-align: left">
+<thead>
+<tr style="background: #2B17B0; color: #FFFFFF; font-family: 'Baloo 2', sans-serif; font-weight: 700">
+<th style="padding: 6px 12px; border: 1.5px solid #2B17B0; width: 220px">Olay</th>
+<th style="padding: 6px 12px; border: 1.5px solid #2B17B0">Çıktıları</th>
+<th style="padding: 6px 0; width: 110px; border: 1.5px solid #2B17B0; text-align: center">Çıktı sayısı</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="padding: 8px 12px; border: 1.5px solid #B9A6F0; font-weight: 800; color: #2B17B0">Çift sayı gelmesi</td><td style="border: 1.5px solid #B9A6F0"></td><td style="border: 1.5px solid #B9A6F0"></td></tr>
+<tr style="background: #F7F4FF"><td style="padding: 8px 12px; border: 1.5px solid #B9A6F0; font-weight: 800; color: #2B17B0">4'ten büyük sayı gelmesi</td><td style="border: 1.5px solid #B9A6F0"></td><td style="border: 1.5px solid #B9A6F0"></td></tr>
+<tr><td style="padding: 8px 12px; border: 1.5px solid #B9A6F0; font-weight: 800; color: #2B17B0">7 gelmesi</td><td style="border: 1.5px solid #B9A6F0"></td><td style="border: 1.5px solid #B9A6F0"></td></tr>
+<tr style="background: #F7F4FF"><td style="padding: 8px 12px; border: 1.5px solid #B9A6F0; font-weight: 800; color: #2B17B0">7'den küçük sayı gelmesi</td><td style="border: 1.5px solid #B9A6F0"></td><td style="border: 1.5px solid #B9A6F0"></td></tr>
+</tbody>
+</table>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">2</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">Para Koyu'nda bir madeni para <b>20 kez</b> atıldı ve <b>13 kez yazı</b> geldi.</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="height: 56px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 10px; box-sizing: border-box; font-size: 13.5px; font-weight: 700; color: #4A4470">a) Kaç kez tura geldi?</div>
+<div style="height: 56px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 10px; box-sizing: border-box; font-size: 13.5px; font-weight: 700; color: #4A4470">b) Yazı gelme olayının deneysel olasılığı?</div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: kolay">★☆☆</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">3</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">Bir sayı küpü <b>30 kez</b> atıldı. Sonuçlar tabloda. İstenen olasılıkları <b>sadeleştirerek</b> yaz.</p>
+<table style="border-collapse: collapse; font-size: 15px; text-align: center">
+<tbody>
+<tr style="background: #2B17B0; color: #FFFFFF; font-family: 'Baloo 2', sans-serif; font-weight: 700"><th style="padding: 5px 10px; border: 1.5px solid #2B17B0; text-align: left">Gelen sayı</th><td style="border: 1.5px solid #2B17B0; width: 52px">1</td><td style="border: 1.5px solid #2B17B0; width: 52px">2</td><td style="border: 1.5px solid #2B17B0; width: 52px">3</td><td style="border: 1.5px solid #2B17B0; width: 52px">4</td><td style="border: 1.5px solid #2B17B0; width: 52px">5</td><td style="border: 1.5px solid #2B17B0; width: 52px">6</td></tr>
+<tr style="font-weight: 800"><th style="padding: 6px 10px; border: 1.5px solid #B9A6F0; text-align: left; color: #2B17B0">Sıklık</th><td style="border: 1.5px solid #B9A6F0">4</td><td style="border: 1.5px solid #B9A6F0">6</td><td style="border: 1.5px solid #B9A6F0">5</td><td style="border: 1.5px solid #B9A6F0">3</td><td style="border: 1.5px solid #B9A6F0">7</td><td style="border: 1.5px solid #B9A6F0">5</td></tr>
+</tbody>
+</table>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="height: 56px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 10px; box-sizing: border-box; font-size: 13.5px; font-weight: 700; color: #4A4470">a) Çift sayı gelme olayı</div>
+<div style="height: 56px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 10px; box-sizing: border-box; font-size: 13.5px; font-weight: 700; color: #4A4470">b) 5'ten küçük sayı gelme olayı</div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: orta">★★☆</span>
+</div>
+
+<div style="margin-top: auto; border-top: 2px dashed #C9BDF5; padding-top: 12px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px">
+<span style="font-weight: 700; font-size: 13px; color: #4A4470">Sayfa 1 / 2</span>
+<img src="logo.png" alt="MathPopWithRu" style="height: 62px; display: block">
+<span style="font-weight: 800; font-size: 13px; color: #2B17B0; text-align: right">@mathpopwithru</span>
+</div>
+
+</div>
+</div></div>
+<div class="mp-sheet mp-last" data-board="Sayfa2.dc.html" aria-label="A4 · Sayfa 2"><div class="mp-page">
+<div style="width: 794px; height: 1123px; box-sizing: border-box; padding: 40px 52px 32px; background: #FFFFFF; font-family: 'Nunito', sans-serif; color: #1E1B3A; display: flex; flex-direction: column; gap: 14px; position: relative; overflow: hidden">
+
+<div aria-hidden="true" style="position: absolute; bottom: 120px; left: -60px; width: 160px; height: 160px; border-radius: 50%; background: #EEE8FF"></div>
+<div aria-hidden="true" style="position: absolute; top: 36px; right: 56px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 28px; color: #F47A5E">×</div>
+
+<div style="display: flex; align-items: baseline; gap: 12px; border-bottom: 3px solid #2B17B0; padding-bottom: 6px; position: relative">
+<h2 style="margin: 0; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 28px; color: #2B17B0">Deneysel Olasılık</h2>
+<span style="font-weight: 700; font-size: 14px; color: #4A4470">devam</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">4</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">Gizemli Torba'dan her seferinde geri atılarak <b>40 kez</b> top çekildi: <b>18 mavi, 12 mor, 10 sarı</b>.</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="height: 54px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 10px; box-sizing: border-box; font-size: 13.5px; font-weight: 700; color: #4A4470">a) Sarı top çekme olasılığı yüzde kaç?</div>
+<div style="height: 54px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 10px; box-sizing: border-box; font-size: 13.5px; font-weight: 700; color: #4A4470">b) Mavi top çekme olasılığı ondalık gösterimle?</div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: orta">★★☆</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">5</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">Renk Çarkı çevrildi ve sonuçlar grafiğe işlendi. Grafiği oku.</p>
+<div style="display: flex; gap: 16px; align-items: stretch">
+<div role="img" aria-label="Sütun grafiği: Kırmızı 9, Mavi 5, Yeşil 7, Sarı 4" style="flex: none; width: 300px; display: flex; flex-direction: column; gap: 6px; background: #F7F4FF; border-radius: 12px; padding: 10px 12px; box-sizing: border-box">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700"><span style="width: 56px">Kırmızı</span><span style="height: 16px; width: 171px; background: #2B17B0; border-radius: 4px"></span><span style="font-weight: 800; color: #2B17B0">9</span></div>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700"><span style="width: 56px">Mavi</span><span style="height: 16px; width: 95px; background: #2B17B0; border-radius: 4px"></span><span style="font-weight: 800; color: #2B17B0">5</span></div>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700"><span style="width: 56px">Yeşil</span><span style="height: 16px; width: 133px; background: #2B17B0; border-radius: 4px"></span><span style="font-weight: 800; color: #2B17B0">7</span></div>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700"><span style="width: 56px">Sarı</span><span style="height: 16px; width: 76px; background: #2B17B0; border-radius: 4px"></span><span style="font-weight: 800; color: #2B17B0">4</span></div>
+</div>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<div style="flex: 1; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 10px; box-sizing: border-box; font-size: 13.5px; font-weight: 700; color: #4A4470">a) Çark toplam kaç kez çevrildi?</div>
+<div style="flex: 1; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 10px; box-sizing: border-box; font-size: 13.5px; font-weight: 700; color: #4A4470">b) "Mavi ya da sarı gelme" olasılığı yüzde kaç?</div>
+</div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: orta">★★☆</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">6</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">Ali bir parayı <b>10 kez</b> attı, <b>8 kez yazı</b> geldi. Doğruysa <b>D</b>, yanlışsa <b>Y</b> yaz.</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; font-size: 14px; line-height: 1.35">
+<div style="display: flex; align-items: center; gap: 10px; background: #F7F4FF; border-radius: 10px; padding: 7px 10px"><span style="flex: none; width: 26px; height: 26px; border: 1.5px solid #8C84B5; border-radius: 6px; background: #FFFFFF"></span><span>Yazı gelme olasılığı 4/5'tir.</span></div>
+<div style="display: flex; align-items: center; gap: 10px; background: #F7F4FF; border-radius: 10px; padding: 7px 10px"><span style="flex: none; width: 26px; height: 26px; border: 1.5px solid #8C84B5; border-radius: 6px; background: #FFFFFF"></span><span>11. atışta kesinlikle yazı gelir.</span></div>
+<div style="display: flex; align-items: center; gap: 10px; background: #F7F4FF; border-radius: 10px; padding: 7px 10px"><span style="flex: none; width: 26px; height: 26px; border: 1.5px solid #8C84B5; border-radius: 6px; background: #FFFFFF"></span><span>Tura gelme olasılığı %20'dir.</span></div>
+<div style="display: flex; align-items: center; gap: 10px; background: #F7F4FF; border-radius: 10px; padding: 7px 10px"><span style="flex: none; width: 26px; height: 26px; border: 1.5px solid #8C84B5; border-radius: 6px; background: #FFFFFF"></span><span>Tura gelme olayı imkânsızdır.</span></div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: orta">★★☆</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">7</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45">Kayıp Veri Mağarası: <b>50 kez</b> atılan sayı küpünün tablosunda üç sıklık silinmiş. <b>6 gelme</b> olasılığı <b>1/5</b>, 1 gelme sıklığı ise 3 gelme sıklığından <b>4 fazla</b>. <b>Tek sayı gelme</b> olasılığı yüzde kaçtır?</p>
+<div style="display: flex; gap: 12px; align-items: stretch">
+<table style="border-collapse: collapse; font-size: 15px; text-align: center">
+<tbody>
+<tr style="background: #2B17B0; color: #FFFFFF; font-family: 'Baloo 2', sans-serif; font-weight: 700"><th style="padding: 5px 10px; border: 1.5px solid #2B17B0; text-align: left">Sayı</th><td style="border: 1.5px solid #2B17B0; width: 40px">1</td><td style="border: 1.5px solid #2B17B0; width: 40px">2</td><td style="border: 1.5px solid #2B17B0; width: 40px">3</td><td style="border: 1.5px solid #2B17B0; width: 40px">4</td><td style="border: 1.5px solid #2B17B0; width: 40px">5</td><td style="border: 1.5px solid #2B17B0; width: 40px">6</td></tr>
+<tr style="font-weight: 800"><th style="padding: 6px 10px; border: 1.5px solid #B9A6F0; text-align: left; color: #2B17B0">Sıklık</th><td style="border: 1.5px solid #B9A6F0; color: #C2492D">?</td><td style="border: 1.5px solid #B9A6F0">9</td><td style="border: 1.5px solid #B9A6F0; color: #C2492D">?</td><td style="border: 1.5px solid #B9A6F0">8</td><td style="border: 1.5px solid #B9A6F0">7</td><td style="border: 1.5px solid #B9A6F0; color: #C2492D">?</td></tr>
+</tbody>
+</table>
+<div style="flex: 1; min-height: 62px; border: 1.5px dashed #B9A6F0; border-radius: 12px"></div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: zor">★★★</span>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex: none; width: 32px; height: 32px; border-radius: 50%; background: #F47A5E; color: #1E1B3A; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center">8</span>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+<div style="background: #EEE8FF; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 1px; color: #2B17B0">YENİ NESİL</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.5">Bir oyuncak atölyesinde rastgele seçilen <b>200 oyuncak</b> kontrol ediliyor ve <b>6 tanesinin</b> kusurlu olduğu görülüyor. Atölye bu hafta <b>5000 oyuncak</b> üretecek.</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; font-weight: 700">a) Kusurlu çıkma olasılığı yüzde kaçtır? b) Bu hafta yaklaşık kaç kusurlu oyuncak beklenir?</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="height: 64px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 10px; box-sizing: border-box; font-size: 13.5px; font-weight: 700; color: #4A4470">a)</div>
+<div style="height: 64px; border: 1.5px dashed #B9A6F0; border-radius: 12px; padding: 6px 10px; box-sizing: border-box; font-size: 13.5px; font-weight: 700; color: #4A4470">b)</div>
+</div>
+</div>
+<span style="flex: none; margin-top: 6px; font-size: 14px; color: #C2492D; letter-spacing: 1px" aria-label="Zorluk: zor">★★★</span>
+</div>
+
+<div style="display: flex; align-items: center; gap: 14px; background: #F7F4FF; border-radius: 14px; padding: 10px 16px">
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 15px; color: #2B17B0">Kendini değerlendir:</span>
+<span style="font-size: 14px; display: flex; gap: 18px; color: #1E1B3A">
+<span>☐ Çok kolaydı</span><span>☐ Biraz zorlandım</span><span>☐ Tekrar etmeliyim</span>
+</span>
+</div>
+
+<div style="margin-top: auto; border-top: 2px dashed #C9BDF5; padding-top: 12px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; position: relative">
+<span style="font-weight: 700; font-size: 13px; color: #4A4470">Sayfa 2 / 2</span>
+<img src="logo.png" alt="MathPopWithRu" style="height: 62px; display: block">
+<span style="font-weight: 800; font-size: 13px; color: #2B17B0; text-align: right">@mathpopwithru</span>
+</div>
+
+</div>
+</div></div>
+</main>
+<section class="mp-answers" id="mp-answers" aria-label="Cevap anahtarı">
+<button class="mp-toggle" id="mp-toggle" type="button" aria-expanded="false" aria-controls="mp-answer-pages">Cevap anahtarını göster</button>
+<div class="mp-answer-pages" id="mp-answer-pages" hidden>
+<div class="mp-sheet mp-last" data-board="CevapAnahtari.dc.html" aria-label="A4 · Cevap Anahtarı"><div class="mp-page">
+<div style="width: 794px; height: 1123px; box-sizing: border-box; padding: 40px 52px 32px; background: #FFFFFF; font-family: 'Nunito', sans-serif; color: #1E1B3A; display: flex; flex-direction: column; gap: 14px; position: relative; overflow: hidden">
+
+<div aria-hidden="true" style="position: absolute; top: -70px; right: -70px; width: 220px; height: 220px; border-radius: 50%; background: #EEE8FF"></div>
+<div aria-hidden="true" style="position: absolute; top: 40px; right: 64px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 30px; color: #1CC8D8">△</div>
+
+<div style="display: flex; flex-direction: column; gap: 2px; position: relative">
+<span style="font-weight: 800; font-size: 13px; letter-spacing: 1.5px; color: #C2492D">ÖĞRETMENE / KONTROL İÇİN</span>
+<h1 style="margin: 0; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 40px; line-height: 1.05; color: #2B17B0">Cevap Anahtarı</h1>
+<span style="font-weight: 700; font-size: 14px; color: #4A4470">Deneysel Olasılık · Çalışma Kağıdı 1</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; color: #2B17B0">1. soru</span>
+<table style="width: 100%; border-collapse: collapse; font-size: 15px; text-align: left; font-weight: 700">
+<thead>
+<tr style="background: #2B17B0; color: #FFFFFF; font-family: 'Baloo 2', sans-serif; font-weight: 700">
+<th style="padding: 6px 12px; border: 1.5px solid #2B17B0; width: 220px">Olay</th>
+<th style="padding: 6px 12px; border: 1.5px solid #2B17B0">Çıktıları</th>
+<th style="padding: 6px 0; width: 110px; border: 1.5px solid #2B17B0; text-align: center">Çıktı sayısı</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="padding: 7px 12px; border: 1.5px solid #B9A6F0; color: #2B17B0; font-weight: 800">Çift sayı gelmesi</td><td style="padding: 0 12px; border: 1.5px solid #B9A6F0">2, 4, 6</td><td style="border: 1.5px solid #B9A6F0; text-align: center; font-weight: 800">3</td></tr>
+<tr style="background: #F7F4FF"><td style="padding: 7px 12px; border: 1.5px solid #B9A6F0; color: #2B17B0; font-weight: 800">4'ten büyük sayı gelmesi</td><td style="padding: 0 12px; border: 1.5px solid #B9A6F0">5, 6</td><td style="border: 1.5px solid #B9A6F0; text-align: center; font-weight: 800">2</td></tr>
+<tr><td style="padding: 7px 12px; border: 1.5px solid #B9A6F0; color: #2B17B0; font-weight: 800">7 gelmesi</td><td style="padding: 0 12px; border: 1.5px solid #B9A6F0">Çıktı yok <span style="color: #C2492D">(imkânsız olay)</span></td><td style="border: 1.5px solid #B9A6F0; text-align: center; font-weight: 800">0</td></tr>
+<tr style="background: #F7F4FF"><td style="padding: 7px 12px; border: 1.5px solid #B9A6F0; color: #2B17B0; font-weight: 800">7'den küçük sayı gelmesi</td><td style="padding: 0 12px; border: 1.5px solid #B9A6F0">1, 2, 3, 4, 5, 6 <span style="color: #C2492D">(kesin olay)</span></td><td style="border: 1.5px solid #B9A6F0; text-align: center; font-weight: 800">6</td></tr>
+</tbody>
+</table>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 11px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">2. soru → a) 7  b) 13/20</span><span style="font-size: 14px; line-height: 1.45">20 − 13 = 7 tura. Yazı sıklığı 13, toplam atış 20.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 11px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">3. soru → a) 7/15  b) 3/5</span><span style="font-size: 14px; line-height: 1.45">Çift: 6 + 3 + 5 = 14, 14/30 = 7/15. 5'ten küçük: 4 + 6 + 5 + 3 = 18, 18/30 = 3/5.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 11px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">4. soru → a) %25  b) 0,45</span><span style="font-size: 14px; line-height: 1.45">Sarı: 10/40 = 25/100. Mavi: 18/40 = 9/20 = 45/100 = 0,45.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 11px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">5. soru → a) 25  b) %36</span><span style="font-size: 14px; line-height: 1.45">9 + 5 + 7 + 4 = 25. Mavi ya da sarı: 5 + 4 = 9, 9/25 = 36/100.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 11px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">6. soru → D, Y, D, Y</span><span style="font-size: 14px; line-height: 1.45">8/10 = 4/5 ve 2/10 = %20. Sonraki atış kesin bilinemez; tura 2 kez geldiği için imkânsız değildir.</span></div>
+<div style="border: 1.5px solid #B9A6F0; border-radius: 14px; padding: 11px 14px; display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">7. soru → %46</span><span style="font-size: 14px; line-height: 1.45">6 sıklığı: 50 × 1/5 = 10. 1 ve 3 toplamı: 50 − 34 = 16, yani 3 → 6, 1 → 10. Tek: 10 + 6 + 7 = 23, 23/50 = 46/100.</span></div>
+</div>
+
+<div style="background: #EEE8FF; border-radius: 14px; padding: 12px 16px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; color: #2B17B0">8. soru → a) %3  b) Yaklaşık 150 oyuncak</span>
+<span style="font-size: 14px; line-height: 1.5">Kusurlu çıkma olasılığı 6/200 = 3/100 = %3. Her 100 oyuncakta yaklaşık 3 kusurlu: 5000'de 50 tane 100 var, 50 × 3 = 150.</span>
+</div>
+
+<div style="margin-top: auto; border-top: 2px dashed #C9BDF5; padding-top: 12px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px">
+<span style="font-weight: 700; font-size: 13px; color: #4A4470">Cevap anahtarı</span>
+<img src="logo.png" alt="MathPopWithRu" style="height: 62px; display: block">
+<span style="font-weight: 800; font-size: 13px; color: #2B17B0; text-align: right">@mathpopwithru</span>
+</div>
+
+</div>
+</div></div>
+</div>
+</section>
+<script>
+(function(){
+  function fit(){var w=document.documentElement.clientWidth-32;var s=Math.min(1,w/794);
+    document.documentElement.style.setProperty('--s',s.toFixed(4));}
+  fit();window.addEventListener('resize',fit);window.addEventListener('orientationchange',fit);
+})();
+
+(function(){
+  var b=document.getElementById('mp-toggle'),box=document.getElementById('mp-answer-pages'),sec=document.getElementById('mp-answers');
+  if(!b)return;
+  b.addEventListener('click',function(){var open=box.hasAttribute('hidden');
+    if(open){box.removeAttribute('hidden');sec.classList.add('mp-open');b.textContent='Cevap anahtarını gizle';b.setAttribute('aria-expanded','true');}
+    else{box.setAttribute('hidden','');sec.classList.remove('mp-open');b.textContent='Cevap anahtarını göster';b.setAttribute('aria-expanded','false');}
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>6. Sınıf Matematik Ortak Sınav – 5 Deneme Yazılısı</title>
+<meta name="description" content="6. sınıf matematik ortak sınav: 5 deneme yazılısı, cevap anahtarı ve dereceli puanlama.">
+<link rel="icon" href="../assets/simge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800;900&display=swap">
+<style>
+:root{--indigo:#2B17B0;--lav:#EEE8FF;--turq:#1CC8D8;--coral:#F47A5E;--ink:#1E1B3A;--s:1;
+  --display:"Baloo 2","Nunito",system-ui,sans-serif;--body:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--lav);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+.mp-bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:10px max(16px,env(safe-area-inset-left,0px));background:var(--indigo);color:#fff;box-shadow:0 2px 12px rgba(43,23,176,.25)}
+.mp-bar img{width:48px;height:48px;border-radius:50%;background:#fff;flex:none;object-fit:cover}
+.mp-bar h1{flex:1 1 200px;min-width:0;margin:0;font-family:var(--display);font-weight:800;font-size:clamp(18px,3.4vw,26px);line-height:1.15}
+.mp-back,.mp-print{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border-radius:999px;
+  font-family:var(--body);font-weight:800;font-size:16px;text-decoration:none;cursor:pointer;border:2px solid #fff}
+.mp-back{color:#fff;background:transparent}
+.mp-back:hover,.mp-back:focus-visible{background:rgba(255,255,255,.15)}
+.mp-print{color:var(--indigo);background:#fff}
+.mp-print:hover,.mp-print:focus-visible{background:var(--lav)}
+@media (max-width:600px){.mp-bar{gap:8px 10px}.mp-bar img{order:-1;width:44px;height:44px}.mp-print{margin-left:auto}.mp-bar h1{order:5;flex-basis:100%}}
+.mp-main{padding:24px 16px 8px;display:flex;flex-direction:column;align-items:center;gap:24px}
+.mp-sheet{width:calc(794px * var(--s));height:calc(1123px * var(--s));flex:none;background:#fff;
+  box-shadow:0 10px 30px rgba(43,23,176,.18),0 2px 6px rgba(43,23,176,.12);border-radius:4px;overflow:hidden;position:relative}
+.mp-page{width:794px;height:1123px;transform:scale(var(--s));transform-origin:0 0;position:absolute;left:0;top:0}
+.mp-answers{display:flex;flex-direction:column;align-items:center;gap:24px;padding:8px 16px 40px}
+.mp-toggle{min-height:56px;padding:12px 28px;border:0;border-radius:999px;background:var(--coral);color:var(--ink);
+  font-family:var(--display);font-weight:800;font-size:clamp(18px,4vw,22px);cursor:pointer;box-shadow:0 6px 18px rgba(244,122,94,.35)}
+.mp-toggle[aria-expanded="true"]{background:var(--turq)}
+.mp-toggle:focus-visible,.mp-back:focus-visible,.mp-print:focus-visible{outline:3px solid var(--turq);outline-offset:3px}
+.mp-answer-pages{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%}
+.mp-answer-pages[hidden]{display:none}
+.mp-note{max-width:794px;text-align:center;color:#4A4470;font-weight:700;margin:0}
+.mp-foot{text-align:center;padding:0 16px 32px;color:#4A4470;font-weight:700;font-size:14px}
+.mp-foot a{color:var(--indigo)}
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:#fff!important}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mp-bar,.mp-toggle,.mp-note,.mp-foot,.mp-noprint{display:none!important}
+  .mp-main,.mp-answers,.mp-answer-pages{display:block;padding:0;margin:0;gap:0}
+  .mp-answers:not(.mp-open){display:none!important}
+  .mp-sheet{--s:1;width:210mm;height:296.5mm;box-shadow:none;border-radius:0;margin:0;break-inside:avoid;break-after:page;page-break-after:always}
+  .mp-sheet.mp-last{break-after:auto;page-break-after:auto}
+  .mp-page{transform:none}
+}
+
+.mp-doc{width:100%;max-width:794px;background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(43,23,176,.18);
+  padding:clamp(20px,5vw,52px);font-size:16px;line-height:1.6;overflow-wrap:anywhere;word-break:normal}
+.mp-doc h1,.mp-doc h2,.mp-doc h3,.mp-doc h4{font-family:var(--display);color:var(--indigo);line-height:1.2;overflow-wrap:break-word}
+.mp-doc h1{font-size:clamp(26px,5vw,36px);font-weight:800;margin:0 0 14px;padding-bottom:10px;border-bottom:3px solid var(--indigo)}
+.mp-doc h2{font-size:clamp(21px,4vw,26px);font-weight:800;margin:30px 0 10px;padding:6px 14px;background:var(--lav);border-left:6px solid var(--turq);border-radius:10px}
+.mp-doc h3{font-size:clamp(18px,3.4vw,21px);font-weight:700;margin:22px 0 8px;color:#3a24c4}
+.mp-doc p{margin:8px 0}
+.mp-doc strong{color:#21136E}
+.mp-doc ul,.mp-doc ol{padding-left:1.4em;margin:8px 0}
+.mp-doc li{margin:4px 0}
+.mp-doc li p{margin:2px 0}
+.mp-doc blockquote,.mp-doc .mp-quote{margin:12px 0;padding:10px 16px;background:#F7F4FF;border-left:5px solid var(--coral);border-radius:10px}
+.mp-doc img{max-width:100%;height:auto;display:block;margin:12px auto;border-radius:10px}
+.mp-doc code{font-family:ui-monospace,Menlo,Consolas,monospace;background:#F7F4FF;padding:1px 5px;border-radius:5px}
+.mp-tablewrap{width:100%;overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+.mp-doc table{border-collapse:collapse;min-width:60%;font-size:15px;overflow-wrap:normal;word-break:normal}
+.mp-doc th{background:var(--indigo);color:#fff;font-family:var(--display);font-weight:700;text-align:left}
+.mp-doc th,.mp-doc td{border:1.5px solid #B9A6F0;padding:6px 10px;vertical-align:top;min-width:3.2em;height:2.4em}
+.mp-doc tbody tr:nth-child(even) td{background:#F7F4FF}
+.mp-doc th p,.mp-doc td p{margin:0}
+.mp-tabname{display:inline-block;margin:0 0 10px;padding:4px 14px;border-radius:999px;background:var(--turq);color:var(--ink);font-weight:800;font-size:14px}
+@media print{
+  @page mpdoc{size:A4;margin:14mm 14mm 16mm}
+  .mp-doc{page:mpdoc;max-width:none;box-shadow:none;border-radius:0;padding:0;margin:0;break-before:page;font-size:12pt}
+  .mp-main .mp-doc:first-child{break-before:auto}
+  .mp-doc h2,.mp-doc h3{break-after:avoid}
+  .mp-doc table,.mp-doc img{break-inside:avoid}
+  .mp-tablewrap{overflow:visible}
+}
+</style>
+</head>
+<body>
+<header class="mp-bar">
+<a class="mp-back" href="../">← Tüm oyunlar</a>
+<h1>6. Sınıf Matematik Ortak Sınav – 5 Deneme Yazılısı</h1>
+<button class="mp-print" type="button" onclick="window.print()">Yazdır</button>
+<img src="../assets/simge.png" alt="MathPop simgesi" width="48" height="48">
+</header>
+<main class="mp-main">
+<article class="mp-doc">
+<h1>6. Sınıf Matematik Ortak Sınav – 5 Deneme Yazılısı</h1><h2>Sınav düzeni</h2>
+<p>Her yazılı 11 Kasım ülke geneli sınavının düzenini birebir izler: 7 açık uçlu soru, 40 dakika, 100 puan. Sorular Maarif ders kitabındaki gibi günlük hayat senaryolarına dayanır; tüm cevaplar tek tek kontrol edildi.</p>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>Soru</th>
+<th>Öğrenme çıktısı</th>
+<th>Konu</th>
+<th>Puan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>MAT.6.1.1</td>
+<td>Çarpan ve katlar</td>
+<td>15</td>
+</tr>
+<tr>
+<td>2</td>
+<td>MAT.6.1.2</td>
+<td>Bölünebilme kriterleri</td>
+<td>15</td>
+</tr>
+<tr>
+<td>3</td>
+<td>MAT.6.1.3</td>
+<td>Asal sayılar ve asal çarpanlar</td>
+<td>15</td>
+</tr>
+<tr>
+<td>4</td>
+<td>MAT.6.1.4</td>
+<td>Ortak kat ve ortak bölen</td>
+<td>15</td>
+</tr>
+<tr>
+<td>5</td>
+<td>MAT.6.6.1</td>
+<td>Deneysel olasılık</td>
+<td>15</td>
+</tr>
+<tr>
+<td>6</td>
+<td>MAT.6.6.1</td>
+<td>Deneysel olasılık</td>
+<td>15</td>
+</tr>
+<tr>
+<td>7</td>
+<td>MAT.6.1.5</td>
+<td>Ondalık gösterimler</td>
+<td>10</td>
+</tr>
+</tbody>
+</table></div>
+<p>Öğrenciye yönerge: İşlemlerinizi göstererek cevaplayınız. Gerçek sınavda cevaplar ayrı cevap kâğıdına siyah kurşun kalemle yazılır; denemelerde de bu şekilde çalışılması önerilir.</p>
+<p>Kaynak: <a href="https://unikazan.com/oyss/6-sinif/matematik/">ÖDSGM konu soru dağılımı özeti</a>, <a href="https://www.guneydoguekspres.com/2026-2027-meb-ortak-yazili-sinav-takvimi-aciklandi-mi-sinavlar-hangi-gun-6-sinif-matematik-ne-zaman">sınav tarihi</a>.</p>
+<h2>Yazılı 1 – Okul Bahçesi</h2>
+<p>Adı Soyadı: ................................ Sınıfı: 6/.... No: ......</p>
+<p><strong>1. (15 puan)</strong> Okul bahçesine 36 fidan dikilecektir. Fidanlar, her sırada eşit sayıda olacak biçimde sıralar hâlinde dikilecek ve hiç fidan artmayacaktır. Her sırada en az 3, en fazla 12 fidan olmalıdır.</p>
+<p>a) 36 sayısının tüm çarpanlarını yazınız. (6 puan)</p>
+<p>b) Fidanlar kaç farklı biçimde dikilebilir? Her birinde sıra sayısını ve bir sıradaki fidan sayısını yazınız. (9 puan)</p>
+<p><strong>2. (15 puan)</strong> Can, dolabının dört basamaklı şifresini <strong>3A7B</strong> biçiminde not etmiştir. Şifreyle ilgili şu ipuçlarını hatırlamaktadır: “Şifre 10 ile ve 3 ile tam bölünür.”</p>
+<p>a) B yerine hangi rakam gelmelidir? Nedenini açıklayınız. (4 puan)</p>
+<p>b) A yerine yazılabilecek tüm rakamları bulunuz. (6 puan)</p>
+<p>c) Can şifrenin 9 ile de tam bölündüğünü hatırlarsa şifre kaçtır? (5 puan)</p>
+<p><strong>3. (15 puan)</strong> Ali, 84 sayısını asal çarpanlarına ayırmak istemektedir.</p>
+<p>a) 84 sayısını çarpan ağacı kullanarak asal çarpanlarına ayırınız. (6 puan)</p>
+<p>b) 84 sayısını asal çarpanlarının çarpımı biçiminde yazınız. (4 puan)</p>
+<p>c) Ayşe, “84’ün asal çarpanları 2, 3, 4 ve 7’dir.” demiştir. Ayşe’nin hatasını açıklayınız. (5 puan)</p>
+<p><strong>4. (15 puan)</strong> Bir duraktan A hattı otobüsleri 12 dakikada bir, B hattı otobüsleri 18 dakikada bir kalkmaktadır. İki hat sabah 08.00’de aynı anda kalkmıştır.</p>
+<p>a) İki otobüs 08.00’den sonra ilk kez saat kaçta yine birlikte kalkar? (8 puan)</p>
+<p>b) 08.00’den sonra saat 10.00’a kadar iki otobüs kaç kez daha birlikte kalkar? (7 puan)</p>
+<p><strong>5. (15 puan)</strong> Elif bir zarı 60 kez atmış ve sonuçları aşağıdaki tabloya yazmıştır.</p>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>Gelen sayı</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gelme sayısı</td>
+<td>8</td>
+<td>11</td>
+<td>9</td>
+<td>12</td>
+<td>10</td>
+<td>10</td>
+</tr>
+</tbody>
+</table></div>
+<p>a) Bu deneye göre zarın 4 gelme olasılığını tahmin ediniz. Sonucu en sade kesir olarak yazınız. (7 puan)</p>
+<p>b) Zarın çift sayı gelme olasılığını tahmin ediniz. (8 puan)</p>
+<p><strong>6. (15 puan)</strong> Bir torbada kırmızı, mavi ve sarı bilyeler vardır. Mert torbadan bir bilye çekip rengini yazıyor ve bilyeyi torbaya geri atıyor. 40 çekişin sonunda 18 kırmızı, 14 mavi, 8 sarı bilye çekmiştir.</p>
+<p>a) Sarı bilye çekme olasılığını tahmin ediniz. (5 puan)</p>
+<p>b) Mert aynı deneyi 200 kez yaparsa yaklaşık kaç kez kırmızı bilye çeker? (6 puan)</p>
+<p>c) Torbada en çok hangi renkten bilye olduğu tahmin edilebilir? Nedenini yazınız. (4 puan)</p>
+<p><strong>7. (10 puan)</strong> Bir manavda tartılan elmaların kütlesi 3,457 kg olarak ölçülmüştür.</p>
+<p>a) 5 rakamının basamak adını ve basamak değerini kesir olarak yazınız. (4 puan)</p>
+<p>b) 3,457 sayısını kesirlerden yararlanarak çözümleyiniz. (6 puan)</p>
+<h2>Yazılı 2 – Pastane ve Çiçekçi</h2>
+<p>Adı Soyadı: ................................ Sınıfı: 6/.... No: ......</p>
+<p><strong>1. (15 puan)</strong> Bir pastane kurabiyeleri yalnızca 6’lı kutularla satmaktadır ve kutular her zaman tam dolu satılır.</p>
+<p>a) Bir müşteri 50 ile 80 arasında kurabiye alacaktır. Alabileceği kurabiye sayılarının hepsini yazınız. (8 puan)</p>
+<p>b) Pastacının elinde 64 kurabiye vardır. Tüm kurabiyeleri 6’lı kutulara tam dolu olarak koyabilmesi için en az kaç kurabiye daha yapmalıdır? (7 puan)</p>
+<p><strong>2. (15 puan)</strong> Bir kitabın barkodunun son dört basamağı <strong>2A4B</strong> biçimindedir. Bu sayı 4 ile, 5 ile ve 3 ile tam bölünebilmektedir.</p>
+<p>a) B yerine hangi rakam gelir? Açıklayınız. (5 puan)</p>
+<p>b) A yerine yazılabilecek tüm rakamları bulunuz. (5 puan)</p>
+<p>c) Bu koşullara uyan en büyük dört basamaklı sayıyı yazınız. (5 puan)</p>
+<p><strong>3. (15 puan)</strong></p>
+<p>a) 1, 2, 9, 15, 17, 21, 29 sayılarından asal olanları yazınız. (5 puan)</p>
+<p>b) 90 sayısını bölen (bölüm tablosu) yöntemiyle asal çarpanlarına ayırınız ve asal çarpanlarının çarpımı biçiminde yazınız. (7 puan)</p>
+<p>c) 90 sayısının asal çarpanları nelerdir? (3 puan)</p>
+<p><strong>4. (15 puan)</strong> Bir çiçekçide 36 kırmızı ve 60 beyaz gül vardır. Çiçekçi, güllerin hepsini kullanarak birbirinin aynısı olan buketler yapacaktır. Her bukette aynı sayıda kırmızı ve aynı sayıda beyaz gül olacak, hiç gül artmayacaktır.</p>
+<p>a) Çiçekçi en fazla kaç buket yapabilir? (9 puan)</p>
+<p>b) Bu durumda bir bukette kaç kırmızı, kaç beyaz gül olur? (6 puan)</p>
+<p><strong>5. (15 puan)</strong> Defne bir madeni parayı 50 kez atmış; 28 kez yazı, 22 kez tura gelmiştir.</p>
+<p>a) Bu deneye göre tura gelme olasılığını tahmin ediniz. (6 puan)</p>
+<p>b) Defne, “Yazı daha çok geldiğine göre bu para hilelidir.” demiştir. Öğretmeni parayı 1000 kez attırmış ve 506 kez yazı gelmiştir. Bu sonuca göre Defne’nin düşüncesini değerlendiriniz. (9 puan)</p>
+<p><strong>6. (15 puan)</strong> Dört renkli bir çark 80 kez çevrilmiş ve sonuçlar aşağıdaki gibi olmuştur.</p>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>Renk</th>
+<th>Kırmızı</th>
+<th>Mavi</th>
+<th>Yeşil</th>
+<th>Sarı</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gelme sayısı</td>
+<td>32</td>
+<td>20</td>
+<td>20</td>
+<td>8</td>
+</tr>
+</tbody>
+</table></div>
+<p>a) Çarkın kırmızıda durma olasılığını tahmin ediniz. (5 puan)</p>
+<p>b) Çarkın mavi ya da yeşilde durma olasılığını tahmin ediniz. (5 puan)</p>
+<p>c) Çarktaki renkli bölgelerin büyüklükleri hakkında ne söylenebilir? (5 puan)</p>
+<p><strong>7. (10 puan)</strong> Bir koşucu 100 metreyi 12,08 saniyede koşmuştur.</p>
+<p>a) 8 rakamının basamak adını ve basamak değerini kesir olarak yazınız. (5 puan)</p>
+<p>b) Ece, “12,08’deki 0’ın değeri yoktur, yazmasak da olur.” demiştir. Ece haklı mıdır? Açıklayınız. (5 puan)</p>
+<h2>Yazılı 3 – Bahçe, Kütüphane ve Kantin</h2>
+<p>Adı Soyadı: ................................ Sınıfı: 6/.... No: ......</p>
+<p><strong>1. (15 puan)</strong> Zeynep, alanı 24 m² olan dikdörtgen biçiminde bir sebze bahçesi yapmak istemektedir. Bahçenin kenar uzunlukları metre cinsinden doğal sayı olacaktır.</p>
+<p>a) Bahçenin kenar uzunlukları için tüm seçenekleri yazınız. (9 puan)</p>
+<p>b) Zeynep bahçenin etrafını tel ile çevirecektir. En az tel kullanması için hangi seçeneği seçmelidir? Kaç metre tel gerekir? (6 puan)</p>
+<p><strong>2. (15 puan)</strong> Öğretmen tahtaya <strong>4728A</strong> sayısını yazmış ve “Bu sayı 6 ile tam bölünmektedir.” demiştir.</p>
+<p>a) A yerine yazılabilecek rakamları bulunuz. (6 puan)</p>
+<p>b) Bu sayılardan hangisi 9 ile de tam bölünür? (5 puan)</p>
+<p>c) (b) şıkkında bulduğunuz sayı 4 ile tam bölünür mü? Açıklayınız. (4 puan)</p>
+<p><strong>3. (15 puan)</strong> Arda, 150 sayısını çarpan ağacıyla asal çarpanlarına ayırırken bazı kutuları boş bırakmıştır:</p>
+<ul>
+<li>150 → 2 ve □</li>
+<li>□ → 3 ve △</li>
+<li>△ → 5 ve 5</li>
+</ul>
+<p>a) □ ve △ yerine gelmesi gereken sayıları bulunuz. (6 puan)</p>
+<p>b) 150 sayısını asal çarpanlarının çarpımı biçiminde yazınız. (5 puan)</p>
+<p>c) 150 sayısının asal çarpanlarını yazınız. (4 puan)</p>
+<p><strong>4. (15 puan)</strong> Ece 6 günde bir, Mert 8 günde bir kütüphaneye gitmektedir. İkisi bir pazartesi günü kütüphanede karşılaşmıştır.</p>
+<p>a) En az kaç gün sonra yeniden kütüphanede karşılaşırlar? (9 puan)</p>
+<p>b) Bu karşılaşma haftanın hangi gününe denk gelir? (6 puan)</p>
+<p><strong>5. (15 puan)</strong> Bir raptiye masaya 100 kez atılmıştır. Raptiye 64 kez “ucu yukarı”, 36 kez “yan yatık” düşmüştür.</p>
+<p>a) Raptiyenin ucu yukarı düşme olasılığını tahmin ediniz. Sonucu en sade kesir olarak yazınız. (7 puan)</p>
+<p>b) Raptiye 500 kez atılırsa yaklaşık kaç kez yan yatık düşer? (8 puan)</p>
+<p><strong>6. (15 puan)</strong> Okul kantininde 120 öğrencinin ne aldığı gözlenmiştir: 54 öğrenci tost, 42 öğrenci simit, 24 öğrenci poğaça almıştır. (Her öğrenci yalnızca bir ürün almıştır.)</p>
+<p>a) Kantine gelen bir sonraki öğrencinin simit alma olasılığını tahmin ediniz. (7 puan)</p>
+<p>b) Ertesi gün kantine 300 öğrenci geleceği biliniyor. Kantinçi yaklaşık kaç tost hazırlamalıdır? (8 puan)</p>
+<p><strong>7. (10 puan)</strong> Bir şurup şişesinin üzerinde “0,375 L” yazmaktadır.</p>
+<p>a) 7 rakamının basamak değerini kesir ve ondalık gösterimle yazınız. (4 puan)</p>
+<p>b) 0,375 sayısını kesirlerden yararlanarak çözümleyiniz. (6 puan)</p>
+<h2>Yazılı 4 – Bilmece, Kumbara ve Hava Durumu</h2>
+<p>Adı Soyadı: ................................ Sınıfı: 6/.... No: ......</p>
+<p><strong>1. (15 puan)</strong> Bir sınıf yarışmasında şu bilmece sorulmuştur: “Ben 3’ün bir katıyım ve 36’nın bir çarpanıyım.”</p>
+<p>a) 36 sayısının tüm çarpanlarını yazınız. (5 puan)</p>
+<p>b) Bilmecenin cevabı olabilecek tüm sayıları yazınız. (6 puan)</p>
+<p>c) Bu sayılardan iki basamaklı ve çift olanları yazınız. (4 puan)</p>
+<p><strong>2. (15 puan)</strong> Kumbarada <strong>1A5</strong> TL bulunmaktadır. Bu para 3 kardeşe eşit olarak paylaştırıldığında hiç para artmamaktadır.</p>
+<p>a) A yerine yazılabilecek tüm rakamları bulunuz. (6 puan)</p>
+<p>b) Aynı para 9 kişiye de artmadan eşit paylaştırılabiliyorsa kumbarada kaç TL vardır? (5 puan)</p>
+<p>c) Bu para 2 kişiye artmadan eşit paylaştırılabilir mi? Açıklayınız. (4 puan)</p>
+<p><strong>3. (15 puan)</strong> Esra, “Bütün tek sayılar asaldır.” demiştir.</p>
+<p>a) Esra’nın yanıldığını gösteren bir örnek veriniz ve açıklayınız. (4 puan)</p>
+<p>b) 1 ile 20 arasındaki asal sayıların hepsini yazınız. (5 puan)</p>
+<p>c) 72 sayısını asal çarpanlarına ayırınız ve asal çarpanlarının çarpımı biçiminde yazınız. (6 puan)</p>
+<p><strong>4. (15 puan)</strong> Bir terzinin elinde 48 cm ve 72 cm uzunluğunda iki şerit vardır. Terzi bu şeritleri hiç parça artmayacak biçimde, birbirine eşit uzunlukta ve olabildiğince uzun parçalara kesecektir.</p>
+<p>a) Bir parçanın uzunluğu kaç cm olur? (9 puan)</p>
+<p>b) Terzi toplam kaç parça elde eder? (6 puan)</p>
+<p><strong>5. (15 puan)</strong> Bir şehirde kasım ayının ilk 20 gününün 6’sı yağmurlu geçmiştir.</p>
+<p>a) Bu gözleme göre ertesi günün yağmurlu olma olasılığını tahmin ediniz. Sonucu en sade kesir olarak yazınız. (7 puan)</p>
+<p>b) Bu tahmine göre 30 günlük bir ayda yaklaşık kaç gün yağmurlu geçer? (8 puan)</p>
+<p><strong>6. (15 puan)</strong> Zeynep bir zarı 12 kez atmış ve 6 sayısı 5 kez gelmiştir. Kerem aynı zarı 600 kez atmış ve 6 sayısı 98 kez gelmiştir.</p>
+<p>a) Her iki deneye göre 6 gelme olasılığını tahmin ediniz. (8 puan)</p>
+<p>b) Hangi tahmin zarın 6 gelme olasılığını daha iyi gösterir? Nedenini açıklayınız. (7 puan)</p>
+<p><strong>7. (10 puan)</strong> Bir kumaşın uzunluğu 4,206 m olarak ölçülmüştür.</p>
+<p>a) 2 ve 6 rakamlarının basamak değerlerini kesir olarak yazınız. (4 puan)</p>
+<p>b) 4,206 sayısını kesirlerden yararlanarak çözümleyiniz. (6 puan)</p>
+<h2>Yazılı 5 – Saat Kulesi ve Penaltılar</h2>
+<p>Adı Soyadı: ................................ Sınıfı: 6/.... No: ......</p>
+<p><strong>1. (15 puan)</strong> Bir saat kulesi 15 dakikada bir çalmaktadır. Kule saat 12.00’de çalmıştır.</p>
+<p>a) Kule 12.00’den sonra saat 13.30’a kadar (13.30 dahil) kaç kez daha çalar? Çaldığı saatleri yazınız. (9 puan)</p>
+<p>b) Kule saat 13.10’da çalar mı? Çarpan ve kat ilişkisini kullanarak açıklayınız. (6 puan)</p>
+<p><strong>2. (15 puan)</strong> Bir apartmanın kapı şifresi <strong>38A6</strong> biçimindedir. Şifre 4 ile tam bölünmektedir.</p>
+<p>a) A yerine yazılabilecek tüm rakamları bulunuz. (6 puan)</p>
+<p>b) Şifre 9 ile de tam bölünüyorsa şifre kaçtır? (5 puan)</p>
+<p>c) (b) şıkkında bulduğunuz şifre 6 ile tam bölünür mü? Açıklayınız. (4 puan)</p>
+<p><strong>3. (15 puan)</strong> Bir sayının asal çarpanları yalnızca 2, 5 ve 7’dir.</p>
+<p>a) Bu özelliğe sahip en küçük sayı kaçtır? (5 puan)</p>
+<p>b) Bu özelliğe sahip üç basamaklı en küçük sayı kaçtır? Açıklayınız. (5 puan)</p>
+<p>c) (b) şıkkında bulduğunuz sayıyı çarpan ağacı ile asal çarpanlarına ayırınız. (5 puan)</p>
+<p><strong>4. (15 puan)</strong> Bir markette kuru kayısılar 12’li, kuru incirler 15’li paketlerle satılmaktadır. Selin, paketleri açmadan eşit sayıda kayısı ve incir almak istemektedir.</p>
+<p>a) Selin her üründen en az kaç tane almalıdır? (9 puan)</p>
+<p>b) Bunun için kaç paket kayısı, kaç paket incir almalıdır? (6 puan)</p>
+<p><strong>5. (15 puan)</strong> A futbolcusu son 40 penaltının 34’ünü, B futbolcusu son 25 penaltının 20’sini gole çevirmiştir.</p>
+<p>a) Her iki futbolcunun penaltıyı gole çevirme olasılığını tahmin ediniz. (8 puan)</p>
+<p>b) Antrenör maçtaki penaltıyı hangi futbolcuya attırmalıdır? Kesirleri karşılaştırarak açıklayınız. (7 puan)</p>
+<p><strong>6. (15 puan)</strong> Bir torbada yalnızca mavi ve beyaz toplar vardır. Arda torbadan top çekip rengini yazıyor ve topu geri atıyor. 50 çekişte 35 mavi, 15 beyaz top çekmiştir.</p>
+<p>a) Mavi top çekme olasılığını tahmin ediniz. (6 puan)</p>
+<p>b) Torbada toplam 20 top olduğu biliniyorsa yaklaşık kaç mavi top vardır? (9 puan)</p>
+<p><strong>7. (10 puan)</strong> Bir paket peynirin kütlesi 0,604 kg’dır.</p>
+<p>a) 6 ve 4 rakamlarının basamak değerlerini kesir olarak yazınız. (4 puan)</p>
+<p>b) 0,604 sayısını kesirlerden yararlanarak çözümleyiniz ve yazılışını (okunuşunu) yazınız. (6 puan)</p>
+</article>
+</main>
+<section class="mp-answers" id="mp-answers" aria-label="Cevap anahtarı">
+<button class="mp-toggle" id="mp-toggle" type="button" aria-expanded="false" aria-controls="mp-answer-pages">Cevap anahtarını göster</button>
+<div class="mp-answer-pages" id="mp-answer-pages" hidden>
+<article class="mp-doc">
+<p class="mp-tabname">6. Sınıf Matematik Ortak Sınav – 5 Deneme Yazılısı</p>
+<h2>Cevap anahtarı ve dereceli puanlama</h2>
+<p>Yalnızca sonuç yazıp işlem göstermeyen öğrenciye o maddenin yarı puanı; yöntemi doğru kurup işlem hatası yapana maddenin yaklaşık 2/3’ü verilir. Kesirler sadeleştirilmemişse 1 puan kırılır.</p>
+<h3>Yazılı 1</h3>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>Soru</th>
+<th>Cevap</th>
+<th>Dereceli puanlama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>a) 1, 2, 3, 4, 6, 9, 12, 18, 36  b) 5 farklı biçim: 12 sıra × 3, 9 × 4, 6 × 6, 4 × 9, 3 × 12</td>
+<td>a) Eksik her çarpan −1. b) Her doğru diziliş 1,5 puan + sayı 1,5 puan</td>
+</tr>
+<tr>
+<td>2</td>
+<td>a) B = 0; 10 ile bölünen sayının birler basamağı 0’dır  b) 3 + A + 7 + 0 = 10 + A → A = 2, 5, 8  c) 10 + A = 18 → 3870</td>
+<td>b) Rakam toplamı kuralını yazana 2 puan, her rakam 1 puan (+1 tam liste)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>a) 84 → 2 · 42 → 2 · 21 → 3 · 7  b) 84 = 2² · 3 · 7  c) 4 asal değildir (1, 2 ve 4’e bölünür); asal çarpanlar 2, 3, 7’dir</td>
+<td>b) 2 · 2 · 3 · 7 yazımı da tam puan</td>
+</tr>
+<tr>
+<td>4</td>
+<td>a) 12 ve 18’in en küçük ortak katı 36 → 08.36  b) 08.36, 09.12, 09.48 → 3 kez</td>
+<td>a) Katları listeleyip 36’yı bulana 5 puan, saati yazana +3. b) Her saat 2 puan + sayı 1 puan</td>
+</tr>
+<tr>
+<td>5</td>
+<td>a) 12/60 = 1/5  b) (11 + 12 + 10)/60 = 33/60 = 11/20</td>
+<td>b) Çift sayıları doğru seçene 4 puan</td>
+</tr>
+<tr>
+<td>6</td>
+<td>a) 8/40 = 1/5  b) 200 · 18/40 = 90  c) Kırmızı; en sık o renk çekilmiştir</td>
+<td>b) Oranı kuran 4 puan</td>
+</tr>
+<tr>
+<td>7</td>
+<td>a) Yüzde birler basamağı, 5/100  b) 3 + 4/10 + 5/100 + 7/1000</td>
+<td>a) Basamak adı 2, değer 2. b) Her terim 1,5 puan</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Yazılı 2</h3>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>Soru</th>
+<th>Cevap</th>
+<th>Dereceli puanlama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>a) 54, 60, 66, 72, 78  b) 64’ten sonraki ilk 6 katı 66 → 2 kurabiye</td>
+<td>a) Her sayı 1,5 puan (+0,5 tam liste). b) 66’yı bulana 5 puan</td>
+</tr>
+<tr>
+<td>2</td>
+<td>a) B = 0; 5 ile bölünmesi için 0 ya da 5, 4 ile bölünmesi için çift olmalı (40, 4’ün katı)  b) 2 + A + 4 + 0 = 6 + A → A = 0, 3, 6, 9  c) 2940</td>
+<td>a) Sadece “0” yazana 2 puan</td>
+</tr>
+<tr>
+<td>3</td>
+<td>a) 2, 17, 29 (1 asal değildir)  b) 90 = 2 · 3² · 5  c) 2, 3, 5</td>
+<td>a) 1’i asal yazana −2. b) Bölen tablosu 4 + yazım 3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>a) 36 ve 60’ın en büyük ortak böleni 12 → 12 buket  b) 3 kırmızı, 5 beyaz</td>
+<td>a) Ortak bölenleri listeleyene 5 puan</td>
+</tr>
+<tr>
+<td>5</td>
+<td>a) 22/50 = 11/25  b) 506/1000 yaklaşık 1/2’dir; 50 atış azdır, deneme sayısı arttıkça sonuç 1/2’ye yaklaştığı için para hileli sayılmaz</td>
+<td>b) Oranı hesaplayan 3, 1/2 ile karşılaştıran 3, deneme sayısı açıklaması 3</td>
+</tr>
+<tr>
+<td>6</td>
+<td>a) 32/80 = 2/5  b) (20 + 20)/80 = 1/2  c) Kırmızı bölge en büyük, sarı en küçük; mavi ile yeşil yaklaşık eşit</td>
+<td>c) İki doğru yorum yeterli</td>
+</tr>
+<tr>
+<td>7</td>
+<td>a) Yüzde birler, 8/100  b) Haklı değildir; 12,08 = 12 + 8/100, 12,8 = 12 + 8/10; 0 onda birler basamağını tutar</td>
+<td>b) Sadece “hoyrı” yazana 1 puan</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Yazılı 3</h3>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>Soru</th>
+<th>Cevap</th>
+<th>Dereceli puanlama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>a) 1 × 24, 2 × 12, 3 × 8, 4 × 6  b) Çevreler 50, 28, 22, 20 m → 4 m × 6 m, 20 m tel</td>
+<td>a) Her seçenek 2 puan (+1 tam liste). b) Çevreleri karşılaştıran 4 puan</td>
+</tr>
+<tr>
+<td>2</td>
+<td>a) Sayı çift olmalı ve 21 + A, 3’ün katı olmalı → A = 0 ya da 6  b) 21 + 6 = 27 → 47286  c) Hayır; son iki basamak 86, 4’ün katı değildir</td>
+<td>a) Yalnız 3 kuralını kullanıp 0, 3, 6, 9 yazana 3 puan</td>
+</tr>
+<tr>
+<td>3</td>
+<td>a) □ = 75, △ = 25  b) 150 = 2 · 3 · 5²  c) 2, 3, 5</td>
+<td>a) Her kutu 3 puan</td>
+</tr>
+<tr>
+<td>4</td>
+<td>a) 6 ve 8’in en küçük ortak katı 24 → 24 gün  b) 24 = 3 hafta + 3 gün → perşembe</td>
+<td>b) “3 gün sonra” mantığını kurana 4 puan</td>
+</tr>
+<tr>
+<td>5</td>
+<td>a) 64/100 = 16/25  b) 500 · 36/100 = 180</td>
+<td>a) Sadeleştirmeyene −1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>a) 42/120 = 7/20  b) 300 · 54/120 = 135 tost</td>
+<td>b) Oranı kuran 5 puan</td>
+</tr>
+<tr>
+<td>7</td>
+<td>a) 7/100 = 0,07  b) 3/10 + 7/100 + 5/1000</td>
+<td>b) Her terim 2 puan</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Yazılı 4</h3>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>Soru</th>
+<th>Cevap</th>
+<th>Dereceli puanlama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>a) 1, 2, 3, 4, 6, 9, 12, 18, 36  b) 3, 6, 9, 12, 18, 36  c) 12, 18, 36</td>
+<td>b) Her sayı 1 puan</td>
+</tr>
+<tr>
+<td>2</td>
+<td>a) 1 + A + 5 = 6 + A → A = 0, 3, 6, 9  b) 6 + A = 9 → 135 TL  c) Hayır; birler basamağı 5 (tek), sayı 2 ile bölünmez</td>
+<td>c) Sadece “hoyrı” yazana 1 puan</td>
+</tr>
+<tr>
+<td>3</td>
+<td>a) Örneğin 9 tektir ama 3’e de bölünür, asal değildir (15, 21, 25 de olur)  b) 2, 3, 5, 7, 11, 13, 17, 19  c) 72 = 2³ · 3²</td>
+<td>b) 1’i yazana ya da 2’yi unutana −2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>a) 48 ve 72’nin en büyük ortak böleni 24 → 24 cm  b) 48/24 + 72/24 = 2 + 3 = 5 parça</td>
+<td>a) Ortak bölen listesi 5 puan</td>
+</tr>
+<tr>
+<td>5</td>
+<td>a) 6/20 = 3/10  b) 30 · 3/10 = 9 gün</td>
+<td>b) Oranı kuran 5 puan</td>
+</tr>
+<tr>
+<td>6</td>
+<td>a) Zeynep: 5/12, Kerem: 98/600 = 49/300  b) Kerem’in tahmini; deneme sayısı arttıkça tahmin gerçek olasılığa (1/6 = 100/600) yaklaşır</td>
+<td>b) Sadece “Kerem” yazana 3 puan</td>
+</tr>
+<tr>
+<td>7</td>
+<td>a) 2 → 2/10, 6 → 6/1000  b) 4 + 2/10 + 0/100 + 6/1000 (0/100 yazılmasa da tam puan)</td>
+<td>b) Her terim 2 puan</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Yazılı 5</h3>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>Soru</th>
+<th>Cevap</th>
+<th>Dereceli puanlama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>a) 12.15, 12.30, 12.45, 13.00, 13.15, 13.30 → 6 kez  b) Çalmaz; 13.10, 12.00’den 70 dakika sonradır, 70 ise 15’in katı değildir</td>
+<td>a) Her saat 1 puan + sayı 3 puan</td>
+</tr>
+<tr>
+<td>2</td>
+<td>a) Son iki basamak A6, 4’ün katı olmalı (16, 36, 56, 76, 96) → A = 1, 3, 5, 7, 9  b) 3 + 8 + A + 6 = 17 + A = 18 → 3816  c) Evet; çifttir ve rakamları toplamı 18, 3’ün katıdır</td>
+<td>a) Her rakam 1 puan (+1 tam liste)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>a) 2 · 5 · 7 = 70  b) 70’ten büyük en küçük uygun sayı: 2² · 5 · 7 = 140  c) 140 → 2 · 70 → 2 · 35 → 5 · 7</td>
+<td>b) 105 (3 · 5 · 7) yazana 0 puan: 3 asal çarpan olmamalı</td>
+</tr>
+<tr>
+<td>4</td>
+<td>a) 12 ve 15’in en küçük ortak katı 60 → 60’ar tane  b) 60/12 = 5 paket kayısı, 60/15 = 4 paket incir</td>
+<td>a) Katları listeleyen 5 puan</td>
+</tr>
+<tr>
+<td>5</td>
+<td>a) A: 34/40 = 17/20, B: 20/25 = 4/5  b) 4/5 = 16/20 &lt; 17/20 → A futbolcusu</td>
+<td>b) Ortak paydaya getiren 4 puan</td>
+</tr>
+<tr>
+<td>6</td>
+<td>a) 35/50 = 7/10  b) 20 · 7/10 = 14 mavi top</td>
+<td>b) Oranı kuran 5 puan</td>
+</tr>
+<tr>
+<td>7</td>
+<td>a) 6 → 6/10, 4 → 4/1000  b) 6/10 + 0/100 + 4/1000; sıfır tam binde altı yüz dört</td>
+<td>b) Çözümleme 4, okunuş 2</td>
+</tr>
+</tbody>
+</table></div>
+</article>
+</div>
+</section>
+<script>
+(function(){
+  var b=document.getElementById('mp-toggle'),box=document.getElementById('mp-answer-pages'),sec=document.getElementById('mp-answers');
+  if(!b)return;
+  b.addEventListener('click',function(){var open=box.hasAttribute('hidden');
+    if(open){box.removeAttribute('hidden');sec.classList.add('mp-open');b.textContent='Cevap anahtarını gizle';b.setAttribute('aria-expanded','true');}
+    else{box.setAttribute('hidden','');sec.classList.remove('mp-open');b.textContent='Cevap anahtarını göster';b.setAttribute('aria-expanded','false');}
+  });
+})();
+</script>
+</body>
+</html>

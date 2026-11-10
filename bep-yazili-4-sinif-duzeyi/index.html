@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BEP Matematik Yazılı Sınavı (4. Sınıf Düzeyi)</title>
+<meta name="description" content="BEP öğrencisi için 4. sınıf düzeyinde 10 soruluk matematik yazılısı ve cevap anahtarı.">
+<link rel="icon" href="../assets/simge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800;900&display=swap">
+<style>
+:root{--indigo:#2B17B0;--lav:#EEE8FF;--turq:#1CC8D8;--coral:#F47A5E;--ink:#1E1B3A;--s:1;
+  --display:"Baloo 2","Nunito",system-ui,sans-serif;--body:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--lav);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+.mp-bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:10px max(16px,env(safe-area-inset-left,0px));background:var(--indigo);color:#fff;box-shadow:0 2px 12px rgba(43,23,176,.25)}
+.mp-bar img{width:48px;height:48px;border-radius:50%;background:#fff;flex:none;object-fit:cover}
+.mp-bar h1{flex:1 1 200px;min-width:0;margin:0;font-family:var(--display);font-weight:800;font-size:clamp(18px,3.4vw,26px);line-height:1.15}
+.mp-back,.mp-print{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border-radius:999px;
+  font-family:var(--body);font-weight:800;font-size:16px;text-decoration:none;cursor:pointer;border:2px solid #fff}
+.mp-back{color:#fff;background:transparent}
+.mp-back:hover,.mp-back:focus-visible{background:rgba(255,255,255,.15)}
+.mp-print{color:var(--indigo);background:#fff}
+.mp-print:hover,.mp-print:focus-visible{background:var(--lav)}
+@media (max-width:600px){.mp-bar{gap:8px 10px}.mp-bar img{order:-1;width:44px;height:44px}.mp-print{margin-left:auto}.mp-bar h1{order:5;flex-basis:100%}}
+.mp-main{padding:24px 16px 8px;display:flex;flex-direction:column;align-items:center;gap:24px}
+.mp-sheet{width:calc(794px * var(--s));height:calc(1123px * var(--s));flex:none;background:#fff;
+  box-shadow:0 10px 30px rgba(43,23,176,.18),0 2px 6px rgba(43,23,176,.12);border-radius:4px;overflow:hidden;position:relative}
+.mp-page{width:794px;height:1123px;transform:scale(var(--s));transform-origin:0 0;position:absolute;left:0;top:0}
+.mp-answers{display:flex;flex-direction:column;align-items:center;gap:24px;padding:8px 16px 40px}
+.mp-toggle{min-height:56px;padding:12px 28px;border:0;border-radius:999px;background:var(--coral);color:var(--ink);
+  font-family:var(--display);font-weight:800;font-size:clamp(18px,4vw,22px);cursor:pointer;box-shadow:0 6px 18px rgba(244,122,94,.35)}
+.mp-toggle[aria-expanded="true"]{background:var(--turq)}
+.mp-toggle:focus-visible,.mp-back:focus-visible,.mp-print:focus-visible{outline:3px solid var(--turq);outline-offset:3px}
+.mp-answer-pages{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%}
+.mp-answer-pages[hidden]{display:none}
+.mp-note{max-width:794px;text-align:center;color:#4A4470;font-weight:700;margin:0}
+.mp-foot{text-align:center;padding:0 16px 32px;color:#4A4470;font-weight:700;font-size:14px}
+.mp-foot a{color:var(--indigo)}
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:#fff!important}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mp-bar,.mp-toggle,.mp-note,.mp-foot,.mp-noprint{display:none!important}
+  .mp-main,.mp-answers,.mp-answer-pages{display:block;padding:0;margin:0;gap:0}
+  .mp-answers:not(.mp-open){display:none!important}
+  .mp-sheet{--s:1;width:210mm;height:296.5mm;box-shadow:none;border-radius:0;margin:0;break-inside:avoid;break-after:page;page-break-after:always}
+  .mp-sheet.mp-last{break-after:auto;page-break-after:auto}
+  .mp-page{transform:none}
+}
+
+.mp-doc{width:100%;max-width:794px;background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(43,23,176,.18);
+  padding:clamp(20px,5vw,52px);font-size:16px;line-height:1.6;overflow-wrap:anywhere;word-break:normal}
+.mp-doc h1,.mp-doc h2,.mp-doc h3,.mp-doc h4{font-family:var(--display);color:var(--indigo);line-height:1.2;overflow-wrap:break-word}
+.mp-doc h1{font-size:clamp(26px,5vw,36px);font-weight:800;margin:0 0 14px;padding-bottom:10px;border-bottom:3px solid var(--indigo)}
+.mp-doc h2{font-size:clamp(21px,4vw,26px);font-weight:800;margin:30px 0 10px;padding:6px 14px;background:var(--lav);border-left:6px solid var(--turq);border-radius:10px}
+.mp-doc h3{font-size:clamp(18px,3.4vw,21px);font-weight:700;margin:22px 0 8px;color:#3a24c4}
+.mp-doc p{margin:8px 0}
+.mp-doc strong{color:#21136E}
+.mp-doc ul,.mp-doc ol{padding-left:1.4em;margin:8px 0}
+.mp-doc li{margin:4px 0}
+.mp-doc li p{margin:2px 0}
+.mp-doc blockquote,.mp-doc .mp-quote{margin:12px 0;padding:10px 16px;background:#F7F4FF;border-left:5px solid var(--coral);border-radius:10px}
+.mp-doc img{max-width:100%;height:auto;display:block;margin:12px auto;border-radius:10px}
+.mp-doc code{font-family:ui-monospace,Menlo,Consolas,monospace;background:#F7F4FF;padding:1px 5px;border-radius:5px}
+.mp-tablewrap{width:100%;overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+.mp-doc table{border-collapse:collapse;min-width:60%;font-size:15px;overflow-wrap:normal;word-break:normal}
+.mp-doc th{background:var(--indigo);color:#fff;font-family:var(--display);font-weight:700;text-align:left}
+.mp-doc th,.mp-doc td{border:1.5px solid #B9A6F0;padding:6px 10px;vertical-align:top;min-width:3.2em;height:2.4em}
+.mp-doc tbody tr:nth-child(even) td{background:#F7F4FF}
+.mp-doc th p,.mp-doc td p{margin:0}
+.mp-tabname{display:inline-block;margin:0 0 10px;padding:4px 14px;border-radius:999px;background:var(--turq);color:var(--ink);font-weight:800;font-size:14px}
+@media print{
+  @page mpdoc{size:A4;margin:14mm 14mm 16mm}
+  .mp-doc{page:mpdoc;max-width:none;box-shadow:none;border-radius:0;padding:0;margin:0;break-before:page;font-size:12pt}
+  .mp-main .mp-doc:first-child{break-before:auto}
+  .mp-doc h2,.mp-doc h3{break-after:avoid}
+  .mp-doc table,.mp-doc img{break-inside:avoid}
+  .mp-tablewrap{overflow:visible}
+}
+</style>
+</head>
+<body>
+<header class="mp-bar">
+<a class="mp-back" href="../">← Tüm oyunlar</a>
+<h1>BEP Matematik Yazılı Sınavı (4. Sınıf Düzeyi)</h1>
+<button class="mp-print" type="button" onclick="window.print()">Yazdır</button>
+<img src="../assets/simge.png" alt="MathPop simgesi" width="48" height="48">
+</header>
+<main class="mp-main">
+<article class="mp-doc">
+<h1>BEP Matematik Yazılı Sınavı (4. Sınıf Düzeyi)</h1><p>Sınav 10 sorudan oluşur, her soru 10 puandır. Sorular 8. sınıf 1. ünitenin (çarpanlar, katlar, kuvvetler, basamak değeri) 4. sınıf düzeyindeki temel becerilerine dayanır.</p>
+<p><strong>Adı Soyadı:</strong> ............................................&nbsp;&nbsp;&nbsp;<strong>Sınıfı / No:</strong> ..........&nbsp;&nbsp;&nbsp;<strong>Tarih:</strong> ..........</p>
+<p><strong>Yönerge:</strong> Soruları dikkatlice oku. İşlemlerini sorunun altına yap. Acele etme, süren yeterli.</p>
+<h2>Sorular</h2>
+<ol>
+<li>Aşağıdaki çarpma işlemlerini yap. (10 puan)<br>6 × 4 = ......&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7 × 8 = ......</li>
+<li>Boşlukları doldurarak 12 sayısını iki sayının çarpımı olarak yaz. (10 puan)<br>1 × ...... = 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 × ...... = 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 × ...... = 12</li>
+<li>5'in katlarını sırayla yazmaya devam et. (10 puan)<br>5, 10, 15, ......, ......, ......</li>
+<li>Aşağıdaki sayılardan çift olanları yuvarlak içine al. (10 puan)<br>7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;48</li>
+<li>18 kalem 3 öğrenciye eşit olarak paylaştırılıyor. Her öğrenci kaç kalem alır? (10 puan)</li>
+<li>Aşağıdaki işlemi yap. (10 puan)<br>2 × 2 × 2 = ......</li>
+<li>Aşağıdaki çarpma işlemlerini yap. (10 puan)<br>7 × 10 = ......&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7 × 100 = ......</li>
+<li>3527 sayısında 5 rakamı hangi basamaktadır? Basamak değeri kaçtır? (10 puan)<br>Basamağı: ....................&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basamak değeri: ......</li>
+<li>Aşağıdaki sayıları küçükten büyüğe sırala. (10 puan)<br>450&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;54&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;405<br>...... &lt; ...... &lt; ......</li>
+<li>Bir kutuya 6 yumurta sığıyor. 24 yumurta için kaç kutu gerekir? (10 puan)</li>
+</ol>
+</article>
+</main>
+<section class="mp-answers" id="mp-answers" aria-label="Cevap anahtarı">
+<button class="mp-toggle" id="mp-toggle" type="button" aria-expanded="false" aria-controls="mp-answer-pages">Cevap anahtarını göster</button>
+<div class="mp-answer-pages" id="mp-answer-pages" hidden>
+<article class="mp-doc">
+<p class="mp-tabname">BEP Matematik Yazılı Sınavı (4. Sınıf Düzeyi)</p>
+<h2>Cevap Anahtarı</h2>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>No</th>
+<th>Cevap</th>
+<th>Bağlı 8. sınıf konusu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>24 ve 56</td>
+<td>Çarpanlar</td>
+</tr>
+<tr>
+<td>2</td>
+<td>12, 6, 4</td>
+<td>Çarpanlar</td>
+</tr>
+<tr>
+<td>3</td>
+<td>20, 25, 30</td>
+<td>EKOK (katlar)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>12, 20, 48</td>
+<td>Bölünebilme / çarpanlar</td>
+</tr>
+<tr>
+<td>5</td>
+<td>6 kalem</td>
+<td>EBOB (eşit paylaştırma)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>8</td>
+<td>Üslü ifadeler (2³)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>70 ve 700</td>
+<td>10'un kuvvetleri</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Onlar basamağı; 20</td>
+<td>Çözümleme</td>
+</tr>
+<tr>
+<td>9</td>
+<td>54 &lt; 405 &lt; 450</td>
+<td>Sayıları karşılaştırma</td>
+</tr>
+<tr>
+<td>10</td>
+<td>4 kutu</td>
+<td>Bölme problemi</td>
+</tr>
+</tbody>
+</table></div>
+</article>
+</div>
+</section>
+<script>
+(function(){
+  var b=document.getElementById('mp-toggle'),box=document.getElementById('mp-answer-pages'),sec=document.getElementById('mp-answers');
+  if(!b)return;
+  b.addEventListener('click',function(){var open=box.hasAttribute('hidden');
+    if(open){box.removeAttribute('hidden');sec.classList.add('mp-open');b.textContent='Cevap anahtarını gizle';b.setAttribute('aria-expanded','true');}
+    else{box.setAttribute('hidden','');sec.classList.remove('mp-open');b.textContent='Cevap anahtarını göster';b.setAttribute('aria-expanded','false');}
+  });
+})();
+</script>
+</body>
+</html>

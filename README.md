@@ -22,6 +22,11 @@ Telefonda, bilgisayarda ve akıllı tahtada çalışır. Kurulum gerekmez.
 | Çokgen Kasabası | `cokgen-kasabasi/` | Çokgenler |
 | Daireden Altıgene | `daireden-altigene/` | Geometrik şekiller, kâğıt katlama |
 | Üçgen Fabrikası | `ucgen-fabrikasi/` | Pergelle üçgen çizme |
+| Kesir Pizzacısı | `kesir-pizzacisi/` | Kesirle sipariş, eşit dilimler |
+| Kesir Pizzacısı Kart Masası | `kesir-pizzacisi-kart-masasi/` | Kesirlerle toplama, kart oyunu |
+| Bölük Bölük Sayılar | `boluk-boluk-sayilar/` | Doğal sayıları okuma ve yazma |
+| Deniz Altı Eş Avı | `deniz-alti-es-avi/` | Kesir, ondalık ve yüzde |
+| Kesir Kitabım | `kesir-kitabim/` | Kesir modelleri, denk kesirler, karşılaştırma |
 
 **Çalışma kağıtları**
 
@@ -34,6 +39,7 @@ Telefonda, bilgisayarda ve akıllı tahtada çalışır. Kurulum gerekmez.
 | 5. Sınıf Geometrik Şekiller – Sınava Hazırlık Çalışma Kağıdı | `5-sinif-geometrik-sekiller/` | Temel geometrik çizimler, açılar, çokgenler (MAT.5.3.1–5.3.5) |
 | Kesişen Çemberlerle Üçgen İnşa Ediyorum (MAT.5.3.7) | `kesisen-cemberlerle-ucgen/` | Kesişen çemberlerle üçgen inşası (MAT.5.3.7) |
 | Çokgen Kasabası Çalışma Kağıdı | `cokgen-kasabasi-calisma-kagidi/` | Çokgenler (MAT.5.3.5) |
+| Büyüteçle Eş Avı Çalışma Kağıdı | `buyutecle-es-avi-calisma-kagidi/` | Kesir, ondalık gösterim ve yüzde |
 
 ### 6. sınıf
 
@@ -63,6 +69,8 @@ Telefonda, bilgisayarda ve akıllı tahtada çalışır. Kurulum gerekmez.
 | Kesişen Doğruların Oluşturduğu Açılar 6. Sınıf | `kesisen-dogrularin-acilari-6/` | Kesişen doğruların oluşturduğu açılar |
 | Bölünebilme Kuralları 6. Sınıf | `bolunebilme-kurallari-6/` | Bölünebilme kuralları |
 | 6. Sınıf Matematik Ortak Sınav Hazırlık Kağıdı | `6-sinif-ortak-sinav-kagidi/` | Çarpan-kat, bölünebilme, asal sayılar, ortak kat-bölen, deneysel olasılık, ondalık gösterim |
+| Deneysel Olasılık Çalışma Kağıdı | `olasilik-kesif-adasi-calisma-kagidi/` | Deneysel olasılık |
+| 6. Sınıf Ortak Sınav – 5 Deneme Yazılısı (yazılı sınav) | `6-sinif-5-deneme-yazilisi/` | 1. ortak sınav konuları, cevap anahtarı ve puanlama |
 
 ### 7. sınıf
 
@@ -87,6 +95,8 @@ Telefonda, bilgisayarda ve akıllı tahtada çalışır. Kurulum gerekmez.
 | Üslü İfadeler Lunaparkı | `uslu-ifadeler-lunaparki/` | Üslü ifadeler |
 | Virgül Kaydırma Atölyesi | `virgul-kaydirma-atolyesi/` | 10'un kuvvetleri |
 | Onun Kuvvetleri Atölyesi | `onun-kuvvetleri-atolyesi/` | Çözümleme, 10'un kuvvetleri |
+| Küp Görünüm Avı | `kup-gorunum-avi/` | Yapıların farklı yönlerden görünümleri |
+| Blok Görünüm Avı | `blok-gorunum-avi/` | Yapıların görünümleri (blok temalı) |
 
 **Çalışma kağıtları**
 
@@ -116,6 +126,9 @@ Telefonda, bilgisayarda ve akıllı tahtada çalışır. Kurulum gerekmez.
 | 8. Sınıf 1. Yazılıya Hazırlık | `8-sinif-1-yaziliya-hazirlik/` | Çarpanlar, üslü ifadeler, kareköklü ifadeler (1. yazılı) |
 | Karekök Ustası 8. Sınıf | `karekok-ustasi-calisma-kagidi/` | Kareköklü ifadeler |
 | 8. Sınıf Matematik Çalışma Kağıdı – Senaryo 6 | `8-sinif-senaryo-6/` | Çarpanlar, EBOB-EKOK, üslü ifadeler, bilimsel gösterim |
+| 8. Sınıf Senaryo 6 – Ayrıntılı Cevap Anahtarı | `8-sinif-senaryo-6-cevap-anahtari/` | 48 sorunun adım adım çözümü |
+| BEP Matematik Yazılısı (4. Sınıf Düzeyi) | `bep-yazili-4-sinif-duzeyi/` | Çarpma, katlar, basamak değeri |
+| BEP Matematik Yazılısı (6. Sınıf Düzeyi) | `bep-yazili-6-sinif-duzeyi/` | Üslü ifadeler, bölünebilme, EBOB-EKOK, ondalık |
 
 ## Klasör yapısı
 
@@ -127,7 +140,7 @@ mathpop-oyunlar/
 ├── kesir-duellosu/
 │   ├── index.html
 │   └── simge.png
-├── … (52 oyun klasörü)
+├── … (87 klasör)
 ├── assets/
 │   ├── simge.png            ← logo (sol üst köşe)
 │   ├── deniz-arka-plan.jpg

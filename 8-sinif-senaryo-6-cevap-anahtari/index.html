@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>8. Sınıf Matematik – Senaryo 6 Ayrıntılı Cevap Anahtarı</title>
+<meta name="description" content="8. sınıf Senaryo 6 yazılısının 48 sorusunun öğretmen anlatımıyla adım adım çözümleri.">
+<link rel="icon" href="../assets/simge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800;900&display=swap">
+<style>
+:root{--indigo:#2B17B0;--lav:#EEE8FF;--turq:#1CC8D8;--coral:#F47A5E;--ink:#1E1B3A;--s:1;
+  --display:"Baloo 2","Nunito",system-ui,sans-serif;--body:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--lav);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+.mp-bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:10px max(16px,env(safe-area-inset-left,0px));background:var(--indigo);color:#fff;box-shadow:0 2px 12px rgba(43,23,176,.25)}
+.mp-bar img{width:48px;height:48px;border-radius:50%;background:#fff;flex:none;object-fit:cover}
+.mp-bar h1{flex:1 1 200px;min-width:0;margin:0;font-family:var(--display);font-weight:800;font-size:clamp(18px,3.4vw,26px);line-height:1.15}
+.mp-back,.mp-print{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border-radius:999px;
+  font-family:var(--body);font-weight:800;font-size:16px;text-decoration:none;cursor:pointer;border:2px solid #fff}
+.mp-back{color:#fff;background:transparent}
+.mp-back:hover,.mp-back:focus-visible{background:rgba(255,255,255,.15)}
+.mp-print{color:var(--indigo);background:#fff}
+.mp-print:hover,.mp-print:focus-visible{background:var(--lav)}
+@media (max-width:600px){.mp-bar{gap:8px 10px}.mp-bar img{order:-1;width:44px;height:44px}.mp-print{margin-left:auto}.mp-bar h1{order:5;flex-basis:100%}}
+.mp-main{padding:24px 16px 8px;display:flex;flex-direction:column;align-items:center;gap:24px}
+.mp-sheet{width:calc(794px * var(--s));height:calc(1123px * var(--s));flex:none;background:#fff;
+  box-shadow:0 10px 30px rgba(43,23,176,.18),0 2px 6px rgba(43,23,176,.12);border-radius:4px;overflow:hidden;position:relative}
+.mp-page{width:794px;height:1123px;transform:scale(var(--s));transform-origin:0 0;position:absolute;left:0;top:0}
+.mp-answers{display:flex;flex-direction:column;align-items:center;gap:24px;padding:8px 16px 40px}
+.mp-toggle{min-height:56px;padding:12px 28px;border:0;border-radius:999px;background:var(--coral);color:var(--ink);
+  font-family:var(--display);font-weight:800;font-size:clamp(18px,4vw,22px);cursor:pointer;box-shadow:0 6px 18px rgba(244,122,94,.35)}
+.mp-toggle[aria-expanded="true"]{background:var(--turq)}
+.mp-toggle:focus-visible,.mp-back:focus-visible,.mp-print:focus-visible{outline:3px solid var(--turq);outline-offset:3px}
+.mp-answer-pages{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%}
+.mp-answer-pages[hidden]{display:none}
+.mp-note{max-width:794px;text-align:center;color:#4A4470;font-weight:700;margin:0}
+.mp-foot{text-align:center;padding:0 16px 32px;color:#4A4470;font-weight:700;font-size:14px}
+.mp-foot a{color:var(--indigo)}
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:#fff!important}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mp-bar,.mp-toggle,.mp-note,.mp-foot,.mp-noprint{display:none!important}
+  .mp-main,.mp-answers,.mp-answer-pages{display:block;padding:0;margin:0;gap:0}
+  .mp-answers:not(.mp-open){display:none!important}
+  .mp-sheet{--s:1;width:210mm;height:296.5mm;box-shadow:none;border-radius:0;margin:0;break-inside:avoid;break-after:page;page-break-after:always}
+  .mp-sheet.mp-last{break-after:auto;page-break-after:auto}
+  .mp-page{transform:none}
+}
+
+.mp-doc{width:100%;max-width:794px;background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(43,23,176,.18);
+  padding:clamp(20px,5vw,52px);font-size:16px;line-height:1.6;overflow-wrap:anywhere;word-break:normal}
+.mp-doc h1,.mp-doc h2,.mp-doc h3,.mp-doc h4{font-family:var(--display);color:var(--indigo);line-height:1.2;overflow-wrap:break-word}
+.mp-doc h1{font-size:clamp(26px,5vw,36px);font-weight:800;margin:0 0 14px;padding-bottom:10px;border-bottom:3px solid var(--indigo)}
+.mp-doc h2{font-size:clamp(21px,4vw,26px);font-weight:800;margin:30px 0 10px;padding:6px 14px;background:var(--lav);border-left:6px solid var(--turq);border-radius:10px}
+.mp-doc h3{font-size:clamp(18px,3.4vw,21px);font-weight:700;margin:22px 0 8px;color:#3a24c4}
+.mp-doc p{margin:8px 0}
+.mp-doc strong{color:#21136E}
+.mp-doc ul,.mp-doc ol{padding-left:1.4em;margin:8px 0}
+.mp-doc li{margin:4px 0}
+.mp-doc li p{margin:2px 0}
+.mp-doc blockquote,.mp-doc .mp-quote{margin:12px 0;padding:10px 16px;background:#F7F4FF;border-left:5px solid var(--coral);border-radius:10px}
+.mp-doc img{max-width:100%;height:auto;display:block;margin:12px auto;border-radius:10px}
+.mp-doc code{font-family:ui-monospace,Menlo,Consolas,monospace;background:#F7F4FF;padding:1px 5px;border-radius:5px}
+.mp-tablewrap{width:100%;overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+.mp-doc table{border-collapse:collapse;min-width:60%;font-size:15px;overflow-wrap:normal;word-break:normal}
+.mp-doc th{background:var(--indigo);color:#fff;font-family:var(--display);font-weight:700;text-align:left}
+.mp-doc th,.mp-doc td{border:1.5px solid #B9A6F0;padding:6px 10px;vertical-align:top;min-width:3.2em;height:2.4em}
+.mp-doc tbody tr:nth-child(even) td{background:#F7F4FF}
+.mp-doc th p,.mp-doc td p{margin:0}
+.mp-tabname{display:inline-block;margin:0 0 10px;padding:4px 14px;border-radius:999px;background:var(--turq);color:var(--ink);font-weight:800;font-size:14px}
+@media print{
+  @page mpdoc{size:A4;margin:14mm 14mm 16mm}
+  .mp-doc{page:mpdoc;max-width:none;box-shadow:none;border-radius:0;padding:0;margin:0;break-before:page;font-size:12pt}
+  .mp-main .mp-doc:first-child{break-before:auto}
+  .mp-doc h2,.mp-doc h3{break-after:avoid}
+  .mp-doc table,.mp-doc img{break-inside:avoid}
+  .mp-tablewrap{overflow:visible}
+}
+</style>
+</head>
+<body>
+<header class="mp-bar">
+<a class="mp-back" href="../">← Tüm oyunlar</a>
+<h1>8. Sınıf Matematik – Senaryo 6 Ayrıntılı Cevap Anahtarı</h1>
+<button class="mp-print" type="button" onclick="window.print()">Yazdır</button>
+<img src="../assets/simge.png" alt="MathPop simgesi" width="48" height="48">
+</header>
+<main class="mp-main">
+<article class="mp-doc">
+<h1>8. Sınıf Matematik – Senaryo 6 Ayrıntılı Cevap Anahtarı</h1><h2>Hızlı cevap tablosu</h2>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>Soru</th>
+<th>Cevap</th>
+<th>Soru</th>
+<th>Cevap</th>
+<th>Soru</th>
+<th>Cevap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1, 2, 3, 4, 6, 8, 12, 24</td>
+<td>17</td>
+<td>13</td>
+<td>33</td>
+<td>3·10¹ + 4·10⁻¹ + 5·10⁻³</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2² · 3 · 5</td>
+<td>18</td>
+<td>6</td>
+<td>34</td>
+<td>501,204</td>
+</tr>
+<tr>
+<td>3</td>
+<td>12</td>
+<td>19</td>
+<td>81 ve −81</td>
+<td>35</td>
+<td>13</td>
+</tr>
+<tr>
+<td>4</td>
+<td>60</td>
+<td>20</td>
+<td>1/8 ve 1</td>
+<td>36</td>
+<td>48; 10² ve 10⁻¹</td>
+</tr>
+<tr>
+<td>5</td>
+<td>15</td>
+<td>21</td>
+<td>−40</td>
+<td>37</td>
+<td>n = −4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>5 bahçe; 28 m</td>
+<td>22</td>
+<td>1/16 ve −1/8</td>
+<td>38</td>
+<td>35 · 10²</td>
+</tr>
+<tr>
+<td>7</td>
+<td>6</td>
+<td>23</td>
+<td>0</td>
+<td>39</td>
+<td>n = 2, m = 1</td>
+</tr>
+<tr>
+<td>8</td>
+<td>60</td>
+<td>24</td>
+<td>−73/9</td>
+<td>40</td>
+<td>36·10³ ve 3600·10¹</td>
+</tr>
+<tr>
+<td>9</td>
+<td>12 cm; 35 kare</td>
+<td>25</td>
+<td>3⁹</td>
+<td>41</td>
+<td>n = −6</td>
+</tr>
+<tr>
+<td>10</td>
+<td>09.24</td>
+<td>26</td>
+<td>2⁶</td>
+<td>42</td>
+<td>n = −4</td>
+</tr>
+<tr>
+<td>11</td>
+<td>75</td>
+<td>27</td>
+<td>5² = 25</td>
+<td>43</td>
+<td>4,5 · 10⁷</td>
+</tr>
+<tr>
+<td>12</td>
+<td>14 fidan</td>
+<td>28</td>
+<td>2¹¹</td>
+<td>44</td>
+<td>6,2 · 10⁻⁴</td>
+</tr>
+<tr>
+<td>13</td>
+<td>a ve c</td>
+<td>29</td>
+<td>256</td>
+<td>45</td>
+<td>c ve d</td>
+</tr>
+<tr>
+<td>14</td>
+<td>EBOB = 1, aralarında asal</td>
+<td>30</td>
+<td>3²¹</td>
+<td>46</td>
+<td>3,4 · 10⁻³</td>
+</tr>
+<tr>
+<td>15</td>
+<td>11, 13, 17, 19</td>
+<td>31</td>
+<td>4·10² + 5·10¹ + 2·10⁰ + 3·10⁻¹</td>
+<td>47</td>
+<td>c &lt; a &lt; b</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Evet, aralarında asal</td>
+<td>32</td>
+<td>76,08</td>
+<td>48</td>
+<td>1,5 · 10¹¹ m</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Çarpanlar ve Üslü Gösterim (1–6)</h2>
+<h3>Soru 1 – 24'ün pozitif çarpanları</h3>
+<p>Bir sayının çarpanlarını bulmak için onu iki sayının çarpımı olarak yazarız. 1'den başlayıp çarpanlar tekrar etmeye başlayana kadar deneriz:</p>
+<ul>
+<li>1 · 24 = 24</li>
+<li>2 · 12 = 24</li>
+<li>3 · 8 = 24</li>
+<li>4 · 6 = 24</li>
+<li>5 → 24'ü tam bölmez. 6 · 4 zaten yazıldı, burada dururuz.</li>
+</ul>
+<p><strong>Cevap:</strong> 1, 2, 3, 4, 6, 8, 12, 24 (toplam 8 çarpan).</p>
+<h3>Soru 2 – 60'ın asal çarpanlarına ayrılması</h3>
+<p>Bölen listesi (ya da çarpan ağacı) ile en küçük asal sayıdan başlayarak böleriz:</p>
+<ul>
+<li>60 : 2 = 30</li>
+<li>30 : 2 = 15</li>
+<li>15 : 3 = 5</li>
+<li>5 : 5 = 1</li>
+</ul>
+<p>Kullanılan asallar: 2, 2, 3, 5. Aynı asalı üslü yazarız: 2 · 2 = 2².</p>
+<p><strong>Cevap:</strong> 60 = 2² · 3 · 5</p>
+<h3>Soru 3 – 72'nin pozitif çarpan sayısı</h3>
+<p>Önce asal çarpanlara ayırırız: 72 = 2 · 2 · 2 · 3 · 3 = 2³ · 3².</p>
+<p>Kural: Her asalın üssüne 1 ekler, sonuçları çarparız. 2'nin kuvveti 0, 1, 2 veya 3 olabilir (4 seçenek); 3'ün kuvveti 0, 1 veya 2 olabilir (3 seçenek).</p>
+<p>(3 + 1) · (2 + 1) = 4 · 3 = 12</p>
+<p>Kontrol: 1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72 → 12 tane.</p>
+<p><strong>Cevap:</strong> 12</p>
+<h3>Soru 4 – A = 2³ · 3 · 5 sayısının iki basamaklı en büyük çarpanı</h3>
+<p>A'yı hesaplarız: 2³ = 8, 8 · 3 · 5 = 120.</p>
+<p>120'nin çarpanlarını büyükten küçüğe düşünürüz: 120 (üç basamaklı), 60, 40, 30, 24 … İki basamaklı olanların en büyüğü 60'tır (120 : 2 = 60). 61–99 arasındaki hiçbir sayı 120'yi tam bölmez, çünkü 120'yi 1'den büyük en küçük sayı olan 2'ye böldüğümüzde 60 elde ederiz.</p>
+<p><strong>Cevap:</strong> 60</p>
+<h3>Soru 5 – 180'in asal olmayan pozitif çarpan sayısı</h3>
+<p>Asal çarpanlara ayırma: 180 = 2² · 3² · 5.</p>
+<p>Tüm pozitif çarpan sayısı: (2 + 1) · (2 + 1) · (1 + 1) = 3 · 3 · 2 = 18.</p>
+<p>Asal çarpanları: 2, 3, 5 → 3 tane.</p>
+<p>Asal olmayan çarpanlar = 18 − 3 = 15.</p>
+<p><strong>Cevap:</strong> 15</p>
+<p><strong>Dikkat:</strong> 1 asal sayı değildir; bu yüzden 1 de “asal olmayan” 15 çarpanın içindedir.</p>
+<h3>Soru 6 – Alanı 48 m² olan dikdörtgen bahçeler</h3>
+<p>Dikdörtgenin alanı = kısa kenar · uzun kenar. Kenarlar tam sayı olduğundan, çarpımı 48 olan sayı çiftlerini yazarız ve her birinin çevresini hesaplarız (Çevre = 2 · (a + b)):</p>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>Kenarlar (m)</th>
+<th>Çevre (m)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 ve 48</td>
+<td>2 · 49 = 98</td>
+</tr>
+<tr>
+<td>2 ve 24</td>
+<td>2 · 26 = 52</td>
+</tr>
+<tr>
+<td>3 ve 16</td>
+<td>2 · 19 = 38</td>
+</tr>
+<tr>
+<td>4 ve 12</td>
+<td>2 · 16 = 32</td>
+</tr>
+<tr>
+<td>6 ve 8</td>
+<td>2 · 14 = 28</td>
+</tr>
+</tbody>
+</table></div>
+<p>8 ve 6 bahçesi, 6 ve 8 bahçesiyle aynıdır (sadece döndürülmüş), bu yüzden 5 farklı bahçe vardır. Kenarlar birbirine ne kadar yakınsa çevre o kadar kısadır.</p>
+<p><strong>Cevap:</strong> 5 farklı bahçe çizilebilir; en kısa çevre 6 m × 8 m bahçede, 28 m'dir.</p>
+<h2>EBOB ve EKOK (7–12)</h2>
+<p><strong>Hatırlatma:</strong> EBOB (en büyük ortak bölen) “parçalama, bölme, en büyük kare/parça” sorularında; EKOK (en küçük ortak kat) “tekrar birlikte olma, gruplama ve kalan” sorularında kullanılır.</p>
+<h3>Soru 7 – EBOB(18, 24)</h3>
+<p>Asal çarpanlara ayırırız: 18 = 2 · 3², 24 = 2³ · 3.</p>
+<p>EBOB için <strong>ortak</strong> asalları <strong>küçük üsleriyle</strong> alırız: 2¹ · 3¹ = 6.</p>
+<p>Kontrol: 18 : 6 = 3 ve 24 : 6 = 4; 3 ile 4'ün 1'den başka ortak böleni yoktur.</p>
+<p><strong>Cevap:</strong> EBOB(18, 24) = 6</p>
+<h3>Soru 8 – EKOK(12, 15)</h3>
+<p>12 = 2² · 3, 15 = 3 · 5.</p>
+<p>EKOK için <strong>tüm</strong> asalları <strong>büyük üsleriyle</strong> alırız: 2² · 3 · 5 = 4 · 3 · 5 = 60.</p>
+<p>Kontrol: 60 : 12 = 5 ve 60 : 15 = 4.</p>
+<p><strong>Cevap:</strong> EKOK(12, 15) = 60</p>
+<h3>Soru 9 – 84 cm × 60 cm kartonu en büyük karelere ayırma</h3>
+<p>Karenin kenarı hem 84'ü hem 60'ı tam bölmeli (karton artmamalı) ve mümkün olan en büyük sayı olmalı. Bu yüzden EBOB alırız.</p>
+<p>84 = 2² · 3 · 7, 60 = 2² · 3 · 5 → EBOB = 2² · 3 = 12.</p>
+<p>Kare sayısı: uzun kenar boyunca 84 : 12 = 7 kare, kısa kenar boyunca 60 : 12 = 5 kare → 7 · 5 = 35 kare.</p>
+<p>Alanla kontrol: (84 · 60) : (12 · 12) = 5040 : 144 = 35.</p>
+<p><strong>Cevap:</strong> Karelerin bir kenarı 12 cm'dir; 35 kare elde edilir.</p>
+<h3>Soru 10 – 6 ve 8 dakikada bir çalan ziller</h3>
+<p>Birinci zil 6, 12, 18, 24 … dakikalarda; ikinci zil 8, 16, 24 … dakikalarda çalar. İkisinin ilk ortak dakikası EKOK'tur.</p>
+<p>6 = 2 · 3, 8 = 2³ → EKOK = 2³ · 3 = 24 dakika.</p>
+<p>09.00 + 24 dakika = 09.24</p>
+<p><strong>Cevap:</strong> Ziller bir sonraki sefer saat 09.24'te birlikte çalar.</p>
+<h3>Soru 11 – 4'erli, 6'şarlı, 9'arlı gruplarda 3 artıyor</h3>
+<p>Her gruplamada 3 öğrenci artıyorsa, 3 öğrenciyi çıkarınca kalan sayı 4'e, 6'ya ve 9'a tam bölünür. Yani (mevcut − 3) sayısı EKOK(4, 6, 9)'un katıdır.</p>
+<p>4 = 2², 6 = 2 · 3, 9 = 3² → EKOK = 2² · 3² = 36.</p>
+<p>Mevcut = 36k + 3:</p>
+<ul>
+<li>k = 1 → 39 (50'den küçük, olmaz)</li>
+<li>k = 2 → 75 (50 ile 100 arasında, uygun)</li>
+<li>k = 3 → 111 (100'den büyük, olmaz)</li>
+</ul>
+<p>Kontrol: 75 = 4 · 18 + 3 = 6 · 12 + 3 = 9 · 8 + 3.</p>
+<p><strong>Cevap:</strong> Sınıfta 75 öğrenci vardır.</p>
+<h3>Soru 12 – 72 m × 96 m bahçenin çevresine fidan dikme</h3>
+<p>Köşelere fidan gelmeli ve aralıklar eşit olmalı; yani aralık hem 72'yi hem 96'yı tam bölmeli. En az fidan için aralık en büyük olmalı → EBOB.</p>
+<p>72 = 2³ · 3², 96 = 2⁵ · 3 → EBOB = 2³ · 3 = 24 m.</p>
+<p>Bahçenin çevresi = 2 · (72 + 96) = 2 · 168 = 336 m.</p>
+<p>Kapalı bir şekilde (çevrede) fidan sayısı = aralık sayısı = 336 : 24 = 14.</p>
+<p><strong>Cevap:</strong> En az 14 fidan gerekir.</p>
+<p><strong>Dikkat:</strong> Düz bir yolda fidan sayısı “aralık + 1” olur; kapalı bir çevrede ise başlangıç ve bitiş noktası aynı olduğundan fidan sayısı aralık sayısına eşittir. Kontrol: uzun kenarlarda 96 : 24 = 4, kısa kenarlarda 72 : 24 = 3 aralık → 4 + 3 + 4 + 3 = 14.</p>
+<h2>Aralarında Asal Sayılar (13–18)</h2>
+<p><strong>Hatırlatma:</strong> İki sayının 1'den başka ortak böleni yoksa, yani EBOB'ları 1 ise bu sayılar aralarında asaldır. Sayıların kendilerinin asal olması gerekmez (örneğin 8 ve 15).</p>
+<h3>Soru 13 – Hangi çiftler aralarında asaldır?</h3>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>Çift</th>
+<th>Asal çarpanlar</th>
+<th>Ortak bölen</th>
+<th>EBOB</th>
+<th>Sonuç</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a) 8 ve 15</td>
+<td>2³ ve 3 · 5</td>
+<td>yok</td>
+<td>1</td>
+<td>Aralarında asal</td>
+</tr>
+<tr>
+<td>b) 12 ve 18</td>
+<td>2² · 3 ve 2 · 3²</td>
+<td>2 ve 3</td>
+<td>6</td>
+<td>Değil</td>
+</tr>
+<tr>
+<td>c) 9 ve 14</td>
+<td>3² ve 2 · 7</td>
+<td>yok</td>
+<td>1</td>
+<td>Aralarında asal</td>
+</tr>
+<tr>
+<td>d) 21 ve 35</td>
+<td>3 · 7 ve 5 · 7</td>
+<td>7</td>
+<td>7</td>
+<td>Değil</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Cevap:</strong> a) 8 ve 15, c) 9 ve 14</p>
+<h3>Soru 14 – 14 ve 25 aralarında asal mı?</h3>
+<p>14 = 2 · 7, 25 = 5². İki sayının asal çarpanları tamamen farklıdır; ortak asal çarpan yoktur.</p>
+<p>14'ün bölenleri: 1, 2, 7, 14. 25'in bölenleri: 1, 5, 25. Tek ortak bölen 1'dir.</p>
+<p><strong>Cevap:</strong> EBOB(14, 25) = 1 olduğundan 14 ile 25 aralarında asaldır.</p>
+<h3>Soru 15 – 10 &lt; a &lt; 20 ve a ile 12 aralarında asal</h3>
+<p>12 = 2² · 3. a'nın 12 ile ortak böleni olmaması için a ne 2'ye ne de 3'e bölünmelidir.</p>
+<p>10 ile 20 arasındaki sayılar: 11, 12, 13, 14, 15, 16, 17, 18, 19.</p>
+<ul>
+<li>2'ye bölünenleri ele: 12, 14, 16, 18</li>
+<li>3'e bölünenleri ele: 15 (12 ve 18 zaten elendi)</li>
+<li>Kalanlar: 11, 13, 17, 19</li>
+</ul>
+<p><strong>Cevap:</strong> a ∈ {11, 13, 17, 19}</p>
+<h3>Soru 16 – 2⁴ · 3 ve 5² · 7 aralarında asal mı?</h3>
+<p>Sayılar zaten asal çarpanlarıyla verilmiş. Birinci sayının asal çarpanları {2, 3}, ikincisinin {5, 7}'dir. İki kümenin ortak elemanı yoktur, dolayısıyla 1'den başka ortak bölen de olamaz.</p>
+<p><strong>Cevap:</strong> Evet, aralarında asaldır; çünkü ortak asal çarpanları yoktur ve EBOB = 1'dir.</p>
+<h3>Soru 17 – a ve b aralarında asal, EKOK(a, b) = 42</h3>
+<p>Aralarında asal iki sayının EKOK'u, sayıların çarpımına eşittir. Bu yüzden a · b = 42 olmalıdır. 42 = 2 · 3 · 7.</p>
+<p>Çarpımı 42 olan ve aralarında asal olan çiftler:</p>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>a ve b</th>
+<th>Toplam</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 ve 42</td>
+<td>43</td>
+</tr>
+<tr>
+<td>2 ve 21</td>
+<td>23</td>
+</tr>
+<tr>
+<td>3 ve 14</td>
+<td>17</td>
+</tr>
+<tr>
+<td>6 ve 7</td>
+<td>13</td>
+</tr>
+</tbody>
+</table></div>
+<p>Sayılar birbirine ne kadar yakınsa toplam o kadar küçük olur.</p>
+<p><strong>Cevap:</strong> a + b en az 13'tür (a ve b sayıları 6 ve 7).</p>
+<h3>Soru 18 – x/18 sadeleştirilemeyen ve 1'den küçük kesir</h3>
+<p>Kesir 1'den küçük olduğundan pay paydadan küçüktür: x = 1, 2, …, 17.</p>
+<p>Sadeleştirilemez demek, x ile 18'in aralarında asal olması demektir. 18 = 2 · 3² olduğundan x, 2'ye ve 3'e bölünmemelidir.</p>
+<p>1'den 17'ye kadar 2'ye de 3'e de bölünmeyenler: 1, 5, 7, 11, 13, 17.</p>
+<p><strong>Cevap:</strong> x 6 farklı değer alabilir.</p>
+<p><strong>Dikkat:</strong> x = 0 için 0/18 = 0 olur; bu bir sıfır kesirdir ve sadeleştirilemeyen kesir olarak sayılmaz.</p>
+<h2>Tam Sayıların Tam Sayı Kuvvetleri (19–24)</h2>
+<p><strong>Hatırlatma:</strong></p>
+<ul>
+<li>Negatif sayının çift kuvveti pozitif, tek kuvveti negatiftir.</li>
+<li>Sıfır hariç her sayının 0. kuvveti 1'dir.</li>
+<li>Negatif üs, sayının çarpma işlemine göre tersini alır: a⁻ⁿ = 1 / aⁿ.</li>
+</ul>
+<h3>Soru 19 – (−3)⁴ ve −3⁴</h3>
+<p>(−3)⁴: Parantez olduğu için taban −3'tür. (−3) · (−3) · (−3) · (−3) = 9 · 9 = 81.</p>
+<p>−3⁴: Parantez olmadığı için üs yalnızca 3'e aittir, eksi işareti dışarıda kalır. −(3 · 3 · 3 · 3) = −81.</p>
+<p><strong>Cevap:</strong> (−3)⁴ = 81, −3⁴ = −81</p>
+<p><strong>Dikkat:</strong> Bu iki ifadeyi karıştırmak en sık yapılan hatadır; parantez, üssün işareti de kapsayıp kapsamadığını belirler.</p>
+<h3>Soru 20 – 2⁻³ ve 5⁰</h3>
+<p>2⁻³ = 1 / 2³ = 1/8</p>
+<p>5⁰ = 1 (sıfırdan farklı her sayının sıfırıncı kuvveti 1'dir).</p>
+<p><strong>Cevap:</strong> 2⁻³ = 1/8, 5⁰ = 1</p>
+<p><strong>Dikkat:</strong> 2⁻³ negatif bir sayı değildir; “−8” ya da “−6” yazmak yanlıştır.</p>
+<h3>Soru 21 – (−2)⁵ + (−1)¹⁰⁰ − 3²</h3>
+<p>Her terimi ayrı hesaplarız:</p>
+<ul>
+<li>(−2)⁵: üs tek, sonuç negatif → −32</li>
+<li>(−1)¹⁰⁰: üs çift, sonuç pozitif → 1</li>
+<li>3² = 9</li>
+</ul>
+<p>−32 + 1 − 9 = −31 − 9 = −40</p>
+<p><strong>Cevap:</strong> −40</p>
+<h3>Soru 22 – (−4)⁻² ve (−2)⁻³</h3>
+<p>(−4)⁻² = 1 / (−4)² = 1 / 16 (üs çift, sonuç pozitif).</p>
+<p>(−2)⁻³ = 1 / (−2)³ = 1 / (−8) = −1/8 (üs tek, işaret negatif kalır).</p>
+<p><strong>Cevap:</strong> (−4)⁻² = 1/16, (−2)⁻³ = −1/8</p>
+<p><strong>Dikkat:</strong> Negatif üs işareti değil, sayının yerini (pay–payda) değiştirir. İşaret, tabanın işaretine ve üssün tek/çift olmasına göre belirlenir.</p>
+<h3>Soru 23 – (−1)¹ + (−1)² + … + (−1)⁵⁰</h3>
+<p>Üs tek ise (−1) kuvveti −1, çift ise +1'dir. Terimleri ikili gruplarız:</p>
+<p>[(−1) + 1] + [(−1) + 1] + … + [(−1) + 1]</p>
+<p>1'den 50'ye kadar 50 terim vardır; bunların 25'i tek üslü (−1), 25'i çift üslüdür (+1). Her parantez 0 eder ve 25 tane parantez vardır.</p>
+<p>25 · (−1) + 25 · (+1) = −25 + 25 = 0</p>
+<p><strong>Cevap:</strong> 0</p>
+<h3>Soru 24 – a = −2, b = 3 için aᵇ − bᵃ</h3>
+<p>aᵇ = (−2)³ = −8</p>
+<p>bᵃ = 3⁻² = 1 / 3² = 1/9</p>
+<p>aᵇ − bᵃ = −8 − 1/9. Payda eşitleriz: −8 = −72/9.</p>
+<p>−72/9 − 1/9 = −73/9</p>
+<p><strong>Cevap:</strong> −73/9 (tam sayılı kesir olarak −8 1/9)</p>
+<p><strong>Dikkat:</strong> a değerini yerine koyarken parantezi unutmayın: (−2)³ yazılmalıdır, −2³ değil (burada sonuç aynı çıksa da çift üslerde fark oluşur).</p>
+<h2>Üslü İfadelerin Kuralları (25–30)</h2>
+<p><strong>Hatırlatma:</strong> Tabanlar aynı olmak şartıyla:</p>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>Kural</th>
+<th>Örnek</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Çarpmada üsler toplanır: aᵐ · aⁿ = aᵐ⁺ⁿ</td>
+<td>3² · 3⁴ = 3⁶</td>
+</tr>
+<tr>
+<td>Bölmede üsler çıkarılır: aᵐ : aⁿ = aᵐ⁻ⁿ</td>
+<td>5⁶ : 5² = 5⁴</td>
+</tr>
+<tr>
+<td>Üssün üssünde üsler çarpılır: (aᵐ)ⁿ = aᵐ·ⁿ</td>
+<td>(2²)³ = 2⁶</td>
+</tr>
+<tr>
+<td>Aynı terimler toplanırken katsayı olarak yazılır: aⁿ + aⁿ + aⁿ = 3 · aⁿ</td>
+<td>2⁵ + 2⁵ = 2 · 2⁵</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Soru 25 – 3⁴ · 3⁵</h3>
+<p>Tabanlar aynı (3), işlem çarpma → üsler toplanır: 3⁴⁺⁵ = 3⁹.</p>
+<p><strong>Cevap:</strong> 3⁹</p>
+<p><strong>Dikkat:</strong> Üsleri çarpıp 3²⁰ yazmak ya da tabanları çarpıp 9⁹ yazmak yanlıştır.</p>
+<h3>Soru 26 – (2³)²</h3>
+<p>Üssün üssü alınıyor → üsler çarpılır: (2³)² = 2⁶, çünkü 3 · 2 = 6.</p>
+<p>Kontrol: 2³ = 8 ve 8² = 64 = 2⁶.</p>
+<p><strong>Cevap:</strong> 2⁶</p>
+<h3>Soru 27 – 5⁷ : 5⁴ · 5⁻¹</h3>
+<p>Çarpma ve bölme aynı önceliktedir; soldan sağa yapılır.</p>
+<ul>
+<li>5⁷ : 5⁴ = 5⁷⁻⁴ = 5³</li>
+<li>5³ · 5⁻¹ = 5³⁺⁽⁻¹⁾ = 5²</li>
+<li>5² = 25</li>
+</ul>
+<p><strong>Cevap:</strong> 5² = 25</p>
+<h3>Soru 28 – 4³ · 2⁵ ifadesini 2'nin kuvveti olarak yazma</h3>
+<p>Tabanlar farklı; önce 4'ü 2'nin kuvveti olarak yazarız: 4 = 2².</p>
+<p>4³ = (2²)³ = 2⁶</p>
+<p>2⁶ · 2⁵ = 2⁶⁺⁵ = 2¹¹</p>
+<p><strong>Cevap:</strong> 2¹¹</p>
+<h3>Soru 29 – 2ˣ = 32 ise 4ˣ⁻¹</h3>
+<p>32'yi 2'nin kuvveti olarak yazarız: 32 = 2⁵. Tabanlar eşit olduğuna göre üsler de eşittir: x = 5.</p>
+<p>4ˣ⁻¹ = 4⁵⁻¹ = 4⁴ = 4 · 4 · 4 · 4 = 256</p>
+<p><strong>Cevap:</strong> 256</p>
+<h3>Soru 30 – 3²⁰ + 3²⁰ + 3²⁰</h3>
+<p>Aynı ifadeden 3 tane toplandığı için 3 · 3²⁰ yazılır. 3 = 3¹ olduğundan:</p>
+<p>3¹ · 3²⁰ = 3¹⁺²⁰ = 3²¹</p>
+<p><strong>Cevap:</strong> 3²¹</p>
+<p><strong>Dikkat:</strong> Toplamada üsler toplanmaz; 3⁶⁰ ya da 9²⁰ yazmak yanlıştır.</p>
+<h2>Ondalık Gösterimlerin Çözümlenmesi (31–36)</h2>
+<p><strong>Hatırlatma:</strong> Basamak değerleri 10'un kuvvetleridir. Virgülün solundaki basamaklar 10⁰, 10¹, 10² …; sağındakiler 10⁻¹, 10⁻², 10⁻³ … ile gösterilir.</p>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>Binler</th>
+<th>Yüzler</th>
+<th>Onlar</th>
+<th>Birler</th>
+<th>,</th>
+<th>Onda birler</th>
+<th>Yüzde birler</th>
+<th>Binde birler</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10³</td>
+<td>10²</td>
+<td>10¹</td>
+<td>10⁰</td>
+<td>,</td>
+<td>10⁻¹</td>
+<td>10⁻²</td>
+<td>10⁻³</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Soru 31 – 452,3 sayısının çözümlenmesi</h3>
+<p>Basamaklar: 4 yüzler, 5 onlar, 2 birler, 3 onda birler.</p>
+<p><strong>Cevap:</strong> 452,3 = 4 · 10² + 5 · 10¹ + 2 · 10⁰ + 3 · 10⁻¹</p>
+<h3>Soru 32 – 7 · 10¹ + 6 · 10⁰ + 8 · 10⁻²</h3>
+<p>Her terimi hesaplarız: 7 · 10 = 70, 6 · 1 = 6, 8 · 0,01 = 0,08.</p>
+<p>70 + 6 + 0,08 = 76,08</p>
+<p><strong>Cevap:</strong> 76,08</p>
+<p><strong>Dikkat:</strong> 10⁻¹ (onda birler) basamağı ifadede yok, yani o basamakta 0 vardır. 76,8 yazmak yanlıştır.</p>
+<h3>Soru 33 – 30,405 sayısının çözümlenmesi</h3>
+<p>Basamaklar: 3 onlar, 0 birler, 4 onda birler, 0 yüzde birler, 5 binde birler. Sıfır olan basamaklar çözümlemeye yazılmaz.</p>
+<p><strong>Cevap:</strong> 30,405 = 3 · 10¹ + 4 · 10⁻¹ + 5 · 10⁻³</p>
+<h3>Soru 34 – 2 · 10⁻¹ + 5 · 10² + 4 · 10⁻³ + 1 · 10⁰</h3>
+<p>Terimler karışık sırada verilmiş; önce büyükten küçüğe sıralarız:</p>
+<p>5 · 10² + 1 · 10⁰ + 2 · 10⁻¹ + 4 · 10⁻³</p>
+<p>500 + 1 + 0,2 + 0,004 = 501,204</p>
+<p>(10¹ ve 10⁻² basamakları yok, yani onlar ve yüzde birler basamağında 0 vardır.)</p>
+<p><strong>Cevap:</strong> 501,204</p>
+<h3>Soru 35 – a · 10² + 3 · 10¹ + b · 10⁻¹ + 2 · 10⁻² = 730,62</h3>
+<p>730,62 sayısını çözümleriz: 7 · 10² + 3 · 10¹ + 0 · 10⁰ + 6 · 10⁻¹ + 2 · 10⁻².</p>
+<p>Karşılıklı basamakları eşleriz: 10²'nin katsayısı a = 7; 10⁻¹'in katsayısı b = 6.</p>
+<p>a + b = 7 + 6 = 13</p>
+<p><strong>Cevap:</strong> 13</p>
+<h3>Soru 36 – 6025,08 sayısının katsayıları</h3>
+<p>Tam çözümleme (sıfırlar dahil): 6 · 10³ + 0 · 10² + 2 · 10¹ + 5 · 10⁰ + 0 · 10⁻¹ + 8 · 10⁻².</p>
+<ul>
+<li>10³'ün katsayısı 6, 10⁻²'nin katsayısı 8 → 6 · 8 = 48</li>
+<li>Katsayısı 0 olan basamaklar: yüzler (10²) ve onda birler (10⁻¹)</li>
+</ul>
+<p><strong>Cevap:</strong> Çarpım 48'dir; katsayısı 0 olan basamaklar 10² ve 10⁻¹'e karşılık gelir.</p>
+<h2>10'un Farklı Kuvvetleriyle İfade (37–42)</h2>
+<p><strong>Hatırlatma:</strong> 10'un pozitif kuvvetiyle çarpmak virgülü sağa, negatif kuvvetiyle çarpmak sola kaydırır. Katsayı küçülürse üs büyür, katsayı büyürse üs küçülür; sayının değeri değişmez.</p>
+<h3>Soru 37 – 0,0045 = 45 · 10ⁿ</h3>
+<p>0,0045'ten 45'e ulaşmak için virgülü 4 basamak sağa kaydırırız (0,0045 → 45). Sayı 10⁴ kat büyüdü; değeri korumak için 10⁻⁴ ile çarparız.</p>
+<p>0,0045 = 45 / 10000 = 45 · 10⁻⁴</p>
+<p><strong>Cevap:</strong> n = −4</p>
+<h3>Soru 38 – 3500 = 35 · 10ⁿ</h3>
+<p>3500 = 35 · 100 = 35 · 10²</p>
+<p><strong>Cevap:</strong> 3500 = 35 · 10² (n = 2)</p>
+<h3>Soru 39 – 7,2 · 10³ sayısını farklı biçimlerde yazma</h3>
+<p>Sayının değeri: 7,2 · 1000 = 7200.</p>
+<p>a) 7200 = 72 · 100 = 72 · 10² → n = 2 (katsayı 7,2'den 72'ye 10 kat büyüdü, üs 3'ten 2'ye 1 azaldı).</p>
+<p>b) 7200 = 720 · 10 = 720 · 10¹ → m = 1 (katsayı 100 kat büyüdü, üs 2 azaldı).</p>
+<p><strong>Cevap:</strong> 72 · 10² ve 720 · 10¹; n = 2, m = 1</p>
+<h3>Soru 40 – 0,36 · 10⁵ sayısını farklı biçimlerde yazma</h3>
+<p>Sayının değeri: 0,36 · 100000 = 36000.</p>
+<p>a) 36000 = 36 · 1000 = 36 · 10³ → n = 3 (katsayı 0,36'dan 36'ya 100 kat büyüdü, üs 5'ten 3'e 2 azaldı).</p>
+<p>b) 36000 = 3600 · 10 = 3600 · 10¹ → m = 1</p>
+<p><strong>Cevap:</strong> a) 36 · 10³ b) 3600 · 10¹</p>
+<h3>Soru 41 – 0,0024 · 10⁻² = 24 · 10ⁿ</h3>
+<p>Önce 0,0024'ü 24 cinsinden yazarız: virgül 4 basamak sağa kayar → 0,0024 = 24 · 10⁻⁴.</p>
+<p>0,0024 · 10⁻² = 24 · 10⁻⁴ · 10⁻² = 24 · 10⁻⁴⁺⁽⁻²⁾ = 24 · 10⁻⁶</p>
+<p><strong>Cevap:</strong> n = −6</p>
+<h3>Soru 42 – 125 · 10⁻⁴ + 0,25 · 10⁻¹ = 375 · 10ⁿ</h3>
+<p>Toplama yapabilmek için her terimi ondalık sayıya çeviririz:</p>
+<ul>
+<li>125 · 10⁻⁴ = 0,0125 (virgül 4 basamak sola)</li>
+<li>0,25 · 10⁻¹ = 0,025 (virgül 1 basamak sola)</li>
+</ul>
+<p>0,0125 + 0,025 = 0,0375</p>
+<p>0,0375'ten 375'e ulaşmak için virgül 4 basamak sağa kayar → 0,0375 = 375 · 10⁻⁴.</p>
+<p><strong>Cevap:</strong> n = −4</p>
+<p><strong>Dikkat:</strong> Üslü ifadeler toplanırken üsler toplanmaz; önce değerler bulunur ya da aynı kuvvete getirilir. Alternatif: 0,25 · 10⁻¹ = 250 · 10⁻⁴, böylece 125 · 10⁻⁴ + 250 · 10⁻⁴ = 375 · 10⁻⁴.</p>
+<h2>Bilimsel Gösterim (43–48)</h2>
+<p><strong>Hatırlatma:</strong> Bilimsel gösterim a · 10ⁿ biçimindedir; burada 1 ≤ a &lt; 10 ve n bir tam sayıdır. Yani katsayının virgülden önce sıfırdan farklı tek bir rakamı olmalıdır.</p>
+<h3>Soru 43 – 45 000 000</h3>
+<p>Katsayıyı 1 ile 10 arasına getirmek için virgülü 4 ile 5 arasına koyarız: 4,5. Virgül 7 basamak sola kaydı, sayı 10⁷ kat küçüldü; bunu 10⁷ ile dengeleriz.</p>
+<p><strong>Cevap:</strong> 45 000 000 = 4,5 · 10⁷</p>
+<h3>Soru 44 – 0,00062</h3>
+<p>Katsayı 6,2 olmalı. Virgül 4 basamak sağa kaydı (0,00062 → 6,2), sayı 10⁴ kat büyüdü; bunu 10⁻⁴ ile dengeleriz.</p>
+<p><strong>Cevap:</strong> 0,00062 = 6,2 · 10⁻⁴</p>
+<h3>Soru 45 – Hangileri bilimsel gösterimdir?</h3>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>İfade</th>
+<th>Katsayı</th>
+<th>1 ≤ a &lt; 10 mu?</th>
+<th>Sonuç</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a) 12 · 10³</td>
+<td>12</td>
+<td>Hayır, 10'dan büyük</td>
+<td>Değil (doğrusu 1,2 · 10⁴)</td>
+</tr>
+<tr>
+<td>b) 0,8 · 10⁻²</td>
+<td>0,8</td>
+<td>Hayır, 1'den küçük</td>
+<td>Değil (doğrusu 8 · 10⁻³)</td>
+</tr>
+<tr>
+<td>c) 9,99 · 10⁵</td>
+<td>9,99</td>
+<td>Evet</td>
+<td>Bilimsel gösterim</td>
+</tr>
+<tr>
+<td>d) 1 · 10⁻⁸</td>
+<td>1</td>
+<td>Evet (1 dahildir)</td>
+<td>Bilimsel gösterim</td>
+</tr>
+<tr>
+<td>e) 10 · 10²</td>
+<td>10</td>
+<td>Hayır, 10 dahil değildir</td>
+<td>Değil (doğrusu 1 · 10³)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Cevap:</strong> c ve d</p>
+<h3>Soru 46 – 340 · 10⁻⁵</h3>
+<p>Katsayıyı 3,4 yapmak için 340'ı 3,4 · 10² olarak yazarız.</p>
+<p>340 · 10⁻⁵ = 3,4 · 10² · 10⁻⁵ = 3,4 · 10²⁺⁽⁻⁵⁾ = 3,4 · 10⁻³</p>
+<p><strong>Cevap:</strong> 3,4 · 10⁻³</p>
+<h3>Soru 47 – a, b, c sayılarını küçükten büyüğe sıralama</h3>
+<p>Karşılaştırmak için üçünü de bilimsel gösterime getiririz:</p>
+<div class="mp-tablewrap"><table>
+<thead>
+<tr>
+<th>Sayı</th>
+<th>Bilimsel gösterim</th>
+<th>Ondalık değer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a = 3,2 · 10⁻⁵</td>
+<td>3,2 · 10⁻⁵</td>
+<td>0,000032</td>
+</tr>
+<tr>
+<td>b = 0,4 · 10⁻³</td>
+<td>4 · 10⁻⁴</td>
+<td>0,0004</td>
+</tr>
+<tr>
+<td>c = 28 · 10⁻⁶</td>
+<td>2,8 · 10⁻⁵</td>
+<td>0,000028</td>
+</tr>
+</tbody>
+</table></div>
+<p>Kural: Önce üslere bakarız; üssü büyük olan (−4 &gt; −5) daha büyüktür, yani b en büyük. a ve c'nin üsleri eşit (−5); katsayıları karşılaştırırız: 2,8 &lt; 3,2 olduğundan c &lt; a.</p>
+<p><strong>Cevap:</strong> c &lt; a &lt; b</p>
+<h3>Soru 48 – Güneş ile Dünya arasındaki uzaklık</h3>
+<p>Yol = Hız · Zaman</p>
+<p>Hız = 3 · 10⁸ m/s, zaman = 500 s = 5 · 10² s.</p>
+<p>Yol = 3 · 10⁸ · 5 · 10² = (3 · 5) · 10⁸⁺² = 15 · 10¹⁰ m</p>
+<p>15 bilimsel gösterim için uygun değil; 15 = 1,5 · 10¹ yazarız: 1,5 · 10¹ · 10¹⁰ = 1,5 · 10¹¹ m.</p>
+<p><strong>Cevap:</strong> 1,5 · 10¹¹ m (yaklaşık 150 milyon km)</p>
+</article>
+</main>
+<script>
+(function(){
+  var b=document.getElementById('mp-toggle'),box=document.getElementById('mp-answer-pages'),sec=document.getElementById('mp-answers');
+  if(!b)return;
+  b.addEventListener('click',function(){var open=box.hasAttribute('hidden');
+    if(open){box.removeAttribute('hidden');sec.classList.add('mp-open');b.textContent='Cevap anahtarını gizle';b.setAttribute('aria-expanded','true');}
+    else{box.setAttribute('hidden','');sec.classList.remove('mp-open');b.textContent='Cevap anahtarını göster';b.setAttribute('aria-expanded','false');}
+  });
+})();
+</script>
+</body>
+</html>
