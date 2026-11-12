@@ -27,6 +27,7 @@ Telefonda, bilgisayarda ve akıllı tahtada çalışır. Kurulum gerekmez.
 | Bölük Bölük Sayılar | `boluk-boluk-sayilar/` | Doğal sayıları okuma ve yazma |
 | Deniz Altı Eş Avı | `deniz-alti-es-avi/` | Kesir, ondalık ve yüzde |
 | Kesir Kitabım | `kesir-kitabim/` | Kesir modelleri, denk kesirler, karşılaştırma |
+| Kesir Sayı Doğrusu | `kesir-sayi-dogrusu/` | Kesirleri sayı doğrusunda gösterme, denk kesirler |
 
 **Çalışma kağıtları**
 
@@ -97,6 +98,7 @@ Telefonda, bilgisayarda ve akıllı tahtada çalışır. Kurulum gerekmez.
 | Onun Kuvvetleri Atölyesi | `onun-kuvvetleri-atolyesi/` | Çözümleme, 10'un kuvvetleri |
 | Küp Görünüm Avı | `kup-gorunum-avi/` | Yapıların farklı yönlerden görünümleri |
 | Blok Görünüm Avı | `blok-gorunum-avi/` | Yapıların görünümleri (blok temalı) |
+| Rasyonel Uzaylılar | `rasyonel-uzaylilar/` | Rasyonel sayılarla dört işlem |
 
 **Çalışma kağıtları**
 
@@ -118,6 +120,9 @@ Telefonda, bilgisayarda ve akıllı tahtada çalışır. Kurulum gerekmez.
 | Karekök Zindanı | `karekok-zindani/` | Karekök tahmini |
 | Kök Fabrikası | `kok-fabrikasi/` | a√b biçiminde yazma |
 | Kökünü Bul, Galaksiyi Kurtar | `kokunu-bul-galaksiyi-kurtar/` | Kareköklü ifadeler |
+| Kök Ormanı Macerası | `kok-ormani-macerasi/` | a√b biçiminde yazma, katsayıyı kök içine alma |
+| Kök Ormanı Kart Oyunu | `kok-ormani-kart-oyunu/` | a√b eşini bul (hafıza kartları) |
+| Dino Kök Macerası | `dino-kok-macerasi/` | Tam kareler ve karekök tahmini |
 
 **Çalışma kağıtları**
 
@@ -140,7 +145,7 @@ mathpop-oyunlar/
 ├── kesir-duellosu/
 │   ├── index.html
 │   └── simge.png
-├── … (87 klasör)
+├── … (92 klasör)
 ├── assets/
 │   ├── simge.png            ← logo (sol üst köşe)
 │   ├── deniz-arka-plan.jpg
